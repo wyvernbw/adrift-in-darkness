@@ -13,11 +13,13 @@ export(float) var stagger_speed : float = 16.0
 var move_dir : Vector2 = Vector2.ZERO
 var velocity : Vector2 = Vector2.ZERO
 var stamina : float = MAX_STAMINA
-var moving = false
-var staggered = false
+var moving : bool = false
+var staggered : bool = false
+var canMove : bool = true
 
 func _physics_process(delta):
-	_get_input()
+	if canMove:
+		_get_input()
 	_calculate_speed()
 	
 	#add to vector
@@ -30,7 +32,7 @@ func _physics_process(delta):
 	
 	#move body along vector
 	move_and_slide(velocity, Vector2.UP)
-	print(stamina)
+	
 
 func _get_input() -> void:
 	#get keyboard input
@@ -69,4 +71,11 @@ func _calculate_speed() -> void:
 	
 	if not moving:
 		stamina += 1
-		
+	
+func _on_Object_player_exited():
+	canMove = true
+
+func _on_Object_player_interacted(res):
+	canMove = false
+	print("player paused")
+	
