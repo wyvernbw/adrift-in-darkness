@@ -15,6 +15,11 @@ _global_script_classes=[ {
 "path": "res://Scripts/Resources/DialogueResource.gd"
 }, {
 "base": "Node",
+"class": "InventoryHandlerClass",
+"language": "GDScript",
+"path": "res://Scripts/InventoryHandler.gd"
+}, {
+"base": "Node",
 "class": "Item",
 "language": "GDScript",
 "path": "res://Scripts/Item.gd"
@@ -27,13 +32,20 @@ _global_script_classes=[ {
 "base": "StaticBody2D",
 "class": "StaticObject",
 "language": "GDScript",
+"path": "res://Scripts/Table.gd"
+}, {
+"base": "StaticBody2D",
+"class": "Table",
+"language": "GDScript",
 "path": "res://Scripts/Object.gd"
 } ]
 _global_script_class_icons={
 "DialogueResource": "",
+"InventoryHandlerClass": "",
 "Item": "",
 "Player": "",
-"StaticObject": ""
+"StaticObject": "",
+"Table": ""
 }
 
 [application]

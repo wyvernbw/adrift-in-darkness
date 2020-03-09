@@ -79,3 +79,9 @@ func _on_Object_player_interacted(res):
 	canMove = false
 	print("player paused")
 	
+func _on_InventoryGUI_inventory_opened():
+	canMove = false
+	print("player paused")
+	
+func _on_InventoryGUI_inventory_closed():
+	canMove = true

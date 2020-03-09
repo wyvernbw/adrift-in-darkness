@@ -4,7 +4,7 @@
 
 [resource]
 script = ExtResource( 1 )
-Text = [ "I am a table" ]
+Text = [ "I am a table", "Obtained debug_item" ]
 Answers = {
 
 }

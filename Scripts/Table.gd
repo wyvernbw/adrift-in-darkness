@@ -1,5 +1,5 @@
 extends StaticBody2D
-class_name Table
+class_name StaticObject
 
 signal player_obtained_item(item)
 signal player_interacted(res)
@@ -12,16 +12,16 @@ onready var InventoryHandler = $"/root/InventoryHandler"
 var player_is_colliding : bool = false
 var canInteract : bool = true
 var page_index : int = 0
-var item_held = null
+onready var item_held = InventoryHandler.debug_item
 
 export(Resource) var dialogue : Resource
 
 func _ready() -> void:
 	connect_signals()
+	register_held_item()
 	
 func _process(delta) -> void:
 	update_dialogue()
-	print(item_held)
 
 func connect_signals() -> void:
 	#Dialoue Handler
@@ -73,3 +73,6 @@ func _on_InventoryHandler_item_picked_up():
 #--------------------------------------------------
 func action():
 	pass #Overwrite this function to add custom behaviour
+
+func register_held_item():
+	pass

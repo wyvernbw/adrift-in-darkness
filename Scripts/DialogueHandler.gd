@@ -14,3 +14,4 @@ func _on_Object_player_exited():
 
 func _on_Object_page_changed(index):
 	get_node("InteractDialogueBox/Panel/Label").text = resource.Text[index]
+
