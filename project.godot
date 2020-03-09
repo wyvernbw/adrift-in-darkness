@@ -14,14 +14,26 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://Scripts/Resources/DialogueResource.gd"
 }, {
+"base": "Node",
+"class": "Item",
+"language": "GDScript",
+"path": "res://Scripts/Item.gd"
+}, {
 "base": "KinematicBody2D",
 "class": "Player",
 "language": "GDScript",
 "path": "res://Scenes/Player/Player.gd"
+}, {
+"base": "StaticBody2D",
+"class": "StaticObject",
+"language": "GDScript",
+"path": "res://Scripts/Object.gd"
 } ]
 _global_script_class_icons={
 "DialogueResource": "",
-"Player": ""
+"Item": "",
+"Player": "",
+"StaticObject": ""
 }
 
 [application]
@@ -32,13 +44,13 @@ config/icon="res://icon.png"
 [autoload]
 
 DialogueHandler="*res://Scripts/DialogueHandler.gd"
+InventoryHandler="*res://Scripts/InventoryHandler.gd"
 
 [display]
 
 window/size/width=256
 window/size/height=194
 window/size/resizable=false
-window/size/fullscreen=true
 window/stretch/mode="2d"
 window/stretch/aspect="expand"
 

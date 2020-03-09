@@ -1,4 +1,5 @@
 extends StaticBody2D
+class_name StaticObject
 
 signal player_interacted(res)
 signal page_changed(index)
@@ -52,3 +53,7 @@ func _on_InteractionArea_body_exited(body) -> void:
 
 func _on_DialogueHandler_player_unpause() -> void:
 	canInteract = true
+
+#--------------------------------------------------
+func action():
+	pass #Overwrite this function to add custom behaviour
