@@ -10,16 +10,20 @@ var page_index : int = 0
 
 export(Resource) var dialogue : Resource
 
-func _ready():
+func _ready() -> void:
+	connect_signals()
+	
+func _process(delta) -> void:
+	update_dialogue()
+
+func connect_signals() -> void:
 	connect("player_interacted", $"/root/DialogueHandler", "_on_Object_player_interacted")
 	connect("player_exited", $"/root/DialogueHandler", "_on_Object_player_exited")
 	connect("player_interacted", $"../Player", "_on_Object_player_interacted")
 	connect("player_exited", $"../Player", "_on_Object_player_exited")
 	connect("page_changed", $"/root/DialogueHandler", "_on_Object_page_changed")
-	$"/root/DialogueHandler".connect("player_unpause", self, "_on_DialogueHandler_player_unpause")
-	
-func _process(delta):
-	print(page_index)
+
+func update_dialogue() -> void:
 	var interact = Input.is_action_just_pressed("interact")
 	if player_is_colliding:
 		if interact and canInteract == true :
@@ -33,19 +37,18 @@ func _process(delta):
 				emit_signal("player_exited")
 			elif page_index < dialogue.Text.size():
 				next_page()
-			
-			
-func next_page():
+
+func next_page() -> void:
 	page_index += 1
 	emit_signal("page_changed", page_index)
 
-func _on_InteractionArea_body_entered(body):
+func _on_InteractionArea_body_entered(body) -> void:
 	if body is Player:
 		player_is_colliding = true
 
-func _on_InteractionArea_body_exited(body):
+func _on_InteractionArea_body_exited(body) -> void:
 	if body is Player:
 		player_is_colliding = false
 
-func _on_DialogueHandler_player_unpause():
+func _on_DialogueHandler_player_unpause() -> void:
 	canInteract = true
