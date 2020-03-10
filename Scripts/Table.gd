@@ -18,7 +18,6 @@ export(Resource) var dialogue : Resource
 
 func _ready() -> void:
 	connect_signals()
-	register_held_item()
 	
 func _process(delta) -> void:
 	update_dialogue()
@@ -40,10 +39,10 @@ func update_dialogue() -> void:
 	if player_is_colliding:
 		if interact and canInteract == true :
 			canInteract = false
+			emit_signal("player_interacted", dialogue)
 			if item_held:
 				emit_signal("player_obtained_item", item_held)
-			emit_signal("player_interacted", dialogue)
-			
+				item_held = null
 		elif interact and canInteract == false : 
 			if page_index == dialogue.Text.size() - 1:
 				canInteract = true
@@ -71,8 +70,6 @@ func _on_InventoryHandler_item_picked_up():
 	pass #eventually call action()
 
 #--------------------------------------------------
+
 func action():
 	pass #Overwrite this function to add custom behaviour
-
-func register_held_item():
-	pass

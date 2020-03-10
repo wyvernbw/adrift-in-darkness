@@ -41,11 +41,10 @@ visible = false
 margin_right = 80.0
 margin_bottom = 120.0
 
-[node name="GridContainer" type="GridContainer" parent="NormalItemPanel"]
+[node name="GridContainer" type="VBoxContainer" parent="NormalItemPanel"]
 margin_top = 8.0
 margin_right = 80.0
 margin_bottom = 112.0
-custom_constants/vseparation = 16
 
 [node name="NormalItemsLabel" type="Label" parent="NormalItemPanel"]
 margin_left = -8.0

@@ -3,7 +3,7 @@
 [ext_resource path="res://Sprites/items/bottle-of-poison.png" type="Texture" id=1]
 [ext_resource path="res://fonts/kindergarten.ttf" type="DynamicFontData" id=2]
 
-[sub_resource type="StyleBoxFlat" id=4]
+[sub_resource type="StyleBoxFlat" id=1]
 bg_color = Color( 0.133333, 0.133333, 0.133333, 0.717647 )
 border_width_left = 1
 border_width_top = 1
@@ -18,15 +18,17 @@ font_data = ExtResource( 2 )
 size = 8
 font_data = ExtResource( 2 )
 
-[node name="ItemSlot" type="Button"]
+[node name="ItemSlot" type="Button" groups=[
+"ItemSlot",
+]]
 margin_right = 80.0
 margin_bottom = 16.0
 mouse_filter = 2
-custom_styles/hover = SubResource( 4 )
-custom_styles/pressed = SubResource( 4 )
-custom_styles/focus = SubResource( 4 )
-custom_styles/disabled = SubResource( 4 )
-custom_styles/normal = SubResource( 4 )
+custom_styles/hover = SubResource( 1 )
+custom_styles/pressed = SubResource( 1 )
+custom_styles/focus = SubResource( 1 )
+custom_styles/disabled = SubResource( 1 )
+custom_styles/normal = SubResource( 1 )
 button_mask = 0
 
 [node name="Icon" type="TextureRect" parent="."]

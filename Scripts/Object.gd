@@ -21,7 +21,7 @@ func _ready() -> void:
 	
 func _process(delta) -> void:
 	update_dialogue()
-	print(item_held)
+
 
 func connect_signals() -> void:
 	#Dialoue Handler
@@ -40,10 +40,10 @@ func update_dialogue() -> void:
 	if player_is_colliding:
 		if interact and canInteract == true :
 			canInteract = false
+			emit_signal("player_interacted", dialogue)
 			if item_held:
 				emit_signal("player_obtained_item", item_held)
-			emit_signal("player_interacted", dialogue)
-			
+				item_held = null
 		elif interact and canInteract == false : 
 			if page_index == dialogue.Text.size() - 1:
 				canInteract = true
@@ -54,6 +54,9 @@ func update_dialogue() -> void:
 
 func next_page() -> void:
 	page_index += 1
+	if page_index > dialogue.Text.size():
+		page_index = 0
+		return
 	emit_signal("page_changed", page_index)
 
 func _on_InteractionArea_body_entered(body) -> void:
