@@ -9,4 +9,4 @@ func _on_TypingTimer_timeout():
 	if $Panel/Label.visible_characters == $Panel/Label.text.length():
 		typing_finished = true
 		TypingTimer.stop()
-	print(typing_finished)
+

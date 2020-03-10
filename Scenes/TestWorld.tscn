@@ -25,4 +25,3 @@ position = Vector2( 80.3763, 55.471 )
 position = Vector2( 176, 55.471 )
 [connection signal="inventory_closed" from="CanvasLayer/InventoryGUI" to="Player" method="_on_InventoryGUI_inventory_closed"]
 [connection signal="inventory_opened" from="CanvasLayer/InventoryGUI" to="Player" method="_on_InventoryGUI_inventory_opened"]
-[connection signal="inventory_changed" from="InventoryHandler" to="CanvasLayer/InventoryGUI" method="_on_InventoryHandler_inventory_changed"]
