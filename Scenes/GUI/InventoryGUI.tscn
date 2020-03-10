@@ -11,7 +11,7 @@ font_data = ExtResource( 2 )
 [node name="InventoryGUI" type="Control"]
 margin_left = 16.0
 margin_top = 16.0
-margin_right = 97.0
+margin_right = 128.0
 margin_bottom = 136.0
 rect_pivot_offset = Vector2( 40.5, 60 )
 script = ExtResource( 1 )
@@ -20,17 +20,17 @@ __meta__ = {
 }
 
 [node name="KeyItemPanel" type="Panel" parent="."]
-margin_right = 80.0
+margin_right = 112.0
 margin_bottom = 120.0
 
 [node name="GridContainer" type="VBoxContainer" parent="KeyItemPanel"]
 margin_top = 8.0
-margin_right = 80.0
+margin_right = 112.0
 margin_bottom = 112.0
 
 [node name="KeyItemsLabel" type="Label" parent="KeyItemPanel"]
 margin_top = -8.0
-margin_right = 81.0
+margin_right = 112.0
 margin_bottom = 9.0
 custom_fonts/font = SubResource( 1 )
 text = "Key Items"
@@ -38,18 +38,18 @@ align = 1
 
 [node name="NormalItemPanel" type="Panel" parent="."]
 visible = false
-margin_right = 80.0
+margin_right = 112.0
 margin_bottom = 120.0
 
 [node name="GridContainer" type="VBoxContainer" parent="NormalItemPanel"]
 margin_top = 8.0
-margin_right = 80.0
+margin_right = 112.0
 margin_bottom = 112.0
 
 [node name="NormalItemsLabel" type="Label" parent="NormalItemPanel"]
 margin_left = -8.0
 margin_top = -8.0
-margin_right = 84.0
+margin_right = 112.0
 margin_bottom = 9.0
 custom_fonts/font = SubResource( 1 )
 text = "Normal items"

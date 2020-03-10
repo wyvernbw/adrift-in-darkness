@@ -36,7 +36,7 @@ func populate_inventory():
 		item_slot.set_name(str(InventoryHandler.inventory[Item.ITEM_TYPES.KEY_ITEM][i].item_name))
 		item_slot.add_to_group("ItemSlot")
 		item_slot.get_node("Name").text = InventoryHandler.inventory[Item.ITEM_TYPES.KEY_ITEM][i].item_name
-		item_slot.get_node("Quantity").text = str(InventoryHandler.inventory[Item.ITEM_TYPES.KEY_ITEM][i].quantity)
+		item_slot.get_node("Quantity").text = "x" + str(InventoryHandler.inventory[Item.ITEM_TYPES.KEY_ITEM][i].quantity)
 		item_slot.get_node("Icon").texture = InventoryHandler.inventory[Item.ITEM_TYPES.KEY_ITEM][i].texture
 	for i in InventoryHandler.inventory[Item.ITEM_TYPES.NORMAL_ITEM].size():
 		var item_slot = ITEM_SLOT.instance()
@@ -44,7 +44,7 @@ func populate_inventory():
 		item_slot.set_name(str(InventoryHandler.inventory[Item.ITEM_TYPES.NORMAL_ITEM][i].item_name))
 		item_slot.add_to_group("ItemSlot")
 		item_slot.get_node("Name").text = InventoryHandler.inventory[Item.ITEM_TYPES.NORMAL_ITEM][i].item_name
-		item_slot.get_node("Quantity").text = str(InventoryHandler.inventory[Item.ITEM_TYPES.NORMAL_ITEM][i].quantity)
+		item_slot.get_node("Quantity").text = "x" + str(InventoryHandler.inventory[Item.ITEM_TYPES.NORMAL_ITEM][i].quantity)
 		item_slot.get_node("Icon").texture = InventoryHandler.inventory[Item.ITEM_TYPES.NORMAL_ITEM][i].texture
 
 func refresh_inventory():
