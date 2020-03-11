@@ -1,10 +1,13 @@
 [gd_scene load_steps=8 format=2]
 
-[ext_resource path="res://Scenes/GUI/ItemSlotFocus.tres" type="StyleBox" id=1]
-[ext_resource path="res://Scenes/GUI/ItemSlotNormal.tres" type="StyleBox" id=2]
-[ext_resource path="res://Scenes/GUI/ItemSlot.gd" type="Script" id=3]
+[ext_resource path="res://Scripts/Resources/GUI/ItemSlotFocus.tres" type="StyleBox" id=1]
+[ext_resource path="res://Scripts/Resources/GUI/ItemSlotNormal.tres" type="StyleBox" id=2]
+[ext_resource path="res://Scripts/ItemSlot.gd" type="Script" id=3]
 [ext_resource path="res://Sprites/items/bottle-of-poison.png" type="Texture" id=4]
 [ext_resource path="res://fonts/kindergarten.ttf" type="DynamicFontData" id=5]
+
+
+
 
 [sub_resource type="DynamicFont" id=2]
 size = 12
