@@ -1,6 +1,7 @@
 extends Node
 
 const DIALOGUE_BOX_SCENE = preload("res://Scenes/GUI/DialogueBox.tscn")
+const BRANCHING_DIALOGUE_BOX_SCENE = preload("res://Scenes/GUI/BranchingDialogueBox.tscn")
 var resource : Resource
 var page_index
 

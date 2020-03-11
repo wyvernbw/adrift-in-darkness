@@ -32,7 +32,7 @@ _global_script_classes=[ {
 "base": "StaticBody2D",
 "class": "StaticObject",
 "language": "GDScript",
-"path": "res://Scripts/Object.gd"
+"path": "res://Scripts/StaticObject.gd"
 }, {
 "base": "StaticObject",
 "class": "Table",

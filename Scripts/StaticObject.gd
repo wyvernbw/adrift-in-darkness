@@ -77,8 +77,9 @@ func _on_InventoryHandler_item_picked_up():
 	pass #eventually call action()
 
 #--------------------------------------------------
+
 func set_item():
-	pass
+	pass #Overwrite this function to add an item
 	
 func action():
 	pass #Overwrite this function to add custom behaviour
