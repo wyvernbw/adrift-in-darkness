@@ -1,5 +1,5 @@
 extends StaticBody2D
-class_name Table
+class_name StaticObject
 
 signal player_obtained_item(item)
 signal player_interacted(res)
@@ -12,7 +12,7 @@ onready var InventoryHandler = $"/root/InventoryHandler"
 var player_is_colliding : bool = false
 var canInteract : bool = true
 var page_index : int = 0
-var item_held = null
+onready var item_held = InventoryHandler.debug_item
 
 export(Resource) var dialogue : Resource
 
@@ -21,7 +21,6 @@ func _ready() -> void:
 	
 func _process(delta) -> void:
 	update_dialogue()
-
 
 func connect_signals() -> void:
 	#Dialoue Handler
@@ -54,9 +53,6 @@ func update_dialogue() -> void:
 
 func next_page() -> void:
 	page_index += 1
-	if page_index > dialogue.Text.size():
-		page_index = 0
-		return
 	emit_signal("page_changed", page_index)
 
 func _on_InteractionArea_body_entered(body) -> void:
@@ -74,5 +70,6 @@ func _on_InventoryHandler_item_picked_up():
 	pass #eventually call action()
 
 #--------------------------------------------------
+
 func action():
 	pass #Overwrite this function to add custom behaviour
