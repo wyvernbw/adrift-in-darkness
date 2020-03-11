@@ -67,7 +67,7 @@ func _calculate_speed() -> void:
 	if staggered:
 		speed = stagger_speed
 		
-	stamina = min(stamina, MAX_STAMINA)
+	stamina = clamp(stamina, 0, MAX_STAMINA)
 	
 	if not moving:
 		stamina += 1
