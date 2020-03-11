@@ -17,6 +17,10 @@ var moving : bool = false
 var staggered : bool = false
 var canMove : bool = true
 
+func _ready():
+	$"/root/DialogueHandler".connect("player_unpause", self, "_on_player_unpaused")
+	$"/root/DialogueHandler".connect("player_pause", self, "_on_player_paused")
+
 func _physics_process(delta):
 	if canMove:
 		_get_input()
@@ -72,16 +76,10 @@ func _calculate_speed() -> void:
 	if not moving:
 		stamina += 1
 	
-func _on_Object_player_exited():
+func _on_player_unpaused():
 	canMove = true
 
-func _on_Object_player_interacted(res):
+func _on_player_paused():
 	canMove = false
 	move_dir = Vector2.ZERO
 	
-func _on_InventoryGUI_inventory_opened():
-	canMove = false
-	move_dir = Vector2.ZERO
-	
-func _on_InventoryGUI_inventory_closed():
-	canMove = true

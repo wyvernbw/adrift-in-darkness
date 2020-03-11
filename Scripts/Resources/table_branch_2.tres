@@ -4,7 +4,7 @@
 
 [resource]
 script = ExtResource( 1 )
-Text = [ "hello to you as well" ]
+Text = [ "goodbye" ]
 Answers = {
 
 }
