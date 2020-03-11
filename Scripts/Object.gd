@@ -55,6 +55,8 @@ func update_dialogue() -> void:
 
 func next_page() -> void:
 	page_index += 1
+	if page_index == dialogue.Text.size() - 1:
+		pass
 	if page_index > dialogue.Text.size():
 		page_index = 0
 		return
