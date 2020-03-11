@@ -1,5 +1,5 @@
 extends StaticBody2D
-class_name Table
+class_name StaticObject
 
 signal player_obtained_item(item)
 signal player_interacted(res)
@@ -18,9 +18,11 @@ export(Resource) var dialogue : Resource
 
 func _ready() -> void:
 	connect_signals()
+	set_item()
 	
 func _process(delta) -> void:
 	update_dialogue()
+	action()
 
 
 func connect_signals() -> void:
@@ -32,7 +34,6 @@ func connect_signals() -> void:
 	connect("page_changed", DialogueHandler, "_on_Object_page_changed")
 	
 	#InventoryHandler
-	InventoryHandler.connect("item_picked_up", self, "_on_InventoryHandler_item_picked_up")
 	connect("player_obtained_item", InventoryHandler, "_on_Object_player_obtained_item")
 	
 func update_dialogue() -> void:
@@ -74,5 +75,8 @@ func _on_InventoryHandler_item_picked_up():
 	pass #eventually call action()
 
 #--------------------------------------------------
+func set_item():
+	pass
+	
 func action():
 	pass #Overwrite this function to add custom behaviour

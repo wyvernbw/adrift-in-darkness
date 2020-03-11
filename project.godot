@@ -32,12 +32,12 @@ _global_script_classes=[ {
 "base": "StaticBody2D",
 "class": "StaticObject",
 "language": "GDScript",
-"path": "res://Scripts/Table.gd"
+"path": "res://Scripts/Object.gd"
 }, {
-"base": "StaticBody2D",
+"base": "StaticObject",
 "class": "Table",
 "language": "GDScript",
-"path": "res://Scripts/Object.gd"
+"path": "res://Scripts/Table.gd"
 } ]
 _global_script_class_icons={
 "DialogueResource": "",
