@@ -1,5 +1,4 @@
 extends KinematicBody2D
-
 class_name Player
 
 const BASE_SPEED : float = 48.0
@@ -11,6 +10,8 @@ export(float) var sprint_speed : float = 96.0
 export(float) var stagger_speed : float = 16.0
 
 var move_dir : Vector2 = Vector2.ZERO
+var look_dir : Vector2 = Vector2.DOWN
+var look_raycast_colliding : bool = false
 var velocity : Vector2 = Vector2.ZERO
 var stamina : float = MAX_STAMINA
 var moving : bool = false
@@ -25,6 +26,7 @@ func _physics_process(delta):
 	if canMove:
 		_get_input()
 	_calculate_speed()
+	_update_look_dir()
 	
 	#add to vector
 	velocity.x += speed * move_dir.x
@@ -37,7 +39,21 @@ func _physics_process(delta):
 	#move body along vector
 	move_and_slide(velocity, Vector2.UP)
 	
-
+func _update_look_dir() -> void:
+	if Input.is_action_pressed("move_right"):
+		look_dir = Vector2.RIGHT
+	if Input.is_action_pressed("move_left"):
+		look_dir = Vector2.LEFT
+	if Input.is_action_pressed("move_down"):
+		look_dir = Vector2.DOWN
+	if Input.is_action_pressed("move_up"):
+		look_dir = Vector2.UP
+	$look_dir.cast_to = look_dir * 8
+	if $look_dir.is_colliding():
+		look_raycast_colliding = true
+	else:
+		look_raycast_colliding = false
+	
 func _get_input() -> void:
 	#get keyboard input
 	var moving_right 	= Input.is_action_pressed("move_right")
@@ -75,13 +91,13 @@ func _calculate_speed() -> void:
 	
 	if not moving:
 		stamina += 1
-	
-func _on_player_unpaused():
+
+func _on_player_unpaused() -> void:
 	canMove = true
 	DialogueHandler.page_index = 0
 	DialogueHandler.dialogue_branching = false
 
-func _on_player_paused():
+func _on_player_paused() -> void:
 	canMove = false
 	move_dir = Vector2.ZERO
-	
+

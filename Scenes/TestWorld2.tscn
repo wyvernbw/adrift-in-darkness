@@ -22,7 +22,7 @@ tile_data = PoolIntArray( 65540, 9, 0, 65541, 0, 0, 65542, 0, 0, 65543, 0, 0, 65
 [node name="Player" parent="." groups=[
 "Player",
 ] instance=ExtResource( 1 )]
-position = Vector2( 105, 74 )
+position = Vector2( 128, 56 )
 z_index = 1
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
@@ -37,24 +37,22 @@ visible = false
 [node name="Table" parent="." groups=[
 "Interactables",
 ] instance=ExtResource( 5 )]
-position = Vector2( 152, 88 )
+position = Vector2( 128, 114 )
 z_as_relative = false
-collision_layer = 2
 dialogue = ExtResource( 6 )
 
 [node name="Door" parent="." instance=ExtResource( 7 )]
 position = Vector2( 128, 48 )
-scene_path = "res://Scenes/TestWorld2.tscn"
-player_pos = Vector2( 128, 52 )
+scene_path = "res://Scenes/TestWorld.tscn"
 
 [node name="Light2D" type="Light2D" parent="."]
-position = Vector2( 120, 32 )
+position = Vector2( 120, 28 )
 scale = Vector2( 1.28125, 1.25 )
 z_index = 2
 texture = ExtResource( 9 )
 offset = Vector2( 0.780491, 6.4 )
 texture_scale = 1.49
-color = Color( 0.952941, 0.764706, 0.407843, 1 )
+color = Color( 0.972549, 0.92549, 0.839216, 1 )
 energy = 0.68
 shadow_enabled = true
 shadow_gradient_length = 0.3
@@ -63,6 +61,6 @@ __meta__ = {
 }
 
 [node name="CanvasModulate" type="CanvasModulate" parent="."]
-color = Color( 0.258824, 0.258824, 0.258824, 1 )
+color = Color( 0.454902, 0.454902, 0.454902, 1 )
 [connection signal="inventory_closed" from="CanvasLayer/InventoryGUI" to="Player" method="_on_player_unpaused"]
 [connection signal="inventory_opened" from="CanvasLayer/InventoryGUI" to="Player" method="_on_player_paused"]
