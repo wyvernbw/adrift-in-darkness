@@ -6,7 +6,6 @@
 
 [node name="Table" instance=ExtResource( 1 )]
 script = ExtResource( 2 )
-dialogue = null
 
 [node name="Texture" parent="." index="1"]
 texture = ExtResource( 4 )

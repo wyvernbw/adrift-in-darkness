@@ -60,8 +60,7 @@ func update_dialogue() -> void:
 					canInteract = true
 			elif DialogueHandler.page_index <= dialogue.Text.size():
 				emit_signal("next_page")
-				print(DialogueHandler.page_index)
-
+				
 func _on_InteractionArea_body_entered(body) -> void:
 	if body is Player:
 		player_is_colliding = true
