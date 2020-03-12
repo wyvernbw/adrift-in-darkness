@@ -16,6 +16,9 @@ func _ready():
 	visible = false
 	
 func _process(delta):
+	if visible:
+		if DialogueHandler.get_child_count() > 0:
+			visible = false
 	if Input.is_action_just_pressed("ui_cancel") :
 		if visible:
 			visible = false
