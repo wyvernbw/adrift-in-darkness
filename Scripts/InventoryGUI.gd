@@ -20,7 +20,7 @@ func _process(delta):
 		if visible:
 			visible = false
 			emit_signal("inventory_closed")
-		elif not visible:
+		elif not visible and DialogueHandler.get_child_count() == 0:
 			visible = true
 			if KeyItemsContainer.visible:
 				if KeyItemsContainer.get_children():
