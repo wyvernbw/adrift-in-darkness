@@ -7,7 +7,7 @@
 
 [resource]
 script = ExtResource( 1 )
-Text = [ "I am a table", "found a bottle of poison" ]
+Text = [ "I am a table", "found a bottle of poison", "<filler line>" ]
 Answers = {
 "bye": ExtResource( 3 ),
 "hello": ExtResource( 2 )

@@ -81,3 +81,5 @@ valign = 1
 __meta__ = {
 "_edit_use_anchors_": true
 }
+[connection signal="pressed" from="Panel/option1" to="." method="_on_option1_pressed"]
+[connection signal="pressed" from="Panel/option2" to="." method="_on_option2_pressed"]
