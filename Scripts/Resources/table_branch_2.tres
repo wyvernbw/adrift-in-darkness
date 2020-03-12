@@ -1,0 +1,15 @@
+[gd_resource type="Resource" load_steps=3 format=2]
+
+[ext_resource path="res://Scripts/Resources/DialogueResource.gd" type="Script" id=1]
+[ext_resource path="res://Sprites/items/bottle-of-poison.png" type="Texture" id=2]
+
+[resource]
+script = ExtResource( 1 )
+Text = [ "goodbye", "here have this", "got some weird liquid" ]
+Answers = {
+
+}
+item_name = "weird liquid"
+item_texture = ExtResource( 2 )
+item_quantity = 1
+item_type = 1

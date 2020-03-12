@@ -32,7 +32,7 @@ _global_script_classes=[ {
 "base": "StaticBody2D",
 "class": "StaticObject",
 "language": "GDScript",
-"path": "res://Scripts/Object.gd"
+"path": "res://Scripts/StaticObject.gd"
 }, {
 "base": "StaticObject",
 "class": "Table",
@@ -50,7 +50,7 @@ _global_script_class_icons={
 
 [application]
 
-config/name="Lost in the Darkness"
+config/name="Lost in Darkness"
 config/icon="res://icon.png"
 
 [autoload]
@@ -62,8 +62,9 @@ InventoryHandler="*res://Scripts/InventoryHandler.gd"
 
 window/size/width=256
 window/size/height=194
+window/size/resizable=false
 window/stretch/mode="2d"
-window/stretch/aspect="expand"
+window/stretch/aspect="keep_width"
 
 [input]
 
