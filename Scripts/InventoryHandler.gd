@@ -8,12 +8,10 @@ var key_items = []
 var normal_items = []
 
 var debug_item = Item.new("poison", 1, preload("res://Sprites/items/bottle-of-poison.png"), Item.ITEM_TYPES.KEY_ITEM)
-var debug_item2 = Item.new("green juice", 1, preload("res://Sprites/items/bottle-of-poison.png"), Item.ITEM_TYPES.KEY_ITEM)
 
 func _ready():
 	inventory.append(key_items)
 	inventory.append(normal_items)
-	add_item(debug_item2)
 	
 func add_item(item : Item) -> void:
 	print(str(item.item_name) + " : " + str(item.quantity))

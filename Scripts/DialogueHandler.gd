@@ -59,7 +59,6 @@ func update_dialogue():
 		dialogue_box.set_name("DialogueBox")
 		dialogue_box.get_node("Panel/Label").text = resource.Text[page_index]
 
-
 func _on_BranchingDialogueBox_option_pressed(branch):
 	get_node("BranchingDialogueBox").queue_free()
 	var keys = resource.Answers.keys()
@@ -71,7 +70,6 @@ func _on_BranchingDialogueBox_option_pressed(branch):
 	page_index = 0
 	dialogue_branching = false
 	update_dialogue()
-
 
 func _on_DialogueHandler_resource_changed():
 	if resource.item_name:
@@ -85,4 +83,7 @@ func _on_DialogueHandler_resource_changed():
 						resource.item_type
 					)
 					InventoryHandler.add_item(item_held)
+					print("added item")
+					InventoryHandler.inventory[item_held.item_type][InventoryHandler.get_item(item_held)].quantity -= item_held.quantity
+					resource.item_name = null
 	

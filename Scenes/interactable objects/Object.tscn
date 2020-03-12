@@ -3,7 +3,7 @@
 [ext_resource path="res://Scripts/StaticObject.gd" type="Script" id=1]
 
 [sub_resource type="RectangleShape2D" id=1]
-extents = Vector2( 8, 8 )
+extents = Vector2( 8, 1 )
 
 [sub_resource type="RectangleShape2D" id=2]
 extents = Vector2( 16, 16 )
@@ -14,11 +14,9 @@ polygon = PoolVector2Array( -8, -8, 8, -8, 8, 8, -8, 8, -8, -8, 8, -8 )
 [node name="Object" type="StaticBody2D"]
 position = Vector2( 8, 8 )
 script = ExtResource( 1 )
-__meta__ = {
-"_edit_group_": true
-}
 
 [node name="CollisionBox" type="CollisionShape2D" parent="."]
+position = Vector2( 0, -8 )
 shape = SubResource( 1 )
 
 [node name="Texture" type="Sprite" parent="."]

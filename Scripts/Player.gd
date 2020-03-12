@@ -78,6 +78,8 @@ func _calculate_speed() -> void:
 	
 func _on_player_unpaused():
 	canMove = true
+	DialogueHandler.page_index = 0
+	DialogueHandler.dialogue_branching = false
 
 func _on_player_paused():
 	canMove = false

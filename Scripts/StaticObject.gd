@@ -36,6 +36,7 @@ func _process(delta) -> void:
 	
 func connect_signals() -> void:
 	#Dialoue Handler
+	DialogueHandler.connect("player_unpause", self, "on_DialogueHandler_player_unpaused")
 	connect("next_page", DialogueHandler, "_on_Object_page_changed")
 	connect("player_interacted", DialogueHandler, "_on_Object_player_interacted")
 	connect("text_ended", DialogueHandler, "_on_Object_text_ended")
@@ -74,6 +75,9 @@ func _on_DialogueHandler_player_unpause() -> void:
 
 func _on_InventoryHandler_item_picked_up():
 	pass #eventually call action()
+
+func on_DialogueHandler_player_unpaused():
+	canInteract = true
 
 #--------------------------------------------------
 
