@@ -4,9 +4,8 @@
 [ext_resource path="res://Scripts/Resources/GUI/DialogueBox.tres" type="StyleBox" id=2]
 [ext_resource path="res://fonts/kindergarten.ttf" type="DynamicFontData" id=3]
 
-
-
 [sub_resource type="DynamicFont" id=1]
+size = 12
 font_data = ExtResource( 3 )
 
 [node name="DialogueBox" type="CanvasLayer"]
@@ -22,11 +21,10 @@ margin_top = 31.0
 margin_right = 128.0
 margin_bottom = 97.0
 rect_pivot_offset = Vector2( 128, 32 )
-custom_styles/panelf = ExtResource( 2 )
 custom_styles/panel = ExtResource( 2 )
-custom_styles/panelnc = ExtResource( 2 )
 __meta__ = {
-"_edit_group_": true
+"_edit_group_": true,
+"_edit_use_anchors_": false
 }
 
 [node name="Label" type="Label" parent="Panel"]
@@ -36,7 +34,11 @@ custom_fonts/font = SubResource( 1 )
 text = "Cheers I'll drink to that bro"
 align = 1
 valign = 1
+autowrap = true
 percent_visible = 0.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
 
 [node name="TypingTimer" type="Timer" parent="."]
 wait_time = 0.05

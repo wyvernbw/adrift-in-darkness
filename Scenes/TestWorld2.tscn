@@ -22,7 +22,7 @@ tile_data = PoolIntArray( 65540, 9, 0, 65541, 0, 0, 65542, 0, 0, 65543, 0, 0, 65
 [node name="Player" parent="." groups=[
 "Player",
 ] instance=ExtResource( 1 )]
-position = Vector2( 128, 56 )
+position = Vector2( 99, 76 )
 z_index = 1
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
@@ -44,6 +44,12 @@ dialogue = ExtResource( 6 )
 [node name="Door" parent="." instance=ExtResource( 7 )]
 position = Vector2( 128, 48 )
 scene_path = "res://Scenes/TestWorld.tscn"
+locked = true
+locked_text = "the door shut behind you"
+unlocked_text = "nah"
+key_name = "no escape"
+inv_gui_path = NodePath("../CanvasLayer/InventoryGUI")
+required_look_dir = Vector2( 0, -1 )
 
 [node name="Light2D" type="Light2D" parent="."]
 position = Vector2( 120, 28 )
@@ -61,6 +67,6 @@ __meta__ = {
 }
 
 [node name="CanvasModulate" type="CanvasModulate" parent="."]
-color = Color( 0.454902, 0.454902, 0.454902, 1 )
+color = Color( 0.313726, 0.313726, 0.313726, 1 )
 [connection signal="inventory_closed" from="CanvasLayer/InventoryGUI" to="Player" method="_on_player_unpaused"]
 [connection signal="inventory_opened" from="CanvasLayer/InventoryGUI" to="Player" method="_on_player_paused"]

@@ -38,7 +38,6 @@ func _process(delta) -> void:
 		player_is_looking = true
 	else:
 		player_is_looking = false
-	print(player_is_looking)
 	
 func connect_signals() -> void:
 	#Dialoue Handler

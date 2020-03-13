@@ -22,6 +22,7 @@ shape = SubResource( 1 )
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 
 [node name="Sprite" type="Sprite" parent="CanvasLayer"]
+visible = false
 modulate = Color( 1, 1, 1, 0.888889 )
 position = Vector2( 252.263, 106.026 )
 scale = Vector2( 27.1969, 291.433 )
