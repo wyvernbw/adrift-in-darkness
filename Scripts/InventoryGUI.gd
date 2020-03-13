@@ -14,16 +14,17 @@ onready var NormalItemsContainer = $NormalItemPanel/GridContainer
 func _ready():
 	$"/root/InventoryHandler".connect("inventory_changed", self, "_on_InventoryHandler_inventory_changed")
 	visible = false
+	refresh_inventory()
 	
 func _process(delta):
 	if visible:
-		if DialogueHandler.get_child_count() > 0:
+		if DialogueHandler.dialogue_open:
 			visible = false
 	if Input.is_action_just_pressed("ui_cancel") :
 		if visible:
 			visible = false
 			emit_signal("inventory_closed")
-		elif not visible and DialogueHandler.get_child_count() == 0:
+		elif not visible and DialogueHandler.dialogue_open == false:
 			visible = true
 			if KeyItemsContainer.visible:
 				if KeyItemsContainer.get_children():

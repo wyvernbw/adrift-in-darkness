@@ -5,6 +5,7 @@
 [ext_resource path="res://fonts/kindergarten.ttf" type="DynamicFontData" id=3]
 
 [sub_resource type="DynamicFont" id=1]
+size = 12
 font_data = ExtResource( 3 )
 
 [node name="DialogueBox" type="CanvasLayer"]
@@ -34,7 +35,11 @@ custom_fonts/font = SubResource( 1 )
 text = "Cheers I'll drink to that bro"
 align = 1
 valign = 1
+autowrap = true
 percent_visible = 0.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
 
 [node name="TypingTimer" type="Timer" parent="."]
 wait_time = 0.05

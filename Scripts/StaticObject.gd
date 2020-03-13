@@ -12,24 +12,11 @@ onready var InventoryHandler = $"/root/InventoryHandler"
 var player_is_colliding : bool = false
 var player_is_looking : bool = false
 var canInteract : bool = true
-var item_held = null
 
 export(Resource) var dialogue : Resource
 
 func _ready() -> void:
 	connect_signals()
-	if dialogue.item_name == null:
-		return
-	if dialogue.item_texture == null:
-		return
-	if dialogue.item_quantity == null:
-		return
-	item_held = Item.new(
-		dialogue.item_name,
-		dialogue.item_quantity,
-		dialogue.item_texture,
-		dialogue.item_type
-	)
 	
 func _process(delta) -> void:
 	update_dialogue()
@@ -38,7 +25,6 @@ func _process(delta) -> void:
 		player_is_looking = true
 	else:
 		player_is_looking = false
-	print(player_is_looking)
 	
 func connect_signals() -> void:
 	#Dialoue Handler
@@ -47,18 +33,12 @@ func connect_signals() -> void:
 	connect("player_interacted", DialogueHandler, "_on_Object_player_interacted")
 	connect("text_ended", DialogueHandler, "_on_Object_text_ended")
 	
-	#InventoryHandler
-	connect("player_obtained_item", InventoryHandler, "_on_Object_player_obtained_item")
-	
 func update_dialogue() -> void:
 	var interact = Input.is_action_just_pressed("interact")
 	if player_is_colliding and player_is_looking:
 		if interact and canInteract == true :
 			canInteract = false
 			emit_signal("player_interacted", dialogue)
-			if item_held:
-				emit_signal("player_obtained_item", item_held)
-				item_held = null
 		elif interact and canInteract == false : 
 			if DialogueHandler.page_index >= dialogue.Text.size() - 1:
 				if not dialogue.Answers.empty() and not DialogueHandler.dialogue_branching:

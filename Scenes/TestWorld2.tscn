@@ -44,6 +44,12 @@ dialogue = ExtResource( 6 )
 [node name="Door" parent="." instance=ExtResource( 7 )]
 position = Vector2( 128, 48 )
 scene_path = "res://Scenes/TestWorld.tscn"
+locked = true
+locked_text = "the door shut behind you"
+unlocked_text = "nah"
+key_name = "no escape"
+inv_gui_path = NodePath("../CanvasLayer/InventoryGUI")
+required_look_dir = Vector2( 0, -1 )
 
 [node name="Light2D" type="Light2D" parent="."]
 position = Vector2( 120, 28 )

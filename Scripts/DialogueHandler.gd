@@ -6,10 +6,12 @@ signal resource_changed
 
 const DIALOGUE_BOX_SCENE = preload("res://Scenes/GUI/DialogueBox.tscn")
 const BRANCHING_DIALOGUE_BOX_SCENE = preload("res://Scenes/GUI/BranchingDialogueBox.tscn")
+
 var resource : Resource
 var page_index = 0
 var dialogue_branching = false
 var item_held
+var dialogue_open = false
 
 func _ready():
 	$"/root/DialogueHandler".connect("resource_changed", $"/root/DialogueHandler","_on_DialogueHandler_resource_changed")
@@ -20,6 +22,10 @@ func _process(delta):
 			if resource.Answers.empty():
 				emit_signal("player_unpause")
 		
+func start_dialoue(_resource : DialogueResource) -> void:
+	resource = _resource
+	init_dialogue()
+
 func _on_Object_player_interacted(res):
 	if not dialogue_branching:
 		resource = res
@@ -44,6 +50,8 @@ func _on_Object_page_changed():
 	update_dialogue()
 	
 func init_dialogue():
+	dialogue_open = true
+	page_index = 0
 	var dialogue_box = DIALOGUE_BOX_SCENE.instance()
 	add_child(dialogue_box)
 	emit_signal("player_pause")
@@ -73,7 +81,7 @@ func _on_BranchingDialogueBox_option_pressed(branch):
 
 func _on_DialogueHandler_resource_changed():
 	if resource.item_name:
-		if resource.item_quantity:
+		if resource.item_quantity != -1:
 			if resource.item_texture:
 				if resource.item_type != -1:
 					item_held = Item.new(
@@ -83,6 +91,5 @@ func _on_DialogueHandler_resource_changed():
 						resource.item_type
 					)
 					InventoryHandler.add_item(item_held)
-					InventoryHandler.inventory[item_held.item_type][InventoryHandler.get_item(item_held)].quantity -= item_held.quantity
 					resource.item_name = null
 	
