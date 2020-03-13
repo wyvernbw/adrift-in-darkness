@@ -1,9 +1,7 @@
-[gd_scene load_steps=10 format=2]
+[gd_scene load_steps=8 format=2]
 
 [ext_resource path="res://Scenes/Player/Player.tscn" type="PackedScene" id=1]
 [ext_resource path="res://Scenes/GUI/InventoryGUI.tscn" type="PackedScene" id=2]
-[ext_resource path="res://Scenes/interfaces/InventoryHandler.tscn" type="PackedScene" id=3]
-[ext_resource path="res://Scenes/interfaces/DialogueHandler.tscn" type="PackedScene" id=4]
 [ext_resource path="res://Scenes/interactable objects/Table.tscn" type="PackedScene" id=5]
 [ext_resource path="res://Scripts/Resources/table_1.tres" type="Resource" id=6]
 [ext_resource path="res://Scenes/interactable objects/Door.tscn" type="PackedScene" id=7]
@@ -30,10 +28,6 @@ layer = 3
 
 [node name="InventoryGUI" parent="CanvasLayer" instance=ExtResource( 2 )]
 visible = false
-
-[node name="InventoryHandler" parent="." instance=ExtResource( 3 )]
-
-[node name="DialogueHandler" parent="." instance=ExtResource( 4 )]
 
 [node name="Table" parent="." groups=[
 "Interactables",

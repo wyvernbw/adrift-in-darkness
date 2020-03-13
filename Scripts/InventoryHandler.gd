@@ -1,13 +1,10 @@
 extends Node
-class_name InventoryHandlerClass
 
 signal inventory_changed
 
 var inventory : Array
 var key_items : Array
 var normal_items : Array
-
-var debug_item = Item.new("poison", 1, preload("res://Sprites/items/bottle-of-poison.png"), Item.ITEM_TYPES.KEY_ITEM)
 
 func _ready():
 	inventory.append(key_items)
@@ -43,7 +40,3 @@ func subtract_item(item : Item, amount : int) -> void:
 	if inventory[item.item_type][item_index].quantity <= 0:
 		inventory.erase(item)
 	emit_signal("inventory_changed")
-
-func _on_Object_player_obtained_item(item):
-	add_item(item)
-	

@@ -17,6 +17,7 @@ var stamina : float = MAX_STAMINA
 var moving : bool = false
 var staggered : bool = false
 var canMove : bool = true
+var canLook : bool = true
 
 func _ready():
 	$"/root/DialogueHandler".connect("player_unpause", self, "_on_player_unpaused")
@@ -26,7 +27,8 @@ func _physics_process(delta):
 	if canMove:
 		_get_input()
 	_calculate_speed()
-	_update_look_dir()
+	if canLook:
+		_update_look_dir()
 	
 	#add to vector
 	velocity.x += speed * move_dir.x
@@ -94,10 +96,13 @@ func _calculate_speed() -> void:
 
 func _on_player_unpaused() -> void:
 	canMove = true
+	canLook = true
 	DialogueHandler.page_index = 0
 	DialogueHandler.dialogue_branching = false
+	DialogueHandler.dialogue_open = false
 
 func _on_player_paused() -> void:
 	canMove = false
+	canLook = false
 	move_dir = Vector2.ZERO
 

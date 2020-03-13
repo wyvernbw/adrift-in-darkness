@@ -36,7 +36,6 @@ func _on_Object_text_ended():
 	get_node("DialogueBox").queue_free()
 	if resource.Answers.empty():
 		emit_signal("player_unpause")
-		dialogue_open = false
 #		print("player unpaused")
 		return
 	var b_dialogue_box = BRANCHING_DIALOGUE_BOX_SCENE.instance()
@@ -82,7 +81,7 @@ func _on_BranchingDialogueBox_option_pressed(branch):
 
 func _on_DialogueHandler_resource_changed():
 	if resource.item_name:
-		if resource.item_quantity:
+		if resource.item_quantity != -1:
 			if resource.item_texture:
 				if resource.item_type != -1:
 					item_held = Item.new(
@@ -92,6 +91,5 @@ func _on_DialogueHandler_resource_changed():
 						resource.item_type
 					)
 					InventoryHandler.add_item(item_held)
-					InventoryHandler.inventory[item_held.item_type][InventoryHandler.get_item(item_held)].quantity -= item_held.quantity
 					resource.item_name = null
 	

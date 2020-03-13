@@ -58,4 +58,5 @@ func _on_Door_body_exited(body):
 func _on_AnimationPlayer_animation_finished(anim_name: String) -> void:
 	if anim_name == "fade in":
 		get_tree().change_scene(scene_path)
+		InventoryGUI.refresh_inventory()
 		$CanvasLayer/Sprite/AnimationPlayer.play("fade out")

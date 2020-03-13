@@ -14,6 +14,7 @@ onready var NormalItemsContainer = $NormalItemPanel/GridContainer
 func _ready():
 	$"/root/InventoryHandler".connect("inventory_changed", self, "_on_InventoryHandler_inventory_changed")
 	visible = false
+	refresh_inventory()
 	
 func _process(delta):
 	if visible:
