@@ -1,1 +1,7 @@
 git ls-files | xargs wc -l
+day #1 - 158
+day #2 - 248
+day #3 - idk
+day #4 - idk
+day #5 - 408 
+day #6 - 581 

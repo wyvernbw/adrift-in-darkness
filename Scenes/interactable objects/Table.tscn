@@ -15,4 +15,5 @@ collision_layer = 2
 
 [node name="LightOccluder2D" parent="." index="3"]
 light_mask = 3
+z_index = 1
 light_mask = 3

@@ -20,7 +20,7 @@ tile_data = PoolIntArray( 65540, 9, 0, 65541, 0, 0, 65542, 0, 0, 65543, 0, 0, 65
 [node name="Player" parent="." groups=[
 "Player",
 ] instance=ExtResource( 1 )]
-position = Vector2( 108, 84 )
+position = Vector2( 104, 75 )
 z_index = 1
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
@@ -28,14 +28,6 @@ layer = 3
 
 [node name="InventoryGUI" parent="CanvasLayer" instance=ExtResource( 2 )]
 visible = false
-
-[node name="Table" parent="." groups=[
-"Interactables",
-] instance=ExtResource( 5 )]
-position = Vector2( 152, 88 )
-z_as_relative = false
-collision_layer = 2
-dialogue = ExtResource( 6 )
 
 [node name="Door" parent="." instance=ExtResource( 7 )]
 position = Vector2( 128, 56 )
@@ -48,6 +40,7 @@ inv_gui_path = NodePath("../CanvasLayer/InventoryGUI")
 required_look_dir = Vector2( 0, -1 )
 
 [node name="Light2D" type="Light2D" parent="."]
+visible = false
 position = Vector2( 120, 32 )
 scale = Vector2( 1.28125, 1.25 )
 z_index = 2
@@ -64,6 +57,10 @@ __meta__ = {
 }
 
 [node name="CanvasModulate" type="CanvasModulate" parent="."]
-color = Color( 0.313726, 0.313726, 0.313726, 1 )
+color = Color( 0.27451, 0.27451, 0.27451, 1 )
+
+[node name="Table" parent="." instance=ExtResource( 5 )]
+position = Vector2( 152, 88 )
+dialogue = ExtResource( 6 )
 [connection signal="inventory_closed" from="CanvasLayer/InventoryGUI" to="Player" method="_on_player_unpaused"]
 [connection signal="inventory_opened" from="CanvasLayer/InventoryGUI" to="Player" method="_on_player_paused"]

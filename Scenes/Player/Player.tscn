@@ -21,6 +21,7 @@ current = true
 zoom = Vector2( 1.25, 1.25 )
 
 [node name="LightOccluder2D" type="LightOccluder2D" parent="."]
+visible = false
 occluder = SubResource( 2 )
 
 [node name="look_dir" type="RayCast2D" parent="."]
@@ -34,9 +35,12 @@ collide_with_bodies = false
 [node name="Lantern" type="Node2D" parent="."]
 
 [node name="Light2D" type="Light2D" parent="Lantern"]
+position = Vector2( 0, 13 )
 texture = ExtResource( 3 )
 texture_scale = 2.48
-color = Color( 1, 0.705882, 0.00784314, 1 )
-energy = 0.52
+color = Color( 1, 0.721569, 0, 1 )
+energy = 0.64
+range_item_cull_mask = 3
 shadow_enabled = true
-shadow_item_cull_mask = 2
+shadow_gradient_length = 0.3
+shadow_item_cull_mask = 3
