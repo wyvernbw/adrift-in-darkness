@@ -51,7 +51,7 @@ _global_script_class_icons={
 [application]
 
 config/name="Lost in the Darkness"
-boot_splash/bg_color=Color( 0.00784314, 0.00392157, 0.00392157, 1 )
+boot_splash/bg_color=Color( 0.6, 0.6, 0.6, 1 )
 config/icon="res://icon.png"
 
 [autoload]
@@ -64,8 +64,9 @@ DialogueHandler="*res://Scripts/DialogueHandler.gd"
 window/size/width=256
 window/size/height=194
 window/size/resizable=false
+window/size/fullscreen=true
 window/stretch/mode="2d"
-window/stretch/aspect="expand"
+window/stretch/aspect="keep_width"
 
 [input]
 
@@ -102,5 +103,5 @@ interact={
 
 [rendering]
 
-environment/default_clear_color=Color( 0.00392157, 0.00392157, 0.00392157, 1 )
+environment/default_clear_color=Color( 0, 0, 0, 1 )
 environment/default_environment="res://default_env.tres"

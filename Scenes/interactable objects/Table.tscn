@@ -12,3 +12,7 @@ texture = ExtResource( 4 )
 
 [node name="InteractionArea" parent="." index="2"]
 collision_layer = 2
+
+[node name="LightOccluder2D" parent="." index="3"]
+light_mask = 3
+light_mask = 3

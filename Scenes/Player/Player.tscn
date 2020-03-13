@@ -1,6 +1,7 @@
-[gd_scene load_steps=4 format=2]
+[gd_scene load_steps=5 format=2]
 
 [ext_resource path="res://Scripts/Player.gd" type="Script" id=1]
+[ext_resource path="res://Sprites/light2d.png" type="Texture" id=3]
 
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 8, 12 )
@@ -17,6 +18,7 @@ shape = SubResource( 1 )
 
 [node name="Camera2D" type="Camera2D" parent="."]
 current = true
+zoom = Vector2( 1.25, 1.25 )
 
 [node name="LightOccluder2D" type="LightOccluder2D" parent="."]
 occluder = SubResource( 2 )
@@ -28,3 +30,13 @@ cast_to = Vector2( 0, 16 )
 collision_mask = 2
 collide_with_areas = true
 collide_with_bodies = false
+
+[node name="Lantern" type="Node2D" parent="."]
+
+[node name="Light2D" type="Light2D" parent="Lantern"]
+texture = ExtResource( 3 )
+texture_scale = 2.48
+color = Color( 1, 0.705882, 0.00784314, 1 )
+energy = 0.52
+shadow_enabled = true
+shadow_item_cull_mask = 2
