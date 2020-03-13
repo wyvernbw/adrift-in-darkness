@@ -10,6 +10,7 @@ onready var DialogueHandler = $"/root/DialogueHandler"
 onready var InventoryHandler = $"/root/InventoryHandler"
 
 var player_is_colliding : bool = false
+var player_is_looking : bool = false
 var canInteract : bool = true
 var item_held = null
 
@@ -33,6 +34,11 @@ func _ready() -> void:
 func _process(delta) -> void:
 	update_dialogue()
 	action()
+	if $"../Player".look_raycast_colliding:
+		player_is_looking = true
+	else:
+		player_is_looking = false
+	print(player_is_looking)
 	
 func connect_signals() -> void:
 	#Dialoue Handler
@@ -46,7 +52,7 @@ func connect_signals() -> void:
 	
 func update_dialogue() -> void:
 	var interact = Input.is_action_just_pressed("interact")
-	if player_is_colliding:
+	if player_is_colliding and player_is_looking:
 		if interact and canInteract == true :
 			canInteract = false
 			emit_signal("player_interacted", dialogue)

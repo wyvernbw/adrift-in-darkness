@@ -83,7 +83,6 @@ func _on_DialogueHandler_resource_changed():
 						resource.item_type
 					)
 					InventoryHandler.add_item(item_held)
-					print("added item")
 					InventoryHandler.inventory[item_held.item_type][InventoryHandler.get_item(item_held)].quantity -= item_held.quantity
 					resource.item_name = null
 	

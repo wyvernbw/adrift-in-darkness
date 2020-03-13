@@ -17,16 +17,15 @@ tile_set = ExtResource( 8 )
 cell_size = Vector2( 16, 16 )
 cell_custom_transform = Transform2D( 16, 0, 0, 16, 0, 0 )
 format = 1
-tile_data = PoolIntArray( 65540, 9, 0, 65541, 0, 0, 65542, 0, 0, 65543, 0, 0, 65544, 0, 0, 65545, 0, 0, 65546, 2, 0, 131076, 5, 0, 131082, 3, 0, 196612, 5, 0, 196618, 3, 0, 262148, 5, 0, 262149, 1, 0, 262150, 1, 0, 262151, 1, 0, 262152, 1, 0, 262153, 1, 0, 262154, 3, 0, 327684, 5, 0, 327685, 1, 0, 327686, 1, 0, 327687, 1, 0, 327688, 1, 0, 327689, 1, 0, 327690, 3, 0, 393220, 5, 0, 393221, 1, 0, 393222, 1, 0, 393223, 1, 0, 393224, 1, 0, 393225, 1, 0, 393226, 3, 0, 458756, 8, 0, 458757, 4, 0, 458758, 4, 0, 458759, 4, 0, 458760, 4, 0, 458761, 4, 0, 458762, 7, 0, 524292, 6, 0, 524293, 6, 0, 524294, 6, 0, 524295, 6, 0, 524296, 6, 0, 524297, 6, 0, 524298, 6, 0 )
+tile_data = PoolIntArray( 65540, 9, 0, 65541, 0, 0, 65542, 0, 0, 65543, 0, 0, 65544, 0, 0, 65545, 0, 0, 65546, 2, 0, 131076, 5, 0, 131082, 3, 0, 196612, 5, 0, 196618, 3, 0, 262148, 5, 0, 262149, 1, 0, 262150, 1, 0, 262151, 1, 0, 262152, 1, 0, 262153, 1, 0, 262154, 3, 0, 327684, 5, 0, 327685, 1, 0, 327686, 1, 0, 327687, 1, 0, 327688, 1, 0, 327689, 1, 0, 327690, 3, 0, 393220, 5, 0, 393221, 1, 0, 393222, 1, 0, 393223, 1, 0, 393224, 1, 0, 393225, 1, 0, 393226, 3, 0, 458756, 8, 0, 458757, 4, 0, 458758, 4, 0, 458759, 4, 0, 458760, 4, 0, 458761, 4, 0, 458762, 7, 0, 524292, 6, 0, 524293, 6, 0, 524294, 6, 0, 524295, 6, 0, 524298, 6, 0 )
 
 [node name="Player" parent="." groups=[
 "Player",
 ] instance=ExtResource( 1 )]
-position = Vector2( 108, 84 )
+position = Vector2( 99, 76 )
 z_index = 1
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
-layer = 3
 
 [node name="InventoryGUI" parent="CanvasLayer" instance=ExtResource( 2 )]
 visible = false
@@ -38,28 +37,25 @@ visible = false
 [node name="Table" parent="." groups=[
 "Interactables",
 ] instance=ExtResource( 5 )]
-position = Vector2( 152, 88 )
+position = Vector2( 128, 114 )
 z_as_relative = false
-collision_layer = 2
 dialogue = ExtResource( 6 )
 
 [node name="Door" parent="." instance=ExtResource( 7 )]
-position = Vector2( 128, 56 )
-scene_path = "res://Scenes/TestWorld2.tscn"
-player_pos = Vector2( 128, 52 )
+position = Vector2( 128, 48 )
+scene_path = "res://Scenes/TestWorld.tscn"
 
 [node name="Light2D" type="Light2D" parent="."]
-position = Vector2( 120, 32 )
+position = Vector2( 120, 28 )
 scale = Vector2( 1.28125, 1.25 )
 z_index = 2
 texture = ExtResource( 9 )
 offset = Vector2( 0.780491, 6.4 )
 texture_scale = 1.49
-color = Color( 0.952941, 0.764706, 0.407843, 1 )
+color = Color( 0.972549, 0.92549, 0.839216, 1 )
 energy = 0.68
 shadow_enabled = true
 shadow_gradient_length = 0.3
-shadow_item_cull_mask = 3
 __meta__ = {
 "_edit_lock_": true
 }
