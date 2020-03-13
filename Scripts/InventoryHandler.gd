@@ -3,9 +3,9 @@ class_name InventoryHandlerClass
 
 signal inventory_changed
 
-var inventory = []
-var key_items = []
-var normal_items = []
+var inventory : Array
+var key_items : Array
+var normal_items : Array
 
 var debug_item = Item.new("poison", 1, preload("res://Sprites/items/bottle-of-poison.png"), Item.ITEM_TYPES.KEY_ITEM)
 

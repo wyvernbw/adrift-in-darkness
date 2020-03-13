@@ -11,7 +11,7 @@ var resource : Resource
 var page_index = 0
 var dialogue_branching = false
 var item_held
-var dialogue_open
+var dialogue_open = false
 
 func _ready():
 	$"/root/DialogueHandler".connect("resource_changed", $"/root/DialogueHandler","_on_DialogueHandler_resource_changed")
