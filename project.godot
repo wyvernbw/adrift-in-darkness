@@ -58,8 +58,7 @@ DialogueHandler="*res://Scripts/DialogueHandler.gd"
 window/size/width=256
 window/size/height=194
 window/size/resizable=false
-window/size/test_width=256
-window/size/test_height=194
+window/size/fullscreen=true
 window/stretch/mode="2d"
 window/stretch/aspect="keep_width"
 
