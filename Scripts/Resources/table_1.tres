@@ -12,7 +12,7 @@ Answers = {
 "bye": ExtResource( 3 ),
 "hello": ExtResource( 2 )
 }
-item_name = "pee"
+item_name = "poison"
 item_texture = ExtResource( 4 )
 item_quantity = 1
 item_type = 0
