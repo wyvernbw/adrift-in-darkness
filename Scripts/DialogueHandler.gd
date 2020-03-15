@@ -47,6 +47,10 @@ func _on_Object_text_ended():
 
 func _on_Object_page_changed():
 	page_index += 1
+	if resource.Answers.empty() and page_index == resource.Text.size() - 1:
+		get_node("DialogueBox").queue_free()
+		emit_signal("player_unpause")
+		return
 	update_dialogue()
 	
 func init_dialogue():

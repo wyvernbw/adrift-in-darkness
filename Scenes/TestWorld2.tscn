@@ -22,7 +22,7 @@ tile_data = PoolIntArray( 65540, 9, 0, 65541, 0, 0, 65542, 0, 0, 65543, 0, 0, 65
 [node name="Player" parent="." groups=[
 "Player",
 ] instance=ExtResource( 1 )]
-position = Vector2( 99, 76 )
+position = Vector2( 128, 56 )
 z_index = 1
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]

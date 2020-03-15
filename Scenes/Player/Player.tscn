@@ -1,7 +1,8 @@
-[gd_scene load_steps=5 format=2]
+[gd_scene load_steps=6 format=2]
 
 [ext_resource path="res://Scripts/Player.gd" type="Script" id=1]
-[ext_resource path="res://Sprites/light2d.png" type="Texture" id=3]
+[ext_resource path="res://Sprites/lantern_light2d.png" type="Texture" id=2]
+[ext_resource path="res://Scenes/Player/Lantern.gd" type="Script" id=3]
 
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 8, 12 )
@@ -33,13 +34,14 @@ collide_with_areas = true
 collide_with_bodies = false
 
 [node name="Lantern" type="Node2D" parent="."]
+script = ExtResource( 3 )
 
 [node name="Light2D" type="Light2D" parent="Lantern"]
-position = Vector2( 0, 13 )
-texture = ExtResource( 3 )
-texture_scale = 2.48
-color = Color( 1, 0.721569, 0, 1 )
-energy = 0.64
+texture = ExtResource( 2 )
+offset = Vector2( 0, 44 )
+texture_scale = 1.25
+color = Color( 1, 0.568627, 0.188235, 1 )
+energy = 0.88
 range_item_cull_mask = 3
 shadow_enabled = true
 shadow_gradient_length = 0.3

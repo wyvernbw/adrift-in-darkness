@@ -5,7 +5,7 @@
 
 [resource]
 script = ExtResource( 1 )
-Text = [ "goodbye", "here have this", "got some weird liquid" ]
+Text = [ "goodbye", "here have this", "got some weird liquid", null ]
 Answers = {
 
 }

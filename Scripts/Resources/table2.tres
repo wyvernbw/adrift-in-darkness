@@ -4,9 +4,9 @@
 
 [resource]
 script = ExtResource( 1 )
-Text = [ "no, I am a table", "He's lying!", "hmmm...", "sfdetrgt", "wddsdsd" ]
+Text = [ "you suck", "fortnite sucks", "my life sucks", null ]
 Answers = {
-"ok": null
+
 }
 item_name = ""
 item_quantity = 0
