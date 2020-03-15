@@ -86,14 +86,13 @@ func _on_BranchingDialogueBox_option_pressed(branch):
 func _on_DialogueHandler_resource_changed():
 	if resource.item_name:
 		if resource.item_quantity != -1:
-			if resource.item_texture:
-				if resource.item_type != -1:
-					item_held = Item.new(
-						resource.item_name,
-						resource.item_quantity,
-						resource.item_texture,
-						resource.item_type
-					)
-					InventoryHandler.add_item(item_held)
-					resource.item_name = null
+			if resource.item_type != -1:
+				item_held = Item.new(
+					resource.item_name,
+					resource.item_quantity,
+					resource.item_texture,
+					resource.item_type
+				)
+				InventoryHandler.add_item(item_held)
+				resource.item_name = null
 	

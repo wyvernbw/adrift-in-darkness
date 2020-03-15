@@ -5,11 +5,11 @@
 
 [resource]
 script = ExtResource( 1 )
-Text = [ "goodbye", "here have this", "got some weird liquid", null ]
+Text = [ "goodbye", "here have this", "got a lantern", null ]
 Answers = {
 
 }
-item_name = "weird liquid"
+item_name = "lantern"
 item_texture = ExtResource( 2 )
 item_quantity = 1
-item_type = 1
+item_type = 0
