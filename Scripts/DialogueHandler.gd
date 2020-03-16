@@ -7,17 +7,18 @@ signal resource_changed
 const DIALOGUE_BOX_SCENE = preload("res://Scenes/GUI/DialogueBox.tscn")
 const BRANCHING_DIALOGUE_BOX_SCENE = preload("res://Scenes/GUI/BranchingDialogueBox.tscn")
 
-var SAVE_KEY = "DialogueHandler"
+var dialogue_open : bool = false
+var dialogue_branching : bool = false
+var page_index : int = 0
+var item_held : Item
+var SAVE_KEY : String = "DialogueHandler"
 var resource : Resource
-var page_index = 0
-var dialogue_branching = false
-var item_held
-var dialogue_open = false
 
-func _ready():
+
+func _ready() -> void:
 	$"/root/DialogueHandler".connect("resource_changed", $"/root/DialogueHandler","_on_DialogueHandler_resource_changed")
 	
-func _process(delta):
+func _process(delta : float) -> void:
 	if resource:
 		if page_index > resource.Text.size() - 1: 
 			if resource.Answers.empty():
@@ -27,13 +28,13 @@ func start_dialoue(_resource : DialogueResource) -> void:
 	resource = _resource
 	init_dialogue()
 
-func _on_Object_player_interacted(res):
+func _on_Object_player_interacted(res : Resource) -> void:
 	if not dialogue_branching:
 		resource = res
 		emit_signal("resource_changed")
 		init_dialogue()
 
-func _on_Object_text_ended():
+func _on_Object_text_ended() -> void:
 	get_node("DialogueBox").queue_free()
 	if resource.Answers.empty():
 		emit_signal("player_unpause")
@@ -46,7 +47,7 @@ func _on_Object_text_ended():
 	b_dialogue_box.connect("option_pressed", self, "_on_BranchingDialogueBox_option_pressed")
 	b_dialogue_box.draw_box(answer_keys[0], answer_keys[1])
 
-func _on_Object_page_changed():
+func _on_Object_page_changed() -> void:
 	page_index += 1
 	if resource.Answers.empty() and page_index == resource.Text.size() - 1:
 		get_node("DialogueBox").queue_free()
@@ -54,7 +55,7 @@ func _on_Object_page_changed():
 		return
 	update_dialogue()
 	
-func init_dialogue():
+func init_dialogue() -> void:
 	dialogue_open = true
 	page_index = 0
 	var dialogue_box = DIALOGUE_BOX_SCENE.instance()
@@ -62,7 +63,7 @@ func init_dialogue():
 	emit_signal("player_pause")
 	dialogue_box.get_node("Panel/Label").text = resource.Text[0]
 
-func update_dialogue():
+func update_dialogue() -> void:
 	if get_children():
 		if get_node("DialogueBox"):
 			get_node("DialogueBox").free()
@@ -72,7 +73,7 @@ func update_dialogue():
 		dialogue_box.set_name("DialogueBox")
 		dialogue_box.get_node("Panel/Label").text = resource.Text[page_index]
 
-func _on_BranchingDialogueBox_option_pressed(branch):
+func _on_BranchingDialogueBox_option_pressed(branch : int) -> void:
 	get_node("BranchingDialogueBox").queue_free()
 	var keys = resource.Answers.keys()
 	if branch == 0:
@@ -84,7 +85,7 @@ func _on_BranchingDialogueBox_option_pressed(branch):
 	dialogue_branching = false
 	update_dialogue()
 
-func _on_DialogueHandler_resource_changed():
+func _on_DialogueHandler_resource_changed() -> void:
 	if resource.item_name:
 		if resource.item_quantity != -1:
 			if resource.item_type != -1:

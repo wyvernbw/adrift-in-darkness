@@ -24,7 +24,7 @@ func _ready() -> void:
 	$CanvasLayer/Sprite.visible = true
 	$CanvasLayer/Sprite/AnimationPlayer.play("fade out")
 
-func _process(delta):
+func _process(delta : float) -> void:
 	InventoryGUI = get_node(inv_gui_path)
 	var interact = Input.is_action_just_pressed("interact")
 	if not InventoryGUI.visible:
@@ -32,26 +32,29 @@ func _process(delta):
 			if not locked:
 				if scene_path:
 					$CanvasLayer/Sprite/AnimationPlayer.play("fade in")
+					$Sounds/Open.play()
 			elif locked:
 				if InventoryHandler.get_item(required_item) != -1:
 					locked = false
+					$Sounds/Unlocked.play()
 					return
-				if get_node("DialogueBox"):
+				if DialogueHandler.get_child_count() > 0:
 					get_node("DialogueBox").queue_free()
 					DialogueHandler.emit_signal("player_unpause")
 					DialogueHandler.dialogue_open = false
 				else:
+					$Sounds/Locked.play()
 					var dialogue_box = DIALOGUE_BOX_SCENE.instance()
 					add_child(dialogue_box)
 					dialogue_box.get_node("Panel/Label").text = locked_text
 					DialogueHandler.emit_signal("player_pause")
 					DialogueHandler.dialogue_open = true
 		
-func _on_Door_body_entered(body):
+func _on_Door_body_entered(body : Node) -> void:
 	if body is Player:
 		player_is_colliding = true
 
-func _on_Door_body_exited(body):
+func _on_Door_body_exited(body : Node) -> void:
 	if body is Player:
 		player_is_colliding = false
 
@@ -59,4 +62,5 @@ func _on_AnimationPlayer_animation_finished(anim_name: String) -> void:
 	if anim_name == "fade in":
 		get_tree().change_scene(scene_path)
 		InventoryGUI.refresh_inventory()
+		$Sounds/Close.play()
 		$CanvasLayer/Sprite/AnimationPlayer.play("fade out")

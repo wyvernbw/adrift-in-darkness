@@ -5,9 +5,9 @@ signal inventory_changed
 var inventory : Array
 var key_items : Array
 var normal_items : Array
-var SAVE_KEY = "InventoryHandler"
+var SAVE_KEY : String = "InventoryHandler"
 
-func _ready():
+func _ready() -> void:
 	inventory.append(key_items)
 	inventory.append(normal_items)
 	add_to_group("save", true)

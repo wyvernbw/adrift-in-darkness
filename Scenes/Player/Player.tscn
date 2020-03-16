@@ -46,3 +46,5 @@ range_item_cull_mask = 3
 shadow_enabled = true
 shadow_gradient_length = 0.3
 shadow_item_cull_mask = 3
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]

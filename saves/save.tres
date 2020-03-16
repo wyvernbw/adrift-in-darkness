@@ -9,8 +9,8 @@ data = {
 "": {
 "current_scene": "TestWorld",
 "position": {
-"x": 90.6667,
-"y": 80.25
+"x": 112.0,
+"y": 99.0523
 }
 },
 "InventoryHandler": {

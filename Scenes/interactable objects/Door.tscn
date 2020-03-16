@@ -32,6 +32,16 @@ texture = SubResource( 2 )
 method_call_mode = 1
 "anims/fade in" = ExtResource( 3 )
 "anims/fade out" = ExtResource( 2 )
+
+[node name="Sounds" type="Node2D" parent="."]
+
+[node name="Open" type="AudioStreamPlayer2D" parent="Sounds"]
+
+[node name="Close" type="AudioStreamPlayer2D" parent="Sounds"]
+
+[node name="Unlocked" type="AudioStreamPlayer2D" parent="Sounds"]
+
+[node name="Locked" type="AudioStreamPlayer2D" parent="Sounds"]
 [connection signal="body_entered" from="." to="." method="_on_Door_body_entered"]
 [connection signal="body_exited" from="." to="." method="_on_Door_body_exited"]
 [connection signal="animation_finished" from="CanvasLayer/Sprite/AnimationPlayer" to="." method="_on_AnimationPlayer_animation_finished"]

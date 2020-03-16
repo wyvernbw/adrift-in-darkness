@@ -20,11 +20,11 @@ var staggered : bool = false
 var canMove : bool = true
 var canLook : bool = true
 
-func _ready():
+func _ready() -> void:
 	$"/root/DialogueHandler".connect("player_unpause", self, "_on_player_unpaused")
 	$"/root/DialogueHandler".connect("player_pause", self, "_on_player_paused")
 
-func _physics_process(delta):
+func _physics_process(delta : float) -> void:
 	if canMove:
 		_get_input()
 	_calculate_speed()

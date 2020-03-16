@@ -11,12 +11,12 @@ onready var NormalItemsPanel = $NormalItemPanel
 onready var KeyItemsContainer = $KeyItemPanel/GridContainer
 onready var NormalItemsContainer = $NormalItemPanel/GridContainer
 
-func _ready():
+func _ready() -> void:
 	$"/root/InventoryHandler".connect("inventory_changed", self, "_on_InventoryHandler_inventory_changed")
 	visible = false
 	refresh_inventory()
 	
-func _process(delta):
+func _process(delta : float) -> void:
 	if visible:
 		if DialogueHandler.dialogue_open:
 			visible = false
@@ -45,7 +45,7 @@ func _process(delta):
 			if KeyItemsContainer.get_children():
 				KeyItemsContainer.get_child(0).grab_focus()
 
-func populate_inventory():
+func populate_inventory() -> void:
 	for i in InventoryHandler.inventory[Item.ITEM_TYPES.KEY_ITEM].size():
 		var item_slot = ITEM_SLOT.instance()
 		var current_item = InventoryHandler.inventory[Item.ITEM_TYPES.KEY_ITEM][i]
@@ -63,13 +63,13 @@ func populate_inventory():
 		item_slot.add_to_group("ItemSlot")
 		item_slot.set_item(current_item)
 
-func refresh_inventory():
+func refresh_inventory() -> void:
 	_empty_inventory_panels()
 	populate_inventory()
 
-func _empty_inventory_panels():
+func _empty_inventory_panels() -> void:
 	for object in get_tree().get_nodes_in_group("ItemSlot"):
 		object.queue_free()
 	
-func _on_InventoryHandler_inventory_changed():
+func _on_InventoryHandler_inventory_changed() -> void:
 	refresh_inventory()
