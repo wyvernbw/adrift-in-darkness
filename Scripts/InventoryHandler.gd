@@ -11,6 +11,9 @@ func _ready() -> void:
 	inventory.append(key_items)
 	inventory.append(normal_items)
 	add_to_group("save", true)
+
+func _process(delta: float) -> void:
+	print(inventory)
 	
 func add_item(item : Item) -> void:
 	print(str(item.item_name) + " : " + str(item.quantity))
@@ -44,10 +47,15 @@ func subtract_item(item : Item, amount : int) -> void:
 	emit_signal("inventory_changed")
 
 func save_game(game_save : Resource) -> void:
-	game_save.data[SAVE_KEY] = {
-		'inventory' : inventory.duplicate(true)
-	}
+		game_save.data[SAVE_KEY] = {
+			'inventory' : {
+				'key_items' : inventory[Item.ITEM_TYPES.KEY_ITEM].duplicate(true),
+				'normal_items' : inventory[Item.ITEM_TYPES.NORMAL_ITEM].duplicate(true)
+			}
+		}
+		print(game_save.data[SAVE_KEY])
 
 func load_game(game_save : Resource) -> void:
-	inventory = game_save.data[SAVE_KEY]['inventory']
-	emit_signal("inventory_changed")
+	var data = game_save.data[SAVE_KEY] 
+	inventory[Item.ITEM_TYPES.KEY_ITEM] = data['inventory']['key_items'].duplicate(true)
+	inventory[Item.ITEM_TYPES.NORMAL_ITEM] = data['inventory']['normal_items'].duplicate(true)

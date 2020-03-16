@@ -2,7 +2,7 @@ extends KinematicBody2D
 class_name Player
 
 const BASE_SPEED : float = 48.0
-const MAX_STAMINA : float = 200.0
+const MAX_STAMINA : float = 600.0
 
 export(float) var deaccel : float = 0.30
 export(float) var speed : float = 32.0

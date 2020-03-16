@@ -38,7 +38,7 @@ func _process(delta : float) -> void:
 					locked = false
 					$Sounds/Unlocked.play()
 					return
-				if DialogueHandler.get_child_count() > 0:
+				if get_node("DialogueBox"):
 					get_node("DialogueBox").queue_free()
 					DialogueHandler.emit_signal("player_unpause")
 					DialogueHandler.dialogue_open = false

@@ -26,7 +26,7 @@ tile_data = PoolIntArray( 65540, 9, 0, 65541, 0, 0, 65542, 0, 0, 65543, 0, 0, 65
 "Player",
 "save",
 ] instance=ExtResource( 1 )]
-position = Vector2( 128, 64 )
+position = Vector2( 136, 64 )
 z_index = 1
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
@@ -44,7 +44,7 @@ __meta__ = {
 }
 
 [node name="Door" parent="." instance=ExtResource( 7 )]
-position = Vector2( 128, 56 )
+position = Vector2( 136, 48 )
 scene_path = "res://Scenes/TestWorld2.tscn"
 locked = true
 locked_text = "The door is locked."

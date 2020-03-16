@@ -1,4 +1,4 @@
-[gd_scene load_steps=6 format=2]
+[gd_scene load_steps=7 format=2]
 
 [ext_resource path="res://Scripts/Player.gd" type="Script" id=1]
 [ext_resource path="res://Sprites/lantern_light2d.png" type="Texture" id=2]
@@ -10,8 +10,26 @@ extents = Vector2( 8, 12 )
 [sub_resource type="OccluderPolygon2D" id=2]
 polygon = PoolVector2Array( -8, -12, 8, -12, 8, 12, -8, 12 )
 
+[sub_resource type="Animation" id=3]
+resource_name = "flicker"
+length = 2.0
+loop = true
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:energy")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0.1, 1, 1.9 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 0,
+"values": [ 0.64, 0.84, 0.64 ]
+}
+
 [node name="Player" type="KinematicBody2D"]
 script = ExtResource( 1 )
+deaccel = 0.4
 
 [node name="CollisionBox" type="CollisionShape2D" parent="."]
 modulate = Color( 0.0980392, 0.996078, 0.678431, 1 )
@@ -41,10 +59,17 @@ texture = ExtResource( 2 )
 offset = Vector2( 0, 44 )
 texture_scale = 1.25
 color = Color( 1, 0.568627, 0.188235, 1 )
-energy = 0.88
+energy = 0.74
 range_item_cull_mask = 3
 shadow_enabled = true
 shadow_gradient_length = 0.3
 shadow_item_cull_mask = 3
 
-[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Lantern/Light2D"]
+anims/flicker = SubResource( 3 )
+
+[node name="Sounds" type="Node" parent="."]
+
+[node name="walk" type="AudioStreamPlayer2D" parent="Sounds"]
+
+[node name="run" type="AudioStreamPlayer2D" parent="Sounds"]
