@@ -12,11 +12,14 @@ onready var InventoryHandler = $"/root/InventoryHandler"
 var player_is_colliding : bool = false
 var player_is_looking : bool = false
 var canInteract : bool = true
+var SAVE_KEY
 
 export(Resource) var dialogue : Resource
 
 func _ready() -> void:
 	connect_signals()
+	SAVE_KEY = name
+	add_to_group("save")
 	
 func _process(delta) -> void:
 	update_dialogue()
@@ -65,6 +68,23 @@ func _on_InventoryHandler_item_picked_up():
 func on_DialogueHandler_player_unpaused():
 	canInteract = true
 
+func save_game(game_save : Resource) -> void:
+	game_save.data[SAVE_KEY] = {
+		'position' : {
+			'x' : position.x,
+			'y' : position.y
+		},
+		'dialogue' : {
+			'item_name' : dialogue.item_name
+		}
+	}
+
+func load_game(game_save : Resource) -> void:
+	var data : Dictionary = game_save.data[SAVE_KEY]
+	position.x = data['position']['x']
+	position.y = data['position']['y']
+	dialogue.item_name = data['dialogue']['item_name']
+	
 #--------------------------------------------------
 
 func action():

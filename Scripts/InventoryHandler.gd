@@ -5,10 +5,12 @@ signal inventory_changed
 var inventory : Array
 var key_items : Array
 var normal_items : Array
+var SAVE_KEY = "InventoryHandler"
 
 func _ready():
 	inventory.append(key_items)
 	inventory.append(normal_items)
+	add_to_group("save", true)
 	
 func add_item(item : Item) -> void:
 	print(str(item.item_name) + " : " + str(item.quantity))
@@ -39,4 +41,13 @@ func subtract_item(item : Item, amount : int) -> void:
 	inventory[item.item_type][item_index].quantity -= amount
 	if inventory[item.item_type][item_index].quantity <= 0:
 		inventory.erase(item)
+	emit_signal("inventory_changed")
+
+func save_game(game_save : Resource) -> void:
+	game_save.data[SAVE_KEY] = {
+		'inventory' : inventory.duplicate(true)
+	}
+
+func load_game(game_save : Resource) -> void:
+	inventory = game_save.data[SAVE_KEY]['inventory']
 	emit_signal("inventory_changed")

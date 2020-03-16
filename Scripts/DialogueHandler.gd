@@ -7,6 +7,7 @@ signal resource_changed
 const DIALOGUE_BOX_SCENE = preload("res://Scenes/GUI/DialogueBox.tscn")
 const BRANCHING_DIALOGUE_BOX_SCENE = preload("res://Scenes/GUI/BranchingDialogueBox.tscn")
 
+var SAVE_KEY = "DialogueHandler"
 var resource : Resource
 var page_index = 0
 var dialogue_branching = false
@@ -15,7 +16,7 @@ var dialogue_open = false
 
 func _ready():
 	$"/root/DialogueHandler".connect("resource_changed", $"/root/DialogueHandler","_on_DialogueHandler_resource_changed")
-
+	
 func _process(delta):
 	if resource:
 		if page_index > resource.Text.size() - 1: 
@@ -95,4 +96,4 @@ func _on_DialogueHandler_resource_changed():
 				)
 				InventoryHandler.add_item(item_held)
 				resource.item_name = null
-	
+

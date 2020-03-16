@@ -9,6 +9,7 @@ export(float) var speed : float = 32.0
 export(float) var sprint_speed : float = 96.0
 export(float) var stagger_speed : float = 16.0
 
+var SAVE_KEY : String = name
 var move_dir : Vector2 = Vector2.ZERO
 var look_dir : Vector2 = Vector2.DOWN
 var look_raycast_colliding : bool = false
@@ -106,3 +107,20 @@ func _on_player_paused() -> void:
 	canLook = false
 	move_dir = Vector2.ZERO
 
+func save_game(game_save : Resource) -> void:
+	game_save.data[SAVE_KEY] = {
+		'position' : {
+			'x' : position.x ,
+			'y' : position.y
+		},
+		'current_scene' : get_tree().get_current_scene().get_name()
+	}
+	print(game_save.data[SAVE_KEY])
+
+func load_game(game_save : Resource) -> void:
+	var data : Dictionary = game_save.data[SAVE_KEY]
+	print(data)
+	position = Vector2.ZERO
+	get_tree().change_scene("res://Scenes/" + data['current_scene'] + ".tscn")
+	position.x = data['position']['x']
+	position.y = data['position']['y']

@@ -1,0 +1,28 @@
+[gd_resource type="Resource" load_steps=2 format=2]
+
+[ext_resource path="res://Scripts/GameSave.gd" type="Script" id=1]
+
+[resource]
+script = ExtResource( 1 )
+game_version = "1.0.0"
+data = {
+"": {
+"current_scene": "TestWorld",
+"position": {
+"x": 112.0,
+"y": 86.4
+}
+},
+"InventoryHandler": {
+"inventory": [ [  ], [  ] ]
+},
+"Table": {
+"dialogue": {
+"item_name": "poison"
+},
+"position": {
+"x": 152.0,
+"y": 88.0
+}
+}
+}

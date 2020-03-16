@@ -1,6 +1,6 @@
 [gd_scene load_steps=5 format=2]
 
-[ext_resource path="res://Scripts/StaticObject.gd" type="Script" id=1]
+[ext_resource path="res://Scenes/interactable objects/SaveObject.gd" type="Script" id=1]
 
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 8, 2.5 )
@@ -9,20 +9,14 @@ extents = Vector2( 8, 2.5 )
 extents = Vector2( 16, 16 )
 
 [sub_resource type="OccluderPolygon2D" id=3]
-closed = false
-polygon = PoolVector2Array( -6.88925, -7.21202, 5.9926, -7.02799, 6.16779, 5.86011, -6.94408, 5.86011, -7.07327, -7.39605, 5.80857, -7.21202 )
+polygon = PoolVector2Array( -8, -8, 8, -8, 8, 8, -8, 8 )
 
-[node name="Object" type="StaticBody2D"]
-position = Vector2( 8, 8 )
+[node name="SaveObject" type="StaticBody2D"]
 script = ExtResource( 1 )
 
-[node name="CollisionBox" type="CollisionShape2D" parent="."]
-position = Vector2( -0.349651, -5.72727 )
-rotation = 3.14159
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2( 0, -5.25 )
 shape = SubResource( 1 )
-one_way_collision_margin = 0.0
-
-[node name="Texture" type="Sprite" parent="."]
 
 [node name="InteractionArea" type="Area2D" parent="."]
 __meta__ = {
@@ -30,14 +24,13 @@ __meta__ = {
 "_edit_lock_": true
 }
 
-[node name="InteractionBox" type="CollisionShape2D" parent="InteractionArea"]
-modulate = Color( 0.854902, 0.835294, 0.509804, 1 )
+[node name="CollisionShape2D" type="CollisionShape2D" parent="InteractionArea"]
+modulate = Color( 0.803922, 1, 0, 1 )
 shape = SubResource( 2 )
 
 [node name="LightOccluder2D" type="LightOccluder2D" parent="."]
+light_mask = 3
 occluder = SubResource( 3 )
-__meta__ = {
-"_edit_lock_": true
-}
+light_mask = 3
 [connection signal="body_entered" from="InteractionArea" to="." method="_on_InteractionArea_body_entered"]
 [connection signal="body_exited" from="InteractionArea" to="." method="_on_InteractionArea_body_exited"]
