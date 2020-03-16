@@ -33,6 +33,7 @@ func _process(delta : float) -> void:
 				if NormalItemsContainer.get_children():
 					NormalItemsContainer.get_child(0).grab_focus()
 			emit_signal("inventory_opened")
+			InventoryHandler.emit_signal("inventory_changed")
 	if visible:
 		if Input.is_action_just_pressed("ui_right") :
 			KeyItemsPanel.visible = false
@@ -51,7 +52,7 @@ func populate_inventory() -> void:
 		var current_item = InventoryHandler.inventory[Item.ITEM_TYPES.KEY_ITEM][i]
 		
 		$KeyItemPanel/GridContainer.add_child(item_slot)
-		item_slot.set_name(str(current_item.item_name))
+		item_slot.set_name(str(current_item['item_name']))
 		item_slot.add_to_group("ItemSlot")
 		item_slot.set_item(current_item)
 	for i in InventoryHandler.inventory[Item.ITEM_TYPES.NORMAL_ITEM].size():
@@ -59,7 +60,7 @@ func populate_inventory() -> void:
 		var current_item = InventoryHandler.inventory[Item.ITEM_TYPES.NORMAL_ITEM][i]
 		
 		$NormalItemPanel/GridContainer.add_child(item_slot)
-		item_slot.set_name(str(current_item.item_name))
+		item_slot.set_name(str(current_item['item_name']))
 		item_slot.add_to_group("ItemSlot")
 		item_slot.set_item(current_item)
 
@@ -72,4 +73,6 @@ func _empty_inventory_panels() -> void:
 		object.queue_free()
 	
 func _on_InventoryHandler_inventory_changed() -> void:
-	refresh_inventory()
+	if InventoryHandler.loading == false:
+		refresh_inventory()
+	pass

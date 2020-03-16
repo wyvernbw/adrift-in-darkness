@@ -9,7 +9,7 @@ export(float) var speed : float = 32.0
 export(float) var sprint_speed : float = 96.0
 export(float) var stagger_speed : float = 16.0
 
-var SAVE_KEY : String = name
+var SAVE_KEY : String = "player"
 var move_dir : Vector2 = Vector2.ZERO
 var look_dir : Vector2 = Vector2.DOWN
 var look_raycast_colliding : bool = false
