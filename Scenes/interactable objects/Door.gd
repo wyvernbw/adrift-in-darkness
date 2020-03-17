@@ -62,5 +62,4 @@ func _on_AnimationPlayer_animation_finished(anim_name: String) -> void:
 	if anim_name == "fade in":
 		get_tree().change_scene(scene_path)
 		InventoryGUI.refresh_inventory()
-		$Sounds/Close.play()
 		$CanvasLayer/Sprite/AnimationPlayer.play("fade out")
