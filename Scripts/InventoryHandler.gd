@@ -48,21 +48,56 @@ func subtract_item(item : Item, amount : int) -> void:
 func save_game(game_save : Resource) -> void:
 		game_save.data[SAVE_KEY] = {
 			'inventory' : {
-				'key_items' : inventory[Item.ITEM_TYPES.KEY_ITEM].duplicate(true),
-				'normal_items' : inventory[Item.ITEM_TYPES.NORMAL_ITEM].duplicate(true)
+				'key_items' : {},
+				'normal_items' : {}
 			}
 		}
 		for i in inventory[Item.ITEM_TYPES.KEY_ITEM].size():
 			var itr_item = inventory[Item.ITEM_TYPES.KEY_ITEM][i]
-			game_save.data[SAVE_KEY]['inventory']['key_items'][i] = Item.new(itr_item.item_name, itr_item.quantity, itr_item.texture, 0)
+			var item_dict : Dictionary = {
+				"item_name" : itr_item.item_name,
+				"quantity" : itr_item.quantity,
+				"texture" : itr_item.texture,
+				"item_type" : itr_item.item_type
+			}
+			game_save.data[SAVE_KEY]['inventory']['key_items'][str(i)] = item_dict
 		for i in inventory[Item.ITEM_TYPES.NORMAL_ITEM].size():
 			var itr_item = inventory[Item.ITEM_TYPES.NORMAL_ITEM][i]
-			game_save.data[SAVE_KEY]['inventory']['normal_items'][i] = Item.new(itr_item.item_name, itr_item.quantity, itr_item.texture, 1)
+			var item_dict : Dictionary = {
+				'item_name' : itr_item.item_name,
+				'quantity' : itr_item.quantity,
+				'texture' : itr_item.texture,
+				'item_type' : itr_item.item_type
+			}
+			game_save.data[SAVE_KEY]['inventory']['normal_items'][str(i)] = item_dict
 		print(game_save.data[SAVE_KEY])
 
 func load_game(game_save : Resource) -> void:
 	loading = true
-	var data = game_save.data[SAVE_KEY] 
-	inventory[Item.ITEM_TYPES.KEY_ITEM] = data['inventory']['key_items'].duplicate(true)
-	inventory[Item.ITEM_TYPES.NORMAL_ITEM] = data['inventory']['normal_items'].duplicate(true)
+	
+	var data = game_save.data[SAVE_KEY]
+	
+	inventory[Item.ITEM_TYPES.KEY_ITEM] = []
+	inventory[Item.ITEM_TYPES.NORMAL_ITEM] = []
+	
+	for i in data['inventory']['key_items'].size():
+		var item_dict = data['inventory']['key_items'][str(i)]
+		var comp_item = Item.new(
+			item_dict['item_name'],
+			item_dict['quantity'],
+			item_dict['texture'],
+			item_dict['item_type']	
+		)
+		inventory[Item.ITEM_TYPES.KEY_ITEM].append(comp_item)
+		
+	for i in data['inventory']['normal_items'].size():
+		var item_dict = data['inventory']['normal_items'][str(i)]
+		var comp_item = Item.new(
+			item_dict['item_name'],
+			item_dict['quantity'],
+			item_dict['texture'],
+			item_dict['item_type']	
+		)
+		inventory[Item.ITEM_TYPES.NORMAL_ITEM].append(comp_item)
+		
 	loading = false

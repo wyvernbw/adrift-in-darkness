@@ -8,15 +8,19 @@ game_version = "1.0.0"
 data = {
 "InventoryHandler": {
 "inventory": {
-"key_items": [ Object(Object,"script":Resource( "res://Scripts/Item.gd" ),"texture":Resource( "res://Sprites/items/bottle-of-poison.png" ),"item_name":"poison","quantity":1,"item_type":0)
-, Object(Object,"script":Resource( "res://Scripts/Item.gd" ),"texture":Resource( "res://Sprites/items/bottle-of-poison.png" ),"item_name":"lantern","quantity":1,"item_type":0)
- ],
-"normal_items": [  ]
+"key_items": {
+
+},
+"normal_items": {
+
+}
 }
 },
 "Table": {
 "dialogue": {
-"item_name": null
+"branch_1_item_name": "lantern",
+"branch_2_item_name": "weird liquid",
+"item_name": "poison"
 },
 "position": {
 "x": 152.0,
@@ -27,7 +31,7 @@ data = {
 "current_scene": "TestWorld",
 "position": {
 "x": 112.0,
-"y": 94.0927
+"y": 97.6
 }
 }
 }

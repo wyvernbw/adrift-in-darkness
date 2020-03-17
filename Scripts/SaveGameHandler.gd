@@ -1,7 +1,8 @@
 extends Node
 
 var SAVE_FOLDER : String = "res://saves/"
-var SAVE_NAME = "save.tres"
+var SAVE_NAME : String = "save.tres"
+var save_object_dict : Dictionary = {}
 
 func _process(delta: float) -> void:
 	_debug()

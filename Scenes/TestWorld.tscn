@@ -74,9 +74,10 @@ color = Color( 0.470588, 0.470588, 0.470588, 1 )
 
 [node name="Table" parent="." instance=ExtResource( 5 )]
 position = Vector2( 152, 88 )
+inv_gui_path = NodePath("../CanvasLayer/InventoryGUI")
 dialogue = ExtResource( 6 )
 
-[node name="SaveObject" parent="." instance=ExtResource( 3 )]
+[node name="SaveVase1" parent="." instance=ExtResource( 3 )]
 position = Vector2( 96, 100 )
 [connection signal="inventory_closed" from="CanvasLayer/InventoryGUI" to="Player" method="_on_player_unpaused"]
 [connection signal="inventory_opened" from="CanvasLayer/InventoryGUI" to="Player" method="_on_player_paused"]

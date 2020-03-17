@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/rug-red.png-0ebce2123e7e88bfaafa39ac6a4e5747.stex"
+path="res://.import/lantern.png-1d7cf2e4f16a02ab1e2ee89a7cbf8920.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Sprites/Tilesets/rug-red.png"
-dest_files=[ "res://.import/rug-red.png-0ebce2123e7e88bfaafa39ac6a4e5747.stex" ]
+source_file="res://Sprites/items/lantern.png"
+dest_files=[ "res://.import/lantern.png-1d7cf2e4f16a02ab1e2ee89a7cbf8920.stex" ]
 
 [params]
 
