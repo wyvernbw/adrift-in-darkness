@@ -40,6 +40,7 @@ visible = false
 ] instance=ExtResource( 5 )]
 position = Vector2( 128, 114 )
 z_as_relative = false
+inv_gui_path = NodePath("../CanvasLayer/InventoryGUI")
 dialogue = ExtResource( 6 )
 
 [node name="Door" parent="." instance=ExtResource( 7 )]

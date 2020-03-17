@@ -15,6 +15,16 @@ blend_mode = 3
 
 [sub_resource type="Resource" id=2]
 script = ExtResource( 5 )
+Text = [  ]
+Answers = {
+
+}
+item_name = ""
+item_quantity = 0
+item_type = 0
+
+[sub_resource type="Resource" id=3]
+script = ExtResource( 5 )
 Text = [ "You found an old lantern.", null ]
 Answers = {
 
@@ -26,20 +36,10 @@ item_type = 0
 
 [sub_resource type="Resource" id=4]
 script = ExtResource( 5 )
-Text = [  ]
-Answers = {
-
-}
-item_name = ""
-item_quantity = 0
-item_type = 0
-
-[sub_resource type="Resource" id=3]
-script = ExtResource( 5 )
 Text = [ "A rusty, old table." ]
 Answers = {
-"leave.": SubResource( 4 ),
-"look underneath.": SubResource( 2 )
+"leave.": SubResource( 2 ),
+"look underneath.": SubResource( 3 )
 }
 item_name = ""
 item_quantity = 0
@@ -90,7 +90,7 @@ visible = false
 [node name="Table" parent="." instance=ExtResource( 6 )]
 position = Vector2( 104, 80 )
 inv_gui_path = NodePath("../CanvasLayer/InventoryGUI")
-dialogue = SubResource( 3 )
+dialogue = SubResource( 4 )
 
 [node name="Table2" parent="." instance=ExtResource( 6 )]
 position = Vector2( 160, 112 )
