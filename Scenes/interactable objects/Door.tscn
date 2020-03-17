@@ -1,8 +1,9 @@
-[gd_scene load_steps=6 format=2]
+[gd_scene load_steps=7 format=2]
 
 [ext_resource path="res://Scenes/interactable objects/Door.gd" type="Script" id=1]
 [ext_resource path="res://Sprites/fade out.tres" type="Animation" id=2]
 [ext_resource path="res://Sprites/fade in.tres" type="Animation" id=3]
+[ext_resource path="res://Sprites/Tilesets/door.png" type="Texture" id=4]
 
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 8, 4 )
@@ -32,6 +33,19 @@ texture = SubResource( 2 )
 method_call_mode = 1
 "anims/fade in" = ExtResource( 3 )
 "anims/fade out" = ExtResource( 2 )
+
+[node name="Sounds" type="Node2D" parent="."]
+
+[node name="Open" type="AudioStreamPlayer2D" parent="Sounds"]
+
+[node name="Close" type="AudioStreamPlayer2D" parent="Sounds"]
+
+[node name="Unlocked" type="AudioStreamPlayer2D" parent="Sounds"]
+
+[node name="Locked" type="AudioStreamPlayer2D" parent="Sounds"]
+
+[node name="Sprite" type="Sprite" parent="."]
+texture = ExtResource( 4 )
 [connection signal="body_entered" from="." to="." method="_on_Door_body_entered"]
 [connection signal="body_exited" from="." to="." method="_on_Door_body_exited"]
 [connection signal="animation_finished" from="CanvasLayer/Sprite/AnimationPlayer" to="." method="_on_AnimationPlayer_animation_finished"]

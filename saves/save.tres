@@ -6,23 +6,32 @@
 script = ExtResource( 1 )
 game_version = "1.0.0"
 data = {
-"": {
-"current_scene": "TestWorld",
-"position": {
-"x": 90.6667,
-"y": 80.25
-}
-},
 "InventoryHandler": {
-"inventory": [ [  ], [  ] ]
+"inventory": {
+"key_items": {
+
+},
+"normal_items": {
+
+}
+}
 },
 "Table": {
 "dialogue": {
+"branch_1_item_name": "lantern",
+"branch_2_item_name": "weird liquid",
 "item_name": "poison"
 },
 "position": {
 "x": 152.0,
 "y": 88.0
+}
+},
+"player": {
+"current_scene": "TestWorld",
+"position": {
+"x": 112.0,
+"y": 97.6
 }
 }
 }

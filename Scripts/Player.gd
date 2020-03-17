@@ -2,14 +2,14 @@ extends KinematicBody2D
 class_name Player
 
 const BASE_SPEED : float = 48.0
-const MAX_STAMINA : float = 200.0
+const MAX_STAMINA : float = 600.0
 
 export(float) var deaccel : float = 0.30
 export(float) var speed : float = 32.0
 export(float) var sprint_speed : float = 96.0
 export(float) var stagger_speed : float = 16.0
 
-var SAVE_KEY : String = name
+var SAVE_KEY : String = "player"
 var move_dir : Vector2 = Vector2.ZERO
 var look_dir : Vector2 = Vector2.DOWN
 var look_raycast_colliding : bool = false
@@ -20,11 +20,11 @@ var staggered : bool = false
 var canMove : bool = true
 var canLook : bool = true
 
-func _ready():
+func _ready() -> void:
 	$"/root/DialogueHandler".connect("player_unpause", self, "_on_player_unpaused")
 	$"/root/DialogueHandler".connect("player_pause", self, "_on_player_paused")
 
-func _physics_process(delta):
+func _physics_process(delta : float) -> void:
 	if canMove:
 		_get_input()
 	_calculate_speed()

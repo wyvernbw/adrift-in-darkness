@@ -7,13 +7,20 @@
 [node name="Table" instance=ExtResource( 1 )]
 script = ExtResource( 2 )
 
+[node name="CollisionBox" parent="." index="0"]
+visible = false
+
 [node name="Texture" parent="." index="1"]
 texture = ExtResource( 4 )
 
 [node name="InteractionArea" parent="." index="2"]
 collision_layer = 2
 
+[node name="InteractionBox" parent="InteractionArea" index="0"]
+visible = false
+
 [node name="LightOccluder2D" parent="." index="3"]
-light_mask = 3
+modulate = Color( 1, 1, 1, 0 )
+light_mask = 2
 z_index = 1
-light_mask = 3
+light_mask = 2

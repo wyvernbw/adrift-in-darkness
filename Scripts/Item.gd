@@ -1,4 +1,4 @@
-extends Node
+extends Object
 class_name Item
 
 var texture : Texture
@@ -11,7 +11,7 @@ enum ITEM_TYPES {
 	NORMAL_ITEM = 1
 }
 
-func _init(_item_name, _quantity, _texture, _item_type):
+func _init(_item_name, _quantity, _texture, _item_type) -> void:
 	item_name = _item_name
 	quantity = _quantity
 	texture = _texture

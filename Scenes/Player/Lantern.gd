@@ -2,7 +2,10 @@ extends Node2D
 
 onready var target = get_parent()
 
-var lantern_item = Item.new("lantern", 1, null, Item.ITEM_TYPES.KEY_ITEM)
+var lantern_item : Item = Item.new("Lantern", 1, null, Item.ITEM_TYPES.KEY_ITEM)
+
+func _ready() -> void:
+	$Light2D/AnimationPlayer.play("flicker")
 
 func _process(delta: float) -> void:
 	if InventoryHandler.get_item(lantern_item) != -1:
