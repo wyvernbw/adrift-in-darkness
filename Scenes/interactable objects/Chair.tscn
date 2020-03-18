@@ -3,10 +3,10 @@
 [ext_resource path="res://Scenes/interactable objects/Object.tscn" type="PackedScene" id=1]
 [ext_resource path="res://Sprites/Tilesets/chair.png" type="Texture" id=2]
 
-[sub_resource type="RectangleShape2D" id=2]
-extents = Vector2( 8, 4.10911 )
+[sub_resource type="RectangleShape2D" id=1]
+extents = Vector2( 8, 8 )
 
-[sub_resource type="OccluderPolygon2D" id=1]
+[sub_resource type="OccluderPolygon2D" id=2]
 closed = false
 polygon = PoolVector2Array( -6.88925, -7.21202, 5.9926, -7.02799, 6.56562, 14.3874, -6.77238, 14.5034, -7.07327, -7.39605, 5.80857, -7.21202 )
 
@@ -15,7 +15,7 @@ polygon = PoolVector2Array( -6.88925, -7.21202, 5.9926, -7.02799, 6.56562, 14.38
 [node name="CollisionBox" parent="." index="0"]
 position = Vector2( -0.349653, -2.94369 )
 scale = Vector2( 1, 1.24 )
-shape = SubResource( 2 )
+shape = SubResource( 1 )
 
 [node name="Texture" parent="." index="1"]
 position = Vector2( 0, 4 )
@@ -24,7 +24,8 @@ texture = ExtResource( 2 )
 
 [node name="InteractionArea" parent="." index="2"]
 visible = false
+collision_layer = 2
 
 [node name="LightOccluder2D" parent="." index="3"]
 modulate = Color( 1, 1, 1, 0 )
-occluder = SubResource( 1 )
+occluder = SubResource( 2 )

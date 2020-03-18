@@ -20,6 +20,10 @@ func _process(delta : float) -> void:
 	if visible:
 		if DialogueHandler.dialogue_open:
 			visible = false
+		if Input.is_action_just_pressed("ui_up"):
+			$Select.play()
+		if Input.is_action_just_pressed("ui_down"):
+			$Select.play()
 	if Input.is_action_just_pressed("ui_cancel") :
 		if visible:
 			visible = false

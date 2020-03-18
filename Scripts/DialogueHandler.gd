@@ -35,7 +35,11 @@ func _on_Object_player_interacted(res : Resource) -> void:
 		init_dialogue()
 
 func _on_Object_text_ended() -> void:
-	get_node("DialogueBox").queue_free()
+	var dialogue_box_label = get_node("DialogueBox/Panel/Label")
+	if dialogue_box_label.visible_characters == dialogue_box_label.text.length():
+		get_node("DialogueBox").queue_free()
+	else:
+		return
 	if resource.Answers.empty():
 		emit_signal("player_unpause")
 #		print("player unpaused")
@@ -50,7 +54,11 @@ func _on_Object_text_ended() -> void:
 func _on_Object_page_changed() -> void:
 	page_index += 1
 	if resource.Answers.empty() and page_index == resource.Text.size() - 1:
-		get_node("DialogueBox").queue_free()
+		var dialogue_box_label = get_node("DialogueBox/Panel/Label")
+		if dialogue_box_label.visible_characters == dialogue_box_label.text.length():
+			get_node("DialogueBox").queue_free()
+		else:
+			return
 		emit_signal("player_unpause")
 		return
 	update_dialogue()
@@ -66,7 +74,11 @@ func init_dialogue() -> void:
 func update_dialogue() -> void:
 	if get_children():
 		if get_node("DialogueBox"):
-			get_node("DialogueBox").free()
+			var dialogue_box_label = get_node("DialogueBox/Panel/Label")
+			if dialogue_box_label.visible_characters == dialogue_box_label.text.length():
+				get_node("DialogueBox").free()
+			else:
+				return
 	if not page_index > resource.Text.size() - 1 :
 		var dialogue_box = DIALOGUE_BOX_SCENE.instance()
 		add_child(dialogue_box)
