@@ -1,4 +1,4 @@
-[gd_scene load_steps=17 format=2]
+[gd_scene load_steps=18 format=2]
 
 [ext_resource path="res://Scenes/Player/Player.tscn" type="PackedScene" id=1]
 [ext_resource path="res://Scenes/GUI/InventoryGUI.tscn" type="PackedScene" id=2]
@@ -11,6 +11,7 @@
 [ext_resource path="res://Scenes/interactable objects/Chair.tscn" type="PackedScene" id=9]
 [ext_resource path="res://Scenes/interactable objects/Door.tscn" type="PackedScene" id=10]
 [ext_resource path="res://Scenes/SoundArea.tscn" type="PackedScene" id=11]
+[ext_resource path="res://Scenes/monster/Monster.tscn" type="PackedScene" id=12]
 
 [sub_resource type="CanvasItemMaterial" id=1]
 blend_mode = 3
@@ -133,5 +134,8 @@ activate_once = true
 on_player_enter = true
 collision_box_size = Vector2( 16, 32 )
 volume_db = -32.0
+
+[node name="Monster" parent="." instance=ExtResource( 12 )]
+position = Vector2( 304, 104 )
 [connection signal="inventory_closed" from="CanvasLayer/InventoryGUI" to="Player" method="_on_InventoryGUI_inventory_closed"]
 [connection signal="inventory_opened" from="CanvasLayer/InventoryGUI" to="Player" method="_on_InventoryGUI_inventory_opened"]
