@@ -1,6 +1,11 @@
 extends KinematicBody2D
 
-var look_dir : Vector2 = Vector2.UP
+var look_dir : Vector2 = Vector2.ZERO
+var velocity : Vector2 = Vector2.ZERO
+var looking_at_player : bool = false
+
+export var speed : float = 100.0
+export var look_distance : float = 100.0
 
 enum LOOK_DIRECTIONS {
 	UP = 0,
@@ -8,6 +13,21 @@ enum LOOK_DIRECTIONS {
 	DOWN = 2,
 	LEFT = 3
 }
+
+func _process(delta: float) -> void:
+	
+	#print(looking_at_player)
+	
+	update_view_raycasts()
+	
+	if $MoveTimer.time_left != 0:
+		velocity.x += speed * look_dir.x
+		velocity.y += speed * look_dir.y
+	
+	velocity.x = lerp(velocity.x, 0, 0.30)
+	velocity.y = lerp(velocity.y, 0, 0.30)
+	
+	move_and_slide(velocity)
 
 func _get_look_direction() -> Vector2:
 	
@@ -32,10 +52,20 @@ func set_look_direction(dir : Vector2) -> void:
 		return
 	look_dir = dir
 	
-	$LookDirRaycast.cast_to.x = look_dir.x * 16
-	$LookDirRaycast.cast_to.y = look_dir.y * 16
-	
-	
+func update_view_raycasts() -> void:
+	var view := $View 
+	for Raycast2D in view.get_children():
+		Raycast2D.cast_to.x = look_dir.x * look_distance
+		Raycast2D.cast_to.y = look_dir.y * look_distance
+		var dc = Raycast2D.get_collider()
+		print(dc)
+		if Raycast2D.get_collider() is Player:
+			looking_at_player = true
+			return
+	looking_at_player = false
+
 func _on_TurnTimer_timeout() -> void:
 	var new_look_dir : Vector2 = _get_look_direction()
 	set_look_direction(new_look_dir)
+
+

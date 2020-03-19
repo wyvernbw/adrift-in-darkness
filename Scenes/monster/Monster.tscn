@@ -6,15 +6,47 @@
 extents = Vector2( 8, 12 )
 
 [node name="Monster" type="KinematicBody2D"]
+position = Vector2( 128, 96 )
 script = ExtResource( 1 )
+__meta__ = {
+"_edit_group_": true
+}
+speed = 16.0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource( 1 )
 
-[node name="LookDirRaycast" type="RayCast2D" parent="."]
-cast_to = Vector2( 16, 0 )
-
 [node name="TurnTimer" type="Timer" parent="."]
-wait_time = 3.0
+wait_time = 2.0
 autostart = true
+
+[node name="MoveTimer" type="Timer" parent="."]
+wait_time = 2.0
+autostart = true
+
+[node name="View" type="Node2D" parent="."]
+
+[node name="1" type="RayCast2D" parent="View"]
+enabled = true
+cast_to = Vector2( 1, 100 )
+
+[node name="2" type="RayCast2D" parent="View"]
+rotation = 0.174533
+enabled = true
+cast_to = Vector2( 1, 100 )
+
+[node name="3" type="RayCast2D" parent="View"]
+rotation = -0.174533
+enabled = true
+cast_to = Vector2( 1, 100 )
+
+[node name="4" type="RayCast2D" parent="View"]
+rotation = 0.349066
+enabled = true
+cast_to = Vector2( 1, 100 )
+
+[node name="5" type="RayCast2D" parent="View"]
+rotation = -0.349066
+enabled = true
+cast_to = Vector2( 1, 100 )
 [connection signal="timeout" from="TurnTimer" to="." method="_on_TurnTimer_timeout"]
