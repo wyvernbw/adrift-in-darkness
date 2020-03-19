@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=2]
+[gd_scene load_steps=17 format=2]
 
 [ext_resource path="res://Scenes/Player/Player.tscn" type="PackedScene" id=1]
 [ext_resource path="res://Scenes/GUI/InventoryGUI.tscn" type="PackedScene" id=2]
@@ -9,6 +9,8 @@
 [ext_resource path="res://Sprites/items/lantern.png" type="Texture" id=7]
 [ext_resource path="res://Sprites/Tilesets/rug1.tres" type="TileSet" id=8]
 [ext_resource path="res://Scenes/interactable objects/Chair.tscn" type="PackedScene" id=9]
+[ext_resource path="res://Scenes/interactable objects/Door.tscn" type="PackedScene" id=10]
+[ext_resource path="res://Scenes/SoundArea.tscn" type="PackedScene" id=11]
 
 [sub_resource type="CanvasItemMaterial" id=1]
 blend_mode = 3
@@ -36,10 +38,20 @@ item_type = 0
 
 [sub_resource type="Resource" id=4]
 script = ExtResource( 5 )
-Text = [ "A rusty, old table." ]
+Text = [ "A dirty, old table." ]
 Answers = {
 "leave.": SubResource( 2 ),
 "look underneath.": SubResource( 3 )
+}
+item_name = ""
+item_quantity = 0
+item_type = 0
+
+[sub_resource type="Resource" id=5]
+script = ExtResource( 5 )
+Text = [ "A half-broken chair.", null ]
+Answers = {
+
 }
 item_name = ""
 item_quantity = 0
@@ -52,7 +64,7 @@ z_index = 1
 tile_set = ExtResource( 8 )
 cell_size = Vector2( 16, 16 )
 format = 1
-tile_data = PoolIntArray( 327688, 6, 0, 327689, 2, 0, 327690, 2, 0, 327691, 7, 0, 393224, 9, 0, 393225, 4, 0, 393226, 4, 0, 393227, 8, 0 )
+tile_data = PoolIntArray( 327688, 6, 0, 327689, 2, 0, 327690, 2, 0, 327691, 7, 0, 327698, 6, 0, 327699, 7, 0, 393224, 9, 0, 393225, 4, 0, 393226, 4, 0, 393227, 8, 0, 393234, 5, 0, 393235, 3, 0, 458770, 5, 0, 458771, 3, 0, 524306, 5, 0, 524307, 3, 0, 589842, 9, 0, 589843, 8, 0 )
 __meta__ = {
 "_edit_lock_": true
 }
@@ -97,6 +109,29 @@ position = Vector2( 160, 112 )
 z_index = 1
 inv_gui_path = NodePath("../CanvasLayer/InventoryGUI")
 
-[node name="Chair" parent="." instance=ExtResource( 9 )]
-position = Vector2( 200, 72 )
+[node name="Table3" parent="." instance=ExtResource( 6 )]
+position = Vector2( 296, 160 )
 z_index = 1
+inv_gui_path = NodePath("../CanvasLayer/InventoryGUI")
+
+[node name="Chair" parent="." instance=ExtResource( 9 )]
+position = Vector2( 199.164, 72 )
+inv_gui_path = NodePath("../CanvasLayer/InventoryGUI")
+dialogue = SubResource( 5 )
+
+[node name="Door" parent="." instance=ExtResource( 10 )]
+position = Vector2( 296, 203 )
+z_index = 2
+locked = true
+locked_text = "The door is locked."
+inv_gui_path = NodePath("../CanvasLayer/InventoryGUI")
+required_look_dir = Vector2( 0, 1 )
+
+[node name="SoundArea" parent="." instance=ExtResource( 11 )]
+position = Vector2( 271, 79 )
+activate_once = true
+on_player_enter = true
+collision_box_size = Vector2( 16, 32 )
+volume_db = -32.0
+[connection signal="inventory_closed" from="CanvasLayer/InventoryGUI" to="Player" method="_on_InventoryGUI_inventory_closed"]
+[connection signal="inventory_opened" from="CanvasLayer/InventoryGUI" to="Player" method="_on_InventoryGUI_inventory_opened"]

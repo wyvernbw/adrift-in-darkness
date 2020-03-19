@@ -51,6 +51,7 @@ func _update_look_dir() -> void:
 		look_dir = Vector2.DOWN
 	if Input.is_action_pressed("move_up"):
 		look_dir = Vector2.UP
+	
 	$look_dir.cast_to = look_dir * 8
 	if $look_dir.is_colliding():
 		look_raycast_colliding = true
@@ -107,6 +108,15 @@ func _on_player_paused() -> void:
 	canLook = false
 	move_dir = Vector2.ZERO
 
+func _on_InventoryGUI_inventory_closed() -> void:
+	canMove = true
+	canLook = true
+
+func _on_InventoryGUI_inventory_opened() -> void:
+	canMove = false
+	canLook = false
+	move_dir = Vector2.ZERO
+
 func save_game(game_save : Resource) -> void:
 	game_save.data[SAVE_KEY] = {
 		'position' : {
@@ -124,3 +134,5 @@ func load_game(game_save : Resource) -> void:
 	get_tree().change_scene("res://Scenes/" + data['current_scene'] + ".tscn")
 	position.x = data['position']['x']
 	position.y = data['position']['y']
+
+
