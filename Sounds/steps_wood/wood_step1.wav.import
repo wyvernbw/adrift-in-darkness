@@ -2,12 +2,12 @@
 
 importer="wav"
 type="AudioStreamSample"
-path="res://.import/wood_step2.wav-2ef5b761f0a4c134ce4cbf6cb7e0718c.sample"
+path="res://.import/wood_step1.wav-d8c9f1550ac11b407d26c6b1cbd55f59.sample"
 
 [deps]
 
-source_file="res://Sounds/steps - wood/wood_step2.wav"
-dest_files=[ "res://.import/wood_step2.wav-2ef5b761f0a4c134ce4cbf6cb7e0718c.sample" ]
+source_file="res://Sounds/steps_wood/wood_step1.wav"
+dest_files=[ "res://.import/wood_step1.wav-d8c9f1550ac11b407d26c6b1cbd55f59.sample" ]
 
 [params]
 

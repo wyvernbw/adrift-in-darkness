@@ -2,6 +2,7 @@ extends KinematicBody2D
 
 var look_dir : Vector2 = Vector2.ZERO
 var velocity : Vector2 = Vector2.ZERO
+var dir_index : int = 0
 var looking_at_player : bool = false
 
 export var speed : float = 100.0
@@ -61,6 +62,8 @@ func update_view_raycasts() -> void:
 		print(dc)
 		if Raycast2D.get_collider() is Player:
 			looking_at_player = true
+			velocity.x = lerp(velocity.x, Player.velocity.x, 0.2)
+			velocity.y = lerp(velocity.y, Player.velocity.y, 0.2)
 			return
 	looking_at_player = false
 

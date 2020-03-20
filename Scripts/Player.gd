@@ -4,10 +4,14 @@ class_name Player
 const BASE_SPEED : float = 48.0
 const MAX_STAMINA : float = 600.0
 
-export(float) var deaccel : float = 0.30
-export(float) var speed : float = 32.0
-export(float) var sprint_speed : float = 96.0
-export(float) var stagger_speed : float = 16.0
+onready var StepTimer := $Sounds/Move/StepTimer
+
+export var deaccel : float = 0.30
+export var speed : float = 32.0
+export var sprint_speed : float = 96.0
+export var stagger_speed : float = 16.0
+export var walk_step_interval : float = 0.5
+export var sprint_step_interval : float = 0.1
 
 var SAVE_KEY : String = "player"
 var move_dir : Vector2 = Vector2.ZERO
@@ -19,8 +23,14 @@ var moving : bool = false
 var staggered : bool = false
 var canMove : bool = true
 var canLook : bool = true
+var step_sounds : Array = []
 
 func _ready() -> void:
+	StepTimer.wait_time = walk_step_interval
+	
+	step_sounds.append(load("res://Sounds/steps_wood/wood_step1.wav"))
+	step_sounds.append(load("res://Sounds/steps_wood/wood_step2.wav"))
+	
 	$"/root/DialogueHandler".connect("player_unpause", self, "_on_player_unpaused")
 	$"/root/DialogueHandler".connect("player_pause", self, "_on_player_paused")
 
@@ -78,11 +88,14 @@ func _calculate_speed() -> void:
 		if stamina > 0 and moving and not staggered :
 			speed = sprint_speed
 			stamina -= 1
+			StepTimer.wait_time = sprint_step_interval
 		else:
 			speed = BASE_SPEED
+			StepTimer.wait_time = walk_step_interval
 	else:
 		speed = BASE_SPEED
 		stamina += 1
+		StepTimer.wait_time = walk_step_interval
 	
 	if stamina == 0 and staggered == false:
 		staggered = true
@@ -95,6 +108,13 @@ func _calculate_speed() -> void:
 	
 	if not moving:
 		stamina += 1
+		
+func _on_StepTimer_timeout() -> void:
+	if moving:
+		randomize()
+		var sound_index = int(rand_range(1, 3))
+		$Sounds/Move.stream = step_sounds[sound_index - 1]
+		$Sounds/Move.play()
 
 func _on_player_unpaused() -> void:
 	canMove = true
@@ -134,5 +154,8 @@ func load_game(game_save : Resource) -> void:
 	get_tree().change_scene("res://Scenes/" + data['current_scene'] + ".tscn")
 	position.x = data['position']['x']
 	position.y = data['position']['y']
+
+
+
 
 
