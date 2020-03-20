@@ -62,8 +62,6 @@ func update_view_raycasts() -> void:
 		print(dc)
 		if Raycast2D.get_collider() is Player:
 			looking_at_player = true
-			velocity.x = lerp(velocity.x, Player.velocity.x, 0.2)
-			velocity.y = lerp(velocity.y, Player.velocity.y, 0.2)
 			return
 	looking_at_player = false
 
