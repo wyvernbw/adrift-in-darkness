@@ -113,7 +113,7 @@ inv_gui_path = NodePath("../CanvasLayer/InventoryGUI")
 
 [node name="Table3" parent="." instance=ExtResource( 6 )]
 position = Vector2( 296, 160 )
-z_index = 1
+z_as_relative = false
 inv_gui_path = NodePath("../CanvasLayer/InventoryGUI")
 
 [node name="Chair" parent="." instance=ExtResource( 9 )]
@@ -137,6 +137,5 @@ collision_box_size = Vector2( 16, 32 )
 volume_db = -32.0
 
 [node name="Monster" parent="." instance=ExtResource( 12 )]
-position = Vector2( 304, 104 )
 [connection signal="inventory_closed" from="CanvasLayer/InventoryGUI" to="Player" method="_on_InventoryGUI_inventory_closed"]
 [connection signal="inventory_opened" from="CanvasLayer/InventoryGUI" to="Player" method="_on_InventoryGUI_inventory_opened"]

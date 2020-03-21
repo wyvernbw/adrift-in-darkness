@@ -41,6 +41,11 @@ func _physics_process(delta : float) -> void:
 	if canLook:
 		_update_look_dir()
 	
+	if moving:
+		play_anim("move_", move_dir)
+	else:
+		play_anim("idle_", look_dir)
+	
 	#add to vector
 	velocity.x += speed * move_dir.x
 	velocity.y += speed * move_dir.y
@@ -109,34 +114,21 @@ func _calculate_speed() -> void:
 	if not moving:
 		stamina += 1
 		
-func _on_StepTimer_timeout() -> void:
-	if moving:
-		randomize()
-		var sound_index = int(rand_range(1, 3))
-		$Sounds/Move.stream = step_sounds[sound_index - 1]
-		$Sounds/Move.play()
-
-func _on_player_unpaused() -> void:
-	canMove = true
-	canLook = true
-	DialogueHandler.page_index = 0
-	DialogueHandler.dialogue_branching = false
-	DialogueHandler.dialogue_open = false
-
-func _on_player_paused() -> void:
-	canMove = false
-	canLook = false
-	move_dir = Vector2.ZERO
-
-func _on_InventoryGUI_inventory_closed() -> void:
-	canMove = true
-	canLook = true
-
-func _on_InventoryGUI_inventory_opened() -> void:
-	canMove = false
-	canLook = false
-	move_dir = Vector2.ZERO
-
+func play_anim(anim : String, dir : Vector2) -> void:
+	var dir_str : String = "up"
+	match dir:
+		Vector2.RIGHT:
+			dir_str = "right"
+		Vector2.LEFT:
+			dir_str = "left"
+		Vector2.UP: 
+			dir_str = "up"
+		Vector2.DOWN:
+			dir_str = "down"
+	
+	$AnimatedSprite.play(anim + dir_str)
+	
+		
 func save_game(game_save : Resource) -> void:
 	game_save.data[SAVE_KEY] = {
 		'position' : {
@@ -154,8 +146,33 @@ func load_game(game_save : Resource) -> void:
 	get_tree().change_scene("res://Scenes/" + data['current_scene'] + ".tscn")
 	position.x = data['position']['x']
 	position.y = data['position']['y']
+	
+func _on_StepTimer_timeout() -> void:
+	if moving:
+		randomize()
+		var sound_index = int(rand_range(1, 3))
+		$Sounds/Move.stream = step_sounds[sound_index - 1]
+		$Sounds/Move.play()
 
+func _on_player_unpaused() -> void:
+	canMove = true
+	canLook = true
+	DialogueHandler.page_index = 0
+	DialogueHandler.dialogue_branching = false
+	DialogueHandler.dialogue_open = false
 
+func _on_player_paused() -> void:
+	canMove = false
+	canLook = false
+	moving = false
+	move_dir = Vector2.ZERO
 
+func _on_InventoryGUI_inventory_closed() -> void:
+	canMove = true
+	canLook = true
 
-
+func _on_InventoryGUI_inventory_opened() -> void:
+	canMove = false
+	canLook = false
+	moving = false
+	move_dir = Vector2.ZERO

@@ -7,9 +7,6 @@
 [node name="Table" instance=ExtResource( 1 )]
 script = ExtResource( 2 )
 
-[node name="CollisionBox" parent="." index="0"]
-visible = false
-
 [node name="Texture" parent="." index="1"]
 texture = ExtResource( 4 )
 

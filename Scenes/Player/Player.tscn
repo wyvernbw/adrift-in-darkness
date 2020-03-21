@@ -50,16 +50,6 @@ animations = [ {
 "name": "move_right",
 "speed": 5.0
 }, {
-"frames": [ ExtResource( 28 ), ExtResource( 8 ), ExtResource( 14 ), ExtResource( 23 ) ],
-"loop": true,
-"name": "move_up",
-"speed": 5.0
-}, {
-"frames": [ ExtResource( 42 ) ],
-"loop": true,
-"name": "idle_up",
-"speed": 5.0
-}, {
 "frames": [ ExtResource( 31 ), ExtResource( 9 ), ExtResource( 27 ), ExtResource( 4 ), ExtResource( 10 ), ExtResource( 11 ), ExtResource( 29 ) ],
 "loop": true,
 "name": "idle_right",
@@ -68,6 +58,11 @@ animations = [ {
 "frames": [ ExtResource( 33 ), ExtResource( 17 ), ExtResource( 21 ), ExtResource( 22 ) ],
 "loop": true,
 "name": "move_left",
+"speed": 5.0
+}, {
+"frames": [ ExtResource( 42 ) ],
+"loop": true,
+"name": "idle_up",
 "speed": 5.0
 }, {
 "frames": [ ExtResource( 15 ), ExtResource( 20 ), ExtResource( 18 ), ExtResource( 25 ) ],
@@ -84,10 +79,15 @@ animations = [ {
 "loop": true,
 "name": "idle_down",
 "speed": 5.0
+}, {
+"frames": [ ExtResource( 28 ), ExtResource( 8 ), ExtResource( 14 ), ExtResource( 23 ) ],
+"loop": true,
+"name": "move_up",
+"speed": 5.0
 } ]
 
 [sub_resource type="RectangleShape2D" id=2]
-extents = Vector2( 8, 12 )
+extents = Vector2( 5, 11 )
 
 [sub_resource type="OccluderPolygon2D" id=3]
 polygon = PoolVector2Array( -8, -12, 8, -12, 8, 12, -8, 12 )
@@ -109,10 +109,13 @@ tracks/0/keys = {
 }
 
 [node name="Player" type="KinematicBody2D"]
+z_index = 3
 collision_mask = 8
 script = ExtResource( 1 )
 deaccel = 0.4
 speed = 24.0
+sprint_speed = 64.0
+sprint_step_interval = 0.3
 
 [node name="AnimatedSprite" type="AnimatedSprite" parent="."]
 frames = SubResource( 1 )

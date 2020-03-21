@@ -58,8 +58,6 @@ func update_view_raycasts() -> void:
 	for Raycast2D in view.get_children():
 		Raycast2D.cast_to.x = look_dir.x * look_distance
 		Raycast2D.cast_to.y = look_dir.y * look_distance
-		var dc = Raycast2D.get_collider()
-		print(dc)
 		if Raycast2D.get_collider() is Player:
 			looking_at_player = true
 			return
