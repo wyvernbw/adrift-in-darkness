@@ -1,9 +1,10 @@
-[gd_scene load_steps=8 format=2]
+[gd_scene load_steps=9 format=2]
 
 [ext_resource path="res://Scripts/Player.gd" type="Script" id=1]
 [ext_resource path="res://Sprites/lantern_light2d.png" type="Texture" id=2]
 [ext_resource path="res://Scenes/Player/Lantern.gd" type="Script" id=3]
 [ext_resource path="res://icon.png" type="Texture" id=4]
+[ext_resource path="res://Sounds/steps_wood/wood_step1.wav" type="AudioStream" id=5]
 
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 8, 12 )
@@ -29,8 +30,12 @@ tracks/0/keys = {
 }
 
 [node name="Player" type="KinematicBody2D"]
+collision_mask = 8
 script = ExtResource( 1 )
 deaccel = 0.4
+speed = 24.0
+walk_step_interval = 0.6
+sprint_step_interval = 0.25
 
 [node name="Sprite" type="Sprite" parent="."]
 scale = Vector2( 0.25, 0.33 )
@@ -75,8 +80,12 @@ shadow_item_cull_mask = 3
 [node name="AnimationPlayer" type="AnimationPlayer" parent="Lantern/Light2D"]
 anims/flicker = SubResource( 3 )
 
-[node name="Sounds" type="Node" parent="."]
+[node name="Sounds" type="Node2D" parent="."]
 
-[node name="walk" type="AudioStreamPlayer2D" parent="Sounds"]
+[node name="Move" type="AudioStreamPlayer2D" parent="Sounds"]
+stream = ExtResource( 5 )
+volume_db = -10.0
 
-[node name="run" type="AudioStreamPlayer2D" parent="Sounds"]
+[node name="StepTimer" type="Timer" parent="Sounds/Move"]
+autostart = true
+[connection signal="timeout" from="Sounds/Move/StepTimer" to="." method="_on_StepTimer_timeout"]
