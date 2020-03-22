@@ -4,10 +4,14 @@ class_name Player
 const BASE_SPEED : float = 48.0
 const MAX_STAMINA : float = 600.0
 
-export(float) var deaccel : float = 0.30
-export(float) var speed : float = 32.0
-export(float) var sprint_speed : float = 96.0
-export(float) var stagger_speed : float = 16.0
+onready var StepTimer := $Sounds/Move/StepTimer
+
+export var deaccel : float = 0.30
+export var speed : float = 32.0
+export var sprint_speed : float = 96.0
+export var stagger_speed : float = 16.0
+export var walk_step_interval : float = 0.5
+export var sprint_step_interval : float = 0.1
 
 var SAVE_KEY : String = "player"
 var move_dir : Vector2 = Vector2.ZERO
@@ -19,8 +23,14 @@ var moving : bool = false
 var staggered : bool = false
 var canMove : bool = true
 var canLook : bool = true
+var step_sounds : Array = []
 
 func _ready() -> void:
+	StepTimer.wait_time = walk_step_interval
+	
+	step_sounds.append(load("res://Sounds/steps_wood/wood_step1.wav"))
+	step_sounds.append(load("res://Sounds/steps_wood/wood_step2.wav"))
+	
 	$"/root/DialogueHandler".connect("player_unpause", self, "_on_player_unpaused")
 	$"/root/DialogueHandler".connect("player_pause", self, "_on_player_paused")
 
@@ -30,6 +40,11 @@ func _physics_process(delta : float) -> void:
 	_calculate_speed()
 	if canLook:
 		_update_look_dir()
+	
+	if moving:
+		play_anim("move_", move_dir)
+	else:
+		play_anim("idle_", look_dir)
 	
 	#add to vector
 	velocity.x += speed * move_dir.x
@@ -78,11 +93,14 @@ func _calculate_speed() -> void:
 		if stamina > 0 and moving and not staggered :
 			speed = sprint_speed
 			stamina -= 1
+			StepTimer.wait_time = sprint_step_interval
 		else:
 			speed = BASE_SPEED
+			StepTimer.wait_time = walk_step_interval
 	else:
 		speed = BASE_SPEED
 		stamina += 1
+		StepTimer.wait_time = walk_step_interval
 	
 	if stamina == 0 and staggered == false:
 		staggered = true
@@ -95,28 +113,22 @@ func _calculate_speed() -> void:
 	
 	if not moving:
 		stamina += 1
-
-func _on_player_unpaused() -> void:
-	canMove = true
-	canLook = true
-	DialogueHandler.page_index = 0
-	DialogueHandler.dialogue_branching = false
-	DialogueHandler.dialogue_open = false
-
-func _on_player_paused() -> void:
-	canMove = false
-	canLook = false
-	move_dir = Vector2.ZERO
-
-func _on_InventoryGUI_inventory_closed() -> void:
-	canMove = true
-	canLook = true
-
-func _on_InventoryGUI_inventory_opened() -> void:
-	canMove = false
-	canLook = false
-	move_dir = Vector2.ZERO
-
+		
+func play_anim(anim : String, dir : Vector2) -> void:
+	var dir_str : String = "up"
+	match dir:
+		Vector2.RIGHT:
+			dir_str = "right"
+		Vector2.LEFT:
+			dir_str = "left"
+		Vector2.UP: 
+			dir_str = "up"
+		Vector2.DOWN:
+			dir_str = "down"
+	
+	$AnimatedSprite.play(anim + dir_str)
+	
+		
 func save_game(game_save : Resource) -> void:
 	game_save.data[SAVE_KEY] = {
 		'position' : {
@@ -134,5 +146,33 @@ func load_game(game_save : Resource) -> void:
 	get_tree().change_scene("res://Scenes/" + data['current_scene'] + ".tscn")
 	position.x = data['position']['x']
 	position.y = data['position']['y']
+	
+func _on_StepTimer_timeout() -> void:
+	if moving:
+		randomize()
+		var sound_index = int(rand_range(1, 3))
+		$Sounds/Move.stream = step_sounds[sound_index - 1]
+		$Sounds/Move.play()
 
+func _on_player_unpaused() -> void:
+	canMove = true
+	canLook = true
+	DialogueHandler.page_index = 0
+	DialogueHandler.dialogue_branching = false
+	DialogueHandler.dialogue_open = false
 
+func _on_player_paused() -> void:
+	canMove = false
+	canLook = false
+	moving = false
+	move_dir = Vector2.ZERO
+
+func _on_InventoryGUI_inventory_closed() -> void:
+	canMove = true
+	canLook = true
+
+func _on_InventoryGUI_inventory_opened() -> void:
+	canMove = false
+	canLook = false
+	moving = false
+	move_dir = Vector2.ZERO

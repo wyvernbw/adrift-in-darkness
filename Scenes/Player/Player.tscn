@@ -1,18 +1,113 @@
-[gd_scene load_steps=8 format=2]
+[gd_scene load_steps=47 format=2]
 
-[ext_resource path="res://Scripts/Player.gd" type="Script" id=1]
+[ext_resource path="res://Scenes/Player/Player.gd" type="Script" id=1]
 [ext_resource path="res://Sprites/lantern_light2d.png" type="Texture" id=2]
 [ext_resource path="res://Scenes/Player/Lantern.gd" type="Script" id=3]
-[ext_resource path="res://icon.png" type="Texture" id=4]
+[ext_resource path="res://Sprites/player/player-sprites19.png" type="Texture" id=4]
+[ext_resource path="res://Sounds/steps_wood/wood_step1.wav" type="AudioStream" id=5]
+[ext_resource path="res://Sprites/player/player-sprites7.png" type="Texture" id=6]
+[ext_resource path="res://Sprites/player/player-sprites10.png" type="Texture" id=7]
+[ext_resource path="res://Sprites/player/player-sprites13.png" type="Texture" id=8]
+[ext_resource path="res://Sprites/player/player-sprites17.png" type="Texture" id=9]
+[ext_resource path="res://Sprites/player/player-sprites20.png" type="Texture" id=10]
+[ext_resource path="res://Sprites/player/player-sprites21.png" type="Texture" id=11]
+[ext_resource path="res://Sprites/player/player-sprites24.png" type="Texture" id=12]
+[ext_resource path="res://Sprites/player/player-sprites25.png" type="Texture" id=13]
+[ext_resource path="res://Sprites/player/player-sprites14.png" type="Texture" id=14]
+[ext_resource path="res://Sprites/player/player-sprites1.png" type="Texture" id=15]
+[ext_resource path="res://Sprites/player/player-sprites26.png" type="Texture" id=16]
+[ext_resource path="res://Sprites/player/player-sprites28.png" type="Texture" id=17]
+[ext_resource path="res://Sprites/player/player-sprites2.png" type="Texture" id=18]
+[ext_resource path="res://Sprites/player/player-sprites6.png" type="Texture" id=19]
+[ext_resource path="res://Sprites/player/player-sprites3.png" type="Texture" id=20]
+[ext_resource path="res://Sprites/player/player-sprites29.png" type="Texture" id=21]
+[ext_resource path="res://Sprites/player/player-sprites30.png" type="Texture" id=22]
+[ext_resource path="res://Sprites/player/player-sprites15.png" type="Texture" id=23]
+[ext_resource path="res://Sprites/player/player-sprites8.png" type="Texture" id=24]
+[ext_resource path="res://Sprites/player/player-sprites4.png" type="Texture" id=25]
+[ext_resource path="res://Sprites/player/player-sprites9.png" type="Texture" id=26]
+[ext_resource path="res://Sprites/player/player-sprites18.png" type="Texture" id=27]
+[ext_resource path="res://Sprites/player/player-sprites12.png" type="Texture" id=28]
+[ext_resource path="res://Sprites/player/player-sprites22.png" type="Texture" id=29]
+[ext_resource path="res://Sprites/player/player-sprites5.png" type="Texture" id=30]
+[ext_resource path="res://Sprites/player/player-sprites16.png" type="Texture" id=31]
+[ext_resource path="res://Sprites/player/player-sprites23.png" type="Texture" id=32]
+[ext_resource path="res://Sprites/player/player-sprites27.png" type="Texture" id=33]
+[ext_resource path="res://Sprites/player/player-sprites11.png" type="Texture" id=34]
+[ext_resource path="res://Sprites/player/player-sprites37.png" type="Texture" id=35]
+[ext_resource path="res://Sprites/player/player-sprites36.png" type="Texture" id=36]
+[ext_resource path="res://Sprites/player/player-sprites32.png" type="Texture" id=37]
+[ext_resource path="res://Sprites/player/player-sprites34.png" type="Texture" id=38]
+[ext_resource path="res://Sprites/player/player-sprites35.png" type="Texture" id=39]
+[ext_resource path="res://Sprites/player/player-sprites31.png" type="Texture" id=40]
+[ext_resource path="res://Sprites/player/player-sprites33.png" type="Texture" id=41]
+[ext_resource path="res://Sprites/player/player-sprites38.png" type="Texture" id=42]
 
-[sub_resource type="RectangleShape2D" id=1]
+
+[sub_resource type="SpriteFrames" id=1]
+animations = [ {
+"frames": [ ExtResource( 32 ), ExtResource( 12 ), ExtResource( 13 ), ExtResource( 16 ) ],
+"loop": true,
+"name": "move_right",
+"speed": 5.0
+}, {
+"frames": [ ExtResource( 28 ), ExtResource( 8 ), ExtResource( 14 ), ExtResource( 23 ) ],
+"loop": true,
+"name": "move_up",
+"speed": 5.0
+}, {
+"frames": [ ExtResource( 42 ) ],
+"loop": true,
+"name": "idle_up",
+"speed": 5.0
+}, {
+"frames": [ ExtResource( 31 ), ExtResource( 9 ), ExtResource( 27 ), ExtResource( 4 ), ExtResource( 10 ), ExtResource( 11 ), ExtResource( 29 ) ],
+"loop": true,
+"name": "idle_right",
+"speed": 5.0
+}, {
+"frames": [ ExtResource( 33 ), ExtResource( 17 ), ExtResource( 21 ), ExtResource( 22 ) ],
+"loop": true,
+"name": "move_left",
+"speed": 5.0
+}, {
+"frames": [ ExtResource( 42 ) ],
+"loop": true,
+"name": "idle_up",
+"speed": 5.0
+}, {
+"frames": [ ExtResource( 15 ), ExtResource( 20 ), ExtResource( 18 ), ExtResource( 25 ) ],
+"loop": true,
+"name": "move_down",
+"speed": 5.0
+}, {
+"frames": [ ExtResource( 40 ), ExtResource( 37 ), ExtResource( 41 ), ExtResource( 38 ), ExtResource( 39 ), ExtResource( 36 ), ExtResource( 35 ) ],
+"loop": true,
+"name": "idle_left",
+"speed": 5.0
+}, {
+"frames": [ ExtResource( 30 ), ExtResource( 19 ), ExtResource( 6 ), ExtResource( 24 ), ExtResource( 26 ), ExtResource( 7 ), ExtResource( 34 ) ],
+"loop": true,
+"name": "idle_down",
+"speed": 5.0
+}, {
+"frames": [ ExtResource( 28 ), ExtResource( 8 ), ExtResource( 14 ), ExtResource( 23 ) ],
+"loop": true,
+"name": "move_up",
+"speed": 5.0
+} ]
+
+[sub_resource type="RectangleShape2D" id=2]
+extents = Vector2( 5, 11 )
+} ]
+
+[sub_resource type="RectangleShape2D" id=2]
 extents = Vector2( 8, 12 )
 
-[sub_resource type="OccluderPolygon2D" id=2]
+[sub_resource type="OccluderPolygon2D" id=3]
 polygon = PoolVector2Array( -8, -12, 8, -12, 8, 12, -8, 12 )
 
-[sub_resource type="Animation" id=3]
-resource_name = "flicker"
+[sub_resource type="Animation" id=4]
 length = 2.0
 loop = true
 tracks/0/type = "value"
@@ -29,16 +124,21 @@ tracks/0/keys = {
 }
 
 [node name="Player" type="KinematicBody2D"]
+z_index = 3
+collision_mask = 8
 script = ExtResource( 1 )
 deaccel = 0.4
+speed = 24.0
+sprint_speed = 64.0
+sprint_step_interval = 0.3
 
-[node name="Sprite" type="Sprite" parent="."]
-scale = Vector2( 0.25, 0.33 )
-texture = ExtResource( 4 )
+[node name="AnimatedSprite" type="AnimatedSprite" parent="."]
+frames = SubResource( 1 )
+animation = "idle_up"
 
 [node name="CollisionBox" type="CollisionShape2D" parent="."]
 modulate = Color( 0.0980392, 0.996078, 0.678431, 1 )
-shape = SubResource( 1 )
+shape = SubResource( 2 )
 
 [node name="Camera2D" type="Camera2D" parent="."]
 current = true
@@ -46,7 +146,7 @@ zoom = Vector2( 1.25, 1.25 )
 
 [node name="LightOccluder2D" type="LightOccluder2D" parent="."]
 visible = false
-occluder = SubResource( 2 )
+occluder = SubResource( 3 )
 
 [node name="look_dir" type="RayCast2D" parent="."]
 modulate = Color( 1, 0.447059, 0.203922, 1 )
@@ -60,7 +160,7 @@ collide_with_bodies = false
 script = ExtResource( 3 )
 
 [node name="Light2D" type="Light2D" parent="Lantern"]
-position = Vector2( -4.76837e-07, -4.76837e-07 )
+position = Vector2( -5.68434e-14, -5.68434e-14 )
 scale = Vector2( 0.875, 0.875 )
 texture = ExtResource( 2 )
 offset = Vector2( 0, 44 )
@@ -73,10 +173,14 @@ shadow_gradient_length = 0.3
 shadow_item_cull_mask = 3
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="Lantern/Light2D"]
-anims/flicker = SubResource( 3 )
+anims/flicker = SubResource( 4 )
 
-[node name="Sounds" type="Node" parent="."]
+[node name="Sounds" type="Node2D" parent="."]
 
-[node name="walk" type="AudioStreamPlayer2D" parent="Sounds"]
+[node name="Move" type="AudioStreamPlayer2D" parent="Sounds"]
+stream = ExtResource( 5 )
+volume_db = -10.0
 
-[node name="run" type="AudioStreamPlayer2D" parent="Sounds"]
+[node name="StepTimer" type="Timer" parent="Sounds/Move"]
+autostart = true
+[connection signal="timeout" from="Sounds/Move/StepTimer" to="." method="_on_StepTimer_timeout"]
