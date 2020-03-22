@@ -27,28 +27,29 @@ func _ready() -> void:
 func _process(delta : float) -> void:
 	InventoryGUI = get_node(inv_gui_path)
 	var interact = Input.is_action_just_pressed("interact")
-	if not InventoryGUI.visible:
-		if player_is_colliding and $"../Player".look_dir == required_look_dir and interact:
-			if not locked:
-				if scene_path:
-					$CanvasLayer/Sprite/AnimationPlayer.play("fade in")
-					$Sounds/Open.play()
-			elif locked:
-				if InventoryHandler.get_item(required_item) != -1:
-					locked = false
-					$Sounds/Unlocked.play()
-					return
-				if get_node("DialogueBox"):
-					get_node("DialogueBox").queue_free()
-					DialogueHandler.emit_signal("player_unpause")
-					DialogueHandler.dialogue_open = false
-				else:
-					$Sounds/Locked.play()
-					var dialogue_box = DIALOGUE_BOX_SCENE.instance()
-					add_child(dialogue_box)
-					dialogue_box.get_node("Panel/Label").text = locked_text
-					DialogueHandler.emit_signal("player_pause")
-					DialogueHandler.dialogue_open = true
+	if InventoryGUI:
+		if not InventoryGUI.visible:
+			if player_is_colliding and $"../Player".look_dir == required_look_dir and interact:
+				if not locked:
+					if scene_path:
+						$CanvasLayer/Sprite/AnimationPlayer.play("fade in")
+						$Sounds/Open.play()
+				elif locked:
+					if InventoryHandler.get_item(required_item) != -1:
+						locked = false
+						$Sounds/Unlocked.play()
+						return
+					if get_node("DialogueBox"):
+						get_node("DialogueBox").queue_free()
+						DialogueHandler.emit_signal("player_unpause")
+						DialogueHandler.dialogue_open = false
+					else:
+						$Sounds/Locked.play()
+						var dialogue_box = DIALOGUE_BOX_SCENE.instance()
+						add_child(dialogue_box)
+						dialogue_box.get_node("Panel/Label").text = locked_text
+						DialogueHandler.emit_signal("player_pause")
+						DialogueHandler.dialogue_open = true
 		
 func _on_Door_body_entered(body : Node) -> void:
 	if body is Player:

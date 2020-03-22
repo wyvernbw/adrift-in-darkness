@@ -45,8 +45,7 @@ __meta__ = {
 
 [node name="Door" parent="." instance=ExtResource( 7 )]
 position = Vector2( 136, 48 )
-scene_path = "res://Scenes/TestWorld2.tscn"
-locked = true
+scene_path = "res://Scenes/PreviewScene.tscn"
 locked_text = "The door is locked."
 key_name = "Lantern"
 unlock_on_interact = true

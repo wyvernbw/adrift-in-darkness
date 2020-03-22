@@ -18,7 +18,7 @@ data = {
 },
 "Table": {
 "dialogue": {
-"branch_1_item_name": "lantern",
+"branch_1_item_name": "Lantern",
 "branch_2_item_name": "weird liquid",
 "item_name": "poison"
 },
@@ -30,8 +30,8 @@ data = {
 "player": {
 "current_scene": "TestWorld",
 "position": {
-"x": 112.0,
-"y": 97.6
+"x": 109.08,
+"y": 101.6
 }
 }
 }
