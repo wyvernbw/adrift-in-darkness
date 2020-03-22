@@ -45,17 +45,20 @@ func _physics_process(delta : float) -> void:
 		play_anim("move_", move_dir)
 	else:
 		play_anim("idle_", look_dir)
-	
-	#add to vector
-	velocity.x += speed * move_dir.x
-	velocity.y += speed * move_dir.y
-	
-	#apply friction
-	velocity.x = lerp(velocity.x, 0, deaccel)
-	velocity.y = lerp(velocity.y, 0, deaccel)
+		
+	apply_motion()
+	apply_friction()
 	
 	#move body along vector
 	move_and_slide(velocity, Vector2.UP)
+	
+func apply_motion():
+	velocity.x += speed * move_dir.x
+	velocity.y += speed * move_dir.y
+	
+func apply_friction():
+	velocity.x = lerp(velocity.x, 0, deaccel)
+	velocity.y = lerp(velocity.y, 0, deaccel)
 	
 func _update_look_dir() -> void:
 	if Input.is_action_pressed("move_right"):
@@ -128,7 +131,7 @@ func play_anim(anim : String, dir : Vector2) -> void:
 	
 	$AnimatedSprite.play(anim + dir_str)
 	
-		
+
 func save_game(game_save : Resource) -> void:
 	game_save.data[SAVE_KEY] = {
 		'position' : {
@@ -146,6 +149,10 @@ func load_game(game_save : Resource) -> void:
 	get_tree().change_scene("res://Scenes/" + data['current_scene'] + ".tscn")
 	position.x = data['position']['x']
 	position.y = data['position']['y']
+	
+"""
+SIGNAL METHODS vvv
+"""
 	
 func _on_StepTimer_timeout() -> void:
 	if moving:

@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/bookshelf.png-1ebc61ecb6a6dae2ab6aadcac380cf63.stex"
+path="res://.import/table2.png-ae159aac4c04c4317d16f89cbbfaa3da.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Sprites/Tilesets/bookshelf.png"
-dest_files=[ "res://.import/bookshelf.png-1ebc61ecb6a6dae2ab6aadcac380cf63.stex" ]
+source_file="res://Sprites/Tilesets/House/furniture/table2.png"
+dest_files=[ "res://.import/table2.png-ae159aac4c04c4317d16f89cbbfaa3da.stex" ]
 
 [params]
 

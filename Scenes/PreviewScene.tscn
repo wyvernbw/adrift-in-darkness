@@ -1,4 +1,4 @@
-[gd_scene load_steps=18 format=2]
+[gd_scene load_steps=19 format=2]
 
 [ext_resource path="res://Scenes/Player/Player.tscn" type="PackedScene" id=1]
 [ext_resource path="res://Scenes/GUI/InventoryGUI.tscn" type="PackedScene" id=2]
@@ -12,6 +12,7 @@
 [ext_resource path="res://Scenes/interactable objects/Door.tscn" type="PackedScene" id=10]
 [ext_resource path="res://Scenes/SoundArea.tscn" type="PackedScene" id=11]
 [ext_resource path="res://Scenes/monster/Monster.tscn" type="PackedScene" id=12]
+[ext_resource path="res://Scenes/interactable objects/bookshelf.tscn" type="PackedScene" id=13]
 
 [sub_resource type="CanvasItemMaterial" id=1]
 blend_mode = 3
@@ -81,8 +82,8 @@ __meta__ = {
 }
 
 [node name="Player" parent="." instance=ExtResource( 1 )]
-position = Vector2( 80, 96 )
-z_index = 1
+position = Vector2( 88, 96 )
+z_index = 2
 
 [node name="CanvasModulate" type="CanvasModulate" parent="."]
 color = Color( 0.470588, 0.470588, 0.470588, 1 )
@@ -117,7 +118,7 @@ z_as_relative = false
 inv_gui_path = NodePath("../CanvasLayer/InventoryGUI")
 
 [node name="Chair" parent="." instance=ExtResource( 9 )]
-position = Vector2( 199.164, 72 )
+position = Vector2( 200, 72 )
 inv_gui_path = NodePath("../CanvasLayer/InventoryGUI")
 dialogue = SubResource( 5 )
 
@@ -133,9 +134,13 @@ required_look_dir = Vector2( 0, 1 )
 position = Vector2( 271, 79 )
 activate_once = true
 on_player_enter = true
+on_player_exit = false
 collision_box_size = Vector2( 16, 32 )
 volume_db = -32.0
 
 [node name="Monster" parent="." instance=ExtResource( 12 )]
+
+[node name="Object" parent="." instance=ExtResource( 13 )]
+position = Vector2( 232, 72 )
 [connection signal="inventory_closed" from="CanvasLayer/InventoryGUI" to="Player" method="_on_InventoryGUI_inventory_closed"]
 [connection signal="inventory_opened" from="CanvasLayer/InventoryGUI" to="Player" method="_on_InventoryGUI_inventory_opened"]
