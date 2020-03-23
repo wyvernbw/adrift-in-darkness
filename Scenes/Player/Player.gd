@@ -42,7 +42,7 @@ func _physics_process(delta : float) -> void:
 		_update_look_dir()
 	
 	if moving:
-		play_anim("move_", move_dir)
+		play_anim("move_", look_dir)
 	else:
 		play_anim("idle_", look_dir)
 		

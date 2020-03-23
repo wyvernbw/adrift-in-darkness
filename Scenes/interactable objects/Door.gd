@@ -20,6 +20,7 @@ export(NodePath) var inv_gui_path : NodePath
 export(Vector2) var required_look_dir : Vector2
 
 func _ready() -> void:
+	locked_text = "[center]" + locked_text + "[/center]"
 	required_item = Item.new(key_name, 1, null, Item.ITEM_TYPES.KEY_ITEM)
 	$CanvasLayer/Sprite.visible = true
 	$CanvasLayer/Sprite/AnimationPlayer.play("fade out")
@@ -47,7 +48,7 @@ func _process(delta : float) -> void:
 						$Sounds/Locked.play()
 						var dialogue_box = DIALOGUE_BOX_SCENE.instance()
 						add_child(dialogue_box)
-						dialogue_box.get_node("Panel/Label").text = locked_text
+						dialogue_box.get_node("Panel/Label").bbcode_text = locked_text
 						DialogueHandler.emit_signal("player_pause")
 						DialogueHandler.dialogue_open = true
 		

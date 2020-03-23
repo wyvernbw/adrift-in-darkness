@@ -58,20 +58,28 @@ func _on_Object_page_changed() -> void:
 func init_dialogue() -> void:
 	dialogue_open = true
 	page_index = 0
+	
 	var dialogue_box = DIALOGUE_BOX_SCENE.instance()
 	add_child(dialogue_box)
 	emit_signal("player_pause")
-	dialogue_box.get_node("Panel/Label").text = resource.Text[0]
+	
+	var label = dialogue_box.get_node("Panel/Label")
+	label.bbcode_text = resource.Text[0]
+	label.bbcode_text = "[center]" + label.bbcode_text + "[/center]"
 
 func update_dialogue() -> void:
 	if get_children():
 		if get_node("DialogueBox"):
 			get_node("DialogueBox").free()
+			
 	if not page_index > resource.Text.size() - 1 :
 		var dialogue_box = DIALOGUE_BOX_SCENE.instance()
 		add_child(dialogue_box)
 		dialogue_box.set_name("DialogueBox")
-		dialogue_box.get_node("Panel/Label").text = resource.Text[page_index]
+		
+		var label = dialogue_box.get_node("Panel/Label")
+		label.bbcode_text = resource.Text[page_index]
+		label.bbcode_text = "[center]" + label.bbcode_text + "[/center]"
 
 func _on_BranchingDialogueBox_option_pressed(branch : int) -> void:
 	get_node("BranchingDialogueBox").queue_free()

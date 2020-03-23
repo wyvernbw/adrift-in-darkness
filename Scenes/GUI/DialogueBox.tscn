@@ -28,14 +28,14 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="Label" type="Label" parent="Panel"]
-anchor_right = 1.0
-anchor_bottom = 1.0
-custom_fonts/font = SubResource( 1 )
-text = "Cheers I'll drink to that bro"
-align = 1
-valign = 1
-autowrap = true
+[node name="Label" type="RichTextLabel" parent="Panel"]
+margin_top = 1.0
+margin_right = 256.0
+margin_bottom = 65.0
+rect_min_size = Vector2( 256, 0 )
+custom_fonts/normal_font = SubResource( 1 )
+bbcode_enabled = true
+visible_characters = 0
 percent_visible = 0.0
 __meta__ = {
 "_edit_use_anchors_": false

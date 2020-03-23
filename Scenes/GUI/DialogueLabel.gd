@@ -1,21 +1,12 @@
-extends CanvasLayer
+extends RichTextLabel
 
-onready var TypingTimer = $TypingTimer
-onready var label = get_node("Panel/Label")
+onready var label = self
 onready var label_rect = label.get_rect()  # Cache the original pos
 # The max number of lines that the label can hold
 const MAX_LINES = 3
 
-var typing_finished : bool = false
-
 func _ready() -> void:
 	reposition_label(label.text)
-
-func _on_TypingTimer_timeout():
-	get_node("Panel/Label").visible_characters += 1
-	if get_node("Panel/Label").visible_characters == get_node("Panel/Label").text.length():
-		typing_finished = true
-		TypingTimer.stop()
 
 func reposition_label(text):
 	var regex = RegEx.new()

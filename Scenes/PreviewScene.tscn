@@ -13,16 +13,16 @@
 [ext_resource path="res://Scenes/SoundArea.tscn" type="PackedScene" id=11]
 [ext_resource path="res://Sprites/57f5fa649b7683b5ee4999242e873e63.jpg" type="Texture" id=12]
 
-[sub_resource type="VisualShaderNodeTexture" id=11]
+[sub_resource type="VisualShaderNodeTexture" id=1]
 texture = ExtResource( 12 )
 
-[sub_resource type="VisualShaderNodeScalarConstant" id=12]
+[sub_resource type="VisualShaderNodeScalarConstant" id=2]
 constant = 0.001
 
-[sub_resource type="VisualShaderNodeScalarInterp" id=13]
+[sub_resource type="VisualShaderNodeScalarInterp" id=3]
 default_input_values = [ 0, 0.0, 1, 1.0, 2, 0.7 ]
 
-[sub_resource type="VisualShader" id=7]
+[sub_resource type="VisualShader" id=4]
 code = "shader_type canvas_item;
 uniform sampler2D tex_frg_4;
 
@@ -61,22 +61,22 @@ graph_offset = Vector2( -188.961, 1 )
 mode = 1
 flags/light_only = false
 nodes/fragment/0/position = Vector2( 380, 140 )
-nodes/fragment/4/node = SubResource( 11 )
+nodes/fragment/4/node = SubResource( 1 )
 nodes/fragment/4/position = Vector2( -160, 40 )
-nodes/fragment/5/node = SubResource( 12 )
+nodes/fragment/5/node = SubResource( 2 )
 nodes/fragment/5/position = Vector2( 140, 240 )
-nodes/fragment/6/node = SubResource( 13 )
+nodes/fragment/6/node = SubResource( 3 )
 nodes/fragment/6/position = Vector2( 160, 40 )
 nodes/fragment/connections = PoolIntArray( 4, 0, 0, 0, 4, 1, 6, 0, 5, 0, 6, 1, 6, 0, 0, 1 )
 
-[sub_resource type="ShaderMaterial" id=8]
-shader = SubResource( 7 )
+[sub_resource type="ShaderMaterial" id=5]
+shader = SubResource( 4 )
 
-[sub_resource type="CanvasItemMaterial" id=1]
+[sub_resource type="CanvasItemMaterial" id=6]
 blend_mode = 3
 light_mode = 1
 
-[sub_resource type="Resource" id=2]
+[sub_resource type="Resource" id=7]
 script = ExtResource( 5 )
 Text = [  ]
 Answers = {
@@ -86,9 +86,9 @@ item_name = ""
 item_quantity = 0
 item_type = 0
 
-[sub_resource type="Resource" id=3]
+[sub_resource type="Resource" id=8]
 script = ExtResource( 5 )
-Text = [ "You found an old lantern.", null ]
+Text = [ "You found an old [color=yellow]lantern[/color]." ]
 Answers = {
 
 }
@@ -97,18 +97,18 @@ item_texture = ExtResource( 7 )
 item_quantity = 1
 item_type = 0
 
-[sub_resource type="Resource" id=4]
+[sub_resource type="Resource" id=9]
 script = ExtResource( 5 )
 Text = [ "A dirty, old table." ]
 Answers = {
-"leave.": SubResource( 2 ),
-"look underneath.": SubResource( 3 )
+"leave.": SubResource( 7 ),
+"look underneath.": SubResource( 8 )
 }
 item_name = ""
 item_quantity = 0
 item_type = 0
 
-[sub_resource type="Resource" id=5]
+[sub_resource type="Resource" id=10]
 script = ExtResource( 5 )
 Text = [ "A half-broken chair.", null ]
 Answers = {
@@ -121,7 +121,7 @@ item_type = 0
 [node name="PreviewScene" type="Node2D"]
 
 [node name="shader" type="Sprite" parent="."]
-material = SubResource( 8 )
+material = SubResource( 5 )
 position = Vector2( 120, 88 )
 z_index = 5
 texture = ExtResource( 12 )
@@ -169,8 +169,7 @@ __meta__ = {
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 
 [node name="LightMask2D" type="Sprite" parent="CanvasLayer"]
-visible = false
-material = SubResource( 1 )
+material = SubResource( 6 )
 position = Vector2( 128, 96 )
 scale = Vector2( 1.1875, 1.32474 )
 texture = ExtResource( 3 )
@@ -184,7 +183,7 @@ visible = false
 [node name="Table" parent="." instance=ExtResource( 6 )]
 position = Vector2( 104, 80 )
 inv_gui_path = NodePath("../CanvasLayer/InventoryGUI")
-dialogue = SubResource( 4 )
+dialogue = SubResource( 9 )
 
 [node name="Table2" parent="." instance=ExtResource( 6 )]
 position = Vector2( 160, 112 )
@@ -200,7 +199,7 @@ inv_gui_path = NodePath("../CanvasLayer/InventoryGUI")
 [node name="Chair" parent="." instance=ExtResource( 9 )]
 position = Vector2( 200, 72 )
 inv_gui_path = NodePath("../CanvasLayer/InventoryGUI")
-dialogue = SubResource( 5 )
+dialogue = SubResource( 10 )
 
 [node name="Door" parent="." instance=ExtResource( 10 )]
 visible = false
