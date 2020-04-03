@@ -1,0 +1,81 @@
+[gd_scene load_steps=13 format=2]
+
+[ext_resource path="res://Sprites/Tilesets/house1.tres" type="TileSet" id=1]
+[ext_resource path="res://Scenes/Player/Player.tscn" type="PackedScene" id=2]
+[ext_resource path="res://Scenes/interfaces/LightMask2D.tscn" type="PackedScene" id=3]
+[ext_resource path="res://Scenes/interfaces/Light-Effects.tscn" type="PackedScene" id=4]
+[ext_resource path="res://Scripts/Resources/DialogueResource.gd" type="Script" id=5]
+[ext_resource path="res://Sprites/Tilesets/rug1.tres" type="TileSet" id=6]
+[ext_resource path="res://Scenes/interactable objects/Table.tscn" type="PackedScene" id=7]
+[ext_resource path="res://Sprites/items/lantern.png" type="Texture" id=8]
+[ext_resource path="res://Scenes/GUI/InventoryGUI.tscn" type="PackedScene" id=9]
+
+[sub_resource type="Resource" id=3]
+script = ExtResource( 5 )
+Text = [  ]
+Answers = {
+
+}
+item_name = ""
+item_quantity = 0
+item_type = 0
+
+[sub_resource type="Resource" id=1]
+script = ExtResource( 5 )
+Text = [ "You found a [color=yellow]lantern[/color]" ]
+Answers = {
+
+}
+item_name = "Lantern"
+item_texture = ExtResource( 8 )
+item_quantity = 1
+item_type = 0
+
+[sub_resource type="Resource" id=2]
+script = ExtResource( 5 )
+Text = [ "A dirty, old table." ]
+Answers = {
+"Leave": SubResource( 3 ),
+"Look underneath": SubResource( 1 )
+}
+item_name = ""
+item_quantity = 0
+item_type = 0
+
+[node name="1F_main_room" type="Node2D"]
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="Player" parent="." instance=ExtResource( 2 )]
+position = Vector2( 128, 176 )
+
+[node name="House" type="TileMap" parent="."]
+tile_set = ExtResource( 1 )
+cell_size = Vector2( 16, 16 )
+format = 1
+tile_data = PoolIntArray( 65536, 9, 0, 65537, 0, 0, 65538, 0, 0, 65539, 0, 0, 65540, 0, 0, 65541, 0, 0, 65542, 0, 0, 65543, 0, 0, 65544, 0, 0, 65545, 0, 0, 65546, 0, 0, 65547, 0, 0, 65548, 0, 0, 65549, 0, 0, 65550, 0, 0, 65551, 2, 0, 131072, 5, 0, 131087, 3, 0, 196608, 5, 0, 196623, 3, 0, 262144, 5, 0, 262145, 1, 0, 262146, 1, 0, 262147, 1, 0, 262148, 1, 0, 262149, 1, 0, 262150, 1, 0, 262151, 1, 0, 262152, 1, 0, 262153, 1, 0, 262154, 1, 0, 262155, 1, 0, 262156, 1, 0, 262157, 1, 0, 262158, 1, 0, 262159, 3, 0, 327680, 5, 0, 327681, 1, 0, 327682, 1, 0, 327683, 1, 0, 327684, 1, 0, 327685, 1, 0, 327686, 1, 0, 327687, 1, 0, 327688, 1, 0, 327689, 1, 0, 327690, 1, 0, 327691, 1, 0, 327692, 1, 0, 327693, 1, 0, 327694, 1, 0, 327695, 3, 0, 393216, 5, 0, 393217, 1, 0, 393218, 1, 0, 393219, 1, 0, 393220, 1, 0, 393221, 1, 0, 393222, 1, 0, 393223, 1, 0, 393224, 1, 0, 393225, 1, 0, 393226, 1, 0, 393227, 1, 0, 393228, 1, 0, 393229, 1, 0, 393230, 1, 0, 393231, 3, 0, 458752, 5, 0, 458753, 1, 0, 458754, 1, 0, 458755, 1, 0, 458756, 1, 0, 458757, 1, 0, 458758, 1, 0, 458759, 1, 0, 458760, 1, 0, 458761, 1, 0, 458762, 1, 0, 458763, 1, 0, 458764, 1, 0, 458765, 1, 0, 458766, 1, 0, 458767, 3, 0, 524288, 5, 0, 524289, 1, 0, 524290, 1, 0, 524291, 1, 0, 524292, 1, 0, 524293, 1, 0, 524294, 1, 0, 524295, 1, 0, 524296, 1, 0, 524297, 1, 0, 524298, 1, 0, 524299, 1, 0, 524300, 1, 0, 524301, 1, 0, 524302, 1, 0, 524303, 3, 0, 589824, 5, 0, 589825, 1, 0, 589826, 1, 0, 589827, 1, 0, 589828, 1, 0, 589829, 1, 0, 589830, 1, 0, 589831, 1, 0, 589832, 1, 0, 589833, 1, 0, 589834, 1, 0, 589835, 1, 0, 589836, 1, 0, 589837, 1, 0, 589838, 1, 0, 589839, 3, 0, 655360, 5, 0, 655361, 1, 0, 655362, 1, 0, 655363, 1, 0, 655364, 1, 0, 655365, 1, 0, 655366, 1, 0, 655367, 1, 0, 655368, 1, 0, 655369, 1, 0, 655370, 1, 0, 655371, 1, 0, 655372, 1, 0, 655373, 1, 0, 655374, 1, 0, 655375, 3, 0, 720896, 8, 0, 720897, 4, 0, 720898, 4, 0, 720899, 4, 0, 720900, 4, 0, 720901, 4, 0, 720902, 13, 0, 720903, 1, 0, 720904, 1, 0, 720905, 10, 0, 720906, 4, 0, 720907, 4, 0, 720908, 4, 0, 720909, 4, 0, 720910, 4, 0, 720911, 7, 0, 786438, 6, 0, 786439, 6, 0, 786440, 6, 0, 786441, 6, 0 )
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="Rug" type="TileMap" parent="."]
+tile_set = ExtResource( 6 )
+cell_size = Vector2( 16, 16 )
+format = 1
+tile_data = PoolIntArray( 393219, 6, 0, 393220, 2, 0, 393221, 2, 0, 393222, 2, 0, 393223, 2, 0, 393224, 2, 0, 393225, 2, 0, 393226, 2, 0, 393227, 2, 0, 393228, 7, 0, 458755, 5, 0, 458756, 0, 0, 458757, 0, 0, 458758, 0, 0, 458759, 0, 0, 458760, 0, 0, 458761, 0, 0, 458762, 0, 0, 458763, 0, 0, 458764, 3, 0, 524291, 9, 0, 524292, 4, 0, 524293, 4, 0, 524294, 4, 0, 524295, 4, 0, 524296, 4, 0, 524297, 4, 0, 524298, 4, 0, 524299, 4, 0, 524300, 8, 0 )
+
+[node name="CanvasModulate" parent="." instance=ExtResource( 4 )]
+
+[node name="Table" parent="." instance=ExtResource( 7 )]
+position = Vector2( 152, 160 )
+inv_gui_path = NodePath("../CanvasLayer/InventoryGUI")
+dialogue = SubResource( 2 )
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="LightMask2D" parent="CanvasLayer" instance=ExtResource( 3 )]
+
+[node name="InventoryGUI" parent="CanvasLayer" instance=ExtResource( 9 )]
+[connection signal="inventory_closed" from="CanvasLayer/InventoryGUI" to="Player" method="_on_InventoryGUI_inventory_closed"]
+[connection signal="inventory_opened" from="CanvasLayer/InventoryGUI" to="Player" method="_on_InventoryGUI_inventory_opened"]

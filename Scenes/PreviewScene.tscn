@@ -1,8 +1,8 @@
-[gd_scene load_steps=23 format=2]
+[gd_scene load_steps=16 format=2]
 
 [ext_resource path="res://Scenes/Player/Player.tscn" type="PackedScene" id=1]
-[ext_resource path="res://Scenes/GUI/InventoryGUI.tscn" type="PackedScene" id=2]
-[ext_resource path="res://Sprites/light_mask2d.png" type="Texture" id=3]
+[ext_resource path="res://Scenes/interfaces/Light-Effects.tscn" type="PackedScene" id=2]
+[ext_resource path="res://Scenes/interfaces/CanvasLayer.tscn" type="PackedScene" id=3]
 [ext_resource path="res://Sprites/Tilesets/house1.tres" type="TileSet" id=4]
 [ext_resource path="res://Scripts/Resources/DialogueResource.gd" type="Script" id=5]
 [ext_resource path="res://Scenes/interactable objects/Table.tscn" type="PackedScene" id=6]
@@ -11,72 +11,8 @@
 [ext_resource path="res://Scenes/interactable objects/Chair.tscn" type="PackedScene" id=9]
 [ext_resource path="res://Scenes/interactable objects/Door.tscn" type="PackedScene" id=10]
 [ext_resource path="res://Scenes/SoundArea.tscn" type="PackedScene" id=11]
-[ext_resource path="res://Sprites/57f5fa649b7683b5ee4999242e873e63.jpg" type="Texture" id=12]
 
-[sub_resource type="VisualShaderNodeTexture" id=1]
-texture = ExtResource( 12 )
-
-[sub_resource type="VisualShaderNodeScalarConstant" id=2]
-constant = 0.001
-
-[sub_resource type="VisualShaderNodeScalarInterp" id=3]
-default_input_values = [ 0, 0.0, 1, 1.0, 2, 0.7 ]
-
-[sub_resource type="VisualShader" id=4]
-code = "shader_type canvas_item;
-uniform sampler2D tex_frg_4;
-
-
-
-void vertex() {
-// Output:0
-
-}
-
-void fragment() {
-// Texture:4
-	vec4 tex_frg_4_read = texture(tex_frg_4, UV.xy);
-	vec3 n_out4p0 = tex_frg_4_read.rgb;
-	float n_out4p1 = tex_frg_4_read.a;
-
-// Scalar:5
-	float n_out5p0 = 0.001000;
-
-// ScalarMix:6
-	float n_in6p2 = 0.70000;
-	float n_out6p0 = mix(n_out4p1, n_out5p0, n_in6p2);
-
-// Output:0
-	COLOR.rgb = n_out4p0;
-	COLOR.a = n_out6p0;
-
-}
-
-void light() {
-// Output:0
-
-}
-"
-graph_offset = Vector2( -188.961, 1 )
-mode = 1
-flags/light_only = false
-nodes/fragment/0/position = Vector2( 380, 140 )
-nodes/fragment/4/node = SubResource( 1 )
-nodes/fragment/4/position = Vector2( -160, 40 )
-nodes/fragment/5/node = SubResource( 2 )
-nodes/fragment/5/position = Vector2( 140, 240 )
-nodes/fragment/6/node = SubResource( 3 )
-nodes/fragment/6/position = Vector2( 160, 40 )
-nodes/fragment/connections = PoolIntArray( 4, 0, 0, 0, 4, 1, 6, 0, 5, 0, 6, 1, 6, 0, 0, 1 )
-
-[sub_resource type="ShaderMaterial" id=5]
-shader = SubResource( 4 )
-
-[sub_resource type="CanvasItemMaterial" id=6]
-blend_mode = 3
-light_mode = 1
-
-[sub_resource type="Resource" id=7]
+[sub_resource type="Resource" id=1]
 script = ExtResource( 5 )
 Text = [  ]
 Answers = {
@@ -86,7 +22,7 @@ item_name = ""
 item_quantity = 0
 item_type = 0
 
-[sub_resource type="Resource" id=8]
+[sub_resource type="Resource" id=2]
 script = ExtResource( 5 )
 Text = [ "You found an old [color=yellow]lantern[/color]." ]
 Answers = {
@@ -97,18 +33,18 @@ item_texture = ExtResource( 7 )
 item_quantity = 1
 item_type = 0
 
-[sub_resource type="Resource" id=9]
+[sub_resource type="Resource" id=3]
 script = ExtResource( 5 )
 Text = [ "A dirty, old table." ]
 Answers = {
-"leave.": SubResource( 7 ),
-"look underneath.": SubResource( 8 )
+"leave.": SubResource( 1 ),
+"look underneath.": SubResource( 2 )
 }
 item_name = ""
 item_quantity = 0
 item_type = 0
 
-[sub_resource type="Resource" id=10]
+[sub_resource type="Resource" id=4]
 script = ExtResource( 5 )
 Text = [ "A half-broken chair.", null ]
 Answers = {
@@ -119,12 +55,6 @@ item_quantity = 0
 item_type = 0
 
 [node name="PreviewScene" type="Node2D"]
-
-[node name="shader" type="Sprite" parent="."]
-material = SubResource( 5 )
-position = Vector2( 120, 88 )
-z_index = 5
-texture = ExtResource( 12 )
 
 [node name="Door2" parent="." instance=ExtResource( 10 )]
 visible = false
@@ -160,30 +90,12 @@ __meta__ = {
 position = Vector2( 88, 88 )
 z_index = 2
 
-[node name="CanvasModulate" type="CanvasModulate" parent="."]
-color = Color( 0.470588, 0.470588, 0.470588, 1 )
-__meta__ = {
-"_edit_lock_": true
-}
-
-[node name="CanvasLayer" type="CanvasLayer" parent="."]
-
-[node name="LightMask2D" type="Sprite" parent="CanvasLayer"]
-material = SubResource( 6 )
-position = Vector2( 128, 96 )
-scale = Vector2( 1.1875, 1.32474 )
-texture = ExtResource( 3 )
-__meta__ = {
-"_edit_lock_": true
-}
-
-[node name="InventoryGUI" parent="CanvasLayer" instance=ExtResource( 2 )]
-visible = false
+[node name="CanvasLayer" parent="." instance=ExtResource( 3 )]
 
 [node name="Table" parent="." instance=ExtResource( 6 )]
 position = Vector2( 104, 80 )
 inv_gui_path = NodePath("../CanvasLayer/InventoryGUI")
-dialogue = SubResource( 9 )
+dialogue = SubResource( 3 )
 
 [node name="Table2" parent="." instance=ExtResource( 6 )]
 position = Vector2( 160, 112 )
@@ -199,7 +111,7 @@ inv_gui_path = NodePath("../CanvasLayer/InventoryGUI")
 [node name="Chair" parent="." instance=ExtResource( 9 )]
 position = Vector2( 200, 72 )
 inv_gui_path = NodePath("../CanvasLayer/InventoryGUI")
-dialogue = SubResource( 10 )
+dialogue = SubResource( 4 )
 
 [node name="Door" parent="." instance=ExtResource( 10 )]
 visible = false
@@ -217,5 +129,5 @@ on_player_enter = true
 on_player_exit = false
 collision_box_size = Vector2( 16, 32 )
 volume_db = -32.0
-[connection signal="inventory_closed" from="CanvasLayer/InventoryGUI" to="Player" method="_on_InventoryGUI_inventory_closed"]
-[connection signal="inventory_opened" from="CanvasLayer/InventoryGUI" to="Player" method="_on_InventoryGUI_inventory_opened"]
+
+[node name="CanvasModulate" parent="." instance=ExtResource( 2 )]
