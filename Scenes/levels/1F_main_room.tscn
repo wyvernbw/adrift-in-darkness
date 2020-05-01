@@ -1,4 +1,4 @@
-[gd_scene load_steps=17 format=2]
+[gd_scene load_steps=19 format=2]
 
 [ext_resource path="res://Sprites/Tilesets/house1.tres" type="TileSet" id=1]
 [ext_resource path="res://Scenes/Player/Player.tscn" type="PackedScene" id=2]
@@ -13,6 +13,8 @@
 [ext_resource path="res://Sprites/Tilesets/House/ledge.tres" type="TileSet" id=11]
 [ext_resource path="res://Scenes/interactable objects/Door.tscn" type="PackedScene" id=12]
 [ext_resource path="res://Scenes/interactable objects/bookshelf.tscn" type="PackedScene" id=13]
+[ext_resource path="res://Sprites/blood/blood2.png" type="Texture" id=14]
+[ext_resource path="res://Sprites/blood/blood1.png" type="Texture" id=15]
 
 [sub_resource type="Resource" id=1]
 script = ExtResource( 5 )
@@ -52,7 +54,7 @@ __meta__ = {
 }
 
 [node name="Player" parent="." instance=ExtResource( 2 )]
-position = Vector2( 127.492, 154 )
+position = Vector2( 128, 152 )
 
 [node name="HouseF1" type="TileMap" parent="."]
 tile_set = ExtResource( 1 )
@@ -121,5 +123,15 @@ position = Vector2( 168, 0 )
 
 [node name="bookshelf2" parent="." instance=ExtResource( 13 )]
 position = Vector2( 200, 0 )
+
+[node name="blood-splatters" type="Node2D" parent="."]
+
+[node name="blood2" type="Sprite" parent="blood-splatters"]
+position = Vector2( 168, 32 )
+texture = ExtResource( 14 )
+
+[node name="blood1" type="Sprite" parent="blood-splatters"]
+position = Vector2( 216, 40 )
+texture = ExtResource( 15 )
 [connection signal="inventory_closed" from="CanvasLayer/InventoryGUI" to="Player" method="_on_InventoryGUI_inventory_closed"]
 [connection signal="inventory_opened" from="CanvasLayer/InventoryGUI" to="Player" method="_on_InventoryGUI_inventory_opened"]
