@@ -10,6 +10,8 @@
 
 [node name="Player" parent="." instance=ExtResource( 5 )]
 position = Vector2( 168, 112 )
+speed = 48.0
+look_dir = Vector2( -1, 0 )
 
 [node name="TileMap" type="TileMap" parent="."]
 tile_set = ExtResource( 1 )

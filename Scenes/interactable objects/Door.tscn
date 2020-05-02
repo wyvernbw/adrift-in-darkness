@@ -26,10 +26,10 @@ shape = SubResource( 1 )
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 
 [node name="Sprite" type="Sprite" parent="CanvasLayer"]
-visible = false
-modulate = Color( 1, 1, 1, 0.888889 )
+modulate = Color( 1, 1, 1, 0 )
 position = Vector2( 252.263, 106.026 )
 scale = Vector2( 27.1969, 291.433 )
+z_index = 21
 texture = SubResource( 2 )
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="CanvasLayer/Sprite"]

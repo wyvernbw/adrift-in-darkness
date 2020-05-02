@@ -1,3 +1,4 @@
+tool
 extends KinematicBody2D
 class_name Player
 
@@ -15,7 +16,7 @@ export var sprint_step_interval : float = 0.1
 
 var SAVE_KEY : String = "player"
 var move_dir : Vector2 = Vector2.ZERO
-var look_dir : Vector2 = Vector2.DOWN
+export var look_dir : Vector2 = Vector2.DOWN
 var look_raycast_colliding : bool = false
 var velocity : Vector2 = Vector2.ZERO
 var stamina : float = MAX_STAMINA
@@ -146,7 +147,7 @@ func load_game(game_save : Resource) -> void:
 	var data : Dictionary = game_save.data[SAVE_KEY]
 	print(data)
 	position = Vector2.ZERO
-	get_tree().change_scene("res://Scenes/" + data['current_scene'] + ".tscn")
+	get_node('/root/Game').switch_scene(data['current_scene'])
 	position.x = data['position']['x']
 	position.y = data['position']['y']
 	

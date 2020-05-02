@@ -55,6 +55,7 @@ __meta__ = {
 
 [node name="Player" parent="." instance=ExtResource( 2 )]
 position = Vector2( 128, 176 )
+speed = 48.0
 
 [node name="HouseF1" type="TileMap" parent="."]
 tile_set = ExtResource( 1 )
@@ -86,7 +87,6 @@ format = 1
 tile_data = PoolIntArray( -131071, 5, 0, -131070, 5, 0, -131069, 5, 0, -131068, 5, 0, -131067, 5, 0, -131066, 5, 0, -131063, 5, 0, -131062, 5, 0, -131061, 5, 0, -131060, 5, 0, -131059, 5, 0, -131058, 5, 0 )
 
 [node name="CanvasModulate" parent="." instance=ExtResource( 4 )]
-color = Color( 0.470588, 0.470588, 0.470588, 1 )
 
 [node name="Table" parent="." instance=ExtResource( 7 )]
 position = Vector2( 152, 144 )
@@ -121,6 +121,9 @@ required_look_dir = Vector2( 0, 1 )
 visible = false
 position = Vector2( 8, 136 )
 scene_name = "1F_west_hall"
+locked = true
+locked_text = "bitch cant u see its locked?"
+key_name = "Lantern"
 inv_gui_path = NodePath("../CanvasLayer/InventoryGUI")
 required_look_dir = Vector2( -1, 0 )
 
