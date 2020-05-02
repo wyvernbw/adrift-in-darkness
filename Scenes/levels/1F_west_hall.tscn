@@ -1,0 +1,35 @@
+[gd_scene load_steps=6 format=2]
+
+[ext_resource path="res://Sprites/Tilesets/house1.tres" type="TileSet" id=1]
+[ext_resource path="res://Scenes/interfaces/LightMask2D.tscn" type="PackedScene" id=2]
+[ext_resource path="res://Scenes/GUI/InventoryGUI.tscn" type="PackedScene" id=3]
+[ext_resource path="res://Scenes/interactable objects/Door.tscn" type="PackedScene" id=4]
+[ext_resource path="res://Scenes/Player/Player.tscn" type="PackedScene" id=5]
+
+[node name="1F_west_hall" type="Node2D"]
+
+[node name="Player" parent="." instance=ExtResource( 5 )]
+position = Vector2( 168, 112 )
+
+[node name="TileMap" type="TileMap" parent="."]
+tile_set = ExtResource( 1 )
+cell_size = Vector2( 16, 16 )
+format = 1
+tile_data = PoolIntArray( 262145, 6, 0, 262146, 9, 0, 262147, 0, 0, 262148, 0, 0, 262149, 0, 0, 262150, 0, 0, 262151, 0, 0, 262152, 0, 0, 262153, 0, 0, 262154, 2, 0, 262155, 6, 0, 327681, 6, 0, 327682, 12, 0, 327690, 11, 0, 327691, 6, 0, 393216, 6, 0, 393217, 6, 0, 393218, 15, 0, 393226, 15, 0, 393227, 6, 0, 458752, 6, 0, 458753, 6, 0, 458754, 13, 0, 458755, 1, 0, 458756, 1, 0, 458757, 1, 0, 458758, 1, 0, 458759, 1, 0, 458760, 1, 0, 458761, 1, 0, 458762, 10, 0, 458763, 6, 0, 524288, 6, 0, 524289, 6, 0, 524290, 8, 0, 524291, 4, 0, 524292, 4, 0, 524293, 4, 0, 524294, 4, 0, 524295, 4, 0, 524296, 4, 0, 524297, 4, 0, 524298, 7, 0, 524299, 6, 0, 589825, 6, 0, 589826, 6, 0, 589827, 6, 0, 589828, 6, 0, 589829, 6, 0, 589830, 6, 0, 589831, 6, 0, 589832, 6, 0, 589833, 6, 0, 589834, 6, 0, 589835, 6, 0 )
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="LightMask2D" parent="CanvasLayer" instance=ExtResource( 2 )]
+
+[node name="InventoryGUI" parent="CanvasLayer" instance=ExtResource( 3 )]
+visible = false
+
+[node name="CanvasModulate" type="CanvasModulate" parent="."]
+color = Color( 0.470588, 0.470588, 0.470588, 1 )
+
+[node name="Door" parent="." instance=ExtResource( 4 )]
+visible = false
+position = Vector2( 168, 104 )
+scene_name = "1F_main_room"
+inv_gui_path = NodePath("../CanvasLayer/InventoryGUI")
+required_look_dir = Vector2( 1, 0 )

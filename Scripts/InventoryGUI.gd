@@ -69,12 +69,13 @@ func populate_inventory() -> void:
 		item_slot.set_item(current_item)
 
 func refresh_inventory() -> void:
-	_empty_inventory_panels()
+	call_deferred("_empty_inventory_panels")
 	populate_inventory()
 
 func _empty_inventory_panels() -> void:
-	for object in get_tree().get_nodes_in_group("ItemSlot"):
-		object.queue_free()
+		if get_tree() != null:
+			for object in get_tree().get_nodes_in_group("ItemSlot"):
+				object.queue_free()
 	
 func _on_InventoryHandler_inventory_changed() -> void:
 	if InventoryHandler.loading == false:

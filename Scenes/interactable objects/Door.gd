@@ -1,6 +1,7 @@
 extends Area2D
 
 signal page_changed
+signal player_entered(scene_name)
 
 const DIALOGUE_BOX_SCENE = preload("res://Scenes/GUI/DialogueBox.tscn")
 
@@ -10,7 +11,7 @@ var player_is_colliding : bool
 var player_is_looking : bool
 var required_item : Item
 
-export(String) var scene_path : String
+export(String) var scene_name : String
 export(bool) var locked : bool 
 export(String) var locked_text : String
 export(String) var unlocked_text : String
@@ -20,6 +21,8 @@ export(NodePath) var inv_gui_path : NodePath
 export(Vector2) var required_look_dir : Vector2
 
 func _ready() -> void:
+	var game_node = get_node("/root/Game")
+	connect("player_entered", game_node, "_on_Door_player_entered")
 	locked_text = "[center]" + locked_text + "[/center]"
 	required_item = Item.new(key_name, 1, null, Item.ITEM_TYPES.KEY_ITEM)
 	$CanvasLayer/Sprite.visible = true
@@ -32,7 +35,7 @@ func _process(delta : float) -> void:
 		if not InventoryGUI.visible:
 			if player_is_colliding and $"../Player".look_dir == required_look_dir and interact:
 				if not locked:
-					if scene_path:
+					if scene_name:
 						$CanvasLayer/Sprite/AnimationPlayer.play("fade in")
 						$Sounds/Open.play()
 				elif locked:
@@ -62,6 +65,6 @@ func _on_Door_body_exited(body : Node) -> void:
 
 func _on_AnimationPlayer_animation_finished(anim_name: String) -> void:
 	if anim_name == "fade in":
-		get_tree().change_scene(scene_path)
+		emit_signal("player_entered", scene_name)
 		InventoryGUI.refresh_inventory()
 		$CanvasLayer/Sprite/AnimationPlayer.play("fade out")

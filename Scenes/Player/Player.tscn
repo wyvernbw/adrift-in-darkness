@@ -46,9 +46,9 @@
 [ext_resource path="res://Scenes/Player/flicker.tres" type="Animation" id=44]
 [ext_resource path="res://Sprites/player/shadow.png" type="Texture" id=45]
 
-[sub_resource type="CanvasItemMaterial" id=4]
+[sub_resource type="CanvasItemMaterial" id=1]
 
-[sub_resource type="SpriteFrames" id=1]
+[sub_resource type="SpriteFrames" id=2]
 animations = [ {
 "frames": [ ExtResource( 32 ), ExtResource( 12 ), ExtResource( 13 ), ExtResource( 16 ) ],
 "loop": true,
@@ -60,9 +60,9 @@ animations = [ {
 "name": "idle_left",
 "speed": 5.0
 }, {
-"frames": [ ExtResource( 28 ), ExtResource( 8 ), ExtResource( 14 ), ExtResource( 23 ) ],
+"frames": [ ExtResource( 30 ), ExtResource( 19 ), ExtResource( 6 ), ExtResource( 24 ), ExtResource( 26 ), ExtResource( 7 ), ExtResource( 34 ) ],
 "loop": true,
-"name": "move_up",
+"name": "idle_down",
 "speed": 5.0
 }, {
 "frames": [ ExtResource( 42 ) ],
@@ -70,31 +70,31 @@ animations = [ {
 "name": "idle_up",
 "speed": 5.0
 }, {
+"frames": [ ExtResource( 15 ), ExtResource( 20 ), ExtResource( 18 ), ExtResource( 25 ) ],
+"loop": true,
+"name": "move_down",
+"speed": 5.0
+}, {
 "frames": [ ExtResource( 33 ), ExtResource( 17 ), ExtResource( 21 ), ExtResource( 22 ) ],
 "loop": true,
 "name": "move_left",
+"speed": 5.0
+}, {
+"frames": [ ExtResource( 28 ), ExtResource( 8 ), ExtResource( 14 ), ExtResource( 23 ) ],
+"loop": true,
+"name": "move_up",
 "speed": 5.0
 }, {
 "frames": [ ExtResource( 31 ), ExtResource( 9 ), ExtResource( 27 ), ExtResource( 4 ), ExtResource( 10 ), ExtResource( 11 ), ExtResource( 29 ) ],
 "loop": true,
 "name": "idle_right",
 "speed": 5.0
-}, {
-"frames": [ ExtResource( 30 ), ExtResource( 19 ), ExtResource( 6 ), ExtResource( 24 ), ExtResource( 26 ), ExtResource( 7 ), ExtResource( 34 ) ],
-"loop": true,
-"name": "idle_down",
-"speed": 5.0
-}, {
-"frames": [ ExtResource( 15 ), ExtResource( 20 ), ExtResource( 18 ), ExtResource( 25 ) ],
-"loop": true,
-"name": "move_down",
-"speed": 5.0
 } ]
 
-[sub_resource type="RectangleShape2D" id=2]
+[sub_resource type="RectangleShape2D" id=3]
 extents = Vector2( 5, 11 )
 
-[sub_resource type="OccluderPolygon2D" id=3]
+[sub_resource type="OccluderPolygon2D" id=4]
 polygon = PoolVector2Array( -8, -12, 8, -12, 8, 12, -8, 12 )
 
 [node name="Player" type="KinematicBody2D"]
@@ -102,7 +102,7 @@ z_index = 3
 collision_mask = 8
 script = ExtResource( 1 )
 deaccel = 0.4
-speed = 24.0
+speed = 20.0
 sprint_speed = 64.0
 sprint_step_interval = 0.3
 
@@ -113,14 +113,14 @@ scale = Vector2( 0.85, 0.85 )
 texture = ExtResource( 45 )
 
 [node name="AnimatedSprite" type="AnimatedSprite" parent="."]
-material = SubResource( 4 )
-frames = SubResource( 1 )
+material = SubResource( 1 )
+frames = SubResource( 2 )
 animation = "idle_up"
 
 [node name="CollisionBox" type="CollisionShape2D" parent="."]
 visible = false
 modulate = Color( 0.0980392, 0.996078, 0.678431, 1 )
-shape = SubResource( 2 )
+shape = SubResource( 3 )
 
 [node name="Camera2D" type="Camera2D" parent="."]
 current = true
@@ -128,7 +128,7 @@ zoom = Vector2( 1.25, 1.25 )
 
 [node name="LightOccluder2D" type="LightOccluder2D" parent="."]
 visible = false
-occluder = SubResource( 3 )
+occluder = SubResource( 4 )
 
 [node name="look_dir" type="RayCast2D" parent="."]
 modulate = Color( 1, 0.447059, 0.203922, 1 )
@@ -148,7 +148,6 @@ texture = ExtResource( 2 )
 offset = Vector2( 0, 44 )
 texture_scale = 1.25
 color = Color( 1, 0.568627, 0.188235, 1 )
-energy = 0.64
 range_item_cull_mask = 3
 shadow_enabled = true
 shadow_gradient_length = 0.3
@@ -161,6 +160,7 @@ anims/flicker = ExtResource( 44 )
 position = Vector2( -1.90735e-06, -1.90735e-06 )
 scale = Vector2( 0.6875, 0.6875 )
 texture = ExtResource( 43 )
+texture_scale = 1.25
 color = Color( 1, 0.972549, 0.666667, 1 )
 energy = 0.821495
 

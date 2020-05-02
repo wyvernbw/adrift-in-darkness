@@ -1,0 +1,20 @@
+[gd_scene load_steps=3 format=2]
+
+[ext_resource path="res://Scenes/levels/1F_main_room.tscn" type="PackedScene" id=2]
+[ext_resource path="res://Game.gd" type="Script" id=3]
+
+[node name="Game" type="Node2D"]
+script = ExtResource( 3 )
+
+[node name="1F_main_room" parent="." instance=ExtResource( 2 )]
+
+[node name="Door" parent="1F_main_room" index="9"]
+inv_gui_path = NodePath("../CanvasLayer/InventoryGUI")
+
+[node name="Door2" parent="1F_main_room" index="10"]
+inv_gui_path = NodePath("../CanvasLayer/InventoryGUI")
+[connection signal="player_entered" from="1F_main_room/Door" to="." method="_on_Door_player_entered"]
+[connection signal="player_entered" from="1F_main_room/Door2" to="." method="_on_Door_player_entered"]
+[connection signal="player_entered" from="1F_main_room/Door3" to="." method="_on_Door_player_entered"]
+
+[editable path="1F_main_room"]
