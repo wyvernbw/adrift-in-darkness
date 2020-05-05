@@ -17,15 +17,18 @@ var currentLimbs : Dictionary = {
 	'rightArm' : true,
 	'leftArm' : true,
 	'rightLeg' : true,
-	'leftLEg' : true
+	'leftLeg' : true
 }
 
 var bleedingLimbs : Dictionary = {
 	'rightArm' : false,
 	'leftArm' : false,
 	'rightLeg' : false,
-	'leftLEg' : false
+	'leftLeg' : false
 }
+
+func _ready() -> void:
+	cutLimb('leftLeg')
 
 func _process(delta: float) -> void:
 	calculateBloodLoss()
@@ -88,4 +91,4 @@ func calculateBloodLoss() -> void:
 		return
 			
 	blood -= bloodLossRate * bleedingLimbsCount
-#	print(blood)
+	print(blood)
