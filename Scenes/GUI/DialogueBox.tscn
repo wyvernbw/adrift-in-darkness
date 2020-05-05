@@ -42,6 +42,6 @@ __meta__ = {
 }
 
 [node name="TypingTimer" type="Timer" parent="."]
-wait_time = 0.05
+wait_time = 0.025
 autostart = true
 [connection signal="timeout" from="TypingTimer" to="." method="_on_TypingTimer_timeout"]

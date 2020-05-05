@@ -50,9 +50,24 @@
 
 [sub_resource type="SpriteFrames" id=2]
 animations = [ {
-"frames": [ ExtResource( 32 ), ExtResource( 12 ), ExtResource( 13 ), ExtResource( 16 ) ],
+"frames": [ ExtResource( 15 ), ExtResource( 25 ), ExtResource( 20 ), ExtResource( 18 ) ],
 "loop": true,
-"name": "move_right",
+"name": "move_down",
+"speed": 5.0
+}, {
+"frames": [ ExtResource( 31 ), ExtResource( 9 ), ExtResource( 27 ), ExtResource( 4 ), ExtResource( 10 ), ExtResource( 11 ), ExtResource( 29 ) ],
+"loop": true,
+"name": "idle_right",
+"speed": 5.0
+}, {
+"frames": [ ExtResource( 28 ), ExtResource( 8 ), ExtResource( 14 ), ExtResource( 23 ) ],
+"loop": true,
+"name": "move_up",
+"speed": 5.0
+}, {
+"frames": [ ExtResource( 40 ), ExtResource( 37 ), ExtResource( 41 ), ExtResource( 38 ), ExtResource( 39 ), ExtResource( 36 ), ExtResource( 35 ) ],
+"loop": true,
+"name": "idle_left",
 "speed": 5.0
 }, {
 "frames": [ ExtResource( 42 ) ],
@@ -70,24 +85,9 @@ animations = [ {
 "name": "move_left",
 "speed": 5.0
 }, {
-"frames": [ ExtResource( 40 ), ExtResource( 37 ), ExtResource( 41 ), ExtResource( 38 ), ExtResource( 39 ), ExtResource( 36 ), ExtResource( 35 ) ],
+"frames": [ ExtResource( 32 ), ExtResource( 12 ), ExtResource( 13 ), ExtResource( 16 ) ],
 "loop": true,
-"name": "idle_left",
-"speed": 5.0
-}, {
-"frames": [ ExtResource( 15 ), ExtResource( 20 ), ExtResource( 18 ), ExtResource( 25 ) ],
-"loop": true,
-"name": "move_down",
-"speed": 5.0
-}, {
-"frames": [ ExtResource( 31 ), ExtResource( 9 ), ExtResource( 27 ), ExtResource( 4 ), ExtResource( 10 ), ExtResource( 11 ), ExtResource( 29 ) ],
-"loop": true,
-"name": "idle_right",
-"speed": 5.0
-}, {
-"frames": [ ExtResource( 28 ), ExtResource( 8 ), ExtResource( 14 ), ExtResource( 23 ) ],
-"loop": true,
-"name": "move_up",
+"name": "move_right",
 "speed": 5.0
 } ]
 
@@ -117,7 +117,6 @@ texture = ExtResource( 45 )
 material = SubResource( 1 )
 frames = SubResource( 2 )
 animation = "idle_down"
-frame = 3
 playing = true
 
 [node name="CollisionBox" type="CollisionShape2D" parent="."]
@@ -145,12 +144,13 @@ collide_with_bodies = false
 script = ExtResource( 3 )
 
 [node name="Light2D" type="Light2D" parent="Lantern"]
-position = Vector2( -5.68434e-14, -5.68434e-14 )
-scale = Vector2( 0.875, 0.875 )
+position = Vector2( 359, 135 )
+scale = Vector2( 1.25, 0.8175 )
 texture = ExtResource( 2 )
-offset = Vector2( 0, 44 )
+offset = Vector2( -287.2, -120.367 )
 texture_scale = 1.25
 color = Color( 1, 0.568627, 0.188235, 1 )
+energy = 1.47
 range_item_cull_mask = 3
 shadow_enabled = true
 shadow_gradient_length = 0.3
@@ -163,7 +163,7 @@ anims/flicker = ExtResource( 44 )
 position = Vector2( -1.90735e-06, -1.90735e-06 )
 scale = Vector2( 0.6875, 0.6875 )
 texture = ExtResource( 43 )
-texture_scale = 1.25
+texture_scale = 2.23
 color = Color( 1, 0.972549, 0.666667, 1 )
 energy = 0.821495
 
@@ -178,6 +178,6 @@ stream = ExtResource( 5 )
 volume_db = -10.0
 
 [node name="StepTimer" type="Timer" parent="Sounds/Move"]
-wait_time = 0.5
+wait_time = 0.7
 autostart = true
 [connection signal="timeout" from="Sounds/Move/StepTimer" to="." method="_on_StepTimer_timeout"]

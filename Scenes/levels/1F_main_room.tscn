@@ -1,4 +1,4 @@
-[gd_scene load_steps=19 format=2]
+[gd_scene load_steps=20 format=2]
 
 [ext_resource path="res://Sprites/Tilesets/house1.tres" type="TileSet" id=1]
 [ext_resource path="res://Scenes/Player/Player.tscn" type="PackedScene" id=2]
@@ -15,6 +15,7 @@
 [ext_resource path="res://Scenes/interactable objects/bookshelf.tscn" type="PackedScene" id=13]
 [ext_resource path="res://Sprites/blood/blood2.png" type="Texture" id=14]
 [ext_resource path="res://Sprites/blood/blood1.png" type="Texture" id=15]
+[ext_resource path="res://Sprites/light2d.png" type="Texture" id=16]
 
 [sub_resource type="Resource" id=1]
 script = ExtResource( 5 )
@@ -54,7 +55,8 @@ __meta__ = {
 }
 
 [node name="Player" parent="." instance=ExtResource( 2 )]
-position = Vector2( 128, 176 )
+position = Vector2( 128, 168 )
+look_dir = Vector2( 0, -1 )
 
 [node name="HouseF1" type="TileMap" parent="."]
 tile_set = ExtResource( 1 )
@@ -71,6 +73,9 @@ tile_set = ExtResource( 1 )
 cell_size = Vector2( 16, 16 )
 format = 1
 tile_data = PoolIntArray( -1179658, 6, 0, -1179657, 6, 0, -1179656, 6, 0, -1114123, 6, 0, -1114122, 6, 0, -1114121, 6, 0, -1114120, 6, 0, -1114119, 6, 0, -1114118, 6, 0, -1114117, 6, 0, -1114116, 6, 0, -1114115, 6, 0, -1114114, 6, 0, -1114113, 6, 0, -1179648, 6, 0, -1179647, 6, 0, -1179646, 6, 0, -1179645, 6, 0, -1179644, 6, 0, -1179643, 6, 0, -1179642, 6, 0, -1179641, 6, 0, -1179640, 6, 0, -1179639, 6, 0, -1179638, 6, 0, -1048587, 6, 0, -1048586, 9, 0, -1048585, 0, 0, -1048584, 0, 0, -1048583, 0, 0, -1048582, 0, 0, -1048581, 0, 0, -1048580, 0, 0, -1048579, 0, 0, -1048578, 0, 0, -1048577, 0, 0, -1114112, 0, 0, -1114111, 0, 0, -1114110, 0, 0, -1114109, 0, 0, -1114108, 0, 0, -1114107, 0, 0, -1114106, 0, 0, -1114105, 0, 0, -1114104, 0, 0, -1114103, 2, 0, -1114102, 6, 0, -983051, 6, 0, -983050, 5, 0, -1048567, 3, 0, -1048566, 6, 0, -917515, 6, 0, -917514, 5, 0, -983031, 3, 0, -983030, 6, 0, -851979, 6, 0, -851978, 5, 0, -851977, 1, 0, -851976, 1, 0, -851975, 1, 0, -851974, 1, 0, -851973, 1, 0, -851972, 1, 0, -851971, 1, 0, -851970, 1, 0, -851969, 1, 0, -917504, 1, 0, -917503, 1, 0, -917502, 1, 0, -917501, 1, 0, -917500, 1, 0, -917499, 1, 0, -917498, 1, 0, -917497, 1, 0, -917496, 1, 0, -917495, 3, 0, -917494, 6, 0, -786443, 6, 0, -786442, 8, 0, -786441, 4, 0, -786440, 13, 0, -786439, 1, 0, -786438, 1, 0, -786437, 1, 0, -786436, 1, 0, -786435, 1, 0, -786434, 1, 0, -786433, 1, 0, -851968, 1, 0, -851967, 1, 0, -851966, 1, 0, -851965, 1, 0, -851964, 1, 0, -851963, 1, 0, -851962, 1, 0, -851961, 10, 0, -851960, 4, 0, -851959, 7, 0, -851958, 6, 0, -720907, 6, 0, -720906, 6, 0, -720905, 6, 0, -786424, 6, 0, -786423, 6, 0, -786422, 6, 0, -720888, 6, 0, -655352, 6, 0, -589816, 6, 0 )
+__meta__ = {
+"_edit_lock_": true
+}
 
 [node name="Rug" type="TileMap" parent="."]
 tile_set = ExtResource( 6 )
@@ -86,6 +91,7 @@ format = 1
 tile_data = PoolIntArray( -131071, 5, 0, -131070, 5, 0, -131069, 5, 0, -131068, 5, 0, -131067, 5, 0, -131066, 5, 0, -131063, 5, 0, -131062, 5, 0, -131061, 5, 0, -131060, 5, 0, -131059, 5, 0, -131058, 5, 0 )
 
 [node name="CanvasModulate" parent="." instance=ExtResource( 4 )]
+color = Color( 0.0627451, 0.0627451, 0.0627451, 1 )
 
 [node name="Table" parent="." instance=ExtResource( 7 )]
 position = Vector2( 152, 160 )
@@ -95,7 +101,7 @@ dialogue = SubResource( 3 )
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 
 [node name="LightMask2D" parent="CanvasLayer" instance=ExtResource( 3 )]
-scale = Vector2( 1, 1 )
+scale = Vector2( 1, 1.25 )
 
 [node name="InventoryGUI" parent="CanvasLayer" instance=ExtResource( 9 )]
 visible = false
@@ -107,7 +113,7 @@ position = Vector2( 128, 8 )
 visible = false
 position = Vector2( 119.492, 184 )
 locked = true
-locked_text = "It's locked."
+locked_text = "It's locked. There is a faint light coming from outside"
 inv_gui_path = NodePath("../CanvasLayer/InventoryGUI")
 required_look_dir = Vector2( 0, 1 )
 
@@ -115,7 +121,7 @@ required_look_dir = Vector2( 0, 1 )
 visible = false
 position = Vector2( 136, 184 )
 locked = true
-locked_text = "It's locked."
+locked_text = "It's locked. There is a faint light coming from outside"
 inv_gui_path = NodePath("../CanvasLayer/InventoryGUI")
 required_look_dir = Vector2( 0, 1 )
 
@@ -144,3 +150,11 @@ texture = ExtResource( 14 )
 [node name="blood1" type="Sprite" parent="blood-splatters"]
 position = Vector2( 216, 40 )
 texture = ExtResource( 15 )
+
+[node name="Light2D" type="Light2D" parent="."]
+position = Vector2( 128, 176 )
+rotation = -3.14159
+scale = Vector2( 1, 1.39066 )
+texture = ExtResource( 16 )
+color = Color( 0.784314, 0.941176, 1, 1 )
+energy = 0.69
