@@ -60,6 +60,7 @@ config/version="1.0.0"
 InventoryHandler="*res://Scripts/InventoryHandler.gd"
 DialogueHandler="*res://Scripts/DialogueHandler.gd"
 SaveGameHandler="*res://Scripts/SaveGameHandler.gd"
+HpHandler="*res://Scripts/HpHandler.gd"
 
 [display]
 
