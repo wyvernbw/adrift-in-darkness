@@ -41,26 +41,45 @@ func connect_signals() -> void:
 	
 func update_dialogue() -> void:
 	var interact = Input.is_action_just_pressed("interact")
-	if player_is_colliding and player_is_looking and dialogue:
-		if interact and canInteract == true and inv_gui.visible == false:
-			canInteract = false
-			emit_signal("player_interacted", dialogue)
-		elif interact and canInteract == false : 
-			if DialogueHandler.page_index >= dialogue.Text.size() - 1:
-				if not dialogue.Answers.empty() and not DialogueHandler.dialogue_branching:
-					emit_signal("text_ended")
-				if dialogue.Answers.empty():
-					canInteract = true
-			elif DialogueHandler.page_index <= dialogue.Text.size():
-				emit_signal("next_page")
+	if player_is_colliding == false:
+		return
+	
+	if player_is_looking == false:
+		return
+		
+	if dialogue == null:
+		return
+		
+	if interact == false:
+		return
+	
+	if canInteract == false:
+		if DialogueHandler.page_index < dialogue.Text.size() - 1:
+			emit_signal("next_page")
+			return
+		if dialogue.Answers.empty() == true:
+			canInteract = true
+			return
+		if DialogueHandler.dialogue_branching == true:
+			return
+		emit_signal("text_ended")
+		return
+		
+	if inv_gui.visible == true:
+		return
+
+	canInteract = false
+	emit_signal("player_interacted", dialogue)
 				
 func _on_InteractionArea_body_entered(body) -> void:
-	if body is Player:
-		player_is_colliding = true
+	if not body is  Player:
+		return
+	player_is_colliding = true
 
 func _on_InteractionArea_body_exited(body) -> void:
-	if body is Player:
-		player_is_colliding = false
+	if not body is Player:
+		return
+	player_is_colliding = false
 
 func _on_DialogueHandler_player_unpause() -> void:
 	canInteract = true

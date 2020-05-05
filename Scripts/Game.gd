@@ -7,13 +7,15 @@ var levels : Dictionary = {
 }
 
 func switch_scene(scene_name : String) -> void:
-	if levels[scene_name] != null:
-		var c = self.get_children()
-		var prev_scene = c[0].get_name()
-		print(prev_scene)
-		levels[prev_scene] = c[0]
-		remove_child(c[0])
-		add_child(levels[scene_name])
+	if levels[scene_name] == null:
+		return
+		
+	var c = self.get_children()
+	var prev_scene = c[0].get_name()
+	print(prev_scene)
+	levels[prev_scene] = c[0]
+	remove_child(c[0])
+	add_child(levels[scene_name])
 
 func save_game(game_save : Resource) -> void:
 	game_save.data[save_key] = {
