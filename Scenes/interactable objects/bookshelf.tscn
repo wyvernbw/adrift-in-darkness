@@ -27,6 +27,7 @@ shape = SubResource( 1 )
 one_way_collision_margin = 0.0
 
 [node name="InteractionArea" type="Area2D" parent="."]
+collision_layer = 2
 __meta__ = {
 "_edit_group_": true,
 "_edit_lock_": true

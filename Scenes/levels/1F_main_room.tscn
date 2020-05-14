@@ -1,4 +1,4 @@
-[gd_scene load_steps=20 format=2]
+[gd_scene load_steps=21 format=2]
 
 [ext_resource path="res://Sprites/Tilesets/house1.tres" type="TileSet" id=1]
 [ext_resource path="res://Scenes/Player/Player.tscn" type="PackedScene" id=2]
@@ -44,6 +44,16 @@ Text = [ "A dirty, old table." ]
 Answers = {
 "Leave": SubResource( 1 ),
 "Look underneath": SubResource( 2 )
+}
+item_name = ""
+item_quantity = 0
+item_type = 0
+
+[sub_resource type="Resource" id=4]
+script = ExtResource( 5 )
+Text = [ "A dusty bookshelf.", null ]
+Answers = {
+
 }
 item_name = ""
 item_quantity = 0
@@ -137,9 +147,13 @@ required_look_dir = Vector2( -1, 0 )
 
 [node name="bookshelf" parent="." instance=ExtResource( 13 )]
 position = Vector2( 168, 0 )
+inv_gui_path = NodePath("../CanvasLayer/InventoryGUI")
+dialogue = SubResource( 4 )
 
 [node name="bookshelf2" parent="." instance=ExtResource( 13 )]
 position = Vector2( 200, 0 )
+inv_gui_path = NodePath("../CanvasLayer/InventoryGUI")
+dialogue = SubResource( 4 )
 
 [node name="blood-splatters" type="Node2D" parent="."]
 

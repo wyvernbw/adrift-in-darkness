@@ -27,9 +27,6 @@ var bleedingLimbs : Dictionary = {
 	'leftLeg' : false
 }
 
-func _ready() -> void:
-	cutLimb('leftLeg')
-
 func _process(delta: float) -> void:
 	calculateBloodLoss()
 
