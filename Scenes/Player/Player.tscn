@@ -50,9 +50,9 @@
 
 [sub_resource type="SpriteFrames" id=2]
 animations = [ {
-"frames": [ ExtResource( 42 ) ],
+"frames": [ ExtResource( 40 ), ExtResource( 37 ), ExtResource( 41 ), ExtResource( 38 ), ExtResource( 39 ), ExtResource( 36 ), ExtResource( 35 ) ],
 "loop": true,
-"name": "idle_up",
+"name": "idle_left",
 "speed": 5.0
 }, {
 "frames": [ ExtResource( 28 ), ExtResource( 8 ), ExtResource( 14 ), ExtResource( 23 ) ],
@@ -65,6 +65,16 @@ animations = [ {
 "name": "move_left",
 "speed": 5.0
 }, {
+"frames": [ ExtResource( 32 ), ExtResource( 12 ), ExtResource( 13 ), ExtResource( 16 ) ],
+"loop": true,
+"name": "move_right",
+"speed": 5.0
+}, {
+"frames": [ ExtResource( 31 ), ExtResource( 9 ), ExtResource( 27 ), ExtResource( 4 ), ExtResource( 10 ), ExtResource( 11 ), ExtResource( 29 ) ],
+"loop": true,
+"name": "idle_right",
+"speed": 5.0
+}, {
 "frames": [ ExtResource( 30 ), ExtResource( 19 ), ExtResource( 6 ), ExtResource( 24 ), ExtResource( 26 ), ExtResource( 7 ), ExtResource( 34 ) ],
 "loop": true,
 "name": "idle_down",
@@ -75,19 +85,9 @@ animations = [ {
 "name": "move_down",
 "speed": 5.0
 }, {
-"frames": [ ExtResource( 32 ), ExtResource( 12 ), ExtResource( 13 ), ExtResource( 16 ) ],
+"frames": [ ExtResource( 42 ) ],
 "loop": true,
-"name": "move_right",
-"speed": 5.0
-}, {
-"frames": [ ExtResource( 40 ), ExtResource( 37 ), ExtResource( 41 ), ExtResource( 38 ), ExtResource( 39 ), ExtResource( 36 ), ExtResource( 35 ) ],
-"loop": true,
-"name": "idle_left",
-"speed": 5.0
-}, {
-"frames": [ ExtResource( 31 ), ExtResource( 9 ), ExtResource( 27 ), ExtResource( 4 ), ExtResource( 10 ), ExtResource( 11 ), ExtResource( 29 ) ],
-"loop": true,
-"name": "idle_right",
+"name": "idle_up",
 "speed": 5.0
 } ]
 
@@ -104,8 +104,10 @@ script = ExtResource( 1 )
 deaccel = 0.4
 speed = 36.0
 sprint_speed = 64.0
+stagger_speed = 16.0
 walk_step_interval = 0.7
 sprint_step_interval = 0.3
+look_dir = Vector2( 0, 1 )
 
 [node name="shadow" type="Sprite" parent="."]
 modulate = Color( 1, 1, 1, 0.152941 )
@@ -117,6 +119,7 @@ texture = ExtResource( 45 )
 material = SubResource( 1 )
 frames = SubResource( 2 )
 animation = "idle_down"
+frame = 6
 playing = true
 
 [node name="CollisionBox" type="CollisionShape2D" parent="."]
@@ -149,25 +152,29 @@ scale = Vector2( 1.25, 0.8175 )
 texture = ExtResource( 2 )
 offset = Vector2( -287.2, -120.367 )
 texture_scale = 1.25
-color = Color( 1, 0.858824, 0.52549, 1 )
-energy = 1.47
+color = Color( 0.905882, 0.643137, 0.192157, 1 )
+energy = 0.64
 range_item_cull_mask = 3
 shadow_enabled = true
 shadow_gradient_length = 0.3
+shadow_filter = 3
+shadow_filter_smooth = 12.2
 shadow_item_cull_mask = 3
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="Lantern/Light2D"]
 anims/flicker = ExtResource( 44 )
 
 [node name="SpotLight" type="Light2D" parent="Lantern"]
-visible = false
 position = Vector2( -1.90735e-06, -1.90735e-06 )
 scale = Vector2( 0.6875, 0.6875 )
 texture = ExtResource( 43 )
 texture_scale = 3.7
 color = Color( 1, 0.972549, 0.666667, 1 )
-energy = 0.821495
+energy = 0.59
 shadow_enabled = true
+shadow_filter = 3
+shadow_filter_smooth = 12.2
+shadow_item_cull_mask = 3
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="Lantern/SpotLight"]
 anims/flicker = ExtResource( 44 )
