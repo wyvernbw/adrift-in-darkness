@@ -28,9 +28,8 @@ item_quantity = 0
 item_type = 0
 
 [sub_resource type="OccluderPolygon2D" id=2]
-closed = false
 cull_mode = 2
-polygon = PoolVector2Array( 224, -8, 160, -8, 160, 24, 224, 24 )
+polygon = PoolVector2Array( 223.141, -7.21109, 160.299, -7.56514, 160.467, 23.5084, 223.495, 23.7675 )
 
 [node name="1F_main_room" type="Node2D"]
 __meta__ = {

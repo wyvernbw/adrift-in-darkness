@@ -23,10 +23,12 @@ position = Vector2( -13.8711, -1.46342 )
 shape = SubResource( 1 )
 
 [node name="leftLightOccluder2D" type="LightOccluder2D" parent="."]
+visible = false
 light_mask = 3
 occluder = SubResource( 2 )
 light_mask = 3
 
 [node name="rightLightOccluder2D" type="LightOccluder2D" parent="."]
+visible = false
 position = Vector2( 28, 0 )
 occluder = SubResource( 2 )
