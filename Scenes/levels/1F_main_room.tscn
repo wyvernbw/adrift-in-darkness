@@ -1,4 +1,4 @@
-[gd_scene load_steps=19 format=2]
+[gd_scene load_steps=21 format=2]
 
 [ext_resource path="res://Sprites/Tilesets/house1.tres" type="TileSet" id=1]
 [ext_resource path="res://Scenes/Player/Player.tscn" type="PackedScene" id=2]
@@ -16,6 +16,8 @@
 [ext_resource path="res://Sprites/blood/blood2.png" type="Texture" id=14]
 [ext_resource path="res://Sprites/blood/blood1.png" type="Texture" id=15]
 [ext_resource path="res://Sprites/light2d.png" type="Texture" id=16]
+[ext_resource path="res://Sprites/Tilesets/House/furniture/painting-2.png" type="Texture" id=17]
+[ext_resource path="res://Sprites/Tilesets/House/furniture/painting-1.png" type="Texture" id=18]
 
 [sub_resource type="Resource" id=1]
 script = ExtResource( 5 )
@@ -74,11 +76,13 @@ format = 1
 tile_data = PoolIntArray( -131071, 5, 0, -131070, 5, 0, -131069, 5, 0, -131068, 5, 0, -131067, 5, 0, -131066, 5, 0, -131063, 5, 0, -131062, 5, 0, -131061, 5, 0, -131060, 5, 0, -131059, 5, 0, -131058, 5, 0 )
 
 [node name="CanvasModulate" parent="." instance=ExtResource( 4 )]
+visible = false
 color = Color( 0.0627451, 0.0627451, 0.0627451, 1 )
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 
 [node name="LightMask2D" parent="CanvasLayer" instance=ExtResource( 3 )]
+visible = false
 scale = Vector2( 1, 1.25 )
 
 [node name="InventoryGUI" parent="CanvasLayer" instance=ExtResource( 9 )]
@@ -117,12 +121,6 @@ required_look_dir = Vector2( -1, 0 )
 [node name="bookshelves" type="Node2D" parent="."]
 position = Vector2( 8, 71.8641 )
 
-[node name="bookshelf2" parent="bookshelves" instance=ExtResource( 13 )]
-position = Vector2( 192, -71.8641 )
-inv_gui_path = NodePath("../../CanvasLayer/InventoryGUI")
-playerPath = NodePath("../../Player")
-dialogue = SubResource( 1 )
-
 [node name="bookshelf" parent="bookshelves" instance=ExtResource( 13 )]
 position = Vector2( 160, -71.8641 )
 inv_gui_path = NodePath("../../CanvasLayer/InventoryGUI")
@@ -130,10 +128,11 @@ playerPath = NodePath("../../Player")
 dialogue = SubResource( 1 )
 
 [node name="LightOccluder2D" type="LightOccluder2D" parent="bookshelves"]
-light_mask = 3
+visible = false
+light_mask = 0
 position = Vector2( -8, -71.8641 )
 occluder = SubResource( 2 )
-light_mask = 3
+light_mask = 0
 __meta__ = {
 "_edit_lock_": true
 }
@@ -165,4 +164,26 @@ inv_gui_path = NodePath("../CanvasLayer/InventoryGUI")
 playerPath = NodePath("../Player")
 dialogue = ExtResource( 8 )
 
+[node name="Table2" parent="." instance=ExtResource( 7 )]
+position = Vector2( 24, 71.8641 )
+inv_gui_path = NodePath("../CanvasLayer/InventoryGUI")
+playerPath = NodePath("../Player")
+
+[node name="Texture" parent="Table2" index="2"]
+position = Vector2( -8, -7.86411 )
+
+[node name="paintings" type="Node2D" parent="."]
+
+[node name="1" type="Sprite" parent="paintings"]
+position = Vector2( 80, -16 )
+texture = ExtResource( 18 )
+offset = Vector2( 8, 8 )
+
+[node name="2" type="Sprite" parent="paintings"]
+position = Vector2( 96, -25.25 )
+texture = ExtResource( 17 )
+offset = Vector2( 8, 8 )
+
 [editable path="Table"]
+
+[editable path="Table2"]
