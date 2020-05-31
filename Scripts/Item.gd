@@ -3,7 +3,7 @@ class_name Item
 
 var texture : Texture
 var item_name : String
-var quantity : int 
+var quantity : int
 var item_type : int
 
 enum ITEM_TYPES {

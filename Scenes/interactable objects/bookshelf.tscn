@@ -10,7 +10,8 @@ extents = Vector2( 16.1, 8 )
 extents = Vector2( 16, 24 )
 
 [sub_resource type="OccluderPolygon2D" id=3]
-polygon = PoolVector2Array( -8, -8, 24, -8, 24, 24, -8, 24, -8, -8, 8, -8, 24, -8 )
+cull_mode = 1
+polygon = PoolVector2Array( -8, -8, 24, -8, 24, 24, -8, 24 )
 
 [node name="bookshelf" type="StaticBody2D"]
 position = Vector2( 8, 8 )
@@ -27,21 +28,23 @@ shape = SubResource( 1 )
 one_way_collision_margin = 0.0
 
 [node name="InteractionArea" type="Area2D" parent="."]
+collision_layer = 2
 __meta__ = {
 "_edit_group_": true,
 "_edit_lock_": true
 }
 
 [node name="InteractionBox" type="CollisionShape2D" parent="InteractionArea"]
+visible = false
 modulate = Color( 0.854902, 0.835294, 0.509804, 1 )
 position = Vector2( 8, 8 )
 shape = SubResource( 2 )
 
 [node name="LightOccluder2D" type="LightOccluder2D" parent="."]
 visible = false
-light_mask = 2
+light_mask = 0
 occluder = SubResource( 3 )
-light_mask = 2
+light_mask = 0
 __meta__ = {
 "_edit_lock_": true
 }
