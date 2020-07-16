@@ -26,13 +26,14 @@ shape = SubResource( 1 )
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 
 [node name="Sprite" type="Sprite" parent="CanvasLayer"]
-modulate = Color( 1, 1, 1, 0 )
+visible = false
 position = Vector2( 252.263, 106.026 )
 scale = Vector2( 27.1969, 291.433 )
 z_index = 21
 texture = SubResource( 2 )
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="CanvasLayer/Sprite"]
+autoplay = "fade out"
 method_call_mode = 1
 "anims/fade in" = ExtResource( 3 )
 "anims/fade out" = ExtResource( 2 )
