@@ -51,6 +51,7 @@ _global_script_class_icons={
 [application]
 
 config/name="Lost in the Darkness"
+run/main_scene="res://Scenes/Game.tscn"
 boot_splash/bg_color=Color( 0.105882, 0.113725, 0.113725, 1 )
 config/icon="res://icon.png"
 config/version="1.0.0"
@@ -61,6 +62,7 @@ InventoryHandler="*res://Scripts/InventoryHandler.gd"
 DialogueHandler="*res://Scripts/DialogueHandler.gd"
 SaveGameHandler="*res://Scripts/SaveGameHandler.gd"
 HpHandler="*res://Scripts/HpHandler.gd"
+GlobalHandler="*res://Scripts/globalHandler.gd"
 
 [display]
 
