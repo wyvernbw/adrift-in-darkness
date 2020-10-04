@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=2]
+[gd_scene load_steps=11 format=2]
 
 [ext_resource path="res://Scenes/levels/base_level.tscn" type="PackedScene" id=1]
 [ext_resource path="res://Scenes/interactable objects/Door.tscn" type="PackedScene" id=2]
@@ -6,7 +6,6 @@
 [ext_resource path="res://Sprites/Tilesets/House/furniture/painting-1.png" type="Texture" id=4]
 [ext_resource path="res://Sprites/Tilesets/House/furniture/bookshelf.png" type="Texture" id=5]
 [ext_resource path="res://Sprites/Tilesets/House/furniture/painting-3.png" type="Texture" id=6]
-[ext_resource path="res://Scripts/LightEffects.gd" type="Script" id=7]
 
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 16.1, 8 )
@@ -25,6 +24,7 @@ extents = Vector2( 8, 8 )
 
 [node name="Player" parent="." index="0"]
 position = Vector2( 136, 113.2 )
+stagger_speed = 16.0
 
 [node name="bookshelf" type="StaticBody2D" parent="." index="1"]
 position = Vector2( 40, 144 )
@@ -77,7 +77,6 @@ tile_data = PoolIntArray( 458752, 6, 0, 458753, 2, 0, 458754, 2, 0, 458755, 2, 0
 [node name="CanvasModulate" parent="." index="6"]
 visible = true
 color = Color( 0.0313726, 0.0313726, 0.0313726, 1 )
-script = ExtResource( 7 )
 
 [node name="LightMask2D" parent="CanvasLayer" index="0"]
 visible = true
@@ -92,6 +91,7 @@ required_look_dir = Vector2( 1, 0 )
 [node name="Door2" parent="." index="9" instance=ExtResource( 2 )]
 visible = false
 position = Vector2( -24, 120 )
+scene_name = "1F_west_main_hall"
 inv_gui_path = NodePath("../CanvasLayer/InventoryGUI")
 required_look_dir = Vector2( -1, 0 )
 

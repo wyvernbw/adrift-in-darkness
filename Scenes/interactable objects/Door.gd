@@ -31,29 +31,38 @@ func _ready() -> void:
 func _process(delta : float) -> void:
 	InventoryGUI = get_node(inv_gui_path)
 	var interact = Input.is_action_just_pressed("interact")
-	if InventoryGUI:
-		if not InventoryGUI.visible:
-			if player_is_colliding and $"../Player".look_dir == required_look_dir and interact:
-				if not locked:
-					if scene_name:
-						$CanvasLayer/Sprite/AnimationPlayer.play("fade in")
-						$Sounds/Open.play()
-				elif locked:
-					if InventoryHandler.get_item(required_item) != -1:
-						locked = false
-						$Sounds/Unlocked.play()
-						return
-					if get_node("DialogueBox"):
-						get_node("DialogueBox").queue_free()
-						DialogueHandler.emit_signal("player_unpause")
-						DialogueHandler.dialogue_open = false
-					else:
-						$Sounds/Locked.play()
-						var dialogue_box = DIALOGUE_BOX_SCENE.instance()
-						add_child(dialogue_box)
-						dialogue_box.get_node("Panel/Label").bbcode_text = locked_text
-						DialogueHandler.emit_signal("player_pause")
-						DialogueHandler.dialogue_open = true
+
+	# things that prevent the player from opening the door
+	if not InventoryGUI:
+		return
+	if InventoryGUI.visible:
+		return
+	if not  $"../Player".look_dir == required_look_dir:
+		return
+	if not player_is_colliding :
+		return
+
+	# nothing preventing the player from opening the door
+	if  interact:
+		if not locked and scene_name:
+			$CanvasLayer/Sprite/AnimationPlayer.play("fade in")
+			$Sounds/Open.play()
+		elif locked:
+			if InventoryHandler.get_item(required_item) != -1:
+				locked = false
+				$Sounds/Unlocked.play()
+				return
+			if get_node("DialogueBox"):
+				get_node("DialogueBox").queue_free()
+				DialogueHandler.emit_signal("player_unpause")
+				DialogueHandler.dialogue_open = false
+			else:
+				$Sounds/Locked.play()
+				var dialogue_box = DIALOGUE_BOX_SCENE.instance()
+				add_child(dialogue_box)
+				dialogue_box.get_node("Panel/Label").bbcode_text = locked_text
+				DialogueHandler.emit_signal("player_pause")
+				DialogueHandler.dialogue_open = true
 		
 func _on_Door_body_entered(body : Node) -> void:
 	if body is Player:
@@ -63,8 +72,7 @@ func _on_Door_body_exited(body : Node) -> void:
 	if body is Player:
 		player_is_colliding = false
 
-func _on_AnimationPlayer_animation_finished(anim_name: String) -> void:
-	if anim_name == "fade in":
-		emit_signal("player_entered", scene_name)
-		InventoryGUI.refresh_inventory()
-		$CanvasLayer/Sprite/AnimationPlayer.play("fade out")
+func _on_Open_finished():
+	emit_signal("player_entered", scene_name)
+	InventoryGUI.refresh_inventory()
+	$CanvasLayer/Sprite/AnimationPlayer.play("fade out")

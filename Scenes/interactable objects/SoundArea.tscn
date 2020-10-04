@@ -1,0 +1,14 @@
+[gd_scene load_steps=3 format=2]
+
+[ext_resource path="res://Sounds/door_unlocked.wav" type="AudioStream" id=1]
+[ext_resource path="res://Scripts/SoundArea.gd" type="Script" id=2]
+
+[node name="SoundArea" type="Area2D"]
+script = ExtResource( 2 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+
+[node name="Sound" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource( 1 )
+attenuation = 0.554785
+[connection signal="body_entered" from="." to="." method="_on_SoundArea_body_entered"]

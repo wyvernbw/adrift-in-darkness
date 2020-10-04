@@ -59,3 +59,4 @@ texture = ExtResource( 4 )
 [connection signal="body_entered" from="." to="." method="_on_Door_body_entered"]
 [connection signal="body_exited" from="." to="." method="_on_Door_body_exited"]
 [connection signal="animation_finished" from="CanvasLayer/Sprite/AnimationPlayer" to="." method="_on_AnimationPlayer_animation_finished"]
+[connection signal="finished" from="Sounds/Open" to="." method="_on_Open_finished"]
