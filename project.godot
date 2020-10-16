@@ -69,6 +69,7 @@ GlobalHandler="*res://Scripts/globalHandler.gd"
 window/size/width=256
 window/size/height=195
 window/size/resizable=false
+window/size/borderless=true
 window/size/fullscreen=true
 window/stretch/mode="2d"
 window/stretch/aspect="keep_width"

@@ -24,7 +24,6 @@ extents = Vector2( 8, 8 )
 
 [node name="Player" parent="." index="0"]
 position = Vector2( 136, 113.2 )
-stagger_speed = 16.0
 
 [node name="bookshelf" type="StaticBody2D" parent="." index="1"]
 position = Vector2( 40, 144 )
@@ -92,6 +91,9 @@ required_look_dir = Vector2( 1, 0 )
 visible = false
 position = Vector2( -24, 120 )
 scene_name = "1F_west_main_hall"
+locked = true
+locked_text = "It's locked."
+key_name = "Silver Key"
 inv_gui_path = NodePath("../CanvasLayer/InventoryGUI")
 required_look_dir = Vector2( -1, 0 )
 

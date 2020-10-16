@@ -1,0 +1,77 @@
+[gd_scene load_steps=10 format=2]
+
+[ext_resource path="res://texture1.png" type="Texture" id=1]
+[ext_resource path="res://fonts/kindergarten.ttf" type="DynamicFontData" id=2]
+[ext_resource path="res://Scripts/notification.gd" type="Script" id=3]
+[ext_resource path="res://Sprites/items/silver_key.png" type="Texture" id=4]
+
+[sub_resource type="StyleBoxTexture" id=1]
+region_rect = Rect2( 214, 93, 0, 0 )
+
+[sub_resource type="Theme" id=2]
+Panel/icons/notification = null
+Panel/styles/panel = SubResource( 1 )
+
+[sub_resource type="StyleBoxTexture" id=3]
+texture = ExtResource( 1 )
+region_rect = Rect2( 0, 0, 200, 100 )
+modulate_color = Color( 0.2, 0.2, 0.2, 0.341176 )
+
+[sub_resource type="DynamicFont" id=4]
+size = 11
+font_data = ExtResource( 2 )
+
+[sub_resource type="Animation" id=5]
+resource_name = "fade out"
+length = 2.0
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 1.4, 2 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 1 ), Color( 1, 1, 1, 1 ), Color( 1, 1, 1, 0 ) ]
+}
+
+[node name="PanelContainer" type="PanelContainer"]
+modulate = Color( 1, 1, 1, 0 )
+anchor_left = 0.5
+anchor_right = 0.5
+margin_left = -63.7456
+margin_top = 44.3206
+margin_right = 66.2544
+margin_bottom = 77.3206
+theme = SubResource( 2 )
+custom_styles/panel = SubResource( 3 )
+script = ExtResource( 3 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Label" type="Label" parent="."]
+margin_top = 10.0
+margin_right = 130.0
+margin_bottom = 22.0
+custom_fonts/font = SubResource( 4 )
+text = "Obtained "
+align = 1
+valign = 1
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="Icon" type="Sprite" parent="."]
+position = Vector2( 115.647, 16.4933 )
+scale = Vector2( 1.36165, 1.38714 )
+texture = ExtResource( 4 )
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+autoplay = "fade out"
+"anims/fade out" = SubResource( 5 )

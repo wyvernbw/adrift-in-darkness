@@ -50,7 +50,7 @@ func update_dialogue() -> void:
 	if player_is_looking == false:
 		return
 
-	if dialogue == null:
+	if dialogue == null:	
 		return
 
 	if interact == false:
@@ -73,16 +73,19 @@ func update_dialogue() -> void:
 
 	canInteract = false
 	emit_signal("player_interacted", dialogue)
+	print("interacted")
 
 func _on_InteractionArea_body_entered(body) -> void:
 	if not body is  Player:
 		return
 	player_is_colliding = true
+	print(player_is_colliding)
 
 func _on_InteractionArea_body_exited(body) -> void:
 	if not body is Player:
 		return
 	player_is_colliding = false
+	print(player_is_colliding)
 
 func _on_DialogueHandler_player_unpause() -> void:
 	canInteract = true

@@ -26,7 +26,6 @@ shape = SubResource( 1 )
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 
 [node name="Sprite" type="Sprite" parent="CanvasLayer"]
-visible = false
 position = Vector2( 252.263, 106.026 )
 scale = Vector2( 27.1969, 291.433 )
 z_index = 21
@@ -58,5 +57,4 @@ scale = Vector2( 1, 0.75 )
 texture = ExtResource( 4 )
 [connection signal="body_entered" from="." to="." method="_on_Door_body_entered"]
 [connection signal="body_exited" from="." to="." method="_on_Door_body_exited"]
-[connection signal="animation_finished" from="CanvasLayer/Sprite/AnimationPlayer" to="." method="_on_AnimationPlayer_animation_finished"]
 [connection signal="finished" from="Sounds/Open" to="." method="_on_Open_finished"]

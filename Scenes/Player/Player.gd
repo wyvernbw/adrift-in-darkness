@@ -1,15 +1,14 @@
-tool
 extends KinematicBody2D
 class_name Player
 
-const BASE_SPEED : float = 36.0
+const BASE_SPEED : float = 24.0
 const MAX_STAMINA : float = 600.0
 
 onready var StepTimer := $Sounds/Move/StepTimer
 
 export var deaccel : float = 0.30
-export var speed : float = 32.0
-export var sprint_speed : float = 96.0
+export var speed : float = 24.0
+export var sprint_speed : float = 48.0
 export var stagger_speed : float = 16.0
 export var walk_step_interval : float = 0.5
 export var sprint_step_interval : float = 0.1
