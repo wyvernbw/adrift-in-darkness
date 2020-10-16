@@ -1,6 +1,7 @@
 extends Node
 
 signal inventory_changed
+signal inventory_item_used
 
 onready var notification = preload("res://Scenes/GUI/notification.tscn")
 
@@ -16,10 +17,12 @@ func _ready() -> void:
 	inventory.append(normal_items)
 	add_to_group("save", true)
 
-func _send_notification(item : Item) -> void:
-		var item_notification = notification.instance()
-		get_node("../Game/notifications").add_child(item_notification)
-		item_notification.item = item
+
+func _send_notification(item: Item) -> void:
+	var item_notification = notification.instance()
+	get_node("../Game/notifications").add_child(item_notification)
+	item_notification.item = item
+
 
 func add_item(item: Item) -> void:
 	print(str(item['item_name']) + " : " + str(item.quantity))
@@ -109,3 +112,7 @@ func load_game(game_save: Resource) -> void:
 		inventory[Item.ITEM_TYPES.NORMAL_ITEM].append(comp_item)
 
 	loading = false
+
+
+func _on_item_used(item) -> void:
+	emit_signal("inventory_item_used", item)

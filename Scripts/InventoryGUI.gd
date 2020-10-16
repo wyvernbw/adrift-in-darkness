@@ -11,6 +11,8 @@ onready var NormalItemsPanel = $NormalItemPanel
 onready var KeyItemsContainer = $KeyItemPanel/GridContainer
 onready var NormalItemsContainer = $NormalItemPanel/GridContainer
 
+export var player_path : NodePath
+
 func _ready() -> void:
 	$'/root/InventoryHandler'.connect('inventory_changed', self, '_on_InventoryHandler_inventory_changed')
 	visible = false

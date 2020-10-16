@@ -4,6 +4,9 @@ signal item_used(item)
 
 var current_item : Item
 
+func _ready() -> void:
+	connect("item_used", InventoryHandler, "_on_item_used")
+
 func set_item(item : Item) -> void:
 	current_item = item
 	$Name.text = item.item_name

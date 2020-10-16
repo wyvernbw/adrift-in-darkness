@@ -88,6 +88,7 @@ scale = Vector2( 1, 1.25 )
 
 [node name="InventoryGUI" parent="CanvasLayer" instance=ExtResource( 9 )]
 visible = false
+player_path = NodePath("../../Player")
 
 [node name="Staircase" parent="." instance=ExtResource( 10 )]
 position = Vector2( 128, 3.29613 )
