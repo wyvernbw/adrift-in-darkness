@@ -12,4 +12,7 @@ script = ExtResource( 1 )
 
 [node name="1F_main_room" parent="." instance=ExtResource( 2 )]
 
+[node name="CanvasLayer" parent="1F_main_room" index="6"]
+layer = 3
+
 [editable path="1F_main_room"]

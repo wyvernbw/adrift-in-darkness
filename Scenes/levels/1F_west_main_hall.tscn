@@ -109,7 +109,9 @@ visible = true
 
 [node name="Door" parent="." index="8" instance=ExtResource( 3 )]
 position = Vector2( 56, 16 )
+scene_name = "1F_west_office"
 inv_gui_path = NodePath("../CanvasLayer/InventoryGUI")
+required_look_dir = Vector2( 0, -1 )
 
 [node name="Door2" parent="." index="9" instance=ExtResource( 3 )]
 visible = false

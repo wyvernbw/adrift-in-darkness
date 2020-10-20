@@ -6,7 +6,8 @@ var levels: Dictionary = {
 	"1F_main_room": preload("res://Scenes/levels/1F_main_room.tscn").instance(),
 	"1F_west_hall": preload("res://Scenes/levels/1F_west_hall.tscn").instance(),
 	"1F_west_main_hall": preload("res://Scenes/levels/1F_west_main_hall.tscn").instance(),
-	"2F_west_small_room": preload("res://Scenes/levels/2F_west_small_room.tscn").instance()
+	"2F_west_small_room": preload("res://Scenes/levels/2F_west_small_room.tscn").instance(),
+	"1F_west_office": preload("res://Scenes/levels/1F_west_office.tscn").instance()
 }
 
 
@@ -28,7 +29,8 @@ func saveGame(game_save: Resource) -> void:
 				'1F_main_room': levels["1F_main_room"],
 				'1F_west_hall': levels["1F_west_hall"],
 				'1F_west_main_hall': levels["1F_west_main_hall"],
-				'2F_west_small_room': levels["2F_west_small_room"]
+				'2F_west_small_room': levels["2F_west_small_room"],
+				'1F_west_office': levels["1F_west_office"]
 		}
 	}
 
@@ -38,7 +40,8 @@ func loadGame(game_save: Resource) -> void:
 	levels["1F_main_room"] = data['levels']['1F_main_room']
 	levels["1F_west_hall"] = data['levels']['1F_west_hall']
 	levels["1F_west_main_hall"] = data['levels']['1F_west_main_hall']
-	levels["2F_west_small_room"] = data['levels']['2F_west_small_room']
+	levels["1F_west_office"] = data['levels']['1F_west_office']
+
 
 func _on_Door_player_entered(scene_name) -> void:
 	switchScene(scene_name)
