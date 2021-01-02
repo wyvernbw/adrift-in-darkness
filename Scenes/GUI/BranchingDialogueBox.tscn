@@ -25,7 +25,6 @@ rect_pivot_offset = Vector2( 128, 49 )
 
 [node name="Label" parent="Panel" index="0"]
 visible = false
-anchor_bottom = 0.0
 margin_bottom = 17.0
 
 [node name="option1" type="Button" parent="Panel" index="1"]
@@ -37,6 +36,7 @@ mouse_filter = 2
 custom_styles/pressed = ExtResource( 5 )
 custom_styles/focus = ExtResource( 4 )
 custom_styles/normal = ExtResource( 3 )
+action_mode = 0
 button_mask = 0
 expand_icon = true
 __meta__ = {
@@ -65,6 +65,7 @@ rect_pivot_offset = Vector2( 48, 8 )
 custom_styles/pressed = ExtResource( 5 )
 custom_styles/focus = ExtResource( 4 )
 custom_styles/normal = ExtResource( 3 )
+action_mode = 0
 expand_icon = true
 __meta__ = {
 "_edit_group_": true,
@@ -81,5 +82,11 @@ valign = 1
 __meta__ = {
 "_edit_use_anchors_": true
 }
+
+[node name="inactive" type="Timer" parent="." index="2"]
+wait_time = 0.5
+one_shot = true
+autostart = true
 [connection signal="pressed" from="Panel/option1" to="." method="_on_option1_pressed"]
 [connection signal="pressed" from="Panel/option2" to="." method="_on_option2_pressed"]
+[connection signal="timeout" from="inactive" to="." method="_on_inactive_timeout"]

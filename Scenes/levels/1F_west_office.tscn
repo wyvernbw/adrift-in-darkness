@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=2]
+[gd_scene load_steps=14 format=2]
 
 [ext_resource path="res://Scenes/levels/base_level.tscn" type="PackedScene" id=1]
 [ext_resource path="res://Sprites/Tilesets/House/furniture/desk.png" type="Texture" id=2]
@@ -11,22 +11,14 @@
 [ext_resource path="res://Scenes/interactable objects/Table.tscn" type="PackedScene" id=9]
 [ext_resource path="res://Scenes/interactable objects/bookshelf.tscn" type="PackedScene" id=10]
 
-[sub_resource type="RectangleShape2D" id=4]
+[sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 4, 8 )
 
 [sub_resource type="RectangleShape2D" id=2]
-extents = Vector2( 16, 16 )
+extents = Vector2( 24.038, 16 )
 
-[sub_resource type="OccluderPolygon2D" id=5]
-closed = false
-polygon = PoolVector2Array( -6.88925, -7.21202, 5.9926, -7.02799, 6.56562, 14.3874, -6.77238, 14.5034, -7.07327, -7.39605, 5.80857, -7.21202 )
-
-[sub_resource type="RectangleShape2D" id=1]
+[sub_resource type="RectangleShape2D" id=4]
 extents = Vector2( 23.962, 4 )
-
-[sub_resource type="OccluderPolygon2D" id=3]
-closed = false
-polygon = PoolVector2Array( -6.88925, -7.21202, 5.9926, -7.02799, 6.16779, 5.86011, -6.94408, 5.86011, -7.07327, -7.39605, 5.80857, -7.21202 )
 
 [node name="level_name" instance=ExtResource( 1 )]
 
@@ -46,6 +38,12 @@ tile_data = PoolIntArray(  )
 [node name="Rug" parent="." index="4"]
 tile_data = PoolIntArray( 458756, 6, 0, 458757, 2, 0, 458758, 2, 0, 458759, 2, 0, 458760, 2, 0, 458761, 2, 0, 458762, 7, 0, 524292, 5, 0, 524293, 0, 0, 524294, 0, 0, 524295, 0, 0, 524296, 0, 0, 524297, 0, 0, 524298, 3, 0, 589828, 5, 0, 589829, 0, 0, 589830, 0, 0, 589831, 0, 0, 589832, 0, 0, 589833, 0, 0, 589834, 3, 0, 655364, 9, 0, 655365, 4, 0, 655366, 4, 0, 655367, 4, 0, 655368, 4, 0, 655369, 4, 0, 655370, 8, 0 )
 
+[node name="CanvasModulate" parent="." index="6"]
+visible = true
+
+[node name="LightMask2D" parent="CanvasLayer" index="0"]
+visible = true
+
 [node name="Chair" type="StaticBody2D" parent="." index="8"]
 position = Vector2( 114.162, 160 )
 rotation = -1.5708
@@ -57,7 +55,7 @@ playerPath = NodePath("../Player")
 position = Vector2( 8, 4.677 )
 rotation = 3.14159
 scale = Vector2( 1, 1.24 )
-shape = SubResource( 4 )
+shape = SubResource( 1 )
 one_way_collision_margin = 0.0
 
 [node name="Texture" type="Sprite" parent="Chair" index="1"]
@@ -75,13 +73,6 @@ __meta__ = {
 modulate = Color( 0.854902, 0.835294, 0.509804, 1 )
 shape = SubResource( 2 )
 
-[node name="LightOccluder2D" type="LightOccluder2D" parent="Chair" index="3"]
-modulate = Color( 1, 1, 1, 0 )
-occluder = SubResource( 5 )
-__meta__ = {
-"_edit_lock_": true
-}
-
 [node name="Object" type="StaticBody2D" parent="." index="9"]
 position = Vector2( 119.962, 144 )
 script = ExtResource( 3 )
@@ -91,7 +82,7 @@ playerPath = NodePath("../Player")
 [node name="CollisionBox" type="CollisionShape2D" parent="Object" index="0"]
 position = Vector2( 0, -8.00003 )
 rotation = 3.14159
-shape = SubResource( 1 )
+shape = SubResource( 4 )
 one_way_collision_margin = 0.0
 
 [node name="Texture" type="Sprite" parent="Object" index="1"]
@@ -106,12 +97,6 @@ __meta__ = {
 [node name="InteractionBox" type="CollisionShape2D" parent="Object/InteractionArea" index="0"]
 modulate = Color( 0.854902, 0.835294, 0.509804, 1 )
 shape = SubResource( 2 )
-
-[node name="LightOccluder2D" type="LightOccluder2D" parent="Object" index="3"]
-occluder = SubResource( 3 )
-__meta__ = {
-"_edit_lock_": true
-}
 
 [node name="bookshelf" parent="." index="10" instance=ExtResource( 10 )]
 position = Vector2( 55.6237, 80 )

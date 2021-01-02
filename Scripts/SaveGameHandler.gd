@@ -13,7 +13,6 @@ func _debug() -> void:
 	if Input.is_action_just_pressed("debug_load"):
 		load_game()
 
-
 func save_game() -> void:
 	var game_save := GameSave.new()
 	game_save.game_version = ProjectSettings.get_setting("application/config/version")

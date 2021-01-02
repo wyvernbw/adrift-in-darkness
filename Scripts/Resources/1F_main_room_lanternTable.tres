@@ -15,7 +15,7 @@ item_type = 0
 
 [sub_resource type="Resource" id=2]
 script = ExtResource( 1 )
-Text = [ "You found a [color=yellow]lantern[/color]. There is still some fuel inside." ]
+Text = [ "You found a lantern. There is still some fuel inside." ]
 Answers = {
 
 }
@@ -32,5 +32,5 @@ Answers = {
 "Look underneath": SubResource( 2 )
 }
 item_name = ""
-item_quantity = 0
+item_quantity = -1
 item_type = 0

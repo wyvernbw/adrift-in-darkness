@@ -17,7 +17,7 @@
 
 [sub_resource type="Resource" id=1]
 script = ExtResource( 12 )
-Text = [ "You open the drawer and find a silver key.", null ]
+Text = [ "You open the drawer and find a silver key." ]
 Answers = {
 
 }
