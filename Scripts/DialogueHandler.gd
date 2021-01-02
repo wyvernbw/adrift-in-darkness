@@ -1,4 +1,11 @@
 extends Node
+class_name DialogueHandler 
+
+"""
+DIALOGUE HANDLER.
+This scripts takes a dialogue as a resource and displays the required dialogue boxes (branching or not) and adds items to the player's inventory.
+I've rewritten this script to have all the dialogue playing happen on the DialogueHandler side, instead of requiring input from a StaticObject. This way any object in the game or any script can play dialogue. Also it has way less bugs and the scripts is more minimal. 
+"""
 
 signal player_unpause
 signal player_pause
@@ -30,6 +37,10 @@ func _input(event : InputEvent) -> void:
 
 
 func set_dialogue(new_dialogue : Resource) -> void:
+	"""
+	Sets the dialogue resource, resets the page index and adds the required item to the player's inventory (if applicable)
+	"""
+
 	print("dialogue set")
 	emit_signal("player_pause")
 	page_index = -1
@@ -46,10 +57,19 @@ func set_dialogue(new_dialogue : Resource) -> void:
 	dialogue.item_name = ''
 
 func remove_dialogue_box() -> void:
+	"""
+	Checks if a dialogue box node exists and destroys it.
+	"""
+
 	if get_node_or_null("DialogueBox"):
 		get_node("DialogueBox").free()
 
 func add_dialogue_box() -> void:
+	"""
+	Adds a dialogue box at the current page index. It works for regular dialogue boxes as well as branching ones.
+	If the dialogue is over or the resource is empty, unpause the player.
+	"""
+
 	if page_index < dialogue.Text.size():
 		if page_index == -1:
 			return
