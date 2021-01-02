@@ -14,7 +14,9 @@ closed = false
 cull_mode = 1
 polygon = PoolVector2Array( -8, -8, 8, -8, 8, 8, 4, 8, 2, 8, -1, 8, -4, 8, -8, 8, -8, -8, 8, -8 )
 
-[node name="Table" type="StaticBody2D"]
+[node name="Table" type="StaticBody2D" groups=[
+"save",
+]]
 position = Vector2( 8, 8 )
 script = ExtResource( 2 )
 

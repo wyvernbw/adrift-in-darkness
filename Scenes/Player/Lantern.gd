@@ -1,6 +1,7 @@
 extends Node2D
 
 const MAX_FUEL : int = 300
+const SAVE_KEY : String = "Lantern"
 
 onready var target = get_parent()
 onready var static_effect = $Static/StaticAnim
@@ -21,10 +22,12 @@ func _ready() -> void:
 	$awno.play("awcrap")
 	$Static/AnimationPlayer.play("static")
 	# visible = false
+	if GlobalHandler.lantern_fuel != -1:
+		fuel = GlobalHandler.lantern_fuel
 
 
 func _process(delta: float) -> void:
-	print(GlobalHandler.globalLight)
+	GlobalHandler.lantern_fuel = fuel
 	if InventoryHandler.get_item(lantern_item) != -1:
 		if DialogueHandler.get_child_count() == 0:
 			$Light2D.visible = true
@@ -42,7 +45,6 @@ func _process(delta: float) -> void:
 
 	# ran out of fuel.
 	if fuel == 0 and visible:
-		print("good evening")
 		visible = false
 
 	# darken things up
@@ -72,10 +74,23 @@ func _process(delta: float) -> void:
 
 func _on_item_used(item) -> void:
 	if item.item_name == "Lantern":
-		print("Lantern used baby!")
 		if lantern_toggled:
 			lantern_toggled = false
 		else:
 			lantern_toggled = true
 	elif item.item_name == "Oil":
 		fuel = MAX_FUEL
+
+
+func save_game(game_save : Resource) -> void:
+	game_save.data[SAVE_KEY] = {
+		'fuel' : fuel,	
+		'toggled' : lantern_toggled
+	}
+	print(game_save.data[SAVE_KEY])
+
+func load_game(game_save : Resource) -> void:
+	var data : Dictionary = game_save.data[SAVE_KEY]
+	print(data)
+	fuel = data['fuel']
+	lantern_toggled = data['toggled']

@@ -1,9 +1,10 @@
 [gd_scene load_steps=9 format=2]
 
-[ext_resource path="res://Scenes/interactable objects/SaveObject.gd" type="Script" id=1]
+[ext_resource path="res://Scripts/SaveObject.gd" type="Script" id=1]
 [ext_resource path="res://Sprites/flower_vase_save.png" type="Texture" id=2]
 [ext_resource path="res://Sprites/table.png" type="Texture" id=3]
 [ext_resource path="res://fonts/kindergarten.ttf" type="DynamicFontData" id=4]
+
 
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 8, 2.5 )

@@ -138,7 +138,7 @@ func save_game(game_save : Resource) -> void:
 			'x' : position.x ,
 			'y' : position.y
 		},
-		'current_scene' : get_tree().get_current_scene().get_name()
+		'current_scene' : get_node('/root/Game').current_scene
 	}
 	print(game_save.data[SAVE_KEY])
 
