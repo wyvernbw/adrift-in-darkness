@@ -12,32 +12,32 @@ _global_script_classes=[ {
 "base": "Resource",
 "class": "DialogueResource",
 "language": "GDScript",
-"path": "res://Scripts/Resources/DialogueResource.gd"
+"path": "res://classes/DialogueResource.gd"
 }, {
 "base": "Resource",
 "class": "GameSave",
 "language": "GDScript",
-"path": "res://Scripts/GameSave.gd"
+"path": "res://classes/GameSave.gd"
 }, {
 "base": "Object",
 "class": "Item",
 "language": "GDScript",
-"path": "res://Scripts/Item.gd"
+"path": "res://classes/Item.gd"
 }, {
 "base": "KinematicBody2D",
 "class": "Player",
 "language": "GDScript",
-"path": "res://Scenes/Player/Player.gd"
+"path": "res://characters/player/Player.gd"
 }, {
 "base": "StaticBody2D",
 "class": "StaticObject",
 "language": "GDScript",
-"path": "res://Scripts/StaticObject.gd"
+"path": "res://objects/StaticObject.gd"
 }, {
 "base": "StaticObject",
 "class": "Table",
 "language": "GDScript",
-"path": "res://Scripts/Table.gd"
+"path": "res://objects/table/Table.gd"
 } ]
 _global_script_class_icons={
 "DialogueResource": "",
@@ -51,18 +51,17 @@ _global_script_class_icons={
 [application]
 
 config/name="Adrift In Darkness"
-run/main_scene="res://Scenes/Game.tscn"
+run/main_scene="res://levels/Game.tscn"
 boot_splash/bg_color=Color( 0.105882, 0.113725, 0.113725, 1 )
-config/icon="res://icon.png"
 config/version="1.0.0"
 
 [autoload]
 
-InventoryHandler="*res://Scripts/InventoryHandler.gd"
-DialogueHandler="*res://Scripts/DialogueHandler.gd"
-SaveGameHandler="*res://Scripts/SaveGameHandler.gd"
-HpHandler="*res://Scripts/HpHandler.gd"
-GlobalHandler="*res://Scripts/globalHandler.gd"
+InventoryHandler="*res://singletons/InventoryHandler.gd"
+DialogueHandler="*res://singletons/DialogueHandler.gd"
+SaveGameHandler="*res://singletons/SaveGameHandler.gd"
+HpHandler="*res://singletons/HpHandler.gd"
+GlobalHandler="*res://singletons/globalHandler.gd"
 
 [debug]
 
@@ -120,5 +119,4 @@ debug_load={
 
 [rendering]
 
-environment/default_clear_color=Color( 0, 0, 0, 1 )
 environment/default_environment="res://default_env.tres"

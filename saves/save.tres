@@ -1,6 +1,7 @@
 [gd_resource type="Resource" load_steps=2 format=2]
 
-[ext_resource path="res://Scripts/GameSave.gd" type="Script" id=1]
+[ext_resource path="res://classes/GameSave.gd" type="Script" id=1]
+
 
 [resource]
 script = ExtResource( 1 )

@@ -1,0 +1,625 @@
+[gd_scene load_steps=64 format=2]
+
+[ext_resource path="res://levels/LightEffects.gd" type="Script" id=1]
+[ext_resource path="res://classes/DialogueResource.gd" type="Script" id=2]
+[ext_resource path="res://characters/player/static.png" type="Texture" id=3]
+[ext_resource path="res://characters/player/light2d.png" type="Texture" id=4]
+[ext_resource path="res://levels/interfaces/LightMask2D.tscn" type="PackedScene" id=5]
+[ext_resource path="res://gui/inventory/Inventory.tscn" type="PackedScene" id=6]
+[ext_resource path="res://levels/interfaces/Light-Effects.tscn" type="PackedScene" id=7]
+[ext_resource path="res://tilesets/house/ledge/ledge.tres" type="TileSet" id=8]
+[ext_resource path="res://characters/player/wood_step1.wav" type="AudioStream" id=9]
+[ext_resource path="res://characters/player/lantern_light2d.png" type="Texture" id=10]
+[ext_resource path="res://tilesets/house/rug/rug1.tres" type="TileSet" id=11]
+[ext_resource path="res://tilesets/house/house1.tres" type="TileSet" id=12]
+[ext_resource path="res://characters/player/player.tscn" type="PackedScene" id=13]
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+[sub_resource type="GDScript" id=8]
+script/source = "extends KinematicBody2D
+class_name Player
+
+const BASE_SPEED : float = 24.0
+const MAX_STAMINA : float = 600.0
+
+onready var StepTimer := $Sounds/Move/StepTimer
+
+export var deaccel : float = 0.30
+export var speed : float = 24.0
+export var sprint_speed : float = 48.0
+export var stagger_speed : float = 16.0
+export var walk_step_interval : float = 0.5
+export var sprint_step_interval : float = 0.1
+
+var SAVE_KEY : String = \"player\"
+var move_dir : Vector2 = Vector2.ZERO
+export var look_dir : Vector2 = Vector2.DOWN
+var look_raycast_colliding : bool = false
+var velocity : Vector2 = Vector2.ZERO
+var stamina : float = MAX_STAMINA
+var moving : bool = false
+var staggered : bool = false
+var canMove : bool = true
+var canLook : bool = true
+var step_sounds : Array = []
+
+func _ready() -> void:
+	StepTimer.wait_time = walk_step_interval
+	
+	step_sounds.append(load(\"res://Sounds/steps_wood/wood_step1.wav\"))
+	step_sounds.append(load(\"res://Sounds/steps_wood/wood_step2.wav\"))
+	
+	$\"/root/DialogueHandler\".connect(\"player_unpause\", self, \"_on_player_unpaused\")
+	$\"/root/DialogueHandler\".connect(\"player_pause\", self, \"_on_player_paused\")
+
+func _physics_process(delta : float) -> void:
+	if canMove:
+		_get_input()
+	_calculate_speed()
+	if canLook:
+		_update_look_dir()
+	
+	if moving:
+		play_anim(\"move_\", look_dir)
+	else:
+		play_anim(\"idle_\", look_dir)
+		
+	apply_motion()
+	apply_friction()
+	
+	#move body along vector
+	move_and_slide(velocity, Vector2.UP)
+	
+func apply_motion():
+	velocity.x += speed * move_dir.x
+	velocity.y += speed * move_dir.y
+	
+func apply_friction():
+	velocity.x = lerp(velocity.x, 0, deaccel)
+	velocity.y = lerp(velocity.y, 0, deaccel)
+	
+func _update_look_dir() -> void:
+	if Input.is_action_pressed(\"move_right\"):
+		look_dir = Vector2.RIGHT
+	if Input.is_action_pressed(\"move_left\"):
+		look_dir = Vector2.LEFT
+	if Input.is_action_pressed(\"move_down\"):
+		look_dir = Vector2.DOWN
+	if Input.is_action_pressed(\"move_up\"):
+		look_dir = Vector2.UP
+	
+	$look_dir.cast_to = look_dir * 8
+	if $look_dir.is_colliding():
+		look_raycast_colliding = true
+	else:
+		look_raycast_colliding = false
+	
+func _get_input() -> void:
+	#get keyboard input
+	var moving_right 	= Input.is_action_pressed(\"move_right\")
+	var moving_left 	= Input.is_action_pressed(\"move_left\")
+	var moving_up 		= Input.is_action_pressed(\"move_up\")
+	var moving_down 	= Input.is_action_pressed(\"move_down\")
+	
+	move_dir.x = int(moving_right) - int(moving_left)
+	move_dir.y = int(moving_down) - int(moving_up)
+	
+	if move_dir.x == 0 and move_dir.y == 0:
+		moving = false
+	else:
+		moving = true
+
+func _calculate_speed() -> void:
+	if Input.is_action_pressed(\"sprint\"):
+		if stamina > 0 and moving and not staggered :
+			speed = sprint_speed
+			stamina -= 1
+			StepTimer.wait_time = sprint_step_interval
+		else:
+			speed = BASE_SPEED
+			StepTimer.wait_time = walk_step_interval
+	else:
+		speed = BASE_SPEED
+		stamina += 1
+		StepTimer.wait_time = walk_step_interval
+	
+	if stamina == 0 and staggered == false:
+		staggered = true
+	if stamina == 200 and staggered == true:
+		staggered = false
+	if staggered:
+		speed = stagger_speed
+		
+	stamina = clamp(stamina, 0, MAX_STAMINA)
+	
+	if not moving:
+		stamina += 1
+		
+func play_anim(anim : String, dir : Vector2) -> void:
+	var dir_str : String = \"up\"
+	match dir:
+		Vector2.RIGHT:
+			dir_str = \"right\"
+		Vector2.LEFT:
+			dir_str = \"left\"
+		Vector2.UP: 
+			dir_str = \"up\"
+		Vector2.DOWN:
+			dir_str = \"down\"
+	
+	$AnimatedSprite.play(anim + dir_str)
+	
+
+func save_game(game_save : Resource) -> void:
+	game_save.data[SAVE_KEY] = {
+		'position' : {
+			'x' : position.x ,
+			'y' : position.y
+		},
+		'current_scene' : get_node('/root/Game').current_scene
+	}
+	print(game_save.data[SAVE_KEY])
+
+func load_game(game_save : Resource) -> void:
+	var data : Dictionary = game_save.data[SAVE_KEY]
+	print(data)
+	position = Vector2.ZERO
+	get_node('/root/Game').switch_scene(data['current_scene'])
+	position.x = data['position']['x']
+	position.y = data['position']['y']
+	
+\"\"\"
+SIGNAL METHODS vvv
+\"\"\"
+	
+func _on_StepTimer_timeout() -> void:
+	if moving:
+		randomize()
+		var sound_index = int(rand_range(1, 3))
+		$Sounds/Move.stream = step_sounds[sound_index - 1]
+		$Sounds/Move.play()
+
+func _on_player_unpaused() -> void:
+	canMove = true
+	canLook = true
+	DialogueHandler.page_index = 0
+	DialogueHandler.dialogue_branching = false
+	DialogueHandler.dialogue_open = false
+
+func _on_player_paused() -> void:
+	canMove = false
+	canLook = false
+	moving = false
+	move_dir = Vector2.ZERO
+
+func _on_InventoryGUI_inventory_closed() -> void:
+	canMove = true
+	canLook = true
+
+func _on_InventoryGUI_inventory_opened() -> void:
+	canMove = false
+	canLook = false
+	moving = false
+	move_dir = Vector2.ZERO
+"
+
+[sub_resource type="StreamTexture" id=9]
+flags = 4
+load_path = "res://.import/shadow.png-0bb13965d37e59dd784fbc473ab9a4b0.stex"
+
+[sub_resource type="CanvasItemMaterial" id=1]
+
+[sub_resource type="StreamTexture" id=10]
+load_path = "res://.import/player-sprites38.png-2a10fa036435c9f325a55432f6e923ef.stex"
+
+[sub_resource type="StreamTexture" id=11]
+load_path = "res://.import/player-sprites5.png-705113e4ecad344a9bac38ee98ab8672.stex"
+
+[sub_resource type="StreamTexture" id=12]
+load_path = "res://.import/player-sprites6.png-c1e1c9547611cfa89b5dab1a29c61f8e.stex"
+
+[sub_resource type="StreamTexture" id=13]
+load_path = "res://.import/player-sprites7.png-58ef188acc1eb4f1e660f345be1e672d.stex"
+
+[sub_resource type="StreamTexture" id=14]
+load_path = "res://.import/player-sprites8.png-3193ca9a05b9da37ddada2e3043433f5.stex"
+
+[sub_resource type="StreamTexture" id=15]
+load_path = "res://.import/player-sprites9.png-1f77988951069836bcd0747473b12a4e.stex"
+
+[sub_resource type="StreamTexture" id=16]
+load_path = "res://.import/player-sprites10.png-1d28326938f5dc1cf2c59ecd188dda9c.stex"
+
+[sub_resource type="StreamTexture" id=17]
+load_path = "res://.import/player-sprites11.png-f2b6fa373b20a0e9f75a2e3007af835d.stex"
+
+[sub_resource type="StreamTexture" id=18]
+load_path = "res://.import/player-sprites27.png-89003a3cb8fe6a0352081c69bcf68098.stex"
+
+[sub_resource type="StreamTexture" id=19]
+load_path = "res://.import/player-sprites28.png-ff451f7296bf6e5887964616bd2a3122.stex"
+
+[sub_resource type="StreamTexture" id=20]
+load_path = "res://.import/player-sprites29.png-c4f4818b9dfb7dc003030cda2aaf72a9.stex"
+
+[sub_resource type="StreamTexture" id=21]
+load_path = "res://.import/player-sprites30.png-11e5bb7e5d27ce648e4effb34480141f.stex"
+
+[sub_resource type="StreamTexture" id=22]
+load_path = "res://.import/player-sprites16.png-3a517f2935e2cf937b70b3ff35116fa7.stex"
+
+[sub_resource type="StreamTexture" id=23]
+load_path = "res://.import/player-sprites17.png-510ca1e16eea12808ac7d34fa7d72cf8.stex"
+
+[sub_resource type="StreamTexture" id=24]
+load_path = "res://.import/player-sprites18.png-e2495e1e26a1ace3d957bf8ce12130fd.stex"
+
+[sub_resource type="StreamTexture" id=25]
+load_path = "res://.import/player-sprites19.png-34d1a85ffc14bb44f2f98dbb87ccdc1b.stex"
+
+[sub_resource type="StreamTexture" id=26]
+load_path = "res://.import/player-sprites20.png-91cc4b519c2f7acccb164632444796be.stex"
+
+[sub_resource type="StreamTexture" id=27]
+load_path = "res://.import/player-sprites21.png-d6820ff0a69cf38bf654a58bafa4c41a.stex"
+
+[sub_resource type="StreamTexture" id=28]
+load_path = "res://.import/player-sprites22.png-b3139ffdbd13b269b6b9006329c9464f.stex"
+
+[sub_resource type="StreamTexture" id=29]
+load_path = "res://.import/player-sprites1.png-7b9d2e467b507bfd6afdeada191023f8.stex"
+
+[sub_resource type="StreamTexture" id=30]
+load_path = "res://.import/player-sprites4.png-1efe6fc497fb1bea8d517fd08fe517e9.stex"
+
+[sub_resource type="StreamTexture" id=31]
+load_path = "res://.import/player-sprites3.png-3a133cc0c87d939c6672c8f1b86c3ac4.stex"
+
+[sub_resource type="StreamTexture" id=32]
+load_path = "res://.import/player-sprites2.png-521e890f27e84d1c4c6efb69ee7a9eac.stex"
+
+[sub_resource type="StreamTexture" id=33]
+load_path = "res://.import/player-sprites31.png-e108315563991bc828aa3d41f9bf5165.stex"
+
+[sub_resource type="StreamTexture" id=34]
+load_path = "res://.import/player-sprites32.png-b2f08651668bb792c877f2a24086f8cf.stex"
+
+[sub_resource type="StreamTexture" id=35]
+load_path = "res://.import/player-sprites33.png-58b2fd2879bdf162fb26e9d5917b7ca9.stex"
+
+[sub_resource type="StreamTexture" id=36]
+load_path = "res://.import/player-sprites34.png-25a0bb151ab6462d371d3e5db1f17d72.stex"
+
+[sub_resource type="StreamTexture" id=37]
+load_path = "res://.import/player-sprites35.png-546e5a1fca0b728bcbc6b0ca45a383df.stex"
+
+[sub_resource type="StreamTexture" id=38]
+load_path = "res://.import/player-sprites36.png-27d9eef14eac7ad0daf29809ce6fc959.stex"
+
+[sub_resource type="StreamTexture" id=39]
+load_path = "res://.import/player-sprites37.png-d94396af9eba2e24032627d5dd78a5c4.stex"
+
+[sub_resource type="StreamTexture" id=40]
+load_path = "res://.import/player-sprites12.png-eb9b30b03821f6b7b457c67a7ac81ed1.stex"
+
+[sub_resource type="StreamTexture" id=41]
+load_path = "res://.import/player-sprites13.png-8392b374dd810c6ed989408ae2687da3.stex"
+
+[sub_resource type="StreamTexture" id=42]
+load_path = "res://.import/player-sprites14.png-a90fa2bc200e159f00fc111446abe3da.stex"
+
+[sub_resource type="StreamTexture" id=43]
+load_path = "res://.import/player-sprites15.png-f4027c60205e742d27f16d98ff541533.stex"
+
+[sub_resource type="StreamTexture" id=44]
+load_path = "res://.import/player-sprites23.png-7ff1b8cf234cf6f3f41d6d9d5cf2d244.stex"
+
+[sub_resource type="StreamTexture" id=45]
+load_path = "res://.import/player-sprites24.png-4d0d1df7e30f8eff66383036660fd237.stex"
+
+[sub_resource type="StreamTexture" id=46]
+load_path = "res://.import/player-sprites25.png-996712deafff8dba4e57022c3f6dc9cb.stex"
+
+[sub_resource type="StreamTexture" id=47]
+load_path = "res://.import/player-sprites26.png-28dc569c7e192cb7cf3fc4319f76cce7.stex"
+
+[sub_resource type="SpriteFrames" id=2]
+animations = [ {
+"frames": [ SubResource( 10 ) ],
+"loop": true,
+"name": "idle_up",
+"speed": 5.0
+}, {
+"frames": [ SubResource( 11 ), SubResource( 12 ), SubResource( 13 ), SubResource( 14 ), SubResource( 15 ), SubResource( 16 ), SubResource( 17 ) ],
+"loop": true,
+"name": "idle_down",
+"speed": 5.0
+}, {
+"frames": [ SubResource( 18 ), SubResource( 19 ), SubResource( 20 ), SubResource( 21 ) ],
+"loop": true,
+"name": "move_left",
+"speed": 5.0
+}, {
+"frames": [ SubResource( 22 ), SubResource( 23 ), SubResource( 24 ), SubResource( 25 ), SubResource( 26 ), SubResource( 27 ), SubResource( 28 ) ],
+"loop": true,
+"name": "idle_right",
+"speed": 5.0
+}, {
+"frames": [ SubResource( 29 ), SubResource( 30 ), SubResource( 31 ), SubResource( 32 ) ],
+"loop": true,
+"name": "move_down",
+"speed": 5.0
+}, {
+"frames": [ SubResource( 33 ), SubResource( 34 ), SubResource( 35 ), SubResource( 36 ), SubResource( 37 ), SubResource( 38 ), SubResource( 39 ) ],
+"loop": true,
+"name": "idle_left",
+"speed": 5.0
+}, {
+"frames": [ SubResource( 40 ), SubResource( 41 ), SubResource( 42 ), SubResource( 43 ) ],
+"loop": true,
+"name": "move_up",
+"speed": 5.0
+}, {
+"frames": [ SubResource( 44 ), SubResource( 45 ), SubResource( 46 ), SubResource( 47 ) ],
+"loop": true,
+"name": "move_right",
+"speed": 5.0
+} ]
+
+[sub_resource type="RectangleShape2D" id=3]
+extents = Vector2( 5, 11 )
+
+[sub_resource type="OccluderPolygon2D" id=4]
+polygon = PoolVector2Array( -8, -12, 8, -12, 8, 12, -8, 12 )
+
+[sub_resource type="GDScript" id=48]
+script/source = "extends Node2D
+
+const MAX_FUEL : int = 300
+const SAVE_KEY : String = \"Lantern\"
+
+onready var target = get_parent()
+onready var static_effect = $Static/StaticAnim
+
+export var ran_out_of_fuel_resource : Resource
+var lantern_item: Item = Item.new(\"Lantern\", 1, null, Item.ITEM_TYPES.KEY_ITEM)
+var lantern_toggled : bool = false
+var fuel_loss_per_second : int = 30 
+var fuel : float = 300
+var light_loss_per_second : float = 0.025
+var static_per_second : float = 0.0025
+var max_static : float = 0.5
+
+
+func _ready() -> void:
+	InventoryHandler.connect(\"inventory_item_used\", self, \"_on_item_used\") 
+	$Light2D/AnimationPlayer.play(\"flicker\")
+	$SpotLight/AnimationPlayer.play(\"flicker\")
+	$awno.play(\"awcrap\")
+	$Static/AnimationPlayer.play(\"static\")
+	# visible = false
+	if GlobalHandler.lantern_fuel != -1:
+		fuel = GlobalHandler.lantern_fuel
+
+
+func _process(delta: float) -> void:
+	GlobalHandler.lantern_fuel = fuel
+	if InventoryHandler.get_item(lantern_item) != -1:
+		if DialogueHandler.get_child_count() == 0:
+			$Light2D.visible = true
+			$SpotLight.visible = true
+	else:
+		$Light2D.visible = false
+		$SpotLight.visible = false
+	
+	visible = lantern_toggled
+
+	# use up some fuel.
+	if lantern_toggled:
+		fuel -= fuel_loss_per_second * delta
+		fuel = max(0.0, fuel)
+
+	# ran out of fuel.
+	if fuel == 0 and visible:
+		visible = false
+		DialogueHandler.dialogue = ran_out_of_fuel_resource
+		DialogueHandler.add_dialogue_box()
+
+	# darken things up
+	if visible == false:
+		GlobalHandler.globalLight -= light_loss_per_second * delta
+		GlobalHandler.globalLight = max(GlobalHandler.globalLight, GlobalHandler.min_global_light)
+	else:
+		GlobalHandler.globalLight = 0.2
+		GlobalHandler.current_static = 0.0
+
+	if GlobalHandler.do_static_effect:
+		# Satan is that you?
+		if GlobalHandler.globalLight < 0.06:
+			GlobalHandler.current_static += static_per_second * delta
+			GlobalHandler.current_static = min(GlobalHandler.current_static, max_static)
+		static_effect.modulate = Color(1.0, 1.0, 1.0, GlobalHandler.current_static) 
+
+	if target.look_dir == Vector2.RIGHT:
+		rotation_degrees = -90
+	if target.look_dir == Vector2.LEFT:
+		rotation_degrees = 90
+	if target.look_dir == Vector2.DOWN:
+		rotation_degrees = 360
+	if target.look_dir == Vector2.UP:
+		rotation_degrees = -180
+
+
+func _on_item_used(item) -> void:
+	if item.item_name == \"Lantern\":
+		if lantern_toggled:
+			lantern_toggled = false
+		else:
+			lantern_toggled = true
+	elif item.item_name == \"Oil\":
+		fuel = MAX_FUEL
+
+
+func save_game(game_save : Resource) -> void:
+	game_save.data[SAVE_KEY] = {
+		'fuel' : fuel,	
+		'toggled' : lantern_toggled
+	}
+	print(game_save.data[SAVE_KEY])
+
+func load_game(game_save : Resource) -> void:
+	var data : Dictionary = game_save.data[SAVE_KEY]
+	print(data)
+	fuel = data['fuel']
+	lantern_toggled = data['toggled']
+"
+
+[sub_resource type="Resource" id=5]
+script = ExtResource( 2 )
+Text = [ "ran out of fuel shitass", null ]
+Answers = {
+
+}
+item_name = ""
+item_quantity = 0
+item_type = 0
+
+[sub_resource type="Animation" id=49]
+length = 2.0
+loop = true
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:energy")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0.1, 1, 1.9 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 0,
+"values": [ 0.64, 0.84, 0.64 ]
+}
+
+[sub_resource type="Animation" id=6]
+length = 15.0
+loop = true
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = false
+tracks/0/keys = {
+"times": PoolRealArray( 5, 5.3, 5.7 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 1 ), Color( 1, 1, 1, 0 ), Color( 1, 1, 1, 1 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath(".:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 5, 5.2, 5.4, 5.6, 5.8 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1 ),
+"update": 1,
+"values": [ true, false, true, false, true ]
+}
+
+[sub_resource type="Animation" id=7]
+length = 0.3
+loop = true
+step = 0.05
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.25 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ 0, 3 ]
+}
+
+[sub_resource type="PackedScene" id=50]
+_bundled = {
+"conn_count": 1,
+"conns": PoolIntArray( 18, 0, 72, 71, 2, 0 ),
+"editable_instances": [  ],
+"names": PoolStringArray( "Player", "z_index", "collision_mask", "script", "deaccel", "speed", "walk_step_interval", "sprint_step_interval", "save", "KinematicBody2D", "shadow", "modulate", "position", "scale", "texture", "Sprite", "AnimatedSprite", "material", "frames", "animation", "frame", "playing", "CollisionBox", "visible", "shape", "CollisionShape2D", "Camera2D", "current", "LightOccluder2D", "occluder", "look_dir", "enabled", "cast_to", "collide_with_areas", "RayCast2D", "Lantern", "ran_out_of_fuel_resource", "Node2D", "Light2D", "offset", "texture_scale", "color", "energy", "range_item_cull_mask", "shadow_enabled", "shadow_gradient_length", "shadow_filter", "shadow_filter_smooth", "shadow_item_cull_mask", "AnimationPlayer", "anims/flicker", "SpotLight", "awno", "anims/awcrap", "Static", "layer", "CanvasLayer", "StaticAnim", "z_as_relative", "hframes", "root_node", "anims/static", "Sounds", "Move", "stream", "volume_db", "AudioStreamPlayer2D", "StepTimer", "wait_time", "autostart", "Timer", "_on_StepTimer_timeout", "timeout" ),
+"node_count": 19,
+"node_paths": [  ],
+"nodes": PoolIntArray( -1, -1, 9, 0, -1, 7, 1, 0, 2, 1, 3, 2, 4, 3, 5, 4, 6, 5, 7, 6, 1, 8, 0, 0, 15, 10, -1, 4, 11, 7, 12, 8, 13, 9, 14, 10, 0, 0, 0, 16, 16, -1, 5, 17, 11, 18, 12, 19, 13, 20, 14, 21, 15, 0, 0, 0, 25, 22, -1, 3, 23, 16, 11, 17, 24, 18, 0, 0, 0, 26, 26, -1, 1, 27, 15, 0, 0, 0, 28, 28, -1, 2, 23, 16, 29, 19, 0, 0, 0, 34, 30, -1, 5, 11, 20, 31, 15, 32, 21, 2, 22, 33, 15, 0, 0, 0, 37, 35, -1, 4, 12, 23, 1, 0, 3, 24, 36, 25, 1, 8, 7, 0, 38, 38, -1, 13, 12, 26, 13, 27, 14, 28, 39, 29, 40, 30, 41, 31, 42, 32, 43, 0, 44, 15, 45, 33, 46, 0, 47, 34, 48, 0, 0, 8, 0, 49, 49, -1, 1, 50, 35, 0, 7, 0, 38, 51, -1, 10, 12, 36, 13, 37, 14, 38, 40, 39, 41, 40, 42, 32, 44, 15, 46, 0, 47, 34, 48, 0, 0, 10, 0, 49, 49, -1, 1, 50, 35, 0, 7, 0, 49, 52, -1, 1, 53, 41, 0, 7, 0, 56, 54, -1, 1, 55, 42, 0, 13, 0, 15, 57, -1, 6, 11, 43, 12, 44, 1, 45, 58, 16, 14, 46, 59, 47, 0, 13, 0, 49, 49, -1, 2, 60, 48, 61, 49, 0, 0, 0, 37, 62, -1, 0, 0, 16, 0, 66, 63, -1, 3, 12, 50, 64, 51, 65, 52, 0, 17, 0, 70, 67, -1, 2, 68, 53, 69, 15, 0 ),
+"variants": [ 3, 12, SubResource( 8 ), 0.4, 20.0, 0.7, 0.5, Color( 1, 1, 1, 0.152941 ), Vector2( -0.280609, 9.9643 ), Vector2( 0.85, 0.85 ), SubResource( 9 ), SubResource( 1 ), SubResource( 2 ), "idle_down", 1, true, false, Color( 0.0980392, 0.996078, 0.678431, 1 ), SubResource( 3 ), SubResource( 4 ), Color( 1, 0.447059, 0.203922, 1 ), Vector2( 0, 8 ), 15, Vector2( 1, 0 ), SubResource( 48 ), SubResource( 5 ), Vector2( 359, 194.468 ), Vector2( 1.25, 1.11429 ), ExtResource( 10 ), Vector2( -287.2, -120.367 ), 1.25, Color( 0.905882, 0.643137, 0.192157, 1 ), 0.64, 0.3, 12.2, SubResource( 49 ), Vector2( -1.14441e-05, 3.8147e-06 ), Vector2( 0.551843, 0.551843 ), ExtResource( 4 ), 3.7, Color( 1, 0.972549, 0.666667, 1 ), SubResource( 6 ), 2, Color( 1, 1, 1, 0 ), Vector2( 69.9724, 34.4124 ), 10, ExtResource( 3 ), 4, NodePath("../StaticAnim"), SubResource( 7 ), Vector2( 0, 12 ), ExtResource( 9 ), -18.0, 0.7 ],
+"version": 2
+}
+
+[node name="level_name" type="Node2D"]
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="Player" parent="." instance=ExtResource( 13 )]
+position = Vector2( 128.692, 112.307 )
+look_dir = Vector2( 0, -1 )
+
+[node name="HouseF1" type="TileMap" parent="."]
+tile_set = ExtResource( 12 )
+cell_size = Vector2( 16, 16 )
+format = 1
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="HouseF2" type="TileMap" parent="."]
+position = Vector2( 128, 160 )
+tile_set = ExtResource( 12 )
+cell_size = Vector2( 16, 16 )
+format = 1
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="Rug" type="TileMap" parent="."]
+tile_set = ExtResource( 11 )
+cell_size = Vector2( 16, 16 )
+format = 1
+
+[node name="Ledge" type="TileMap" parent="."]
+position = Vector2( 0, -16 )
+z_index = 3
+tile_set = ExtResource( 8 )
+cell_size = Vector2( 16, 16 )
+format = 1
+
+[node name="CanvasModulate" parent="." instance=ExtResource( 7 )]
+visible = false
+color = Color( 0.0627451, 0.0627451, 0.0627451, 1 )
+script = ExtResource( 1 )
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="LightMask2D" parent="CanvasLayer" instance=ExtResource( 5 )]
+visible = false
+scale = Vector2( 1, 1.25 )
+
+[node name="InventoryGUI" parent="CanvasLayer" instance=ExtResource( 6 )]
+visible = false

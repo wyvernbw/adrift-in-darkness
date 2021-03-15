@@ -1,0 +1,208 @@
+[gd_scene load_steps=15 format=2]
+
+[ext_resource path="res://objects/StaticObject.gd" type="Script" id=1]
+[ext_resource path="res://classes/DialogueResource.gd" type="Script" id=2]
+[ext_resource path="res://objects/bookshelf/bookshelf.png" type="Texture" id=3]
+[ext_resource path="res://objects/bookshelf/bookshelf-left.png" type="Texture" id=4]
+[ext_resource path="res://objects/door/Door.tscn" type="PackedScene" id=5]
+[ext_resource path="res://objects/drawer/Drawer.tscn" type="PackedScene" id=6]
+[ext_resource path="res://levels/base_level.tscn" type="PackedScene" id=7]
+[ext_resource path="res://objects/sound_area/SoundArea.tscn" type="PackedScene" id=8]
+
+
+
+
+
+
+
+
+
+
+[sub_resource type="Resource" id=1]
+script = ExtResource( 2 )
+Text = [ " There are some old chemestry and anatomy books on the shelves.", null ]
+Answers = {
+
+}
+item_name = ""
+item_quantity = 0
+item_type = 0
+
+[sub_resource type="RectangleShape2D" id=2]
+extents = Vector2( 15.8982, 3.71792 )
+
+[sub_resource type="RectangleShape2D" id=3]
+extents = Vector2( 16, 24 )
+
+[sub_resource type="OccluderPolygon2D" id=4]
+cull_mode = 1
+polygon = PoolVector2Array( -8, -8, 24, -8, 24, 24, -8, 24 )
+
+[sub_resource type="Resource" id=5]
+script = ExtResource( 2 )
+Text = [ "Nothing inside.", null ]
+Answers = {
+
+}
+item_name = ""
+item_quantity = 0
+item_type = 0
+
+[sub_resource type="RectangleShape2D" id=6]
+extents = Vector2( 24, 8 )
+
+[node name="level_name" instance=ExtResource( 7 )]
+
+[node name="Player" parent="." index="0"]
+position = Vector2( 168, 125.44 )
+look_dir = Vector2( -1, 0 )
+
+[node name="bookshelf2" type="StaticBody2D" parent="." index="1"]
+position = Vector2( 60, 160 )
+z_index = 3
+script = ExtResource( 1 )
+inv_gui_path = NodePath("../CanvasLayer/InventoryGUI")
+playerPath = NodePath("../Player")
+dialogue = SubResource( 1 )
+
+[node name="Texture" type="Sprite" parent="bookshelf2" index="0"]
+position = Vector2( 8, 8 )
+texture = ExtResource( 3 )
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="CollisionBox" type="CollisionShape2D" parent="bookshelf2" index="1"]
+position = Vector2( 8.00001, 20.136 )
+rotation = 3.14159
+shape = SubResource( 2 )
+one_way_collision_margin = 0.0
+
+[node name="InteractionArea" type="Area2D" parent="bookshelf2" index="2"]
+collision_layer = 2
+__meta__ = {
+"_edit_group_": true,
+"_edit_lock_": true
+}
+
+[node name="InteractionBox" type="CollisionShape2D" parent="bookshelf2/InteractionArea" index="0"]
+visible = false
+modulate = Color( 0.854902, 0.835294, 0.509804, 1 )
+position = Vector2( 8, 8 )
+shape = SubResource( 3 )
+
+[node name="LightOccluder2D" type="LightOccluder2D" parent="bookshelf2" index="3"]
+visible = false
+light_mask = 0
+occluder = SubResource( 4 )
+light_mask = 0
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="HouseF1" parent="." index="2"]
+tile_data = PoolIntArray( -131072, 6, 0, -131071, 6, 0, -131070, 6, 0, -131069, 6, 0, -131068, 6, 0, -131067, 6, 0, -131066, 6, 0, -65536, 6, 0, -65535, 9, 0, -65534, 12, 0, -65532, 11, 0, -65531, 2, 0, -65530, 6, 0, 0, 6, 0, 1, 5, 0, 2, 18, 0, 4, 18, 0, 5, 3, 0, 6, 6, 0, 65536, 6, 0, 65537, 5, 0, 65538, 18, 0, 65540, 18, 0, 65541, 3, 0, 65542, 6, 0, 131072, 6, 0, 131073, 5, 0, 131074, 17, 0, 131075, 1, 0, 131076, 17, 0, 131077, 3, 0, 131078, 6, 0, 196608, 6, 0, 196609, 5, 0, 196610, 1, 0, 196611, 1, 0, 196612, 1, 0, 196613, 3, 0, 196614, 6, 0, 196615, 6, 0, 196616, 6, 0, 196617, 6, 0, 196618, 6, 0, 196619, 6, 0, 262144, 6, 0, 262145, 5, 0, 262146, 1, 0, 262147, 1, 0, 262148, 1, 0, 262149, 11, 0, 262150, 14, 0, 262151, 14, 0, 262152, 14, 0, 262153, 14, 0, 262154, 2, 0, 262155, 6, 0, 327680, 6, 0, 327681, 5, 0, 327682, 1, 0, 327683, 1, 0, 327684, 1, 0, 327685, 18, 0, 327686, 18, 0, 327687, 18, 0, 327688, 18, 0, 327689, 18, 0, 327690, 3, 0, 327691, 6, 0, 393216, 6, 0, 393217, 5, 0, 393218, 1, 0, 393219, 1, 0, 393220, 1, 0, 393221, 18, 0, 393222, 18, 0, 393223, 18, 0, 393224, 18, 0, 393225, 18, 0, 393226, 11, 0, 458752, 6, 0, 458753, 5, 0, 458754, 1, 0, 458755, 1, 0, 458756, 1, 0, 458757, 17, 0, 458758, 17, 0, 458759, 17, 0, 458760, 17, 0, 458761, 17, 0, 458763, 6, 0, 524288, 6, 0, 524289, 5, 0, 524290, 1, 0, 524291, 1, 0, 524292, 1, 0, 524293, 1, 0, 524294, 1, 0, 524295, 1, 0, 524296, 1, 0, 524299, 6, 0, 589824, 6, 0, 589825, 5, 0, 589826, 1, 0, 589827, 1, 0, 589828, 1, 0, 589829, 1, 0, 589830, 1, 0, 589831, 1, 0, 589834, 3, 0, 589835, 6, 0, 655360, 6, 0, 655361, 8, 0, 655362, 4, 0, 655363, 4, 0, 655364, 4, 0, 655365, 4, 0, 655366, 4, 0, 655367, 4, 0, 655368, 4, 0, 655369, 4, 0, 655370, 7, 0, 655371, 6, 0, 720896, 6, 0, 720897, 6, 0, 720898, 6, 0, 720899, 6, 0, 720900, 6, 0, 720901, 6, 0, 720902, 6, 0, 720903, 6, 0, 720904, 6, 0, 720905, 6, 0, 720906, 6, 0, 720907, 6, 0, 851973, 6, 0, 851974, 6, 0, 851975, 6, 0, 851976, 6, 0, 851977, 6, 0, 851978, 6, 0 )
+
+[node name="HouseF2" parent="." index="3"]
+modulate = Color( 0.811765, 0.811765, 0.811765, 1 )
+tile_data = PoolIntArray( -655365, 18, 0, -720892, 6, 0, -589829, 18, 0, -131059, 6, 0 )
+
+[node name="Rug" parent="." index="4"]
+tile_data = PoolIntArray( -65536, 6, 0, -65534, 6, 0, 196610, 6, 0, 196611, 2, 0, 196612, 7, 0, 262146, 5, 0, 262147, 0, 0, 262148, 3, 0, 327682, 5, 0, 327683, 0, 0, 327684, 3, 0, 393218, 5, 0, 393219, 0, 0, 393220, 3, 0, 458754, 9, 0, 458755, 4, 0, 458756, 8, 0, 524294, 6, 0, 524295, 2, 0, 524296, 7, 0, 589830, 9, 0, 589831, 4, 0, 589832, 8, 0 )
+
+[node name="CanvasModulate" parent="." index="6"]
+visible = true
+
+[node name="LightMask2D" parent="CanvasLayer" index="0"]
+visible = true
+
+[node name="InventoryGUI" parent="CanvasLayer" index="1"]
+player_path = NodePath("../../Player")
+
+[node name="Door" parent="." index="8" instance=ExtResource( 5 )]
+position = Vector2( 56, 16 )
+scene_name = "1F_west_office"
+inv_gui_path = NodePath("../CanvasLayer/InventoryGUI")
+required_look_dir = Vector2( 0, -1 )
+
+[node name="Door2" parent="." index="9" instance=ExtResource( 5 )]
+visible = false
+position = Vector2( 168, 120 )
+scene_name = "1F_west_hall"
+inv_gui_path = NodePath("../CanvasLayer/InventoryGUI")
+required_look_dir = Vector2( 1, 0 )
+
+[node name="Object" parent="." index="10" instance=ExtResource( 6 )]
+position = Vector2( 72, 72 )
+collision_layer = 6
+collision_mask = 3
+inv_gui_path = NodePath("../CanvasLayer/InventoryGUI")
+playerPath = NodePath("../Player")
+dialogue = SubResource( 5 )
+
+[node name="InteractionArea" parent="Object" index="2"]
+collision_layer = 6
+collision_mask = 3
+
+[node name="InteractionBox" parent="Object/InteractionArea" index="0"]
+visible = true
+
+[node name="SoundArea" parent="." index="11" instance=ExtResource( 8 )]
+collision_layer = 8
+activateOnce = true
+
+[node name="CollisionShape2D" parent="SoundArea" index="0"]
+position = Vector2( 56, 112 )
+shape = SubResource( 6 )
+
+[node name="Sound" parent="SoundArea" index="1"]
+position = Vector2( 176, 120 )
+
+[node name="bookshelf" type="StaticBody2D" parent="." index="12"]
+position = Vector2( 36, 72 )
+rotation = -1.57079
+script = ExtResource( 1 )
+inv_gui_path = NodePath("../CanvasLayer/InventoryGUI")
+playerPath = NodePath("../Player")
+
+[node name="Texture" type="Sprite" parent="bookshelf" index="0"]
+position = Vector2( 8.00002, 7.99998 )
+rotation = 1.57079
+scale = Vector2( 0.76, 0.76 )
+texture = ExtResource( 4 )
+
+[node name="CollisionBox" type="CollisionShape2D" parent="bookshelf" index="1"]
+position = Vector2( 16, 3.99996 )
+rotation = 3.14159
+shape = SubResource( 2 )
+one_way_collision_margin = 0.0
+
+[node name="InteractionArea" type="Area2D" parent="bookshelf" index="2"]
+collision_layer = 2
+__meta__ = {
+"_edit_group_": true,
+"_edit_lock_": true
+}
+
+[node name="InteractionBox" type="CollisionShape2D" parent="bookshelf/InteractionArea" index="0"]
+visible = false
+modulate = Color( 0.854902, 0.835294, 0.509804, 1 )
+position = Vector2( 8, 8 )
+shape = SubResource( 3 )
+
+[node name="LightOccluder2D" type="LightOccluder2D" parent="bookshelf" index="3"]
+visible = false
+light_mask = 0
+occluder = SubResource( 4 )
+light_mask = 0
+__meta__ = {
+"_edit_lock_": true
+}
+[connection signal="body_entered" from="bookshelf2/InteractionArea" to="bookshelf2" method="_on_InteractionArea_body_entered"]
+[connection signal="body_exited" from="bookshelf2/InteractionArea" to="bookshelf2" method="_on_InteractionArea_body_exited"]
+[connection signal="body_entered" from="bookshelf/InteractionArea" to="bookshelf" method="_on_InteractionArea_body_entered"]
+[connection signal="body_exited" from="bookshelf/InteractionArea" to="bookshelf" method="_on_InteractionArea_body_exited"]
+
+[editable path="Object"]
+
+[editable path="SoundArea"]
