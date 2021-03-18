@@ -22,6 +22,7 @@ func _ready() -> void:
 	$SpotLight/AnimationPlayer.play("flicker")
 	$awno.play("awcrap")
 	$Static/AnimationPlayer.play("static")
+	self.lantern_toggled = GlobalHandler.lantern_toggled
 	# visible = false
 	if GlobalHandler.lantern_fuel != -1:
 		fuel = GlobalHandler.lantern_fuel
@@ -29,6 +30,7 @@ func _ready() -> void:
 
 func _process(delta: float) -> void:
 	GlobalHandler.lantern_fuel = fuel
+	GlobalHandler.lantern_toggled = self.lantern_toggled
 	if InventoryHandler.get_item(lantern_item) != -1:
 		if DialogueHandler.get_child_count() == 0:
 		#	$Light2D.visible = true

@@ -1,4 +1,4 @@
-[gd_scene load_steps=22 format=2]
+[gd_scene load_steps=23 format=2]
 
 [ext_resource path="res://tilesets/house/house1.tres" type="TileSet" id=1]
 [ext_resource path="res://characters/player/Player.tscn" type="PackedScene" id=2]
@@ -33,6 +33,16 @@ item_type = 0
 [sub_resource type="Resource" id=2]
 script = ExtResource( 5 )
 Text = [  ]
+Answers = {
+
+}
+item_name = ""
+item_quantity = 0
+item_type = 0
+
+[sub_resource type="Resource" id=3]
+script = ExtResource( 5 )
+Text = [ "wooo locked" ]
 Answers = {
 
 }
@@ -115,12 +125,14 @@ dialogue = SubResource( 1 )
 
 [node name="Table" parent="Furniture" instance=ExtResource( 7 )]
 position = Vector2( 144, 32.443 )
-inv_gui_path = NodePath("../CanvasLayer/InventoryGUI")
+inv_gui_path = NodePath("../../CanvasLayer/InventoryGUI")
+playerPath = NodePath("../../Player")
 dialogue = ExtResource( 8 )
 
 [node name="Table2" parent="Furniture" instance=ExtResource( 7 )]
 position = Vector2( 16, 9.91821e-05 )
-inv_gui_path = NodePath("../CanvasLayer/InventoryGUI")
+inv_gui_path = NodePath("../../CanvasLayer/InventoryGUI")
+playerPath = NodePath("../../Player")
 dialogue = SubResource( 2 )
 
 [node name="BloodSplatters" type="Node2D" parent="."]
@@ -144,27 +156,27 @@ __meta__ = {
 "_edit_lock_": true
 }
 
-[node name="paintings" type="Node2D" parent="."]
+[node name="Paintings" type="Node2D" parent="."]
 
-[node name="1" type="Sprite" parent="paintings"]
+[node name="1" type="Sprite" parent="Paintings"]
 position = Vector2( 80, -16 )
 texture = ExtResource( 18 )
 offset = Vector2( 8, 8 )
 
-[node name="2" type="Sprite" parent="paintings"]
+[node name="2" type="Sprite" parent="Paintings"]
 position = Vector2( 96, -25.25 )
 texture = ExtResource( 17 )
 offset = Vector2( 8, 8 )
 
-[node name="paintings2" type="Node2D" parent="."]
+[node name="Paintings2" type="Node2D" parent="."]
 position = Vector2( 96, -96 )
 
-[node name="1" type="Sprite" parent="paintings2"]
+[node name="1" type="Sprite" parent="Paintings2"]
 position = Vector2( 80, -16 )
 texture = ExtResource( 18 )
 offset = Vector2( 8, 8 )
 
-[node name="2" type="Sprite" parent="paintings2"]
+[node name="2" type="Sprite" parent="Paintings2"]
 position = Vector2( 64, -16 )
 texture = ExtResource( 17 )
 offset = Vector2( 8, 8 )
@@ -176,28 +188,34 @@ visible = false
 position = Vector2( 8, 72 )
 collision_layer = 2
 scene_name = "1F_west_hall"
-inv_gui_path = NodePath("../CanvasLayer/InventoryGUI")
+inventory_gui_path = NodePath("../../CanvasLayer/InventoryGUI")
+player_path = NodePath("../../Player")
 required_look_dir = Vector2( -1, 0 )
 
 [node name="Door3" parent="Doors" instance=ExtResource( 12 )]
 visible = false
 position = Vector2( -24, -88 )
 scene_name = "2F_west_small_room"
-inv_gui_path = NodePath("../CanvasLayer/InventoryGUI")
+locked_dialogue = SubResource( 3 )
+key_name = "asdfgadfsg"
+inventory_gui_path = NodePath("../../CanvasLayer/InventoryGUI")
+player_path = NodePath("../../Player")
 required_look_dir = Vector2( -1, 0 )
 
 [node name="Door" parent="Doors" instance=ExtResource( 12 )]
 visible = false
 position = Vector2( 120.692, 135.864 )
 locked = true
-locked_text = "It's locked. There is a faint light coming from outside"
-inv_gui_path = NodePath("../CanvasLayer/InventoryGUI")
+inventory_gui_path = NodePath("../../CanvasLayer/InventoryGUI")
+player_path = NodePath("../../Player")
 required_look_dir = Vector2( 0, 1 )
 
 [node name="Door2" parent="Doors" instance=ExtResource( 12 )]
 visible = false
 position = Vector2( 135.492, 135.864 )
 locked = true
-locked_text = "It's locked. There is a faint light coming from outside"
-inv_gui_path = NodePath("../CanvasLayer/InventoryGUI")
+inventory_gui_path = NodePath("../../CanvasLayer/InventoryGUI")
+player_path = NodePath("../../Player")
 required_look_dir = Vector2( 0, 1 )
+[connection signal="inventory_closed" from="CanvasLayer/InventoryGUI" to="Player" method="_on_InventoryGUI_inventory_closed"]
+[connection signal="inventory_opened" from="CanvasLayer/InventoryGUI" to="Player" method="_on_InventoryGUI_inventory_opened"]

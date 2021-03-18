@@ -6,3 +6,4 @@ export var globalLight : float = 0.2
 export var bloodstainsMainHall : bool = false
 export var current_static : float = 0.0
 var lantern_fuel : float = -1 
+var lantern_toggled : bool = false
