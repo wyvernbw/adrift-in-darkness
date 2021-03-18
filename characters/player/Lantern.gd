@@ -39,7 +39,8 @@ func _process(delta: float) -> void:
 	#	$SpotLight.visible = false
 		visible = false
 	
-	visible = lantern_toggled
+	if not fuel == 0:
+		visible = lantern_toggled
 
 	# use up some fuel.
 	if lantern_toggled:
@@ -50,6 +51,7 @@ func _process(delta: float) -> void:
 	if fuel == 0 and visible:
 		visible = false
 		DialogueHandler.dialogue = ran_out_of_fuel_resource
+		DialogueHandler.page_index += 1
 		DialogueHandler.add_dialogue_box()
 
 	# darken things up
