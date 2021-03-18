@@ -31,11 +31,13 @@ func _process(delta: float) -> void:
 	GlobalHandler.lantern_fuel = fuel
 	if InventoryHandler.get_item(lantern_item) != -1:
 		if DialogueHandler.get_child_count() == 0:
-			$Light2D.visible = true
-			$SpotLight.visible = true
+		#	$Light2D.visible = true
+		#	$SpotLight.visible = true
+			visible = false
 	else:
-		$Light2D.visible = false
-		$SpotLight.visible = false
+	#	$Light2D.visible = false
+	#	$SpotLight.visible = false
+		visible = false
 	
 	visible = lantern_toggled
 

@@ -28,8 +28,8 @@ var step_sounds : Array = []
 func _ready() -> void:
 	StepTimer.wait_time = walk_step_interval
 	
-	step_sounds.append(load("res://Sounds/steps_wood/wood_step1.wav"))
-	step_sounds.append(load("res://Sounds/steps_wood/wood_step2.wav"))
+	step_sounds.append(load("res://characters/player/wood_step1.wav"))
+	step_sounds.append(load("res://characters/player/wood_step2.wav"))
 	
 	$"/root/DialogueHandler".connect("player_unpause", self, "_on_player_unpaused")
 	$"/root/DialogueHandler".connect("player_pause", self, "_on_player_paused")

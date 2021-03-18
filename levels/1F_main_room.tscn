@@ -20,25 +20,6 @@
 [ext_resource path="res://objects/paintings/painting-1.png" type="Texture" id=18]
 [ext_resource path="res://levels/LightEffects.gd" type="Script" id=19]
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 [sub_resource type="Resource" id=1]
 script = ExtResource( 5 )
 Text = [ "A dusty bookshelf." ]

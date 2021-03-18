@@ -48,10 +48,6 @@
 [ext_resource path="res://characters/player/sprites/player-sprites19.png" type="Texture" id=46]
 [ext_resource path="res://characters/player/flicker.tres" type="Animation" id=47]
 
-
-
-
-
 [sub_resource type="CanvasItemMaterial" id=1]
 
 [sub_resource type="SpriteFrames" id=2]
@@ -66,19 +62,9 @@ animations = [ {
 "name": "idle_down",
 "speed": 5.0
 }, {
-"frames": [ ExtResource( 11 ), ExtResource( 45 ), ExtResource( 23 ), ExtResource( 18 ) ],
-"loop": true,
-"name": "move_left",
-"speed": 5.0
-}, {
 "frames": [ ExtResource( 19 ), ExtResource( 41 ), ExtResource( 17 ), ExtResource( 46 ), ExtResource( 42 ), ExtResource( 44 ), ExtResource( 8 ) ],
 "loop": true,
 "name": "idle_right",
-"speed": 5.0
-}, {
-"frames": [ ExtResource( 33 ), ExtResource( 6 ), ExtResource( 22 ), ExtResource( 28 ) ],
-"loop": true,
-"name": "move_down",
 "speed": 5.0
 }, {
 "frames": [ ExtResource( 25 ), ExtResource( 29 ), ExtResource( 5 ), ExtResource( 14 ), ExtResource( 15 ), ExtResource( 12 ), ExtResource( 26 ) ],
@@ -94,6 +80,16 @@ animations = [ {
 "frames": [ ExtResource( 13 ), ExtResource( 35 ), ExtResource( 36 ), ExtResource( 34 ) ],
 "loop": true,
 "name": "move_right",
+"speed": 5.0
+}, {
+"frames": [ ExtResource( 11 ), ExtResource( 45 ), ExtResource( 23 ), ExtResource( 18 ) ],
+"loop": true,
+"name": "move_left",
+"speed": 5.0
+}, {
+"frames": [ ExtResource( 33 ), ExtResource( 6 ), ExtResource( 22 ), ExtResource( 28 ) ],
+"loop": true,
+"name": "move_down",
 "speed": 5.0
 } ]
 
@@ -179,7 +175,7 @@ texture = ExtResource( 31 )
 material = SubResource( 1 )
 frames = SubResource( 2 )
 animation = "idle_down"
-frame = 2
+frame = 5
 playing = true
 
 [node name="CollisionBox" type="CollisionShape2D" parent="."]

@@ -11,14 +11,6 @@
 [ext_resource path="res://objects/desk/desk.png" type="Texture" id=9]
 [ext_resource path="res://objects/chair2.png" type="Texture" id=10]
 
-
-
-
-
-
-
-
-
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 4, 8 )
 
@@ -40,9 +32,6 @@ tile_data = PoolIntArray( 65536, 6, 0, 65537, 6, 0, 65538, 6, 0, 65539, 6, 0, 65
 position = Vector2( 119.962, 72 )
 texture = ExtResource( 4 )
 
-[node name="HouseF2" parent="." index="3"]
-tile_data = PoolIntArray(  )
-
 [node name="Rug" parent="." index="4"]
 tile_data = PoolIntArray( 458756, 6, 0, 458757, 2, 0, 458758, 2, 0, 458759, 2, 0, 458760, 2, 0, 458761, 2, 0, 458762, 7, 0, 524292, 5, 0, 524293, 0, 0, 524294, 0, 0, 524295, 0, 0, 524296, 0, 0, 524297, 0, 0, 524298, 3, 0, 589828, 5, 0, 589829, 0, 0, 589830, 0, 0, 589831, 0, 0, 589832, 0, 0, 589833, 0, 0, 589834, 3, 0, 655364, 9, 0, 655365, 4, 0, 655366, 4, 0, 655367, 4, 0, 655368, 4, 0, 655369, 4, 0, 655370, 8, 0 )
 
@@ -57,7 +46,6 @@ position = Vector2( 114.162, 160 )
 rotation = -1.5708
 script = ExtResource( 1 )
 inv_gui_path = NodePath("../CanvasLayer/InventoryGUI")
-playerPath = NodePath("../Player")
 
 [node name="CollisionBox" type="CollisionShape2D" parent="Chair" index="0"]
 position = Vector2( 8, 4.677 )
@@ -85,7 +73,6 @@ shape = SubResource( 2 )
 position = Vector2( 119.962, 144 )
 script = ExtResource( 1 )
 inv_gui_path = NodePath("../CanvasLayer/InventoryGUI")
-playerPath = NodePath("../Player")
 
 [node name="CollisionBox" type="CollisionShape2D" parent="Object" index="0"]
 position = Vector2( 0, -8.00003 )
@@ -109,22 +96,18 @@ shape = SubResource( 2 )
 [node name="bookshelf" parent="." index="10" instance=ExtResource( 8 )]
 position = Vector2( 55.6237, 80 )
 inv_gui_path = NodePath("../CanvasLayer/InventoryGUI")
-playerPath = NodePath("../Player")
 
 [node name="bookshelf2" parent="." index="11" instance=ExtResource( 8 )]
 position = Vector2( 86.7644, 80 )
 inv_gui_path = NodePath("../CanvasLayer/InventoryGUI")
-playerPath = NodePath("../Player")
 
 [node name="bookshelf3" parent="." index="12" instance=ExtResource( 8 )]
 position = Vector2( 136, 80 )
 inv_gui_path = NodePath("../CanvasLayer/InventoryGUI")
-playerPath = NodePath("../Player")
 
 [node name="Table" parent="." index="13" instance=ExtResource( 6 )]
 position = Vector2( 170.962, 96 )
 inv_gui_path = NodePath("../CanvasLayer/InventoryGUI")
-playerPath = NodePath("../Player")
 
 [node name="painting-2" type="Sprite" parent="." index="14"]
 position = Vector2( 177, 64 )

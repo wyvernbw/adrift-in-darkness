@@ -8,10 +8,6 @@
 [ext_resource path="res://objects/door/door_opening.wav" type="AudioStream" id=6]
 [ext_resource path="res://objects/door/door_unlocked.wav" type="AudioStream" id=7]
 
-
-
-
-
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 8, 4 )
 
@@ -60,6 +56,10 @@ volume_db = -16.0
 position = Vector2( 0, 4 )
 scale = Vector2( 1, 0.75 )
 texture = ExtResource( 4 )
+
+[node name="InteractDelay" type="Timer" parent="."]
+one_shot = true
 [connection signal="body_entered" from="." to="." method="_on_Door_body_entered"]
 [connection signal="body_exited" from="." to="." method="_on_Door_body_exited"]
 [connection signal="finished" from="Sounds/Open" to="." method="_on_Open_finished"]
+[connection signal="timeout" from="InteractDelay" to="." method="_on_InteractDelay_timeout"]

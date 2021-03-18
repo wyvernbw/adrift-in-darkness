@@ -9,6 +9,7 @@ I've rewritten this script to have all the dialogue playing happen on the Dialog
 signal player_unpause
 signal player_pause
 signal resource_changed
+signal dialogue_box_removed
 
 const DIALOGUE_BOX_SCENE = preload("res://gui/dialogue_box/DialogueBox.tscn")
 const BRANCHING_DIALOGUE_BOX_SCENE = preload("res://gui/branching_dialogue_box/BranchingDialogueBox.tscn")
@@ -65,6 +66,7 @@ func remove_dialogue_box() -> void:
 
 	if get_node_or_null("DialogueBox"):
 		get_node("DialogueBox").free()
+		emit_signal("dialogue_box_removed")
 
 func add_dialogue_box() -> void:
 	"""

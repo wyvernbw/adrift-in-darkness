@@ -11,7 +11,7 @@ const INTERACT_DELAY : float = 0.050 # 50 ms
 onready var DialogueHandler = $"/root/DialogueHandler"
 onready var InventoryHandler = $"/root/InventoryHandler"
 onready var inv_gui
-onready var playerNode
+onready var player_node
 
 var delay : float = 0
 var delay_active : bool = false
@@ -22,7 +22,7 @@ var SAVE_KEY
 var interact 
 
 export var inv_gui_path: NodePath
-export var playerPath: NodePath = "../Player"
+export var playerPath: NodePath
 export var dialogue: Resource
 
 
@@ -31,7 +31,7 @@ func _ready() -> void:
 	SAVE_KEY = self.get_path()
 	add_to_group("save")
 	inv_gui = get_node(inv_gui_path)
-	playerNode = get_node(playerPath)
+	player_node = get_node(playerPath)
 
 
 func _input(event : InputEvent) -> void:
@@ -44,7 +44,7 @@ func _input(event : InputEvent) -> void:
 
 func _process(delta) -> void:
 	action()
-	if playerNode.look_raycast_colliding:
+	if player_node.look_raycast_colliding:
 		player_is_looking = true
 	else:
 		player_is_looking = false

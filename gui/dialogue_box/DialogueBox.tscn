@@ -4,8 +4,6 @@
 [ext_resource path="res://gui/dialogue_box/DialogueBox.tres" type="StyleBox" id=2]
 [ext_resource path="res://fonts/LinLibertine_R.ttf" type="DynamicFontData" id=3]
 
-
-
 [sub_resource type="DynamicFont" id=1]
 size = 14
 font_data = ExtResource( 3 )
