@@ -20,7 +20,7 @@ func _ready() -> void:
 
 func _send_notification(item: Item) -> void:
 	var item_notification = notification.instance()
-	get_node("../Game/notifications").add_child(item_notification)
+	get_node("../Game/Notifications").add_child(item_notification)
 	item_notification.item = item
 
 

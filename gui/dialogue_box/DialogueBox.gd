@@ -1,4 +1,5 @@
 extends CanvasLayer
+tool
 
 onready var TypingTimer = $TypingTimer
 onready var label = get_node("Panel/Label")

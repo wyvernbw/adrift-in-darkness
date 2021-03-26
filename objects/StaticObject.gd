@@ -39,6 +39,8 @@ func _input(event : InputEvent) -> void:
 		return
 	if not player_is_colliding:
 		return
+	if inv_gui.visible:
+		return
 	if event.is_action_pressed("interact") and not DialogueHandler.dialogue_open:
 		DialogueHandler.set_dialogue(dialogue)	
 
