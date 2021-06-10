@@ -13,6 +13,7 @@ signal dialogue_box_removed
 
 const DIALOGUE_BOX_SCENE = preload("res://gui/dialogue_box/DialogueBox.tscn")
 const BRANCHING_DIALOGUE_BOX_SCENE = preload("res://gui/branching_dialogue_box/BranchingDialogueBox.tscn")
+const READ_BOX_SCENE = preload("res://gui/read_box/ReadBox.tscn")
 
 var dialogue_open: bool = false
 var dialogue_branching: bool = false
@@ -29,6 +30,9 @@ func _input(event : InputEvent) -> void:
 		if dialogue_open == false:
 			return
 		if dialogue_branching == true:
+			return
+		if get_node_or_null("ReadBox"):
+			remove_dialogue_box()
 			return
 		page_index += 1
 		print("next page [" + str(page_index) + "]")
@@ -67,15 +71,20 @@ func remove_dialogue_box() -> void:
 	if get_node_or_null("DialogueBox"):
 		get_node("DialogueBox").free()
 		emit_signal("dialogue_box_removed")
+	if get_node_or_null("ReadBox"):
+		get_node("ReadBox").free()
+		emit_signal("player_unpause")
 
 func add_dialogue_box() -> void:
 	"""
 	Adds a dialogue box at the current page index. It works for regular dialogue boxes as well as branching ones.
+	EDIT: Will now add a big reading box if the "read_box_text" parameter of the dialogue resource is not null.
 	If the dialogue is over or the resource is empty, unpause the player.
 	"""
 
+	print("read text is empty: " + str(dialogue.read_box_text.empty()))
 	if page_index < dialogue.Text.size():
-		if page_index == -1:
+		if page_index == -1 and dialogue.read_box_text.empty():
 			emit_signal("player_unpause")
 			return
 		var dialogue_box = DIALOGUE_BOX_SCENE.instance()
@@ -84,7 +93,15 @@ func add_dialogue_box() -> void:
 		label.bbcode_text = "[center]" + label.bbcode_text + "[/center]"
 		add_child(dialogue_box)
 		return
-	if dialogue.Answers.empty() == false:
+
+	if not dialogue.read_box_text.empty():
+		print("read box now")
+		var read_box = READ_BOX_SCENE.instance()
+		read_box.get_node("Text").text = dialogue.read_box_text
+		add_child(read_box)
+		return
+
+	if not dialogue.Answers.empty() == true:
 		var b_dialogue_box = BRANCHING_DIALOGUE_BOX_SCENE.instance()
 		var answer_keys = dialogue.Answers.keys()
 

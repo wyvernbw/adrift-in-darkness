@@ -52,6 +52,8 @@ func _process(delta: float) -> void:
 	# ran out of fuel.
 	if fuel == 0 and visible:
 		visible = false
+		if DialogueHandler.get_child_count() > 0:
+			return
 		DialogueHandler.dialogue = ran_out_of_fuel_resource
 		DialogueHandler.page_index += 1
 		DialogueHandler.add_dialogue_box()

@@ -57,14 +57,19 @@ animations = [ {
 "name": "idle_up",
 "speed": 5.0
 }, {
-"frames": [ ExtResource( 19 ), ExtResource( 41 ), ExtResource( 17 ), ExtResource( 46 ), ExtResource( 42 ), ExtResource( 44 ), ExtResource( 8 ) ],
-"loop": true,
-"name": "idle_right",
-"speed": 5.0
-}, {
 "frames": [ ExtResource( 11 ), ExtResource( 45 ), ExtResource( 23 ), ExtResource( 18 ) ],
 "loop": true,
 "name": "move_left",
+"speed": 5.0
+}, {
+"frames": [ ExtResource( 33 ), ExtResource( 6 ), ExtResource( 22 ), ExtResource( 28 ) ],
+"loop": true,
+"name": "move_down",
+"speed": 5.0
+}, {
+"frames": [ ExtResource( 19 ), ExtResource( 41 ), ExtResource( 17 ), ExtResource( 46 ), ExtResource( 42 ), ExtResource( 44 ), ExtResource( 8 ) ],
+"loop": true,
+"name": "idle_right",
 "speed": 5.0
 }, {
 "frames": [ ExtResource( 10 ), ExtResource( 40 ), ExtResource( 32 ), ExtResource( 27 ) ],
@@ -72,24 +77,19 @@ animations = [ {
 "name": "move_up",
 "speed": 5.0
 }, {
-"frames": [ ExtResource( 13 ), ExtResource( 35 ), ExtResource( 36 ), ExtResource( 34 ) ],
-"loop": true,
-"name": "move_right",
-"speed": 5.0
-}, {
 "frames": [ ExtResource( 21 ), ExtResource( 4 ), ExtResource( 38 ), ExtResource( 9 ), ExtResource( 16 ), ExtResource( 39 ), ExtResource( 24 ) ],
 "loop": true,
 "name": "idle_down",
 "speed": 5.0
 }, {
+"frames": [ ExtResource( 13 ), ExtResource( 35 ), ExtResource( 36 ), ExtResource( 34 ) ],
+"loop": true,
+"name": "move_right",
+"speed": 5.0
+}, {
 "frames": [ ExtResource( 25 ), ExtResource( 29 ), ExtResource( 5 ), ExtResource( 14 ), ExtResource( 15 ), ExtResource( 12 ), ExtResource( 26 ) ],
 "loop": true,
 "name": "idle_left",
-"speed": 5.0
-}, {
-"frames": [ ExtResource( 33 ), ExtResource( 6 ), ExtResource( 22 ), ExtResource( 28 ) ],
-"loop": true,
-"name": "move_down",
 "speed": 5.0
 } ]
 
@@ -175,6 +175,7 @@ texture = ExtResource( 31 )
 material = SubResource( 1 )
 frames = SubResource( 2 )
 animation = "idle_down"
+frame = 1
 playing = true
 
 [node name="CollisionBox" type="CollisionShape2D" parent="."]
@@ -210,7 +211,7 @@ scale = Vector2( 1.25, 1.11429 )
 texture = ExtResource( 43 )
 offset = Vector2( -287.2, -120.367 )
 texture_scale = 1.25
-color = Color( 0.905882, 0.643137, 0.192157, 1 )
+color = Color( 0.905882, 0.458824, 0.192157, 1 )
 energy = 0.64
 range_item_cull_mask = 3
 shadow_enabled = true
@@ -227,7 +228,7 @@ position = Vector2( -1.14441e-05, 3.8147e-06 )
 scale = Vector2( 0.551843, 0.551843 )
 texture = ExtResource( 30 )
 texture_scale = 3.7
-color = Color( 1, 0.972549, 0.666667, 1 )
+color = Color( 1, 0.886275, 0.666667, 1 )
 energy = 0.64
 shadow_enabled = true
 shadow_filter = 3
@@ -256,6 +257,9 @@ root_node = NodePath("../StaticAnim")
 anims/static = SubResource( 7 )
 
 [node name="Sounds" type="Node2D" parent="."]
+__meta__ = {
+"_edit_lock_": true
+}
 
 [node name="Move" type="AudioStreamPlayer2D" parent="Sounds"]
 position = Vector2( 0, 12 )

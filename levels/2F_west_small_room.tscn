@@ -1,8 +1,9 @@
-[gd_scene load_steps=17 format=2]
+[gd_scene load_steps=16 format=2]
 
 [ext_resource path="res://levels/LightEffects.gd" type="Script" id=1]
 [ext_resource path="res://classes/DialogueResource.gd" type="Script" id=2]
 [ext_resource path="res://characters/player/Player.tscn" type="PackedScene" id=3]
+[ext_resource path="res://objects/table/2F_west_small_room_note.tres" type="Resource" id=4]
 [ext_resource path="res://objects/door/Door.tscn" type="PackedScene" id=5]
 [ext_resource path="res://objects/drawer/Drawer.tscn" type="PackedScene" id=6]
 [ext_resource path="res://levels/interfaces/LightMask2D.tscn" type="PackedScene" id=7]
@@ -11,30 +12,19 @@
 [ext_resource path="res://levels/interfaces/Light-Effects.tscn" type="PackedScene" id=10]
 [ext_resource path="res://tilesets/house/ledge/ledge.tres" type="TileSet" id=11]
 [ext_resource path="res://tilesets/house/paper.png" type="Texture" id=12]
-[ext_resource path="res://items/silver_key.png" type="Texture" id=13]
 [ext_resource path="res://tilesets/house/rug/rug1.tres" type="TileSet" id=16]
 [ext_resource path="res://tilesets/house/house1.tres" type="TileSet" id=17]
 
 [sub_resource type="Resource" id=1]
 script = ExtResource( 2 )
-Text = [ "you find a note that reads:" ]
+Text = [ "You find a note that reads:" ]
 Answers = {
 
 }
 item_name = ""
 item_quantity = 0
 item_type = 0
-
-[sub_resource type="Resource" id=2]
-script = ExtResource( 2 )
-Text = [ "You open the drawer and find a silver key." ]
-Answers = {
-
-}
-item_name = "Silver Key"
-item_texture = ExtResource( 13 )
-item_quantity = 1
-item_type = 0
+read_box_text = "lolol big ass note"
 
 [node name="2F_west_small_room" type="Node2D"]
 
@@ -90,7 +80,6 @@ cell_size = Vector2( 16, 16 )
 format = 1
 
 [node name="CanvasModulate" parent="." instance=ExtResource( 10 )]
-visible = false
 color = Color( 0.0627451, 0.0627451, 0.0627451, 1 )
 script = ExtResource( 1 )
 
@@ -137,7 +126,7 @@ collision_layer = 12
 collision_mask = 3
 inv_gui_path = NodePath("../../2F_west_small_room/CanvasLayer/InventoryGUI")
 playerPath = NodePath("../Player")
-dialogue = SubResource( 2 )
+dialogue = ExtResource( 4 )
 
 [node name="Door" parent="." instance=ExtResource( 5 )]
 visible = false

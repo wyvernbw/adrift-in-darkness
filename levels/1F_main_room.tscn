@@ -1,4 +1,4 @@
-[gd_scene load_steps=23 format=2]
+[gd_scene load_steps=24 format=2]
 
 [ext_resource path="res://tilesets/house/house1.tres" type="TileSet" id=1]
 [ext_resource path="res://characters/player/Player.tscn" type="PackedScene" id=2]
@@ -29,6 +29,7 @@ Answers = {
 item_name = ""
 item_quantity = 0
 item_type = 0
+read_box_text = ""
 
 [sub_resource type="Resource" id=2]
 script = ExtResource( 5 )
@@ -39,8 +40,20 @@ Answers = {
 item_name = ""
 item_quantity = 0
 item_type = 0
+read_box_text = ""
 
 [sub_resource type="Resource" id=3]
+script = ExtResource( 5 )
+Text = [ "The door is locked." ]
+Answers = {
+
+}
+item_name = ""
+item_quantity = 0
+item_type = 0
+read_box_text = ""
+
+[sub_resource type="Resource" id=4]
 script = ExtResource( 5 )
 Text = [ "wooo locked" ]
 Answers = {
@@ -49,6 +62,7 @@ Answers = {
 item_name = ""
 item_quantity = 0
 item_type = 0
+read_box_text = ""
 
 [node name="1FMainRoom" type="Node2D"]
 __meta__ = {
@@ -103,7 +117,6 @@ script = ExtResource( 19 )
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 
 [node name="LightMask2D" parent="CanvasLayer" instance=ExtResource( 3 )]
-visible = false
 scale = Vector2( 1, 1.25 )
 
 [node name="InventoryGUI" parent="CanvasLayer" instance=ExtResource( 9 )]
@@ -188,6 +201,10 @@ visible = false
 position = Vector2( 8, 72 )
 collision_layer = 2
 scene_name = "1F_west_hall"
+locked = true
+unlock_on_interact = true
+locked_dialogue = SubResource( 3 )
+key_name = "Silver Key"
 inventory_gui_path = NodePath("../../CanvasLayer/InventoryGUI")
 player_path = NodePath("../../Player")
 required_look_dir = Vector2( -1, 0 )
@@ -196,7 +213,7 @@ required_look_dir = Vector2( -1, 0 )
 visible = false
 position = Vector2( -24, -88 )
 scene_name = "2F_west_small_room"
-locked_dialogue = SubResource( 3 )
+locked_dialogue = SubResource( 4 )
 key_name = "asdfgadfsg"
 inventory_gui_path = NodePath("../../CanvasLayer/InventoryGUI")
 player_path = NodePath("../../Player")

@@ -12,6 +12,7 @@ Answers = {
 item_name = ""
 item_quantity = 0
 item_type = 0
+read_box_text = ""
 
 [sub_resource type="Resource" id=2]
 script = ExtResource( 1 )
@@ -23,6 +24,7 @@ item_name = "Lantern"
 item_texture = ExtResource( 2 )
 item_quantity = 1
 item_type = 0
+read_box_text = ""
 
 [resource]
 script = ExtResource( 1 )
@@ -34,3 +36,4 @@ Answers = {
 item_name = ""
 item_quantity = -1
 item_type = 0
+read_box_text = ""
