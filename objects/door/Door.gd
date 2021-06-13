@@ -66,6 +66,7 @@ func _process(_delta : float) -> void:
 			if InventoryHandler.get_item(required_item) != -1:
 				locked = false
 				$Sounds/Unlocked.play()
+				can_interact = true
 				return
 			else:
 				$Sounds/Locked.play()
@@ -96,7 +97,7 @@ func _on_Open_finished():
 	$CanvasLayer/Sprite/AnimationPlayer.play("fade out")
 
 
-func _on_InteractDelay_timeout():
+func _on_InteractDelay_timeout() -> void:
 	can_interact = true
 
 func start_delay() -> void:

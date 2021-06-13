@@ -201,7 +201,6 @@ position = Vector2( 8, 72 )
 collision_layer = 2
 scene_name = "1F_west_hall"
 locked = true
-unlock_on_interact = true
 locked_dialogue = SubResource( 3 )
 key_name = "Silver Key"
 inventory_gui_path = NodePath("../../CanvasLayer/InventoryGUI")
