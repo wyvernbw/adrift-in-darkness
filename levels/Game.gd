@@ -18,11 +18,18 @@ func switch_scene(scene_name: String) -> void:
 		return
 	print(self.get_children())
 	var c = self.get_children()
-	var prev_scene = c[1].get_name()
+	var prev_scene : String
+	var prev_scene_index : int
+	for i in c.size():
+#		if c[i].get_name().left(1) == "1" or c[i].get_name().left(1) == "2":
+		if c[i] is Node2D:
+			prev_scene = c[i].get_name()
+			prev_scene_index = i
+			continue
 	print(prev_scene)
-	levels[prev_scene] = c[1]
-	remove_child(c[1])
+	levels[prev_scene] = c[prev_scene_index]
 	add_child(levels[scene_name])
+	remove_child(c[prev_scene_index])
 	current_scene = scene_name
 
 

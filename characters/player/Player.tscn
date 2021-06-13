@@ -176,7 +176,7 @@ texture = ExtResource( 31 )
 material = SubResource( 1 )
 frames = SubResource( 2 )
 animation = "idle_down"
-frame = 1
+frame = 2
 playing = true
 
 [node name="CollisionBox" type="CollisionShape2D" parent="."]

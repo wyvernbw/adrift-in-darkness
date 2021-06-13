@@ -1,6 +1,6 @@
 extends Node2D
 
-const MAX_FUEL : int = 300
+const MAX_FUEL : int = 9000
 const SAVE_KEY : String = "Lantern"
 
 onready var target = get_parent()
@@ -10,7 +10,7 @@ export var ran_out_of_fuel_resource : Resource
 var lantern_item: Item = Item.new("Lantern", 1, null, Item.ITEM_TYPES.KEY_ITEM)
 var lantern_toggled : bool = false
 var fuel_loss_per_second : int = 30 
-var fuel : float = 300
+var fuel : float = MAX_FUEL
 var light_loss_per_second : float = 0.025
 var static_per_second : float = 0.0025
 var max_static : float = 0.5

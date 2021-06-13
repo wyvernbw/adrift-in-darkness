@@ -64,7 +64,7 @@ item_quantity = 0
 item_type = 0
 read_box_text = ""
 
-[node name="1FMainRoom" type="Node2D"]
+[node name="1F_main_room" type="Node2D"]
 __meta__ = {
 "_edit_lock_": true
 }
@@ -120,7 +120,7 @@ scale = Vector2( 1, 1.25 )
 
 [node name="InventoryGUI" parent="CanvasLayer" instance=ExtResource( 9 )]
 visible = false
-player_path = NodePath("../../../1FMainRoom/Player")
+player_path = NodePath("../../../1F_main_room/Player")
 
 [node name="Staircase" parent="." instance=ExtResource( 10 )]
 position = Vector2( 128, 3.29613 )
@@ -131,8 +131,8 @@ position = Vector2( 8, 71.864 )
 
 [node name="Bookshelf" parent="Furniture" instance=ExtResource( 13 )]
 position = Vector2( 160, -71.8641 )
-inv_gui_path = NodePath("../../../1FMainRoom/CanvasLayer/InventoryGUI")
-playerPath = NodePath("../../../1FMainRoom/Player")
+inv_gui_path = NodePath("../../CanvasLayer/InventoryGUI")
+playerPath = NodePath("../../Player")
 dialogue = SubResource( 1 )
 
 [node name="Table" parent="Furniture" instance=ExtResource( 7 )]
