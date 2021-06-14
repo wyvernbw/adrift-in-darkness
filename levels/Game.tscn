@@ -4,7 +4,7 @@
 [ext_resource path="res://levels/1F_main_room.tscn" type="PackedScene" id=2]
 
 [sub_resource type="Gradient" id=1]
-colors = PoolColorArray( 0.0448608, 0.0663329, 0.117188, 1, 1, 0.887695, 0.84375, 1 )
+colors = PoolColorArray( 0.00640869, 0.0369768, 0.109375, 1, 1, 0.887695, 0.84375, 1 )
 
 [sub_resource type="GradientTexture" id=2]
 gradient = SubResource( 1 )

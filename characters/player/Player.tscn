@@ -176,7 +176,6 @@ texture = ExtResource( 31 )
 material = SubResource( 1 )
 frames = SubResource( 2 )
 animation = "idle_down"
-frame = 6
 playing = true
 
 [node name="CollisionBox" type="CollisionShape2D" parent="."]
@@ -213,7 +212,7 @@ texture = ExtResource( 43 )
 offset = Vector2( -287.2, -120.367 )
 texture_scale = 1.25
 color = Color( 0.905882, 0.458824, 0.192157, 1 )
-energy = 0.64
+energy = 0.22
 range_item_cull_mask = 3
 shadow_enabled = true
 shadow_gradient_length = 0.3
@@ -228,7 +227,7 @@ anims/flicker = ExtResource( 47 )
 position = Vector2( -1.14441e-05, 3.8147e-06 )
 scale = Vector2( 0.551843, 0.551843 )
 texture = ExtResource( 30 )
-texture_scale = 3.7
+texture_scale = 2.93
 color = Color( 1, 0.886275, 0.666667, 1 )
 energy = 0.64
 shadow_enabled = true
