@@ -62,16 +62,6 @@ animations = [ {
 "name": "idle_right",
 "speed": 5.0
 }, {
-"frames": [ ExtResource( 11 ), ExtResource( 45 ), ExtResource( 23 ), ExtResource( 18 ) ],
-"loop": true,
-"name": "move_left",
-"speed": 5.0
-}, {
-"frames": [ ExtResource( 33 ), ExtResource( 6 ), ExtResource( 22 ), ExtResource( 28 ) ],
-"loop": true,
-"name": "move_down",
-"speed": 5.0
-}, {
 "frames": [ ExtResource( 10 ), ExtResource( 40 ), ExtResource( 32 ), ExtResource( 27 ) ],
 "loop": true,
 "name": "move_up",
@@ -82,14 +72,24 @@ animations = [ {
 "name": "move_right",
 "speed": 5.0
 }, {
+"frames": [ ExtResource( 25 ), ExtResource( 29 ), ExtResource( 5 ), ExtResource( 14 ), ExtResource( 15 ), ExtResource( 12 ), ExtResource( 26 ) ],
+"loop": true,
+"name": "idle_left",
+"speed": 5.0
+}, {
+"frames": [ ExtResource( 33 ), ExtResource( 6 ), ExtResource( 22 ), ExtResource( 28 ) ],
+"loop": true,
+"name": "move_down",
+"speed": 5.0
+}, {
 "frames": [ ExtResource( 21 ), ExtResource( 4 ), ExtResource( 38 ), ExtResource( 9 ), ExtResource( 16 ), ExtResource( 39 ), ExtResource( 24 ) ],
 "loop": true,
 "name": "idle_down",
 "speed": 5.0
 }, {
-"frames": [ ExtResource( 25 ), ExtResource( 29 ), ExtResource( 5 ), ExtResource( 14 ), ExtResource( 15 ), ExtResource( 12 ), ExtResource( 26 ) ],
+"frames": [ ExtResource( 11 ), ExtResource( 45 ), ExtResource( 23 ), ExtResource( 18 ) ],
 "loop": true,
-"name": "idle_left",
+"name": "move_left",
 "speed": 5.0
 } ]
 
@@ -176,7 +176,7 @@ texture = ExtResource( 31 )
 material = SubResource( 1 )
 frames = SubResource( 2 )
 animation = "idle_down"
-frame = 2
+frame = 6
 playing = true
 
 [node name="CollisionBox" type="CollisionShape2D" parent="."]
