@@ -10,7 +10,7 @@ var quit_button_selected_text = "- Quit -"
 
 var selected_button : int = 0
 
-func _process(delta):
+func _process(_delta):
 	if Input.is_action_just_pressed("ui_down"):
 		selected_button = min(selected_button + 1, BUTTON_COUNT)
 	if Input.is_action_just_pressed("ui_up"):
@@ -27,6 +27,6 @@ func _process(delta):
 	if Input.is_action_just_pressed("ui_accept"):
 		match selected_button:
 			0: 
-				get_tree().change_scene("res://Scenes/Game.tscn")
+				get_tree().change_scene("res://levels/game.tscn")
 			1: 
 				get_tree().quit()

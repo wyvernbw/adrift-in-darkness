@@ -46,6 +46,7 @@ position = Vector2( 114.162, 160 )
 rotation = -1.5708
 script = ExtResource( 1 )
 inv_gui_path = NodePath("../CanvasLayer/InventoryGUI")
+playerPath = NodePath("../Player")
 
 [node name="CollisionBox" type="CollisionShape2D" parent="Chair" index="0"]
 position = Vector2( 8, 4.677 )
@@ -73,6 +74,7 @@ shape = SubResource( 2 )
 position = Vector2( 119.962, 144 )
 script = ExtResource( 1 )
 inv_gui_path = NodePath("../CanvasLayer/InventoryGUI")
+playerPath = NodePath("../Player")
 
 [node name="CollisionBox" type="CollisionShape2D" parent="Object" index="0"]
 position = Vector2( 0, -8.00003 )
@@ -96,18 +98,22 @@ shape = SubResource( 2 )
 [node name="bookshelf" parent="." index="10" instance=ExtResource( 8 )]
 position = Vector2( 55.6237, 80 )
 inv_gui_path = NodePath("../CanvasLayer/InventoryGUI")
+playerPath = NodePath("../Player")
 
 [node name="bookshelf2" parent="." index="11" instance=ExtResource( 8 )]
 position = Vector2( 86.7644, 80 )
 inv_gui_path = NodePath("../CanvasLayer/InventoryGUI")
+playerPath = NodePath("../Player")
 
 [node name="bookshelf3" parent="." index="12" instance=ExtResource( 8 )]
 position = Vector2( 136, 80 )
 inv_gui_path = NodePath("../CanvasLayer/InventoryGUI")
+playerPath = NodePath("../Player")
 
 [node name="Table" parent="." index="13" instance=ExtResource( 6 )]
 position = Vector2( 170.962, 96 )
 inv_gui_path = NodePath("../CanvasLayer/InventoryGUI")
+playerPath = NodePath("../Player")
 
 [node name="painting-2" type="Sprite" parent="." index="14"]
 position = Vector2( 177, 64 )
@@ -121,7 +127,8 @@ texture = ExtResource( 2 )
 visible = false
 position = Vector2( 119.962, 208 )
 scene_name = "1F_west_main_hall"
-inv_gui_path = NodePath("../CanvasLayer/InventoryGUI")
+inventory_gui_path = NodePath("../CanvasLayer/InventoryGUI")
+player_path = NodePath("../Player")
 required_look_dir = Vector2( 0, 1 )
 [connection signal="body_entered" from="Chair/InteractionArea" to="Chair" method="_on_InteractionArea_body_entered"]
 [connection signal="body_exited" from="Chair/InteractionArea" to="Chair" method="_on_InteractionArea_body_exited"]
