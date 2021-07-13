@@ -27,7 +27,7 @@ var step_sounds : Array = []
 
 func _ready() -> void:
 	StepTimer.wait_time = walk_step_interval
-	
+
 	step_sounds.append(load("res://characters/player/wood_step1.wav"))
 	step_sounds.append(load("res://characters/player/wood_step2.wav"))
 	

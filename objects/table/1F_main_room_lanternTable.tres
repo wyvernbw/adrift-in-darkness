@@ -7,7 +7,6 @@
 script = ExtResource( 1 )
 Text = [  ]
 Answers = {
-
 }
 item_name = ""
 item_quantity = 0
@@ -18,7 +17,6 @@ read_box_text = ""
 script = ExtResource( 1 )
 Text = [ "You found a lantern. There is still some fuel inside." ]
 Answers = {
-
 }
 item_name = "Lantern"
 item_texture = ExtResource( 2 )

@@ -3,8 +3,6 @@
 [ext_resource path="res://objects/door/door_unlocked.wav" type="AudioStream" id=1]
 [ext_resource path="res://objects/sound_area/SoundArea.gd" type="Script" id=2]
 
-
-
 [node name="SoundArea" type="Area2D"]
 script = ExtResource( 2 )
 
@@ -13,4 +11,8 @@ script = ExtResource( 2 )
 [node name="Sound" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource( 1 )
 attenuation = 0.554785
+
+[node name="PauseTimer" type="Timer" parent="."]
+one_shot = true
 [connection signal="body_entered" from="." to="." method="_on_SoundArea_body_entered"]
+[connection signal="timeout" from="PauseTimer" to="." method="_on_PauseTimer_timeout"]
