@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/bathroom_kitchen.png-229709a3e41370fa390ef31757ea38c2.stex"
+path="res://.import/player_lost_left_arm.png-5445ad6b4fd12e3ba8842a7904179c3b.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://tilesets/house/bathroom_kitchen.png"
-dest_files=[ "res://.import/bathroom_kitchen.png-229709a3e41370fa390ef31757ea38c2.stex" ]
+source_file="res://characters/player/sprites/player_lost_left_arm.png"
+dest_files=[ "res://.import/player_lost_left_arm.png-5445ad6b4fd12e3ba8842a7904179c3b.stex" ]
 
 [params]
 

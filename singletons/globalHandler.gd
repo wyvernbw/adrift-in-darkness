@@ -1,5 +1,6 @@
 extends Node
 
+var left_arm : bool = true
 var do_static_effect : bool = false
 export var min_global_light : float = 0.010
 export var globalLight : float = 0.02

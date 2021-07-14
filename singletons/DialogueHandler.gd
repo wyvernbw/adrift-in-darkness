@@ -15,6 +15,7 @@ const DIALOGUE_BOX_SCENE = preload("res://gui/dialogue_box/DialogueBox.tscn")
 const BRANCHING_DIALOGUE_BOX_SCENE = preload("res://gui/branching_dialogue_box/BranchingDialogueBox.tscn")
 const READ_BOX_SCENE = preload("res://gui/read_box/ReadBox.tscn")
 
+var dialogue_branch : int = 0
 var dialogue_open: bool = false
 var dialogue_branching: bool = false
 var page_index: int = -1
@@ -117,6 +118,7 @@ func add_dialogue_box() -> void:
 func _on_BranchingDialogueBox_option_pressed(branch : int) -> void:
 	get_node("BranchingDialogueBox").queue_free()
 	var keys = dialogue.Answers.keys()
+	dialogue_branch = branch
 	self.dialogue = dialogue.Answers[keys[branch]]
 	dialogue_branching = false
 	page_index += 1

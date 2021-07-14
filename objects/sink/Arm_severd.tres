@@ -1,0 +1,13 @@
+[gd_resource type="Resource" load_steps=2 format=2]
+
+[ext_resource path="res://classes/DialogueResource.gd" type="Script" id=1]
+
+[resource]
+script = ExtResource( 1 )
+Text = [ "Your arm has been severd." ]
+Answers = {
+}
+item_name = ""
+item_quantity = 0
+item_type = 0
+read_box_text = ""

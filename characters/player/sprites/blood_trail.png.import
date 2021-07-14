@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/bathroom_kitchen.png-229709a3e41370fa390ef31757ea38c2.stex"
+path="res://.import/blood_trail.png-991ae314f3666c96d0e31379c130e048.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://tilesets/house/bathroom_kitchen.png"
-dest_files=[ "res://.import/bathroom_kitchen.png-229709a3e41370fa390ef31757ea38c2.stex" ]
+source_file="res://characters/player/sprites/blood_trail.png"
+dest_files=[ "res://.import/blood_trail.png-991ae314f3666c96d0e31379c130e048.stex" ]
 
 [params]
 
@@ -20,7 +20,7 @@ compress/hdr_mode=0
 compress/bptc_ldr=0
 compress/normal_map=0
 flags/repeat=0
-flags/filter=false
+flags/filter=true
 flags/mipmaps=false
 flags/anisotropic=false
 flags/srgb=2
@@ -30,5 +30,5 @@ process/HDR_as_SRGB=false
 process/invert_color=false
 stream=false
 size_limit=0
-detect_3d=false
+detect_3d=true
 svg/scale=1.0

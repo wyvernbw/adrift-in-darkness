@@ -1,0 +1,35 @@
+[gd_resource type="Resource" load_steps=4 format=2]
+
+[ext_resource path="res://classes/DialogueResource.gd" type="Script" id=1]
+
+[sub_resource type="Resource" id=22]
+script = ExtResource( 1 )
+Text = [ "page 1 example" ]
+Answers = {
+}
+item_name = ""
+item_quantity = 0
+item_type = 0
+read_box_text = ""
+
+[sub_resource type="Resource" id=19]
+script = ExtResource( 1 )
+Text = [ "You reach down the drain and grab something made out of metal.", "Something is grabbing your hand." ]
+Answers = {
+}
+item_name = ""
+item_quantity = 0
+item_type = 0
+read_box_text = ""
+
+[resource]
+script = ExtResource( 1 )
+Text = [ "You see something shiny down the drain." ]
+Answers = {
+"Leave": SubResource( 22 ),
+"Reach for it": SubResource( 19 )
+}
+item_name = ""
+item_quantity = 0
+item_type = 0
+read_box_text = ""

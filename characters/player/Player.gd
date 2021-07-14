@@ -24,6 +24,7 @@ var staggered : bool = false
 var canMove : bool = true
 var canLook : bool = true
 var step_sounds : Array = []
+var anim_suffix : String = ""
 """
 On different occasions and events, increase the insanity score. Higher insanity score means higher threats and visual confusion.
 """
@@ -39,6 +40,9 @@ func _ready() -> void:
 	$"/root/DialogueHandler".connect("player_pause", self, "_on_player_paused")
 
 func _physics_process(delta : float) -> void:
+	if GlobalHandler.left_arm == false:
+		anim_suffix = "_left_arm"
+		$Particles2D.visible = true
 	if canMove:
 		_get_input()
 	_calculate_speed()
@@ -133,7 +137,7 @@ func play_anim(anim : String, dir : Vector2) -> void:
 		Vector2.DOWN:
 			dir_str = "down"
 	
-	$AnimatedSprite.play(anim + dir_str)
+	$AnimatedSprite.play(anim + dir_str + anim_suffix)
 	
 
 func save_game(game_save : Resource) -> void:
