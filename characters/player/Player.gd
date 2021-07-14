@@ -24,6 +24,10 @@ var staggered : bool = false
 var canMove : bool = true
 var canLook : bool = true
 var step_sounds : Array = []
+"""
+On different occasions and events, increase the insanity score. Higher insanity score means higher threats and visual confusion.
+"""
+var insanity : int = 0
 
 func _ready() -> void:
 	StepTimer.wait_time = walk_step_interval
