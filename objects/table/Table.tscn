@@ -1,9 +1,7 @@
-[gd_scene load_steps=6 format=2]
+[gd_scene load_steps=7 format=2]
 
 [ext_resource path="res://objects/table/Table.gd" type="Script" id=2]
 [ext_resource path="res://objects/table/table2.png" type="Texture" id=3]
-
-
 
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 8, 2.5 )
@@ -11,10 +9,12 @@ extents = Vector2( 8, 2.5 )
 [sub_resource type="RectangleShape2D" id=2]
 extents = Vector2( 16, 16 )
 
+[sub_resource type="CanvasItemMaterial" id=4]
+
 [sub_resource type="OccluderPolygon2D" id=3]
 closed = false
 cull_mode = 1
-polygon = PoolVector2Array( -8, -8, 8, -8, 8, 8, 4, 8, 2, 8, -1, 8, -4, 8, -8, 8, -8, -8, 8, -8 )
+polygon = PoolVector2Array( -8, -8, 8, -8, 8, 8, 4.0883, 7.96156, 4, 4.125, -3.98307, 4.02431, -4, 8, -8, 8, -8, -8, 8, -8 )
 
 [node name="Table" type="StaticBody2D" groups=[
 "save",
@@ -40,6 +40,7 @@ modulate = Color( 0.854902, 0.835294, 0.509804, 1 )
 shape = SubResource( 2 )
 
 [node name="Texture" type="Sprite" parent="."]
+material = SubResource( 4 )
 position = Vector2( -8, -8 )
 z_index = 2
 z_as_relative = false
@@ -48,14 +49,11 @@ offset = Vector2( 8, 8 )
 
 [node name="LightOccluder2D" type="LightOccluder2D" parent="."]
 modulate = Color( 1, 1, 1, 0 )
-show_behind_parent = true
-light_mask = 0
-z_index = -1
-z_as_relative = false
+z_index = -4
 occluder = SubResource( 3 )
-light_mask = 0
 __meta__ = {
 "_edit_lock_": true
 }
+
 [connection signal="body_entered" from="InteractionArea" to="." method="_on_InteractionArea_body_entered"]
 [connection signal="body_exited" from="InteractionArea" to="." method="_on_InteractionArea_body_exited"]

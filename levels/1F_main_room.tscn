@@ -1,4 +1,4 @@
-[gd_scene load_steps=24 format=2]
+[gd_scene load_steps=25 format=2]
 
 [ext_resource path="res://tilesets/house/house1.tres" type="TileSet" id=1]
 [ext_resource path="res://characters/player/Player.tscn" type="PackedScene" id=2]
@@ -19,6 +19,7 @@
 [ext_resource path="res://objects/paintings/painting-2.png" type="Texture" id=17]
 [ext_resource path="res://objects/paintings/painting-1.png" type="Texture" id=18]
 [ext_resource path="res://levels/LightEffects.gd" type="Script" id=19]
+[ext_resource path="res://objects/sink/Sink.tscn" type="PackedScene" id=20]
 
 [sub_resource type="Resource" id=1]
 script = ExtResource( 5 )
@@ -154,15 +155,12 @@ position = Vector2( 216, 40 )
 texture = ExtResource( 15 )
 
 [node name="Light2D" type="Light2D" parent="."]
-position = Vector2( 127.492, 96 )
+position = Vector2( 128, 131.201 )
 rotation = -3.14159
 scale = Vector2( 1, 1.39066 )
 texture = ExtResource( 16 )
 color = Color( 0.784314, 0.941176, 1, 1 )
-energy = 0.25
-__meta__ = {
-"_edit_lock_": true
-}
+energy = 0.35
 
 [node name="Paintings" type="Node2D" parent="."]
 
@@ -228,6 +226,11 @@ locked = true
 inventory_gui_path = NodePath("../../CanvasLayer/InventoryGUI")
 player_path = NodePath("../../Player")
 required_look_dir = Vector2( 0, 1 )
+
+[node name="Sink" parent="." instance=ExtResource( 20 )]
+position = Vector2( 127.492, 71.864 )
+inv_gui_path = NodePath("../CanvasLayer/InventoryGUI")
+playerPath = NodePath("../Player")
 
 [connection signal="inventory_closed" from="CanvasLayer/InventoryGUI" to="Player" method="_on_InventoryGUI_inventory_closed"]
 [connection signal="inventory_opened" from="CanvasLayer/InventoryGUI" to="Player" method="_on_InventoryGUI_inventory_opened"]
