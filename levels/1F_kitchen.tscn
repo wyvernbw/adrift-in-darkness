@@ -1,13 +1,24 @@
-[gd_scene load_steps=4 format=2]
+[gd_scene load_steps=9 format=2]
 
 [ext_resource path="res://objects/door/Door.tscn" type="PackedScene" id=1]
 [ext_resource path="res://levels/base_level.tscn" type="PackedScene" id=2]
 [ext_resource path="res://objects/sink/Sink.tscn" type="PackedScene" id=3]
+[ext_resource path="res://objects/cupboard/cupboard.tscn" type="PackedScene" id=4]
+[ext_resource path="res://objects/kitchen_table/kitchen_table.tscn" type="PackedScene" id=5]
+[ext_resource path="res://objects/chair/Chair.tscn" type="PackedScene" id=6]
+
+[sub_resource type="OccluderPolygon2D" id=1]
+cull_mode = 1
+polygon = PoolVector2Array( 120, 104, 130, 104, 130, 95, 142, 95, 142, 104, 152, 104, 152, 117, 152, 123, 151, 123, 147, 123, 125, 123, 121, 123, 120, 123, 120, 117 )
+
+[sub_resource type="OccluderPolygon2D" id=2]
+cull_mode = 1
+polygon = PoolVector2Array( 24, -29, 22, -29, 22, -6, 22, -5, -10, -5, -10, -45, 24, -45 )
 
 [node name="1F_kitchen" instance=ExtResource( 2 )]
 
 [node name="Player" parent="." index="0"]
-position = Vector2( 71.4762, 112 )
+position = Vector2( 97, 100 )
 
 [node name="HouseF1" parent="." index="1"]
 tile_data = PoolIntArray( 65540, 9, 0, 65541, 14, 0, 65542, 14, 0, 65543, 14, 0, 65544, 14, 0, 65545, 14, 0, 65546, 14, 0, 65547, 14, 0, 65548, 2, 0, 131076, 5, 0, 131077, 32, 0, 131078, 32, 0, 131079, 32, 0, 131080, 32, 0, 131081, 32, 0, 131082, 32, 0, 131083, 32, 0, 131084, 3, 0, 196612, 5, 0, 196613, 30, 0, 196614, 31, 0, 196615, 30, 0, 196616, 30, 0, 196617, 30, 0, 196618, 30, 0, 196619, 30, 0, 196620, 3, 0, 262148, 5, 0, 262149, 27, 0, 262150, 27, 0, 262151, 27, 0, 262152, 28, 0, 262153, 27, 0, 262154, 29, 0, 262155, 27, 0, 262156, 3, 0, 327683, 9, 0, 327684, 12, 0, 327685, 26, 0, 327686, 26, 0, 327687, 26, 0, 327688, 26, 0, 327689, 26, 0, 327690, 26, 0, 327691, 26, 0, 327692, 3, 0, 393219, 5, 0, 393220, 30, 0, 393221, 26, 0, 393222, 26, 0, 393223, 26, 0, 393224, 26, 0, 393225, 26, 0, 393226, 26, 0, 393227, 26, 0, 393228, 3, 0, 458755, 8, 0, 458756, 13, 0, 458757, 26, 0, 458758, 26, 0, 458759, 26, 0, 458760, 26, 0, 458761, 26, 0, 458762, 26, 0, 458763, 26, 0, 458764, 3, 0, 524292, 5, 0, 524293, 26, 0, 524294, 26, 0, 524295, 26, 0, 524296, 26, 0, 524297, 26, 0, 524298, 26, 0, 524299, 26, 0, 524300, 3, 0, 589828, 8, 0, 589829, 4, 0, 589830, 4, 0, 589831, 4, 0, 589832, 4, 0, 589833, 4, 0, 589834, 4, 0, 589835, 4, 0, 589836, 7, 0 )
@@ -29,3 +40,62 @@ required_look_dir = Vector2( -1, 0 )
 position = Vector2( 168, 72 )
 inv_gui_path = NodePath("../CanvasLayer/InventoryGUI")
 playerPath = NodePath("../Player")
+
+[node name="Cupboard" parent="." index="9" instance=ExtResource( 4 )]
+position = Vector2( 152, 80 )
+inv_gui_path = NodePath("../CanvasLayer/InventoryGUI")
+playerPath = NodePath("../Player")
+
+[node name="Cupboard2" parent="." index="10" instance=ExtResource( 4 )]
+position = Vector2( 136, 80 )
+inv_gui_path = NodePath("../CanvasLayer/InventoryGUI")
+playerPath = NodePath("../Player")
+
+[node name="Cupboard3" parent="." index="11" instance=ExtResource( 4 )]
+position = Vector2( 104, 56 )
+z_index = 3
+z_as_relative = false
+inv_gui_path = NodePath("../CanvasLayer/InventoryGUI")
+playerPath = NodePath("../Player")
+
+[node name="Cupboard4" parent="." index="12" instance=ExtResource( 4 )]
+position = Vector2( 122, 56 )
+z_index = 3
+z_as_relative = false
+inv_gui_path = NodePath("../CanvasLayer/InventoryGUI")
+playerPath = NodePath("../Player")
+
+[node name="Chair" parent="." index="13" instance=ExtResource( 6 )]
+position = Vector2( 136, 100 )
+inv_gui_path = NodePath("../CanvasLayer/InventoryGUI")
+playerPath = NodePath("../Player")
+
+[node name="LightOccluder2D" parent="Chair" index="3"]
+visible = false
+
+[node name="Kitchen_table" parent="." index="14" instance=ExtResource( 5 )]
+position = Vector2( 104, 80 )
+z_index = 1
+inv_gui_path = NodePath("../CanvasLayer/InventoryGUI")
+playerPath = NodePath("../Player")
+
+[node name="LightOccluder2D" parent="Kitchen_table" index="3"]
+visible = false
+
+[node name="Kitchen_table2" parent="." index="15" instance=ExtResource( 5 )]
+position = Vector2( 128, 115 )
+inv_gui_path = NodePath("../CanvasLayer/InventoryGUI")
+playerPath = NodePath("../Player")
+
+[node name="LightOccluder2D" type="LightOccluder2D" parent="." index="16"]
+z_index = -1
+occluder = SubResource( 1 )
+
+[node name="LightOccluder2D2" type="LightOccluder2D" parent="." index="17"]
+position = Vector2( 106, 93 )
+z_index = -9
+z_as_relative = false
+occluder = SubResource( 2 )
+
+[editable path="Chair"]
+[editable path="Kitchen_table"]

@@ -32,6 +32,7 @@ var insanity : int = 0
 
 func _ready() -> void:
 	StepTimer.wait_time = walk_step_interval
+	$Particles2D.visible = false
 
 	step_sounds.append(load("res://characters/player/wood_step1.wav"))
 	step_sounds.append(load("res://characters/player/wood_step2.wav"))

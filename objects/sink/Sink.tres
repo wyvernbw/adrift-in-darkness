@@ -2,7 +2,7 @@
 
 [ext_resource path="res://classes/DialogueResource.gd" type="Script" id=1]
 
-[sub_resource type="Resource" id=22]
+[sub_resource type="Resource" id=1]
 script = ExtResource( 1 )
 Text = [ "page 1 example" ]
 Answers = {
@@ -12,7 +12,7 @@ item_quantity = 0
 item_type = 0
 read_box_text = ""
 
-[sub_resource type="Resource" id=19]
+[sub_resource type="Resource" id=2]
 script = ExtResource( 1 )
 Text = [ "You reach down the drain and grab something made out of metal.", "Something is grabbing your hand." ]
 Answers = {
@@ -26,8 +26,8 @@ read_box_text = ""
 script = ExtResource( 1 )
 Text = [ "You see something shiny down the drain." ]
 Answers = {
-"Leave": SubResource( 22 ),
-"Reach for it": SubResource( 19 )
+"Leave": SubResource( 1 ),
+"Reach for it": SubResource( 2 )
 }
 item_name = ""
 item_quantity = 0
