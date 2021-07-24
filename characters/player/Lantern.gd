@@ -31,15 +31,11 @@ func _ready() -> void:
 func _process(delta: float) -> void:
 	GlobalHandler.lantern_fuel = fuel
 	GlobalHandler.lantern_toggled = self.lantern_toggled
-	if InventoryHandler.get_item(lantern_item) != -1:
+	if InventoryHandler.get_item(lantern_item) != -1: 
 		if DialogueHandler.get_child_count() == 0:
 		#	$Light2D.visible = true
 		#	$SpotLight.visible = true
 			visible = false
-	else:
-	#	$Light2D.visible = false
-	#	$SpotLight.visible = false
-		visible = false
 	
 	if not fuel == 0:
 		visible = lantern_toggled
@@ -60,15 +56,15 @@ func _process(delta: float) -> void:
 
 	# darken things up
 	if visible == false:
-		GlobalHandler.globalLight -= light_loss_per_second * delta
-		GlobalHandler.globalLight = max(GlobalHandler.globalLight, GlobalHandler.min_global_light)
+		GlobalHandler.current_light -= light_loss_per_second * delta
+		GlobalHandler.current_light = max(GlobalHandler.current_light, GlobalHandler.min_global_light)
 	else:
-		GlobalHandler.globalLight = 0.2
+		GlobalHandler.current_light = GlobalHandler.global_light
 		GlobalHandler.current_static = 0.0
 
 	if GlobalHandler.do_static_effect:
 		# Satan is that you?
-		if GlobalHandler.globalLight < 0.06:
+		if GlobalHandler.global_light < 0.06:
 			GlobalHandler.current_static += static_per_second * delta
 			GlobalHandler.current_static = min(GlobalHandler.current_static, max_static)
 		static_effect.modulate = Color(1.0, 1.0, 1.0, GlobalHandler.current_static) 

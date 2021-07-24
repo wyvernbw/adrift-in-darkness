@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=2]
+[gd_scene load_steps=10 format=2]
 
 [ext_resource path="res://objects/door/Door.tscn" type="PackedScene" id=1]
 [ext_resource path="res://levels/base_level.tscn" type="PackedScene" id=2]
@@ -15,6 +15,9 @@ polygon = PoolVector2Array( 120, 104, 130, 104, 130, 95, 142, 95, 142, 104, 152,
 cull_mode = 1
 polygon = PoolVector2Array( 24, -29, 22, -29, 22, -6, 22, -5, -10, -5, -10, -45, 24, -45 )
 
+[sub_resource type="OccluderPolygon2D" id=3]
+polygon = PoolVector2Array( 128, 88, 160, 88, 160, 72, 128, 72 )
+
 [node name="1F_kitchen" instance=ExtResource( 2 )]
 
 [node name="Player" parent="." index="0"]
@@ -25,6 +28,7 @@ tile_data = PoolIntArray( 65540, 9, 0, 65541, 14, 0, 65542, 14, 0, 65543, 14, 0,
 
 [node name="CanvasModulate" parent="." index="5"]
 visible = true
+color = Color( 0.02, 0.02, 0.02, 1 )
 
 [node name="LightMask2D" parent="CanvasLayer" index="0"]
 visible = true
@@ -92,10 +96,16 @@ z_index = -1
 occluder = SubResource( 1 )
 
 [node name="LightOccluder2D2" type="LightOccluder2D" parent="." index="17"]
+visible = false
 position = Vector2( 106, 93 )
 z_index = -9
 z_as_relative = false
 occluder = SubResource( 2 )
+
+[node name="LightOccluder2D3" type="LightOccluder2D" parent="." index="18"]
+light_mask = 3
+occluder = SubResource( 3 )
+light_mask = 3
 
 [editable path="Chair"]
 [editable path="Kitchen_table"]

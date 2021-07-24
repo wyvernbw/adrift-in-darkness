@@ -1,13 +1,14 @@
+tool
 extends CanvasModulate
 
-var lightValue : float
+var light_value : float
 
 func _ready() -> void:
-	setLightColor(GlobalHandler.globalLight)
+	setLightColor(GlobalHandler.global_light)
 
 func _process(delta : float) -> void:
-	setLightColor(GlobalHandler.globalLight)
+	setLightColor(GlobalHandler.current_light)
 
-func setLightColor(lightValue : float) -> void:
-	var lightColor : Color = Color(lightValue, lightValue, lightValue, 1.0)
-	self.color = lightColor
+func setLightColor(light_value : float) -> void:
+	var light_color : Color = Color(light_value, light_value, light_value, 1.0)
+	self.color = light_color
