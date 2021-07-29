@@ -64,6 +64,11 @@ func set_dialogue(new_dialogue : Resource) -> void:
 	InventoryHandler.add_item(item_held)
 	dialogue.item_name = ''
 
+
+func set_dialogue_only(res : Resource) -> void:
+	dialogue = res
+
+
 func remove_dialogue_box() -> void:
 	"""
 	Checks if a dialogue box node exists and destroys it.

@@ -1,0 +1,15 @@
+[gd_resource type="Resource" load_steps=3 format=2]
+
+[ext_resource path="res://items/basement_key.png" type="Texture" id=1]
+[ext_resource path="res://classes/DialogueResource.gd" type="Script" id=2]
+
+[resource]
+script = ExtResource( 2 )
+Text = [ "You find a key in the pool of bloody water." ]
+Answers = {
+}
+item_name = "Basement key"
+item_texture = ExtResource( 1 )
+item_quantity = 1
+item_type = 0
+read_box_text = ""
