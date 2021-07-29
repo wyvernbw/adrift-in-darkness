@@ -1,0 +1,10 @@
+[gd_scene load_steps=2 format=2]
+
+[ext_resource path="res://tilesets/shadows.tres" type="TileSet" id=1]
+
+[node name="Shadow" type="TileMap"]
+modulate = Color( 1, 1, 1, 0.392157 )
+tile_set = ExtResource( 1 )
+cell_size = Vector2( 16, 16 )
+format = 1
+tile_data = PoolIntArray( 262146, 2, 0, 327682, 2, 0 )

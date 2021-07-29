@@ -18,8 +18,8 @@ var max_static : float = 0.5
 
 func _ready() -> void:
 	InventoryHandler.connect("inventory_item_used", self, "_on_item_used") 
-	$Light2D/AnimationPlayer.play("flicker")
-	$SpotLight/AnimationPlayer.play("flicker")
+	$Light/AnimationPlayer.play("flicker")
+	$Spotlight/AnimationPlayer.play("flicker")
 	$awno.play("awcrap")
 	$Static/AnimationPlayer.play("static")
 	self.lantern_toggled = GlobalHandler.lantern_toggled
