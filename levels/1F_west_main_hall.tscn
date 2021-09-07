@@ -40,7 +40,7 @@ item_type = 0
 read_box_text = ""
 
 [sub_resource type="RectangleShape2D" id=6]
-extents = Vector2( 24, 8 )
+extents = Vector2( 32, 17.44 )
 
 [node name="level_name" instance=ExtResource( 7 )]
 
@@ -101,6 +101,9 @@ tile_data = PoolIntArray( -655365, 18, 0, -720892, 6, 0, -589829, 18, 0, -131059
 [node name="Rug" parent="." index="5"]
 tile_data = PoolIntArray( -65536, 6, 0, -65534, 6, 0, 196610, 6, 0, 196611, 2, 0, 196612, 7, 0, 262146, 5, 0, 262147, 0, 0, 262148, 3, 0, 327682, 5, 0, 327683, 0, 0, 327684, 3, 0, 393218, 5, 0, 393219, 0, 0, 393220, 3, 0, 458754, 9, 0, 458755, 4, 0, 458756, 8, 0, 524294, 6, 0, 524295, 2, 0, 524296, 7, 0, 589830, 9, 0, 589831, 4, 0, 589832, 8, 0 )
 
+[node name="CanvasModulate" parent="." index="7"]
+visible = true
+
 [node name="Door" parent="." index="8" instance=ExtResource( 5 )]
 position = Vector2( 56, 16 )
 scene_name = "1F_west_office"
@@ -132,14 +135,12 @@ visible = true
 [node name="SoundArea" parent="." index="11" instance=ExtResource( 8 )]
 collision_layer = 8
 activateOnce = true
+caption = "[loud knocking on the door]"
 player_path = NodePath("../Player")
 
 [node name="CollisionShape2D" parent="SoundArea" index="0"]
-position = Vector2( 56, 112 )
+position = Vector2( 48, 109.44 )
 shape = SubResource( 6 )
-
-[node name="Sound" parent="SoundArea" index="1"]
-position = Vector2( 176, 120 )
 
 [node name="bookshelf" type="StaticBody2D" parent="." index="12"]
 position = Vector2( 36, 72 )
@@ -181,6 +182,9 @@ light_mask = 0
 __meta__ = {
 "_edit_lock_": true
 }
+
+[node name="LightMask2D" parent="CanvasLayer" index="0"]
+visible = true
 
 [node name="InventoryGUI" parent="CanvasLayer" index="1"]
 player_path = NodePath("../../Player")

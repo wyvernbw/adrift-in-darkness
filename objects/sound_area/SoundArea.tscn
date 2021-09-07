@@ -14,5 +14,6 @@ attenuation = 0.554785
 
 [node name="PauseTimer" type="Timer" parent="."]
 one_shot = true
+
 [connection signal="body_entered" from="." to="." method="_on_SoundArea_body_entered"]
 [connection signal="timeout" from="PauseTimer" to="." method="_on_PauseTimer_timeout"]
