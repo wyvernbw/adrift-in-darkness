@@ -9,6 +9,7 @@ func _ready() -> void:
 	sprite.playing = false
 	sprite.frame = 1
 	DialogueHandler.connect("player_unpause", self, "on_DialogueHandler_player_unpause")
+	add_to_group("save")
 
 
 func on_DialogueHandler_player_unpause() -> void:
