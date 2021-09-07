@@ -1,7 +1,7 @@
-[gd_resource type="Resource" load_steps=2 format=2]
+[gd_resource type="Resource" load_steps=3 format=2]
 
 [ext_resource path="res://classes/GameSave.gd" type="Script" id=1]
-
+[ext_resource path="res://items/lantern.png" type="Texture" id=2]
 
 [resource]
 script = ExtResource( 1 )
@@ -25,34 +25,36 @@ data = {
 "_edit_lock_": true
 })
 ,
-"2F_west_small_room": Object(Node2D,"_import_path":NodePath(""),"pause_mode":0,"process_priority":0,"visible":true,"modulate":Color( 1, 1, 1, 1 ),"self_modulate":Color( 1, 1, 1, 1 ),"show_behind_parent":false,"light_mask":1,"material":null,"use_parent_material":false,"position":Vector2( 0, 0 ),"rotation":0.0,"scale":Vector2( 1, 1 ),"z_index":0,"z_as_relative":true,"script":null,"__meta__":{
-"_edit_lock_": true
-})
+"2F_west_small_room": Object(Node2D,"_import_path":NodePath(""),"pause_mode":0,"process_priority":0,"visible":true,"modulate":Color( 1, 1, 1, 1 ),"self_modulate":Color( 1, 1, 1, 1 ),"show_behind_parent":false,"light_mask":1,"material":null,"use_parent_material":false,"position":Vector2( 0, 0 ),"rotation":0.0,"scale":Vector2( 1, 1 ),"z_index":0,"z_as_relative":true,"script":null)
 
 }
 },
 "InventoryHandler": {
 "inventory": {
 "key_items": {
-
+"0": {
+"item_name": "Lantern",
+"item_type": 0,
+"quantity": 1,
+"texture": ExtResource( 2 )
+}
 },
 "normal_items": {
-
 }
 }
 },
 "Lantern": {
-"fuel": 300.0,
-"toggled": false
+"fuel": 8962.22,
+"toggled": true
 },
 "player": {
 "current_scene": "1F_main_room",
 "position": {
-"x": 150.751,
-"y": 58.9071
+"x": 138.92,
+"y": 123.164
 }
 },
-NodePath("/root/Game/1F_main_room/bookshelves/bookshelf"): {
+NodePath("/root/Game/1F_main_room/Furniture/Bookshelf"): {
 "dialogue": {
 "branch1_item_name": "",
 "branch2_item_name": "",
@@ -63,28 +65,28 @@ NodePath("/root/Game/1F_main_room/bookshelves/bookshelf"): {
 "y": -71.8641
 }
 },
-NodePath("/root/Game/1F_main_room/Table"): {
+NodePath("/root/Game/1F_main_room/Furniture/Table"): {
 "dialogue": {
 "branch1_item_name": "",
 "branch2_item_name": "",
 "branch_1_item_name": "",
-"branch_2_item_name": "Lantern",
+"branch_2_item_name": "",
 "item_name": ""
 },
 "position": {
-"x": 152.0,
-"y": 104.307
+"x": 144.0,
+"y": 72.136
 }
 },
-NodePath("/root/Game/1F_main_room/Table2"): {
+NodePath("/root/Game/1F_main_room/Furniture/Table2"): {
 "dialogue": {
 "branch1_item_name": "",
 "branch2_item_name": "",
 "item_name": ""
 },
 "position": {
-"x": 24.0,
-"y": 71.8641
+"x": 16.0,
+"y": 48.136
 }
 }
 }

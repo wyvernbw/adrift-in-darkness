@@ -90,7 +90,9 @@ playerPath = NodePath("../Player")
 [node name="LightOccluder2D" parent="Kitchen_table" index="3"]
 visible = false
 
-[node name="Kitchen_table2" parent="." index="15" instance=ExtResource( 5 )]
+[node name="Kitchen_table2" parent="." index="15" groups=[
+"save",
+] instance=ExtResource( 5 )]
 position = Vector2( 128, 115 )
 z_index = 1
 z_as_relative = false

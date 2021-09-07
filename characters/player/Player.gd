@@ -68,7 +68,7 @@ func apply_motion():
 func apply_friction():
 	velocity.x = lerp(velocity.x, 0, deaccel)
 	velocity.y = lerp(velocity.y, 0, deaccel)
-	
+
 func _update_look_dir() -> void:
 	if Input.is_action_pressed("move_right"):
 		look_dir = Vector2.RIGHT

@@ -27,7 +27,7 @@ func _process(_delta : float) -> void:
 			$Select.play()
 		if Input.is_action_just_pressed('ui_down'):
 			$Select.play()
-	if Input.is_action_just_pressed('ui_cancel') :
+	if Input.is_action_just_pressed('open_inventory') :
 		if visible:
 			visible = false
 			emit_signal('inventory_closed')
