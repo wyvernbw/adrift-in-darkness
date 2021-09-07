@@ -8,10 +8,12 @@ onready var Sound = $Sound
 var played : bool = false
 var playerEntered : bool = false
 var player_node : KinematicBody2D
+var caption_box := preload("res://gui/caption/Caption.tscn").instance()
 export var activateOnce : bool = false
 export var volume : float = 0.0
 export var pause_player : bool = true
 export var pause_player_duration : float = 1 # seconds
+export var caption : String = ""
 export var player_path : NodePath
 
 
@@ -29,6 +31,10 @@ func _on_SoundArea_body_entered(body) -> void :
 	if body is Player :
 		Sound.play()
 		played = true
+		# add captions
+		if GlobalHandler.captions_enabled:
+			caption_box.text = caption
+			add_child(caption_box)
 		print("played")
 		$PauseTimer.start()
 		emit_signal("player_pause")
