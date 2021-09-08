@@ -1,6 +1,7 @@
 extends Control
 
-export var options : Dictionary
+export var option_keys : Array 
+export var option_scenes : Array 
 
 var normal_style : Resource = preload("res://gui/main_menu/button_normal.tres")
 var focus_style : Resource = preload("res://gui/main_menu/button_focus.tres")
@@ -9,7 +10,7 @@ var roboto_mono : Resource = preload("res://gui/main_menu/roboto_mono.tres")
 
 
 func _ready() -> void:
-	for key in options:
+	for key in option_keys:
 		var button : Button = Button.new()
 		# button properties
 		button.text = str(key)
@@ -20,9 +21,9 @@ func _ready() -> void:
 		button.set("custom_fonts/font", roboto_mono)
 		button.mouse_filter = 2 # ignore mouse
 
-		button.connect("pressed", self, "_on_button_pressed", [options[key]])
+		button.connect("pressed", self, "_on_button_pressed", [option_scenes[option_keys.find(key, 0)]])
 		$VBoxContainer.add_child(button)
-		if key == options.keys()[0]:
+		if option_keys.find(key, 0) == 0:
 			button.grab_focus()
 
 

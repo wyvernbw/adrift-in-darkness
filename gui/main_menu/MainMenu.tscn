@@ -1,10 +1,9 @@
-[gd_scene load_steps=9 format=2]
+[gd_scene load_steps=8 format=2]
 
 [ext_resource path="res://gui/main_menu/MainMenu.gd" type="Script" id=1]
 [ext_resource path="res://environment.tres" type="Environment" id=2]
 [ext_resource path="res://fonts/RobotoMono-VariableFont_wght.ttf" type="DynamicFontData" id=3]
 [ext_resource path="res://characters/player/light_mask2d_v2.0.png" type="Texture" id=4]
-[ext_resource path="res://characters/player/light2d.png" type="Texture" id=5]
 [ext_resource path="res://gui/main_menu/adrift-in-darkness-cover.png" type="Texture" id=6]
 
 [sub_resource type="DynamicFont" id=1]
@@ -25,27 +24,18 @@ script = ExtResource( 1 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
-options = {
-"Play": "res://levels/Game.tscn",
-"Quit": "res://gui/main_menu/Quit.tscn"
-}
+option_keys = [ "Play", "Settings", "Quit" ]
+option_scenes = [ "res://levels/Game.tscn", "", "res://gui/main_menu/Quit.tscn" ]
 
 [node name="VBoxContainer" type="VBoxContainer" parent="."]
 anchor_left = 0.5
 anchor_right = 0.5
 anchor_bottom = 1.0
-margin_left = -20.0
 margin_top = 48.0
-margin_right = 20.0
+grow_horizontal = 2
 __meta__ = {
 "_edit_use_anchors_": false
 }
-
-[node name="Light2D" type="Light2D" parent="VBoxContainer"]
-visible = false
-position = Vector2( 21.6131, 8.4757 )
-texture = ExtResource( 5 )
-color = Color( 0.988235, 0.8, 0.231373, 1 )
 
 [node name="Title" type="Label" parent="."]
 anchor_left = 0.5
