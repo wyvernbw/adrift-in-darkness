@@ -57,6 +57,8 @@ func _physics_process(delta : float) -> void:
 		
 	apply_motion()
 	apply_friction()
+	var anim_speed : float = speed / 6
+	change_animation_speed(anim_speed)
 	
 	#move body along vector
 	move_and_slide(velocity, Vector2.UP)
@@ -139,6 +141,11 @@ func play_anim(anim : String, dir : Vector2) -> void:
 			dir_str = "down"
 	
 	$AnimatedSprite.play(anim + dir_str + anim_suffix)
+
+
+func change_animation_speed(fps : float) -> void:
+	var sprite : AnimatedSprite = $AnimatedSprite
+	sprite.frames.set_animation_speed(sprite.animation, fps)
 	
 
 func save_game(game_save : Resource) -> void:
