@@ -1,10 +1,9 @@
-[gd_scene load_steps=5 format=2]
+[gd_scene load_steps=6 format=2]
 
 [ext_resource path="res://gui/inventory/InventoryGUI.gd" type="Script" id=1]
-[ext_resource path="res://fonts/kindergarten.ttf" type="DynamicFontData" id=2]
+[ext_resource path="res://fonts/LinLibertine_R.ttf" type="DynamicFontData" id=2]
 [ext_resource path="res://gui/inventory/select.wav" type="AudioStream" id=3]
-
-
+[ext_resource path="res://gui/inventory/InventoryPanel.tres" type="StyleBox" id=4]
 
 [sub_resource type="DynamicFont" id=1]
 outline_size = 1
@@ -20,16 +19,20 @@ rect_pivot_offset = Vector2( 40.5, 60 )
 script = ExtResource( 1 )
 __meta__ = {
 "_edit_group_": true,
+"_edit_lock_": true,
 "_edit_use_anchors_": false
 }
 
 [node name="KeyItemPanel" type="Panel" parent="."]
-self_modulate = Color( 1, 1, 1, 0.294118 )
 margin_right = 112.0
 margin_bottom = 120.0
+custom_styles/panel = ExtResource( 4 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
 
 [node name="GridContainer" type="VBoxContainer" parent="KeyItemPanel"]
-margin_top = 8.0
+margin_top = 18.0
 margin_right = 112.0
 margin_bottom = 112.0
 
@@ -40,15 +43,18 @@ margin_bottom = 9.0
 custom_fonts/font = SubResource( 1 )
 text = "Key Items"
 align = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
 
 [node name="NormalItemPanel" type="Panel" parent="."]
 visible = false
-self_modulate = Color( 1, 1, 1, 0.294118 )
 margin_right = 112.0
 margin_bottom = 120.0
+custom_styles/panel = ExtResource( 4 )
 
 [node name="GridContainer" type="VBoxContainer" parent="NormalItemPanel"]
-margin_top = 8.0
+margin_top = 18.0
 margin_right = 112.0
 margin_bottom = 112.0
 
