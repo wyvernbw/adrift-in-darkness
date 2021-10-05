@@ -44,49 +44,14 @@ data = {
 }
 },
 "Lantern": {
-"fuel": 8962.22,
+"fuel": 8701.95,
 "toggled": true
 },
 "player": {
-"current_scene": "1F_main_room",
+"current_scene": "2F_east_main_hall",
 "position": {
-"x": 138.92,
-"y": 123.164
-}
-},
-NodePath("/root/Game/1F_main_room/Furniture/Bookshelf"): {
-"dialogue": {
-"branch1_item_name": "",
-"branch2_item_name": "",
-"item_name": ""
-},
-"position": {
-"x": 160.0,
-"y": -71.8641
-}
-},
-NodePath("/root/Game/1F_main_room/Furniture/Table"): {
-"dialogue": {
-"branch1_item_name": "",
-"branch2_item_name": "",
-"branch_1_item_name": "",
-"branch_2_item_name": "",
-"item_name": ""
-},
-"position": {
-"x": 144.0,
-"y": 72.136
-}
-},
-NodePath("/root/Game/1F_main_room/Furniture/Table2"): {
-"dialogue": {
-"branch1_item_name": "",
-"branch2_item_name": "",
-"item_name": ""
-},
-"position": {
-"x": 16.0,
-"y": 48.136
+"x": 170.92,
+"y": 106.08
 }
 }
 }

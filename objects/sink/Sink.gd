@@ -26,7 +26,7 @@ func on_DialogueHandler_player_unpause() -> void:
 		red_screen.visible = true
 		red_screen.get_node("AnimationPlayer").play("fade")
 		DialogueHandler.emit_signal("player_paused")
-		player_node.position.y += 16
+		GlobalHandler.Player.position.y += 16
 
 
 func _on_AnimationPlayer_animation_finished(anim_name):

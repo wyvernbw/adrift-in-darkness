@@ -13,6 +13,8 @@ onready var NormalItemsContainer = $NormalItemPanel/GridContainer
 
 export var player_path : NodePath
 
+var current_page : int = 0
+
 func _ready() -> void:
 # warning-ignore:return_value_discarded
 	$'/root/InventoryHandler'.connect('inventory_changed', self, '_on_InventoryHandler_inventory_changed')
@@ -23,33 +25,25 @@ func _process(_delta : float) -> void:
 	if visible:
 		if DialogueHandler.dialogue_open:
 			visible = false
-		if Input.is_action_just_pressed('ui_up'):
-			$Select.play()
-		if Input.is_action_just_pressed('ui_down'):
-			$Select.play()
 	if Input.is_action_just_pressed('open_inventory') :
 		if visible:
 			visible = false
 			emit_signal('inventory_closed')
-		elif not visible and DialogueHandler.dialogue_open == false:
+		elif DialogueHandler.dialogue_open == false:
 			visible = true
-			if KeyItemsContainer.visible:
-				if KeyItemsContainer.get_children():
-					KeyItemsContainer.get_child(0).grab_focus()
-			else:
-				if NormalItemsContainer.get_children():
-					NormalItemsContainer.get_child(0).grab_focus()
 			emit_signal('inventory_opened')
 			InventoryHandler.emit_signal('inventory_changed')
 	if visible:
 		if Input.is_action_just_pressed('ui_right') :
 			KeyItemsPanel.visible = false
 			NormalItemsPanel.visible = true
+			current_page = 1
 			if NormalItemsContainer.get_children():
 				NormalItemsContainer.get_child(0).grab_focus()
 		if Input.is_action_just_pressed('ui_left') :
 			KeyItemsPanel.visible = true
 			NormalItemsPanel.visible = false
+			current_page = 0
 			if KeyItemsContainer.get_children():
 				KeyItemsContainer.get_child(0).grab_focus()
 
@@ -77,6 +71,12 @@ func populate_inventory() -> void:
 func refresh_inventory() -> void:
 	call_deferred('_empty_inventory_panels')
 	populate_inventory()
+	if current_page == 0:
+		if KeyItemsContainer.get_child_count() > 0:
+			KeyItemsContainer.get_child(0).call_deferred("grab_focus")
+			print(str(KeyItemsContainer.get_child(0)) + "grabbed focus")
+	elif NormalItemsContainer.get_child_count() > 0:
+		NormalItemsContainer.get_child(0).call_deferred("grab_focus")
 
 func _empty_inventory_panels() -> void:
 	if get_tree() == null:
