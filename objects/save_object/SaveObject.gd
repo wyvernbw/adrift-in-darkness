@@ -17,7 +17,6 @@ func _ready() -> void:
 	saves_left = SaveGameHandler.save_object_dict[SAVE_KEY]
 
 func _process(delta: float) -> void:
-	print(str(GlobalHandler.player.look_raycast.get_collider()))
 	if saves_left > 0:
 		$FlowerSprite.frame = 0
 	else: 
@@ -25,7 +24,7 @@ func _process(delta: float) -> void:
 
 	if not player_is_colliding:
 		return
-	if not GlobalHandler.player.look_raycast.get_collider() == self.interaction_area:
+	if not GlobalHandler.Player.LookRaycast.get_collider() == self.interaction_area:
 		return
 	var interact = Input.is_action_just_pressed("interact")
 	if not interact:

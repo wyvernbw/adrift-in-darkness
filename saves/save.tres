@@ -44,14 +44,14 @@ data = {
 }
 },
 "Lantern": {
-"fuel": 8701.95,
+"fuel": 8731.22,
 "toggled": true
 },
 "player": {
 "current_scene": "2F_east_main_hall",
 "position": {
-"x": 170.92,
-"y": 106.08
+"x": 185.492,
+"y": 118.08
 }
 }
 }

@@ -20,6 +20,7 @@ func save_game() -> void:
 	game_save.game_version = ProjectSettings.get_setting("application/config/version")
 	for Node in get_tree().get_nodes_in_group("save"):
 		Node.save_game(game_save)
+	print(str(game_save))
 
 	var directory: Directory = Directory.new()
 	if not directory.dir_exists(SAVE_FOLDER):
@@ -40,5 +41,6 @@ func load_game() -> void:
 		return
 
 	var game_save: Resource = load(save_file_path)
-	for node in get_tree().get_nodes_in_group('save'):
-		node.load_game(game_save)
+	for Node in get_tree().get_nodes_in_group('save'):
+		Node.load_game(game_save)
+	print(str(game_save))

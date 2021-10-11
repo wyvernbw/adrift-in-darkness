@@ -16,6 +16,7 @@ export var player_path : NodePath
 var current_page : int = 0
 
 func _ready() -> void:
+	GlobalHandler.InventoryGUI = self
 # warning-ignore:return_value_discarded
 	$'/root/InventoryHandler'.connect('inventory_changed', self, '_on_InventoryHandler_inventory_changed')
 	visible = false

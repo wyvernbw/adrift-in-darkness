@@ -153,20 +153,19 @@ func save_game(game_save : Resource) -> void:
 		},
 		'current_scene' : get_node('/root/Game').current_scene
 	}
-	print(game_save.data[SAVE_KEY])
+
 
 func load_game(game_save : Resource) -> void:
 	var data: Dictionary = game_save.data[SAVE_KEY]
-	print(data)
 	position = Vector2.ZERO
 	get_node('/root/Game').switch_scene(data['current_scene'])
 	position.x = data['position']['x']
-	position.y = data['position']['y']
-	
+	position.y = data['position']['y']	
+
+
 """
 SIGNAL METHODS vvv
 """
-	
 func _on_StepTimer_timeout() -> void:
 	if moving:
 		randomize()

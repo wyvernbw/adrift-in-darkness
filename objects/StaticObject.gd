@@ -10,8 +10,9 @@ const INTERACT_DELAY : float = 0.050 # 50 ms
 
 onready var DialogueHandler = $"/root/DialogueHandler"
 onready var InventoryHandler = $"/root/InventoryHandler"
-onready var inv_gui
 onready var InteractionArea = $InteractionArea
+
+export var dialogue: Resource
 
 var delay : float = 0
 var delay_active : bool = false
@@ -21,15 +22,11 @@ var can_interact: bool = true
 var SAVE_KEY
 var interact 
 
-export var inv_gui_path: NodePath
-export var dialogue: Resource
-
 
 func _ready() -> void:
 	connect_signals()
 	SAVE_KEY = self.get_path()
 	add_to_group("save")
-	inv_gui = get_node(inv_gui_path)
 
 
 func _input(event : InputEvent) -> void:
@@ -37,7 +34,7 @@ func _input(event : InputEvent) -> void:
 		return
 	if not player_is_colliding:
 		return
-	if inv_gui.visible:
+	if GlobalHandler.InventoryGUI.visible:
 		return
 	if event.is_action_pressed("interact") and not DialogueHandler.dialogue_open:
 		DialogueHandler.set_dialogue(dialogue)	
