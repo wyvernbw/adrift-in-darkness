@@ -1,0 +1,523 @@
+[gd_scene load_steps=98 format=2]
+
+[ext_resource path="res://characters/player/flicker.tres" type="Animation" id=1]
+[ext_resource path="res://characters/player/Player.gd" type="Script" id=2]
+[ext_resource path="res://classes/DialogueResource.gd" type="Script" id=3]
+[ext_resource path="res://characters/player/Lantern.gd" type="Script" id=4]
+[ext_resource path="res://characters/player/sprites/player-sprites13.png" type="Texture" id=5]
+[ext_resource path="res://characters/player/sprites/player-sprites14.png" type="Texture" id=6]
+[ext_resource path="res://characters/player/sprites/player-sprites10.png" type="Texture" id=7]
+[ext_resource path="res://characters/player/sprites/player-sprites24.png" type="Texture" id=8]
+[ext_resource path="res://characters/player/sprites/player-sprites15.png" type="Texture" id=9]
+[ext_resource path="res://characters/player/sprites/player-sprites37.png" type="Texture" id=10]
+[ext_resource path="res://characters/player/sprites/player-sprites25.png" type="Texture" id=11]
+[ext_resource path="res://characters/player/wood_step1.wav" type="AudioStream" id=12]
+[ext_resource path="res://characters/player/light2d.png" type="Texture" id=13]
+[ext_resource path="res://characters/player/sprites/player-sprites2.png" type="Texture" id=14]
+[ext_resource path="res://characters/player/sprites/player-sprites19.png" type="Texture" id=15]
+[ext_resource path="res://characters/player/sprites/player_lost_left_arm.png" type="Texture" id=16]
+[ext_resource path="res://characters/player/sprites/player-sprites7.png" type="Texture" id=17]
+[ext_resource path="res://characters/player/sprites/player-sprites20.png" type="Texture" id=18]
+[ext_resource path="res://characters/player/sprites/player-sprites28.png" type="Texture" id=19]
+[ext_resource path="res://characters/player/sprites/player-sprites26.png" type="Texture" id=20]
+[ext_resource path="res://characters/player/sprites/player-sprites32.png" type="Texture" id=21]
+[ext_resource path="res://characters/player/lantern_light2d.png" type="Texture" id=22]
+[ext_resource path="res://characters/player/sprites/player-sprites21.png" type="Texture" id=23]
+[ext_resource path="res://characters/player/sprites/shadow.png" type="Texture" id=24]
+[ext_resource path="res://characters/player/sprites/player-sprites1.png" type="Texture" id=25]
+[ext_resource path="res://characters/player/sprites/player-sprites17.png" type="Texture" id=26]
+[ext_resource path="res://tilesets/blood/blood1.png" type="Texture" id=27]
+[ext_resource path="res://characters/player/sprites/player-sprites33.png" type="Texture" id=28]
+[ext_resource path="res://characters/player/sprites/player-sprites4.png" type="Texture" id=29]
+[ext_resource path="res://characters/player/static.png" type="Texture" id=30]
+[ext_resource path="res://characters/player/sprites/player-sprites22.png" type="Texture" id=31]
+[ext_resource path="res://characters/player/sprites/player-sprites6.png" type="Texture" id=32]
+[ext_resource path="res://characters/player/sprites/player-sprites23.png" type="Texture" id=33]
+[ext_resource path="res://characters/player/sprites/player-sprites30.png" type="Texture" id=34]
+[ext_resource path="res://characters/player/sprites/player-sprites16.png" type="Texture" id=35]
+[ext_resource path="res://characters/player/sprites/player-sprites38.png" type="Texture" id=36]
+[ext_resource path="res://characters/player/sprites/player-sprites31.png" type="Texture" id=37]
+[ext_resource path="res://characters/player/sprites/player-sprites9.png" type="Texture" id=38]
+[ext_resource path="res://characters/player/sprites/player-sprites35.png" type="Texture" id=39]
+[ext_resource path="res://characters/player/sprites/player-sprites34.png" type="Texture" id=40]
+[ext_resource path="res://characters/player/sprites/player-sprites18.png" type="Texture" id=41]
+[ext_resource path="res://characters/player/sprites/player-sprites8.png" type="Texture" id=42]
+[ext_resource path="res://characters/player/sprites/player-sprites5.png" type="Texture" id=43]
+[ext_resource path="res://characters/player/sprites/player-sprites3.png" type="Texture" id=44]
+[ext_resource path="res://characters/player/sprites/player-sprites29.png" type="Texture" id=45]
+[ext_resource path="res://characters/player/sprites/player-sprites11.png" type="Texture" id=46]
+[ext_resource path="res://characters/player/sprites/player-sprites12.png" type="Texture" id=47]
+[ext_resource path="res://characters/player/sprites/player-sprites27.png" type="Texture" id=48]
+[ext_resource path="res://characters/player/sprites/player-sprites36.png" type="Texture" id=49]
+
+[sub_resource type="CanvasItemMaterial" id=1]
+
+[sub_resource type="AtlasTexture" id=2]
+atlas = ExtResource( 16 )
+region = Rect2( 0, 0, 16, 24 )
+
+[sub_resource type="AtlasTexture" id=3]
+atlas = ExtResource( 16 )
+region = Rect2( 16, 0, 16, 24 )
+
+[sub_resource type="AtlasTexture" id=4]
+atlas = ExtResource( 16 )
+region = Rect2( 32, 0, 16, 24 )
+
+[sub_resource type="AtlasTexture" id=5]
+atlas = ExtResource( 16 )
+region = Rect2( 48, 0, 16, 24 )
+
+[sub_resource type="AtlasTexture" id=6]
+atlas = ExtResource( 16 )
+region = Rect2( 240, 0, 16, 24 )
+
+[sub_resource type="AtlasTexture" id=7]
+atlas = ExtResource( 16 )
+region = Rect2( 256, 0, 16, 24 )
+
+[sub_resource type="AtlasTexture" id=8]
+atlas = ExtResource( 16 )
+region = Rect2( 272, 0, 16, 24 )
+
+[sub_resource type="AtlasTexture" id=9]
+atlas = ExtResource( 16 )
+region = Rect2( 288, 0, 16, 24 )
+
+[sub_resource type="AtlasTexture" id=10]
+atlas = ExtResource( 16 )
+region = Rect2( 304, 0, 16, 24 )
+
+[sub_resource type="AtlasTexture" id=11]
+atlas = ExtResource( 16 )
+region = Rect2( 320, 0, 16, 24 )
+
+[sub_resource type="AtlasTexture" id=12]
+atlas = ExtResource( 16 )
+region = Rect2( 336, 0, 16, 24 )
+
+[sub_resource type="AtlasTexture" id=13]
+atlas = ExtResource( 16 )
+region = Rect2( 416, 0, 16, 24 )
+
+[sub_resource type="AtlasTexture" id=14]
+atlas = ExtResource( 16 )
+region = Rect2( 432, 0, 16, 24 )
+
+[sub_resource type="AtlasTexture" id=15]
+atlas = ExtResource( 16 )
+region = Rect2( 448, 0, 16, 24 )
+
+[sub_resource type="AtlasTexture" id=16]
+atlas = ExtResource( 16 )
+region = Rect2( 464, 0, 16, 24 )
+
+[sub_resource type="AtlasTexture" id=17]
+atlas = ExtResource( 16 )
+region = Rect2( 352, 0, 16, 24 )
+
+[sub_resource type="AtlasTexture" id=18]
+atlas = ExtResource( 16 )
+region = Rect2( 368, 0, 16, 24 )
+
+[sub_resource type="AtlasTexture" id=19]
+atlas = ExtResource( 16 )
+region = Rect2( 384, 0, 16, 24 )
+
+[sub_resource type="AtlasTexture" id=20]
+atlas = ExtResource( 16 )
+region = Rect2( 400, 0, 16, 24 )
+
+[sub_resource type="AtlasTexture" id=21]
+atlas = ExtResource( 16 )
+region = Rect2( 64, 0, 16, 24 )
+
+[sub_resource type="AtlasTexture" id=22]
+atlas = ExtResource( 16 )
+region = Rect2( 80, 0, 16, 24 )
+
+[sub_resource type="AtlasTexture" id=23]
+atlas = ExtResource( 16 )
+region = Rect2( 96, 0, 16, 24 )
+
+[sub_resource type="AtlasTexture" id=24]
+atlas = ExtResource( 16 )
+region = Rect2( 112, 0, 16, 24 )
+
+[sub_resource type="AtlasTexture" id=25]
+atlas = ExtResource( 16 )
+region = Rect2( 128, 0, 16, 24 )
+
+[sub_resource type="AtlasTexture" id=26]
+atlas = ExtResource( 16 )
+region = Rect2( 144, 0, 16, 24 )
+
+[sub_resource type="AtlasTexture" id=27]
+atlas = ExtResource( 16 )
+region = Rect2( 160, 0, 16, 24 )
+
+[sub_resource type="AtlasTexture" id=28]
+atlas = ExtResource( 16 )
+region = Rect2( 576, 0, 16, 24 )
+
+[sub_resource type="AtlasTexture" id=29]
+atlas = ExtResource( 16 )
+region = Rect2( 176, 0, 16, 24 )
+
+[sub_resource type="AtlasTexture" id=30]
+atlas = ExtResource( 16 )
+region = Rect2( 192, 0, 16, 24 )
+
+[sub_resource type="AtlasTexture" id=31]
+atlas = ExtResource( 16 )
+region = Rect2( 208, 0, 16, 24 )
+
+[sub_resource type="AtlasTexture" id=32]
+atlas = ExtResource( 16 )
+region = Rect2( 224, 0, 16, 24 )
+
+[sub_resource type="AtlasTexture" id=33]
+atlas = ExtResource( 16 )
+region = Rect2( 480, 0, 16, 24 )
+
+[sub_resource type="AtlasTexture" id=34]
+atlas = ExtResource( 16 )
+region = Rect2( 496, 0, 16, 24 )
+
+[sub_resource type="AtlasTexture" id=35]
+atlas = ExtResource( 16 )
+region = Rect2( 512, 0, 16, 24 )
+
+[sub_resource type="AtlasTexture" id=36]
+atlas = ExtResource( 16 )
+region = Rect2( 528, 0, 16, 24 )
+
+[sub_resource type="AtlasTexture" id=37]
+atlas = ExtResource( 16 )
+region = Rect2( 544, 0, 16, 24 )
+
+[sub_resource type="AtlasTexture" id=38]
+atlas = ExtResource( 16 )
+region = Rect2( 560, 0, 16, 24 )
+
+[sub_resource type="SpriteFrames" id=39]
+animations = [ {
+"frames": [ ExtResource( 48 ), ExtResource( 19 ), ExtResource( 45 ), ExtResource( 34 ) ],
+"loop": true,
+"name": "move_left",
+"speed": 8.0
+}, {
+"frames": [ ExtResource( 33 ), ExtResource( 8 ), ExtResource( 11 ), ExtResource( 20 ) ],
+"loop": true,
+"name": "move_right",
+"speed": 5.0
+}, {
+"frames": [ ExtResource( 47 ), ExtResource( 5 ), ExtResource( 6 ), ExtResource( 9 ) ],
+"loop": true,
+"name": "move_up",
+"speed": 4.0
+}, {
+"frames": [ ExtResource( 25 ), ExtResource( 29 ), ExtResource( 44 ), ExtResource( 14 ) ],
+"loop": true,
+"name": "move_down",
+"speed": 5.0
+}, {
+"frames": [ SubResource( 2 ), SubResource( 3 ), SubResource( 4 ), SubResource( 5 ) ],
+"loop": true,
+"name": "move_down_left_arm",
+"speed": 5.0
+}, {
+"frames": [ ExtResource( 35 ), ExtResource( 26 ), ExtResource( 41 ), ExtResource( 15 ), ExtResource( 18 ), ExtResource( 23 ), ExtResource( 31 ) ],
+"loop": true,
+"name": "idle_right",
+"speed": 5.0
+}, {
+"frames": [ ExtResource( 43 ), ExtResource( 32 ), ExtResource( 17 ), ExtResource( 42 ), ExtResource( 38 ), ExtResource( 7 ), ExtResource( 46 ) ],
+"loop": true,
+"name": "idle_down",
+"speed": 4.0
+}, {
+"frames": [ SubResource( 6 ), SubResource( 7 ), SubResource( 8 ), SubResource( 9 ), SubResource( 10 ), SubResource( 11 ), SubResource( 12 ) ],
+"loop": true,
+"name": "idle_right_left_arm",
+"speed": 5.0
+}, {
+"frames": [ ExtResource( 37 ), ExtResource( 21 ), ExtResource( 28 ), ExtResource( 40 ), ExtResource( 39 ), ExtResource( 49 ), ExtResource( 10 ) ],
+"loop": true,
+"name": "idle_left",
+"speed": 5.0
+}, {
+"frames": [ SubResource( 13 ), SubResource( 14 ), SubResource( 15 ), SubResource( 16 ) ],
+"loop": true,
+"name": "move_left_left_arm",
+"speed": 5.0
+}, {
+"frames": [ SubResource( 17 ), SubResource( 18 ), SubResource( 19 ), SubResource( 20 ) ],
+"loop": true,
+"name": "move_right_left_arm",
+"speed": 5.0
+}, {
+"frames": [ ExtResource( 36 ) ],
+"loop": true,
+"name": "idle_up",
+"speed": 4.0
+}, {
+"frames": [ SubResource( 21 ), SubResource( 22 ), SubResource( 23 ), SubResource( 24 ), SubResource( 25 ), SubResource( 26 ), SubResource( 27 ) ],
+"loop": true,
+"name": "idle_down_left_arm",
+"speed": 5.0
+}, {
+"frames": [ SubResource( 28 ) ],
+"loop": true,
+"name": "idle_up_left_arm",
+"speed": 5.0
+}, {
+"frames": [ SubResource( 29 ), SubResource( 30 ), SubResource( 31 ), SubResource( 32 ) ],
+"loop": true,
+"name": "move_up_left_arm",
+"speed": 5.0
+}, {
+"frames": [ SubResource( 33 ), SubResource( 34 ), SubResource( 35 ), SubResource( 36 ), SubResource( 37 ), SubResource( 38 ) ],
+"loop": true,
+"name": "idle_left_left_arm",
+"speed": 5.0
+} ]
+
+[sub_resource type="CapsuleShape2D" id=40]
+radius = 5.0
+height = 12.0
+
+[sub_resource type="OccluderPolygon2D" id=41]
+polygon = PoolVector2Array( -8, -12, 8, -12, 8, 12, -8, 12 )
+
+[sub_resource type="Resource" id=42]
+script = ExtResource( 3 )
+Text = [ "ran out of fuel shitass" ]
+Answers = {
+}
+item_name = ""
+item_quantity = 0
+item_type = 0
+read_box_text = ""
+
+[sub_resource type="Animation" id=43]
+length = 2.0
+loop = true
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:energy")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.4, 0.8, 1.2, 1.6, 2 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1 ),
+"update": 0,
+"values": [ 0.8, 0.7, 0.8, 0.7, 0.7, 0.8 ]
+}
+
+[sub_resource type="Animation" id=44]
+length = 15.0
+loop = true
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = false
+tracks/0/keys = {
+"times": PoolRealArray( 5, 5.3, 5.7 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 1 ), Color( 1, 1, 1, 0 ), Color( 1, 1, 1, 1 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath(".:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 5, 5.2, 5.4, 5.6, 5.8 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1 ),
+"update": 1,
+"values": [ true, false, true, false, true ]
+}
+
+[sub_resource type="Animation" id=45]
+length = 0.3
+loop = true
+step = 0.05
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.25 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ 0, 3 ]
+}
+
+[sub_resource type="Gradient" id=46]
+offsets = PoolRealArray( 0.541176, 1 )
+colors = PoolColorArray( 1, 1, 1, 1, 1, 1, 1, 0 )
+
+[sub_resource type="GradientTexture" id=47]
+gradient = SubResource( 46 )
+
+[sub_resource type="ParticlesMaterial" id=48]
+flag_disable_z = true
+gravity = Vector3( 0, 0, 0 )
+orbit_velocity = 0.0
+orbit_velocity_random = 0.0
+angle = 180.0
+angle_random = 1.0
+scale_random = 1.0
+color_ramp = SubResource( 47 )
+
+[node name="Player" type="KinematicBody2D" groups=[
+"persist",
+"save",
+]]
+position = Vector2( 107.6, 142.364 )
+z_index = 3
+collision_mask = 12
+script = ExtResource( 2 )
+deaccel = 0.4
+speed = 24.0
+sprint_speed = 48.0
+stagger_speed = 16.0
+walk_step_interval = 0.7
+sprint_step_interval = 0.5
+look_dir = Vector2( 0, -1 )
+
+[node name="shadow" type="Sprite" parent="."]
+modulate = Color( 1, 1, 1, 0.152941 )
+position = Vector2( -0.280609, 9.9643 )
+scale = Vector2( 0.85, 0.85 )
+texture = ExtResource( 24 )
+
+[node name="AnimatedSprite" type="AnimatedSprite" parent="."]
+material = SubResource( 1 )
+frames = SubResource( 39 )
+animation = "idle_up"
+playing = true
+
+[node name="CollisionBox" type="CollisionShape2D" parent="."]
+modulate = Color( 0.0980392, 0.996078, 0.678431, 1 )
+position = Vector2( 0, 1 )
+shape = SubResource( 40 )
+
+[node name="Camera2D" type="Camera2D" parent="."]
+current = true
+zoom = Vector2( 0.8, 0.8 )
+
+[node name="LightOccluder2D" type="LightOccluder2D" parent="."]
+visible = false
+occluder = SubResource( 41 )
+
+[node name="look_dir" type="RayCast2D" parent="."]
+modulate = Color( 1, 0.447059, 0.203922, 1 )
+enabled = true
+cast_to = Vector2( 0, -8 )
+collision_mask = 15
+collide_with_areas = true
+
+[node name="Lantern" type="Node2D" parent="." groups=[
+"save",
+]]
+visible = false
+position = Vector2( 1, 0 )
+rotation = -3.14159
+z_index = 3
+z_as_relative = false
+script = ExtResource( 4 )
+ran_out_of_fuel_resource = SubResource( 42 )
+
+[node name="Light" type="Light2D" parent="Lantern"]
+visible = false
+position = Vector2( -1.14441e-05, 3.8147e-06 )
+scale = Vector2( 0.551843, 0.551843 )
+z_index = -5
+z_as_relative = false
+texture = ExtResource( 13 )
+texture_scale = 2.93
+color = Color( 1, 0.886275, 0.666667, 1 )
+energy = 1.11108
+range_height = -10.0
+shadow_enabled = true
+shadow_filter = 3
+shadow_filter_smooth = 12.2
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Lantern/Light"]
+anims/flicker = ExtResource( 1 )
+
+[node name="Spotlight" type="Light2D" parent="Lantern"]
+position = Vector2( -1, -9.53674e-07 )
+scale = Vector2( 0.551843, 0.551843 )
+z_index = -5
+z_as_relative = false
+texture = ExtResource( 22 )
+offset = Vector2( -1.81211, 88.7934 )
+texture_scale = 2.93
+color = Color( 1, 0.607843, 0.321569, 1 )
+energy = 0.759555
+range_height = -10.0
+shadow_enabled = true
+shadow_filter = 5
+shadow_filter_smooth = 10.0
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Lantern/Spotlight"]
+anims/flicker = SubResource( 43 )
+
+[node name="awno" type="AnimationPlayer" parent="Lantern"]
+anims/awcrap = SubResource( 44 )
+
+[node name="Static" type="CanvasLayer" parent="Lantern"]
+layer = 2
+
+[node name="StaticAnim" type="Sprite" parent="Lantern/Static"]
+modulate = Color( 1, 1, 1, 0 )
+position = Vector2( 69.9724, 34.4124 )
+z_index = 10
+z_as_relative = false
+texture = ExtResource( 30 )
+hframes = 4
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Lantern/Static"]
+root_node = NodePath("../StaticAnim")
+anims/static = SubResource( 45 )
+
+[node name="Sounds" type="Node2D" parent="."]
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="Move" type="AudioStreamPlayer2D" parent="Sounds"]
+position = Vector2( 0, 12 )
+stream = ExtResource( 12 )
+volume_db = -24.0
+
+[node name="StepTimer" type="Timer" parent="Sounds/Move"]
+wait_time = 0.7
+
+[node name="Light2D" type="Light2D" parent="."]
+scale = Vector2( 0.5, 0.5 )
+texture = ExtResource( 13 )
+energy = 0.3
+
+[node name="Particles2D" type="Particles2D" parent="."]
+visible = false
+light_mask = 0
+position = Vector2( -2.43475, 12 )
+z_index = 2
+z_as_relative = false
+amount = 4
+local_coords = false
+process_material = SubResource( 48 )
+texture = ExtResource( 27 )
+
+[connection signal="timeout" from="Sounds/Move/StepTimer" to="." method="_on_StepTimer_timeout"]

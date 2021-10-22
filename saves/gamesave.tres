@@ -1,0 +1,44 @@
+[gd_resource type="Resource" load_steps=2 format=2]
+
+[ext_resource path="res://classes/GameSave.gd" type="Script" id=1]
+
+[resource]
+script = ExtResource( 1 )
+game_version = ""
+data = {
+"game": {
+"1F_kitchen": "res://saves/levels/1F_kitchen.tscn",
+"1F_main_room": "res://saves/levels/1F_main_room.tscn",
+"1F_west_hall": "res://saves/levels/1F_west_hall.tscn",
+"1F_west_main_hall": "res://saves/levels/1F_west_main_hall.tscn",
+"1F_west_office": "res://saves/levels/1F_west_office.tscn",
+"2F_east_main_hall": "res://saves/levels/2F_east_main_hall.tscn",
+"2F_west_small_room": "res://saves/levels/2F_west_small_room.tscn"
+},
+"hp_handler": {
+"bleeding_limbs": {
+"left_arm": false,
+"left_leg": false,
+"right_arm": false,
+"right_leg": false
+},
+"current_limbs": {
+"left_arm": true,
+"left_leg": true,
+"right_arm": true,
+"right_leg": true
+}
+},
+"inventory": {
+"inventory": [ [  ], [  ] ],
+"key_items": [  ],
+"normal_items": [  ]
+},
+"lantern": {
+"fuel": 9000.0,
+"lantern_toggled": false
+},
+"player": {
+"save_path": "res://saves/player/player.tscn"
+}
+}

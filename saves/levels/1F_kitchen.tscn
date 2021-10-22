@@ -1,0 +1,392 @@
+[gd_scene load_steps=40 format=2]
+
+[ext_resource path="res://tilesets/house/house1.tres" type="TileSet" id=1]
+[ext_resource path="res://tilesets/house/rug/rug1.tres" type="TileSet" id=2]
+[ext_resource path="res://characters/player/Player.gd" type="Script" id=3]
+[ext_resource path="res://levels/interfaces/Light-Effects.tscn" type="PackedScene" id=4]
+[ext_resource path="res://characters/player/light_mask2d.png" type="Texture" id=5]
+[ext_resource path="res://levels/interfaces/LightMask2D.tscn" type="PackedScene" id=6]
+[ext_resource path="res://objects/sink/Sink.gd" type="Script" id=7]
+[ext_resource path="res://objects/door/Door.gd" type="Script" id=8]
+[ext_resource path="res://gui/inventory/InventoryGUI.gd" type="Script" id=9]
+[ext_resource path="res://objects/StaticObject.gd" type="Script" id=10]
+[ext_resource path="res://levels/LightEffects.gd" type="Script" id=11]
+[ext_resource path="res://tilesets/Shadow.tscn" type="PackedScene" id=12]
+[ext_resource path="res://gui/inventory/Inventory.tscn" type="PackedScene" id=13]
+[ext_resource path="res://characters/player/player.tscn" type="PackedScene" id=14]
+[ext_resource path="res://objects/door/Door.tscn" type="PackedScene" id=15]
+[ext_resource path="res://tilesets/house/ledge/ledge.tres" type="TileSet" id=16]
+[ext_resource path="res://tilesets/shadows.tres" type="TileSet" id=17]
+[ext_resource path="res://objects/kitchen_table/kitchen_table.png" type="Texture" id=18]
+[ext_resource path="res://objects/chair2.png" type="Texture" id=19]
+[ext_resource path="res://objects/cupboard/cupboard.png" type="Texture" id=20]
+[ext_resource path="res://objects/sink/Sink.tres" type="Resource" id=21]
+[ext_resource path="res://objects/cupboard/cupboard.tscn" type="PackedScene" id=22]
+[ext_resource path="res://objects/chair/Chair.tscn" type="PackedScene" id=23]
+[ext_resource path="res://objects/kitchen_table/kitchen_table.tscn" type="PackedScene" id=24]
+[ext_resource path="res://objects/sink/Sink.tscn" type="PackedScene" id=25]
+
+[sub_resource type="RectangleShape2D" id=9]
+extents = Vector2( 8, 5 )
+
+[sub_resource type="RectangleShape2D" id=10]
+extents = Vector2( 8, 12 )
+
+[sub_resource type="OccluderPolygon2D" id=11]
+cull_mode = 1
+polygon = PoolVector2Array( -8, -8, 8, -8, 8, 8, 0, 8, -8, 8 )
+
+[sub_resource type="RectangleShape2D" id=12]
+extents = Vector2( 6, 3.22581 )
+
+[sub_resource type="RectangleShape2D" id=8]
+extents = Vector2( 16, 16 )
+
+[sub_resource type="OccluderPolygon2D" id=13]
+cull_mode = 1
+polygon = PoolVector2Array( -6, -5, 6, -5, 6, 16, -6, 16 )
+
+[sub_resource type="RectangleShape2D" id=14]
+extents = Vector2( 16, 5.00003 )
+
+[sub_resource type="RectangleShape2D" id=15]
+extents = Vector2( 16, 12 )
+
+[sub_resource type="OccluderPolygon2D" id=16]
+cull_mode = 1
+polygon = PoolVector2Array( -8, -11, 24, -11, 24, 8, -8, 8 )
+
+[sub_resource type="CanvasItemMaterial" id=17]
+blend_mode = 3
+
+[sub_resource type="OccluderPolygon2D" id=18]
+cull_mode = 1
+polygon = PoolVector2Array( 120, 104, 130, 104, 130, 95, 142, 95, 142, 104, 152, 104, 152, 117, 152, 123, 151, 123, 147, 123, 125, 123, 121, 123, 120, 123, 120, 117 )
+
+[sub_resource type="OccluderPolygon2D" id=19]
+cull_mode = 1
+polygon = PoolVector2Array( 24, -29, 22, -29, 22, -6, 22, -5, -10, -5, -10, -45, 24, -45 )
+
+[sub_resource type="OccluderPolygon2D" id=20]
+cull_mode = 2
+polygon = PoolVector2Array( 128, 88, 160, 88, 160, 72, 128, 72 )
+
+[sub_resource type="CanvasItemMaterial" id=1]
+blend_mode = 3
+light_mode = 1
+
+[node name="1F_kitchen" type="Node2D"]
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="Player" type="KinematicBody2D" parent="." groups=[
+"save",
+] instance=ExtResource( 14 )]
+position = Vector2( 72, 112 )
+z_index = 3
+collision_mask = 12
+script = ExtResource( 3 )
+deaccel = 0.4
+speed = 20.0
+sprint_speed = 48.0
+stagger_speed = 16.0
+walk_step_interval = 0.7
+sprint_step_interval = 0.5
+look_dir = Vector2( 0, -1 )
+
+[node name="Shadow" type="TileMap" parent="." instance=ExtResource( 12 )]
+modulate = Color( 1, 1, 1, 0.392157 )
+tile_set = ExtResource( 17 )
+cell_size = Vector2( 16, 16 )
+format = 1
+tile_data = PoolIntArray( 262146, 2, 0, 327682, 2, 0 )
+
+[node name="HouseF1" type="TileMap" parent="."]
+tile_set = ExtResource( 1 )
+cell_size = Vector2( 16, 16 )
+occluder_light_mask = 0
+format = 1
+tile_data = PoolIntArray( 65540, 9, 0, 65541, 14, 0, 65542, 14, 0, 65543, 14, 0, 65544, 14, 0, 65545, 14, 0, 65546, 14, 0, 65547, 14, 0, 65548, 2, 0, 131076, 5, 0, 131077, 32, 0, 131078, 32, 0, 131079, 32, 0, 131080, 32, 0, 131081, 33, 0, 131082, 32, 0, 131083, 32, 0, 131084, 3, 0, 196612, 5, 0, 196613, 36, 0, 196614, 36, 0, 196615, 36, 0, 196616, 36, 0, 196617, 36, 0, 196618, 36, 0, 196619, 36, 0, 196620, 3, 0, 262148, 5, 0, 262149, 29, 0, 262150, 27, 0, 262151, 27, 0, 262152, 28, 0, 262153, 27, 0, 262154, 29, 0, 262155, 27, 0, 262156, 3, 0, 327683, 9, 0, 327684, 12, 0, 327685, 26, 0, 327686, 26, 0, 327687, 26, 0, 327688, 26, 0, 327689, 26, 0, 327690, 26, 0, 327691, 26, 0, 327692, 3, 0, 393219, 5, 0, 393221, 26, 0, 393222, 26, 0, 393223, 26, 0, 393224, 26, 0, 393225, 26, 0, 393226, 26, 0, 393227, 26, 0, 393228, 3, 0, 458755, 8, 0, 458756, 13, 0, 458757, 26, 0, 458758, 26, 0, 458759, 26, 0, 458760, 26, 0, 458761, 26, 0, 458762, 26, 0, 458763, 26, 0, 458764, 3, 0, 524291, 6, 0, 524292, 5, 0, 524293, 26, 0, 524294, 26, 0, 524295, 26, 0, 524296, 26, 0, 524297, 26, 0, 524298, 26, 0, 524299, 26, 0, 524300, 3, 0, 524301, 6, 0, 589827, 6, 0, 589828, 8, 0, 589829, 4, 0, 589830, 4, 0, 589831, 4, 0, 589832, 4, 0, 589833, 4, 0, 589834, 4, 0, 589835, 4, 0, 589836, 7, 0, 589837, 6, 0, 655363, 6, 0, 655364, 6, 0, 655365, 6, 0, 655366, 6, 0, 655367, 6, 0, 655368, 6, 0, 655369, 6, 0, 655370, 6, 0, 655371, 6, 0, 655372, 6, 0, 655373, 6, 0 )
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="HouseF2" type="TileMap" parent="."]
+position = Vector2( 128, 160 )
+tile_set = ExtResource( 1 )
+cell_size = Vector2( 16, 16 )
+format = 1
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="Rug" type="TileMap" parent="."]
+tile_set = ExtResource( 2 )
+cell_size = Vector2( 16, 16 )
+format = 1
+
+[node name="Ledge" type="TileMap" parent="."]
+position = Vector2( 0, -16 )
+z_index = 3
+tile_set = ExtResource( 16 )
+cell_size = Vector2( 16, 16 )
+format = 1
+
+[node name="CanvasModulate" type="CanvasModulate" parent="." instance=ExtResource( 4 )]
+color = Color( 0.05, 0.05, 0.05, 1 )
+script = ExtResource( 11 )
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="Door" type="Area2D" parent="." instance=ExtResource( 15 )]
+position = Vector2( 71.4762, 104 )
+script = ExtResource( 8 )
+scene_name = "1F_main_room"
+locked = false
+locked_dialogue = null
+unlocked_text = ""
+key_name = ""
+inventory_gui_path = NodePath("../CanvasLayer/InventoryGUI")
+player_path = NodePath("../Player")
+required_look_dir = Vector2( -1, 0 )
+
+[node name="Sink" type="StaticBody2D" parent="." instance=ExtResource( 25 )]
+position = Vector2( 168, 72 )
+script = ExtResource( 7 )
+dialogue = ExtResource( 21 )
+
+[node name="Cupboard" type="StaticBody2D" parent="." instance=ExtResource( 22 )]
+position = Vector2( 152, 80 )
+script = ExtResource( 10 )
+dialogue = null
+
+[node name="CollisionBox" type="CollisionShape2D" parent="Cupboard" index="0"]
+position = Vector2( 0, -3 )
+rotation = 3.14159
+z_index = 1
+shape = SubResource( 9 )
+one_way_collision_margin = 0.0
+
+[node name="Texture" type="Sprite" parent="Cupboard" index="1"]
+texture = ExtResource( 20 )
+
+[node name="InteractionArea" type="Area2D" parent="Cupboard" index="2"]
+__meta__ = {
+"_edit_group_": true,
+"_edit_lock_": true
+}
+
+[node name="InteractionBox" type="CollisionShape2D" parent="Cupboard/InteractionArea" index="0"]
+modulate = Color( 0.854902, 0.835294, 0.509804, 1 )
+shape = SubResource( 10 )
+
+[node name="LightOccluder2D" type="LightOccluder2D" parent="Cupboard" index="3"]
+visible = false
+z_index = -1
+occluder = SubResource( 11 )
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="Cupboard2" type="StaticBody2D" parent="." instance=ExtResource( 22 )]
+position = Vector2( 136, 80 )
+script = ExtResource( 10 )
+dialogue = null
+
+[node name="CollisionBox" type="CollisionShape2D" parent="Cupboard2" index="0"]
+position = Vector2( 0, -3 )
+rotation = 3.14159
+z_index = 1
+shape = SubResource( 9 )
+one_way_collision_margin = 0.0
+
+[node name="Texture" type="Sprite" parent="Cupboard2" index="1"]
+texture = ExtResource( 20 )
+
+[node name="InteractionArea" type="Area2D" parent="Cupboard2" index="2"]
+__meta__ = {
+"_edit_group_": true,
+"_edit_lock_": true
+}
+
+[node name="InteractionBox" type="CollisionShape2D" parent="Cupboard2/InteractionArea" index="0"]
+modulate = Color( 0.854902, 0.835294, 0.509804, 1 )
+shape = SubResource( 10 )
+
+[node name="LightOccluder2D" type="LightOccluder2D" parent="Cupboard2" index="3"]
+visible = false
+z_index = -1
+occluder = SubResource( 11 )
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="Cupboard3" type="StaticBody2D" parent="." instance=ExtResource( 22 )]
+position = Vector2( 104, 56 )
+z_index = 10
+z_as_relative = false
+script = ExtResource( 10 )
+dialogue = null
+
+[node name="Cupboard4" type="StaticBody2D" parent="." instance=ExtResource( 22 )]
+position = Vector2( 122, 56 )
+z_index = 10
+z_as_relative = false
+script = ExtResource( 10 )
+dialogue = null
+
+[node name="Chair" type="StaticBody2D" parent="." instance=ExtResource( 23 )]
+position = Vector2( 136, 100 )
+script = ExtResource( 10 )
+dialogue = null
+
+[node name="CollisionBox" type="CollisionShape2D" parent="Chair" index="0"]
+position = Vector2( 0, -1 )
+rotation = 3.14159
+scale = Vector2( 1, 1.24 )
+z_index = 1
+shape = SubResource( 12 )
+one_way_collision_margin = 0.0
+
+[node name="Texture" type="Sprite" parent="Chair" index="1"]
+texture = ExtResource( 19 )
+
+[node name="InteractionArea" type="Area2D" parent="Chair" index="2"]
+visible = false
+collision_layer = 2
+__meta__ = {
+"_edit_group_": true,
+"_edit_lock_": true
+}
+
+[node name="InteractionBox" type="CollisionShape2D" parent="Chair/InteractionArea" index="0"]
+modulate = Color( 0.854902, 0.835294, 0.509804, 1 )
+shape = SubResource( 8 )
+
+[node name="LightOccluder2D" type="LightOccluder2D" parent="Chair" index="3"]
+visible = false
+modulate = Color( 1, 1, 1, 0 )
+light_mask = 3
+z_index = -3
+z_as_relative = false
+occluder = SubResource( 13 )
+light_mask = 3
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="Kitchen_table" type="StaticBody2D" parent="." instance=ExtResource( 24 )]
+position = Vector2( 104, 80 )
+z_index = 1
+script = ExtResource( 10 )
+dialogue = null
+
+[node name="CollisionBox" type="CollisionShape2D" parent="Kitchen_table" index="0"]
+visible = false
+position = Vector2( 8, -6 )
+rotation = 3.14159
+z_index = 1
+shape = SubResource( 14 )
+one_way_collision_margin = 0.0
+
+[node name="Texture" type="Sprite" parent="Kitchen_table" index="1"]
+position = Vector2( 8, -8 )
+texture = ExtResource( 18 )
+
+[node name="InteractionArea" type="Area2D" parent="Kitchen_table" index="2"]
+__meta__ = {
+"_edit_group_": true,
+"_edit_lock_": true
+}
+
+[node name="InteractionBox" type="CollisionShape2D" parent="Kitchen_table/InteractionArea" index="0"]
+modulate = Color( 0.854902, 0.835294, 0.509804, 1 )
+position = Vector2( 8, -2 )
+shape = SubResource( 15 )
+
+[node name="LightOccluder2D" type="LightOccluder2D" parent="Kitchen_table" index="3"]
+visible = false
+z_index = -1
+occluder = SubResource( 16 )
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="Polygon2D" type="Polygon2D" parent="Kitchen_table" index="4"]
+material = SubResource( 17 )
+z_index = -1
+z_as_relative = false
+color = Color( 0.313726, 0.290196, 0.286275, 1 )
+polygon = PoolVector2Array( -7.77465, -7.88452, 23, -8, 23, 8, -8, 8 )
+__meta__ = {
+"_editor_description_": ""
+}
+
+[node name="Kitchen_table2" type="StaticBody2D" parent="." groups=[
+"save",
+] instance=ExtResource( 24 )]
+position = Vector2( 128, 115 )
+z_index = 1
+z_as_relative = false
+script = ExtResource( 10 )
+dialogue = null
+
+[node name="LightOccluder2D" type="LightOccluder2D" parent="."]
+light_mask = 3
+z_index = -1
+occluder = SubResource( 18 )
+light_mask = 3
+
+[node name="LightOccluder2D2" type="LightOccluder2D" parent="."]
+visible = false
+position = Vector2( 106, 93 )
+z_index = -9
+z_as_relative = false
+occluder = SubResource( 19 )
+
+[node name="LightOccluder2D3" type="LightOccluder2D" parent="."]
+occluder = SubResource( 20 )
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="LightMask2D" type="Sprite" parent="CanvasLayer" instance=ExtResource( 6 )]
+material = SubResource( 1 )
+position = Vector2( 128, 96 )
+scale = Vector2( 1, 1.25 )
+texture = ExtResource( 5 )
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="InventoryGUI" type="Control" parent="CanvasLayer" instance=ExtResource( 13 )]
+visible = false
+margin_left = 16.0
+margin_top = 16.0
+margin_right = 128.0
+margin_bottom = 136.0
+rect_pivot_offset = Vector2( 40.5, 60 )
+script = ExtResource( 9 )
+__meta__ = {
+"_edit_group_": true,
+"_edit_lock_": true,
+"_edit_use_anchors_": false
+}
+player_path = NodePath("")
+
+[connection signal="body_entered" from="Door" to="Door" method="_on_Door_body_entered"]
+[connection signal="body_exited" from="Door" to="Door" method="_on_Door_body_exited"]
+[connection signal="body_entered" from="Cupboard/InteractionArea" to="Cupboard" method="_on_InteractionArea_body_entered"]
+[connection signal="body_exited" from="Cupboard/InteractionArea" to="Cupboard" method="_on_InteractionArea_body_exited"]
+[connection signal="body_entered" from="Cupboard2/InteractionArea" to="Cupboard2" method="_on_InteractionArea_body_entered"]
+[connection signal="body_exited" from="Cupboard2/InteractionArea" to="Cupboard2" method="_on_InteractionArea_body_exited"]
+[connection signal="body_entered" from="Chair/InteractionArea" to="Chair" method="_on_InteractionArea_body_entered"]
+[connection signal="body_exited" from="Chair/InteractionArea" to="Chair" method="_on_InteractionArea_body_exited"]
+[connection signal="body_entered" from="Kitchen_table/InteractionArea" to="Kitchen_table" method="_on_InteractionArea_body_entered"]
+[connection signal="body_exited" from="Kitchen_table/InteractionArea" to="Kitchen_table" method="_on_InteractionArea_body_exited"]
+
+[editable path="Cupboard"]
+[editable path="Cupboard2"]
+[editable path="Chair"]
+[editable path="Kitchen_table"]

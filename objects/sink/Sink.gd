@@ -13,7 +13,7 @@ func _ready() -> void:
 
 
 func on_DialogueHandler_player_unpause() -> void:
-	if GlobalHandler.left_arm == false:
+	if not HpHandler.current_limbs["left_arm"]:
 		if DialogueHandler.dialogue == arm_message:
 			$AnimatedSprite.play("flood")
 			return
@@ -22,7 +22,8 @@ func on_DialogueHandler_player_unpause() -> void:
 			return
 	if DialogueHandler.dialogue_branch == 1:
 		print("arm gone!!")
-		GlobalHandler.left_arm = false
+		#GlobalHandler.left_arm = false
+		HpHandler.cut_limb("left_arm")
 		red_screen.visible = true
 		red_screen.get_node("AnimationPlayer").play("fade")
 		DialogueHandler.emit_signal("player_paused")

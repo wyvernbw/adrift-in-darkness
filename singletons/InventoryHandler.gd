@@ -9,13 +9,13 @@ var loading: bool = false
 var inventory: Array
 var key_items: Array
 var normal_items: Array
-var SAVE_KEY: String = "InventoryHandler"
+var save_key: String = "inventory"
 
 
 func _ready() -> void:
 	inventory.append(key_items)
 	inventory.append(normal_items)
-	add_to_group("save", true)
+	add_to_group("persist")
 
 
 func _send_notification(item: Item) -> void:
@@ -60,59 +60,23 @@ func subtract_item(item: Item, amount: int) -> void:
 	emit_signal("inventory_changed")
 
 
-func save_game(game_save: Resource) -> void:
-	game_save.data[SAVE_KEY] = {'inventory': {'key_items': {}, 'normal_items': {}}}
-	for i in inventory[Item.ITEM_TYPES.KEY_ITEM].size():
-		var itr_item = inventory[Item.ITEM_TYPES.KEY_ITEM][i]
-		var item_dict: Dictionary = {
-			"item_name": itr_item.item_name,
-			"quantity": itr_item.quantity,
-			"texture": itr_item.texture,
-			"item_type": itr_item.item_type
-		}
-		game_save.data[SAVE_KEY]['inventory']['key_items'][str(i)] = item_dict
-	for i in inventory[Item.ITEM_TYPES.NORMAL_ITEM].size():
-		var itr_item = inventory[Item.ITEM_TYPES.NORMAL_ITEM][i]
-		var item_dict: Dictionary = {
-			'item_name': itr_item.item_name,
-			'quantity': itr_item.quantity,
-			'texture': itr_item.texture,
-			'item_type': itr_item.item_type
-		}
-		game_save.data[SAVE_KEY]['inventory']['normal_items'][str(i)] = item_dict
-	print(game_save.data[SAVE_KEY])
-
-
-func load_game(game_save: Resource) -> void:
-	loading = true
-
-	var data = game_save.data[SAVE_KEY]
-
-	inventory[Item.ITEM_TYPES.KEY_ITEM] = []
-	inventory[Item.ITEM_TYPES.NORMAL_ITEM] = []
-
-	for i in data['inventory']['key_items'].size():
-		var item_dict = data['inventory']['key_items'][str(i)]
-		var comp_item = Item.new(
-			item_dict['item_name'],
-			item_dict['quantity'],
-			item_dict['texture'],
-			item_dict['item_type']
-		)
-		inventory[Item.ITEM_TYPES.KEY_ITEM].append(comp_item)
-
-	for i in data['inventory']['normal_items'].size():
-		var item_dict = data['inventory']['normal_items'][str(i)]
-		var comp_item = Item.new(
-			item_dict['item_name'],
-			item_dict['quantity'],
-			item_dict['texture'],
-			item_dict['item_type']
-		)
-		inventory[Item.ITEM_TYPES.NORMAL_ITEM].append(comp_item)
-
-	loading = false
-
-
 func _on_item_used(item) -> void:
 	emit_signal("inventory_item_used", item)
+
+
+func save() -> Dictionary:
+	var save_dict: Dictionary
+	save_dict["inventory"] = inventory.duplicate()
+	save_dict["key_items"] = key_items.duplicate()
+	save_dict["normal_items"] = normal_items.duplicate()
+	return save_dict
+
+
+func load(save : Dictionary) -> void:
+	inventory.clear()
+	inventory = save["inventory"].duplicate()
+	key_items.clear()
+	key_items = save["key_items"].duplicate()
+	normal_items.clear()
+	normal_items = save["normal_items"].duplicate()
+	emit_signal("inventory_changed")

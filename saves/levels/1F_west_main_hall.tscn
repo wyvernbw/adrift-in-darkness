@@ -1,0 +1,344 @@
+[gd_scene load_steps=35 format=2]
+
+[ext_resource path="res://tilesets/house/house1.tres" type="TileSet" id=1]
+[ext_resource path="res://tilesets/house/rug/rug1.tres" type="TileSet" id=2]
+[ext_resource path="res://characters/player/Player.gd" type="Script" id=3]
+[ext_resource path="res://levels/interfaces/Light-Effects.tscn" type="PackedScene" id=4]
+[ext_resource path="res://classes/DialogueResource.gd" type="Script" id=5]
+[ext_resource path="res://characters/player/light_mask2d.png" type="Texture" id=6]
+[ext_resource path="res://levels/interfaces/LightMask2D.tscn" type="PackedScene" id=7]
+[ext_resource path="res://objects/sound_area/SoundArea.gd" type="Script" id=8]
+[ext_resource path="res://objects/door/Door.gd" type="Script" id=9]
+[ext_resource path="res://gui/inventory/InventoryGUI.gd" type="Script" id=10]
+[ext_resource path="res://objects/StaticObject.gd" type="Script" id=11]
+[ext_resource path="res://levels/LightEffects.gd" type="Script" id=12]
+[ext_resource path="res://tilesets/Shadow.tscn" type="PackedScene" id=13]
+[ext_resource path="res://gui/inventory/Inventory.tscn" type="PackedScene" id=14]
+[ext_resource path="res://characters/player/player.tscn" type="PackedScene" id=15]
+[ext_resource path="res://objects/door/Door.tscn" type="PackedScene" id=16]
+[ext_resource path="res://tilesets/house/ledge/ledge.tres" type="TileSet" id=17]
+[ext_resource path="res://tilesets/shadows.tres" type="TileSet" id=18]
+[ext_resource path="res://objects/drawer/drawer.png" type="Texture" id=19]
+[ext_resource path="res://objects/bookshelf/bookshelf-left.png" type="Texture" id=20]
+[ext_resource path="res://objects/door/door_unlocked.wav" type="AudioStream" id=21]
+[ext_resource path="res://objects/bookshelf/bookshelf.png" type="Texture" id=22]
+[ext_resource path="res://objects/sound_area/SoundArea.tscn" type="PackedScene" id=23]
+[ext_resource path="res://objects/drawer/Drawer.tscn" type="PackedScene" id=24]
+
+[sub_resource type="Resource" id=2]
+script = ExtResource( 5 )
+Text = [ " There are some old chemestry and anatomy books on the shelves." ]
+Answers = {
+}
+item_name = ""
+item_quantity = 0
+item_type = 0
+read_box_text = ""
+
+[sub_resource type="RectangleShape2D" id=3]
+extents = Vector2( 15.8982, 3.71792 )
+
+[sub_resource type="RectangleShape2D" id=4]
+extents = Vector2( 16, 24 )
+
+[sub_resource type="OccluderPolygon2D" id=5]
+cull_mode = 1
+polygon = PoolVector2Array( -8, -8, 24, -8, 24, 24, -8, 24 )
+
+[sub_resource type="Resource" id=6]
+script = ExtResource( 5 )
+Text = [ "Nothing inside." ]
+Answers = {
+}
+item_name = ""
+item_quantity = 0
+item_type = 0
+read_box_text = ""
+
+[sub_resource type="RectangleShape2D" id=7]
+extents = Vector2( 8, 2.5 )
+
+[sub_resource type="RectangleShape2D" id=8]
+extents = Vector2( 16, 16 )
+
+[sub_resource type="OccluderPolygon2D" id=9]
+closed = false
+polygon = PoolVector2Array( -6.88925, -7.21202, 5.9926, -7.02799, 6.16779, 5.86011, -6.94408, 5.86011, -7.07327, -7.39605, 5.80857, -7.21202 )
+
+[sub_resource type="RectangleShape2D" id=10]
+extents = Vector2( 32, 17.44 )
+
+[sub_resource type="CanvasItemMaterial" id=1]
+blend_mode = 3
+light_mode = 1
+
+[node name="level_name" type="Node2D"]
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="Player" type="KinematicBody2D" parent="." groups=[
+"save",
+] instance=ExtResource( 15 )]
+position = Vector2( 168, 125.44 )
+z_index = 3
+collision_mask = 12
+script = ExtResource( 3 )
+deaccel = 0.4
+speed = 20.0
+sprint_speed = 48.0
+stagger_speed = 16.0
+walk_step_interval = 0.7
+sprint_step_interval = 0.5
+look_dir = Vector2( -1, 0 )
+
+[node name="bookshelf2" type="StaticBody2D" parent="."]
+position = Vector2( 60, 160 )
+z_index = 3
+script = ExtResource( 11 )
+dialogue = SubResource( 2 )
+
+[node name="Texture" type="Sprite" parent="bookshelf2"]
+position = Vector2( 8, 8 )
+texture = ExtResource( 22 )
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="CollisionBox" type="CollisionShape2D" parent="bookshelf2"]
+position = Vector2( 8.00001, 20.136 )
+rotation = 3.14159
+shape = SubResource( 3 )
+one_way_collision_margin = 0.0
+
+[node name="InteractionArea" type="Area2D" parent="bookshelf2"]
+collision_layer = 2
+__meta__ = {
+"_edit_group_": true,
+"_edit_lock_": true
+}
+
+[node name="InteractionBox" type="CollisionShape2D" parent="bookshelf2/InteractionArea"]
+visible = false
+modulate = Color( 0.854902, 0.835294, 0.509804, 1 )
+position = Vector2( 8, 8 )
+shape = SubResource( 4 )
+
+[node name="LightOccluder2D" type="LightOccluder2D" parent="bookshelf2"]
+visible = false
+light_mask = 0
+occluder = SubResource( 5 )
+light_mask = 0
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="Shadow" type="TileMap" parent="." instance=ExtResource( 13 )]
+modulate = Color( 1, 1, 1, 0.392157 )
+tile_set = ExtResource( 18 )
+cell_size = Vector2( 16, 16 )
+format = 1
+tile_data = PoolIntArray( 262146, 2, 0, 327682, 2, 0 )
+
+[node name="HouseF1" type="TileMap" parent="."]
+tile_set = ExtResource( 1 )
+cell_size = Vector2( 16, 16 )
+format = 1
+tile_data = PoolIntArray( -131072, 6, 0, -131071, 6, 0, -131070, 9, 0, -131069, 14, 0, -131068, 2, 0, -131067, 6, 0, -131066, 6, 0, -65536, 6, 0, -65535, 9, 0, -65534, 12, 0, -65532, 11, 0, -65531, 2, 0, -65530, 6, 0, 0, 6, 0, 1, 5, 0, 2, 18, 0, 4, 18, 0, 5, 3, 0, 6, 6, 0, 65536, 6, 0, 65537, 5, 0, 65538, 18, 0, 65540, 18, 0, 65541, 3, 0, 65542, 6, 0, 131072, 6, 0, 131073, 5, 0, 131074, 17, 0, 131075, 1, 0, 131076, 17, 0, 131077, 3, 0, 131078, 6, 0, 196608, 6, 0, 196609, 5, 0, 196610, 1, 0, 196611, 1, 0, 196612, 1, 0, 196613, 3, 0, 196614, 6, 0, 196615, 6, 0, 196616, 6, 0, 196617, 6, 0, 196618, 6, 0, 196619, 6, 0, 262144, 6, 0, 262145, 5, 0, 262146, 1, 0, 262147, 1, 0, 262148, 1, 0, 262149, 11, 0, 262150, 14, 0, 262151, 14, 0, 262152, 14, 0, 262153, 14, 0, 262154, 2, 0, 262155, 6, 0, 327680, 6, 0, 327681, 5, 0, 327682, 1, 0, 327683, 1, 0, 327684, 1, 0, 327685, 18, 0, 327686, 18, 0, 327687, 18, 0, 327688, 18, 0, 327689, 18, 0, 327690, 3, 0, 327691, 6, 0, 393216, 6, 0, 393217, 5, 0, 393218, 1, 0, 393219, 1, 0, 393220, 1, 0, 393221, 18, 0, 393222, 18, 0, 393223, 18, 0, 393224, 18, 0, 393225, 18, 0, 393226, 11, 0, 393227, 2, 0, 458752, 6, 0, 458753, 5, 0, 458754, 1, 0, 458755, 1, 0, 458756, 1, 0, 458757, 17, 0, 458758, 17, 0, 458759, 17, 0, 458760, 17, 0, 458761, 17, 0, 458762, 15, 0, 458763, 3, 0, 524288, 6, 0, 524289, 5, 0, 524290, 1, 0, 524291, 1, 0, 524292, 1, 0, 524293, 1, 0, 524294, 1, 0, 524295, 1, 0, 524296, 1, 0, 524297, 1, 0, 524298, 10, 0, 524299, 7, 0, 589824, 6, 0, 589825, 5, 0, 589826, 1, 0, 589827, 1, 0, 589828, 1, 0, 589829, 1, 0, 589830, 1, 0, 589831, 1, 0, 589832, 1, 0, 589833, 1, 0, 589834, 3, 0, 589835, 6, 0, 655360, 6, 0, 655361, 8, 0, 655362, 4, 0, 655363, 4, 0, 655364, 4, 0, 655365, 4, 0, 655366, 4, 0, 655367, 4, 0, 655368, 4, 0, 655369, 4, 0, 655370, 7, 0, 655371, 6, 0, 720896, 6, 0, 720897, 6, 0, 720898, 6, 0, 720899, 6, 0, 720900, 6, 0, 720901, 6, 0, 720902, 6, 0, 720903, 6, 0, 720904, 6, 0, 720905, 6, 0, 720906, 6, 0, 720907, 6, 0, 851973, 6, 0, 851974, 6, 0, 851975, 6, 0, 851976, 6, 0, 851977, 6, 0, 851978, 6, 0 )
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="HouseF2" type="TileMap" parent="."]
+modulate = Color( 0.811765, 0.811765, 0.811765, 1 )
+position = Vector2( 128, 160 )
+tile_set = ExtResource( 1 )
+cell_size = Vector2( 16, 16 )
+format = 1
+tile_data = PoolIntArray( -655365, 18, 0, -720892, 6, 0, -589829, 18, 0, -131059, 6, 0 )
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="Rug" type="TileMap" parent="."]
+tile_set = ExtResource( 2 )
+cell_size = Vector2( 16, 16 )
+format = 1
+tile_data = PoolIntArray( -65536, 6, 0, -65534, 6, 0, 196610, 6, 0, 196611, 2, 0, 196612, 7, 0, 262146, 5, 0, 262147, 0, 0, 262148, 3, 0, 327682, 5, 0, 327683, 0, 0, 327684, 3, 0, 393218, 5, 0, 393219, 0, 0, 393220, 3, 0, 458754, 9, 0, 458755, 4, 0, 458756, 8, 0, 524294, 6, 0, 524295, 2, 0, 524296, 7, 0, 589830, 9, 0, 589831, 4, 0, 589832, 8, 0 )
+
+[node name="Ledge" type="TileMap" parent="."]
+position = Vector2( 0, -16 )
+z_index = 3
+tile_set = ExtResource( 17 )
+cell_size = Vector2( 16, 16 )
+format = 1
+
+[node name="CanvasModulate" type="CanvasModulate" parent="." instance=ExtResource( 4 )]
+color = Color( 0.05, 0.05, 0.05, 1 )
+script = ExtResource( 12 )
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="Door" type="Area2D" parent="." instance=ExtResource( 16 )]
+position = Vector2( 56, 16 )
+script = ExtResource( 9 )
+scene_name = "1F_west_office"
+locked = false
+locked_dialogue = null
+unlocked_text = ""
+key_name = ""
+inventory_gui_path = NodePath("../CanvasLayer/InventoryGUI")
+player_path = NodePath("../Player")
+required_look_dir = Vector2( 0, -1 )
+
+[node name="Door2" type="Area2D" parent="." instance=ExtResource( 16 )]
+visible = false
+position = Vector2( 168, 120 )
+script = ExtResource( 9 )
+scene_name = "1F_west_hall"
+locked = false
+locked_dialogue = null
+unlocked_text = ""
+key_name = ""
+inventory_gui_path = NodePath("")
+player_path = NodePath("")
+required_look_dir = Vector2( 1, 0 )
+
+[node name="Object" type="StaticBody2D" parent="." instance=ExtResource( 24 )]
+position = Vector2( 72, 72 )
+collision_layer = 6
+collision_mask = 3
+script = ExtResource( 11 )
+dialogue = SubResource( 6 )
+
+[node name="CollisionBox" type="CollisionShape2D" parent="Object" index="0"]
+position = Vector2( -0.349651, -5.72727 )
+rotation = 3.14159
+shape = SubResource( 7 )
+one_way_collision_margin = 0.0
+
+[node name="Texture" type="Sprite" parent="Object" index="1"]
+texture = ExtResource( 19 )
+
+[node name="InteractionArea" type="Area2D" parent="Object" index="2"]
+collision_layer = 6
+collision_mask = 3
+__meta__ = {
+"_edit_group_": true,
+"_edit_lock_": true
+}
+
+[node name="InteractionBox" type="CollisionShape2D" parent="Object/InteractionArea" index="0"]
+modulate = Color( 0.854902, 0.835294, 0.509804, 1 )
+shape = SubResource( 8 )
+
+[node name="LightOccluder2D" type="LightOccluder2D" parent="Object" index="3"]
+visible = false
+occluder = SubResource( 9 )
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="SoundArea" type="Area2D" parent="." instance=ExtResource( 23 )]
+collision_layer = 8
+script = ExtResource( 8 )
+activateOnce = true
+volume = 0.0
+pause_player = true
+pause_player_duration = 1.0
+caption = "[loud knocking on the door]"
+player_path = NodePath("../Player")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="SoundArea" index="0"]
+position = Vector2( 48, 109.44 )
+shape = SubResource( 10 )
+
+[node name="Sound" type="AudioStreamPlayer2D" parent="SoundArea" index="1"]
+stream = ExtResource( 21 )
+attenuation = 0.554785
+
+[node name="PauseTimer" type="Timer" parent="SoundArea" index="2"]
+one_shot = true
+
+[node name="bookshelf" type="StaticBody2D" parent="."]
+position = Vector2( 36, 72 )
+rotation = -1.57079
+script = ExtResource( 11 )
+dialogue = null
+
+[node name="Texture" type="Sprite" parent="bookshelf"]
+position = Vector2( 8.00002, 7.99998 )
+rotation = 1.57079
+scale = Vector2( 0.76, 0.76 )
+texture = ExtResource( 20 )
+
+[node name="CollisionBox" type="CollisionShape2D" parent="bookshelf"]
+position = Vector2( 16, 3.99996 )
+rotation = 3.14159
+shape = SubResource( 3 )
+one_way_collision_margin = 0.0
+
+[node name="InteractionArea" type="Area2D" parent="bookshelf"]
+collision_layer = 2
+__meta__ = {
+"_edit_group_": true,
+"_edit_lock_": true
+}
+
+[node name="InteractionBox" type="CollisionShape2D" parent="bookshelf/InteractionArea"]
+visible = false
+modulate = Color( 0.854902, 0.835294, 0.509804, 1 )
+position = Vector2( 8, 8 )
+shape = SubResource( 4 )
+
+[node name="LightOccluder2D" type="LightOccluder2D" parent="bookshelf"]
+visible = false
+light_mask = 0
+occluder = SubResource( 5 )
+light_mask = 0
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="LightMask2D" type="Sprite" parent="CanvasLayer" instance=ExtResource( 7 )]
+material = SubResource( 1 )
+position = Vector2( 128, 96 )
+scale = Vector2( 1, 1.25 )
+texture = ExtResource( 6 )
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="InventoryGUI" type="Control" parent="CanvasLayer" instance=ExtResource( 14 )]
+visible = false
+margin_left = 16.0
+margin_top = 16.0
+margin_right = 128.0
+margin_bottom = 136.0
+rect_pivot_offset = Vector2( 40.5, 60 )
+script = ExtResource( 10 )
+__meta__ = {
+"_edit_group_": true,
+"_edit_lock_": true,
+"_edit_use_anchors_": false
+}
+player_path = NodePath("../../Player")
+
+[connection signal="body_entered" from="bookshelf2/InteractionArea" to="bookshelf2" method="_on_InteractionArea_body_entered"]
+[connection signal="body_exited" from="bookshelf2/InteractionArea" to="bookshelf2" method="_on_InteractionArea_body_exited"]
+[connection signal="body_entered" from="Door" to="Door" method="_on_Door_body_entered"]
+[connection signal="body_exited" from="Door" to="Door" method="_on_Door_body_exited"]
+[connection signal="body_entered" from="Door2" to="Door2" method="_on_Door_body_entered"]
+[connection signal="body_exited" from="Door2" to="Door2" method="_on_Door_body_exited"]
+[connection signal="body_entered" from="Object/InteractionArea" to="Object" method="_on_InteractionArea_body_entered"]
+[connection signal="body_exited" from="Object/InteractionArea" to="Object" method="_on_InteractionArea_body_exited"]
+[connection signal="body_entered" from="SoundArea" to="SoundArea" method="_on_SoundArea_body_entered"]
+[connection signal="timeout" from="SoundArea/PauseTimer" to="SoundArea" method="_on_PauseTimer_timeout"]
+[connection signal="body_entered" from="bookshelf/InteractionArea" to="bookshelf" method="_on_InteractionArea_body_entered"]
+[connection signal="body_exited" from="bookshelf/InteractionArea" to="bookshelf" method="_on_InteractionArea_body_exited"]
+
+[editable path="Object"]
+[editable path="SoundArea"]
