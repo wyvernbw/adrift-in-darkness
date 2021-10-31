@@ -3,27 +3,27 @@
 [ext_resource path="res://tilesets/house/house1.tres" type="TileSet" id=1]
 [ext_resource path="res://tilesets/house/rug/rug1.tres" type="TileSet" id=2]
 [ext_resource path="res://characters/player/Player.gd" type="Script" id=3]
-[ext_resource path="res://levels/interfaces/Light-Effects.tscn" type="PackedScene" id=4]
-[ext_resource path="res://objects/table/Table.gd" type="Script" id=5]
-[ext_resource path="res://objects/table/Table.tscn" type="PackedScene" id=6]
+[ext_resource path="res://objects/table/Table.gd" type="Script" id=4]
+[ext_resource path="res://objects/table/Table.tscn" type="PackedScene" id=5]
+[ext_resource path="res://levels/interfaces/LightMask2D.tscn" type="PackedScene" id=6]
 [ext_resource path="res://characters/player/light_mask2d.png" type="Texture" id=7]
-[ext_resource path="res://levels/interfaces/LightMask2D.tscn" type="PackedScene" id=8]
-[ext_resource path="res://objects/door/Door.gd" type="Script" id=9]
-[ext_resource path="res://gui/inventory/InventoryGUI.gd" type="Script" id=10]
-[ext_resource path="res://objects/StaticObject.gd" type="Script" id=11]
-[ext_resource path="res://levels/LightEffects.gd" type="Script" id=12]
-[ext_resource path="res://objects/bookshelf/Bookshelf.tscn" type="PackedScene" id=13]
-[ext_resource path="res://tilesets/Shadow.tscn" type="PackedScene" id=14]
-[ext_resource path="res://gui/inventory/Inventory.tscn" type="PackedScene" id=15]
-[ext_resource path="res://characters/player/player.tscn" type="PackedScene" id=16]
-[ext_resource path="res://objects/door/Door.tscn" type="PackedScene" id=17]
-[ext_resource path="res://tilesets/house/ledge/ledge.tres" type="TileSet" id=18]
-[ext_resource path="res://tilesets/shadows.tres" type="TileSet" id=19]
+[ext_resource path="res://levels/interfaces/Light-Effects.tscn" type="PackedScene" id=8]
+[ext_resource path="res://gui/inventory/InventoryGUI.gd" type="Script" id=9]
+[ext_resource path="res://objects/door/Door.gd" type="Script" id=10]
+[ext_resource path="res://levels/LightEffects.gd" type="Script" id=11]
+[ext_resource path="res://objects/StaticObject.gd" type="Script" id=12]
+[ext_resource path="res://gui/inventory/Inventory.tscn" type="PackedScene" id=13]
+[ext_resource path="res://objects/bookshelf/Bookshelf.tscn" type="PackedScene" id=14]
+[ext_resource path="res://objects/door/Door.tscn" type="PackedScene" id=15]
+[ext_resource path="res://tilesets/Shadow.tscn" type="PackedScene" id=16]
+[ext_resource path="res://characters/player/player.tscn" type="PackedScene" id=17]
+[ext_resource path="res://tilesets/shadows.tres" type="TileSet" id=18]
+[ext_resource path="res://tilesets/house/ledge/ledge.tres" type="TileSet" id=19]
 [ext_resource path="res://objects/paintings/painting-1.png" type="Texture" id=20]
-[ext_resource path="res://objects/paintings/painting-2.png" type="Texture" id=21]
-[ext_resource path="res://objects/paintings/painting-3.png" type="Texture" id=22]
-[ext_resource path="res://objects/desk/desk.png" type="Texture" id=23]
-[ext_resource path="res://objects/chair2.png" type="Texture" id=24]
+[ext_resource path="res://objects/paintings/painting-3.png" type="Texture" id=21]
+[ext_resource path="res://objects/paintings/painting-2.png" type="Texture" id=22]
+[ext_resource path="res://objects/chair2.png" type="Texture" id=23]
+[ext_resource path="res://objects/desk/desk.png" type="Texture" id=24]
 
 [sub_resource type="RectangleShape2D" id=2]
 extents = Vector2( 4, 8 )
@@ -45,7 +45,7 @@ __meta__ = {
 
 [node name="Player" type="KinematicBody2D" parent="." groups=[
 "save",
-] instance=ExtResource( 16 )]
+] instance=ExtResource( 17 )]
 position = Vector2( 120.962, 208 )
 z_index = 3
 collision_mask = 12
@@ -58,16 +58,16 @@ walk_step_interval = 0.7
 sprint_step_interval = 0.5
 look_dir = Vector2( 0, -1 )
 
-[node name="Shadow" type="TileMap" parent="." instance=ExtResource( 14 )]
+[node name="Shadow" type="TileMap" parent="." instance=ExtResource( 16 )]
 modulate = Color( 1, 1, 1, 0.392157 )
-tile_set = ExtResource( 19 )
+tile_set = ExtResource( 18 )
 cell_size = Vector2( 16, 16 )
 format = 1
 tile_data = PoolIntArray( 262146, 2, 0, 327682, 2, 0 )
 
 [node name="painting-3" type="Sprite" parent="."]
 position = Vector2( 119.962, 72 )
-texture = ExtResource( 22 )
+texture = ExtResource( 21 )
 
 [node name="HouseF1" type="TileMap" parent="."]
 tile_set = ExtResource( 1 )
@@ -96,13 +96,13 @@ tile_data = PoolIntArray( 458756, 6, 0, 458757, 2, 0, 458758, 2, 0, 458759, 2, 0
 [node name="Ledge" type="TileMap" parent="."]
 position = Vector2( 0, -16 )
 z_index = 3
-tile_set = ExtResource( 18 )
+tile_set = ExtResource( 19 )
 cell_size = Vector2( 16, 16 )
 format = 1
 
-[node name="CanvasModulate" type="CanvasModulate" parent="." instance=ExtResource( 4 )]
+[node name="CanvasModulate" type="CanvasModulate" parent="." instance=ExtResource( 8 )]
 color = Color( 0.05, 0.05, 0.05, 1 )
-script = ExtResource( 12 )
+script = ExtResource( 11 )
 __meta__ = {
 "_edit_lock_": true
 }
@@ -110,7 +110,7 @@ __meta__ = {
 [node name="Chair" type="StaticBody2D" parent="."]
 position = Vector2( 114.162, 160 )
 rotation = -1.5708
-script = ExtResource( 11 )
+script = ExtResource( 12 )
 dialogue = null
 
 [node name="CollisionBox" type="CollisionShape2D" parent="Chair"]
@@ -121,7 +121,7 @@ shape = SubResource( 2 )
 one_way_collision_margin = 0.0
 
 [node name="Texture" type="Sprite" parent="Chair"]
-texture = ExtResource( 24 )
+texture = ExtResource( 23 )
 
 [node name="InteractionArea" type="Area2D" parent="Chair"]
 visible = false
@@ -137,7 +137,7 @@ shape = SubResource( 3 )
 
 [node name="Object" type="StaticBody2D" parent="."]
 position = Vector2( 119.962, 144 )
-script = ExtResource( 11 )
+script = ExtResource( 12 )
 dialogue = null
 
 [node name="CollisionBox" type="CollisionShape2D" parent="Object"]
@@ -147,7 +147,7 @@ shape = SubResource( 4 )
 one_way_collision_margin = 0.0
 
 [node name="Texture" type="Sprite" parent="Object"]
-texture = ExtResource( 23 )
+texture = ExtResource( 24 )
 
 [node name="InteractionArea" type="Area2D" parent="Object"]
 __meta__ = {
@@ -159,41 +159,41 @@ __meta__ = {
 modulate = Color( 0.854902, 0.835294, 0.509804, 1 )
 shape = SubResource( 3 )
 
-[node name="bookshelf" type="StaticBody2D" parent="." instance=ExtResource( 13 )]
+[node name="bookshelf" type="StaticBody2D" parent="." instance=ExtResource( 14 )]
 position = Vector2( 55.6237, 80 )
-script = ExtResource( 11 )
+script = ExtResource( 12 )
 dialogue = null
 
-[node name="bookshelf2" type="StaticBody2D" parent="." instance=ExtResource( 13 )]
+[node name="bookshelf2" type="StaticBody2D" parent="." instance=ExtResource( 14 )]
 position = Vector2( 86.7644, 80 )
-script = ExtResource( 11 )
+script = ExtResource( 12 )
 dialogue = null
 
-[node name="bookshelf3" type="StaticBody2D" parent="." instance=ExtResource( 13 )]
+[node name="bookshelf3" type="StaticBody2D" parent="." instance=ExtResource( 14 )]
 position = Vector2( 136, 80 )
-script = ExtResource( 11 )
+script = ExtResource( 12 )
 dialogue = null
 
 [node name="Table" type="StaticBody2D" parent="." groups=[
 "save",
-] instance=ExtResource( 6 )]
+] instance=ExtResource( 5 )]
 position = Vector2( 170.962, 96 )
 collision_layer = 3
-script = ExtResource( 5 )
+script = ExtResource( 4 )
 dialogue = null
 
 [node name="painting-2" type="Sprite" parent="."]
 position = Vector2( 177, 64 )
-texture = ExtResource( 21 )
+texture = ExtResource( 22 )
 
 [node name="painting-1" type="Sprite" parent="."]
 position = Vector2( 192, 72 )
 texture = ExtResource( 20 )
 
-[node name="Door" type="Area2D" parent="." instance=ExtResource( 17 )]
+[node name="Door" type="Area2D" parent="." instance=ExtResource( 15 )]
 visible = false
 position = Vector2( 119.962, 208 )
-script = ExtResource( 9 )
+script = ExtResource( 10 )
 scene_name = "1F_west_main_hall"
 locked = false
 locked_dialogue = null
@@ -205,7 +205,7 @@ required_look_dir = Vector2( 0, 1 )
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 
-[node name="LightMask2D" type="Sprite" parent="CanvasLayer" instance=ExtResource( 8 )]
+[node name="LightMask2D" type="Sprite" parent="CanvasLayer" instance=ExtResource( 6 )]
 material = SubResource( 1 )
 position = Vector2( 128, 96 )
 scale = Vector2( 1, 1.25 )
@@ -214,14 +214,14 @@ __meta__ = {
 "_edit_lock_": true
 }
 
-[node name="InventoryGUI" type="Control" parent="CanvasLayer" instance=ExtResource( 15 )]
+[node name="InventoryGUI" type="Control" parent="CanvasLayer" instance=ExtResource( 13 )]
 visible = false
 margin_left = 16.0
 margin_top = 16.0
 margin_right = 128.0
 margin_bottom = 136.0
 rect_pivot_offset = Vector2( 40.5, 60 )
-script = ExtResource( 10 )
+script = ExtResource( 9 )
 __meta__ = {
 "_edit_group_": true,
 "_edit_lock_": true,

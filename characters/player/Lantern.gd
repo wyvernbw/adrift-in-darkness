@@ -11,7 +11,7 @@ var lantern_toggled : bool = false
 var fuel_loss_per_second : int = 30 
 var fuel : float = MAX_FUEL
 var light_loss_per_second : float = 0.025
-var static_per_second : float = 0.0025
+var static_per_second : float = 0.025
 var max_static : float = 0.5
 var save_key: String = "lantern"
 
@@ -32,11 +32,12 @@ func _ready() -> void:
 func _process(delta: float) -> void:
 	GlobalHandler.lantern_fuel = fuel
 	GlobalHandler.lantern_toggled = self.lantern_toggled
-	if InventoryHandler.get_item(lantern_item) != -1: 
-		if DialogueHandler.get_child_count() == 0:
-		#	$Light2D.visible = true
-		#	$SpotLight.visible = true
-			visible = false
+	if InventoryHandler.get_item(lantern_item) == -1:
+		visible = false
+		lantern_toggled = false
+	elif DialogueHandler.get_child_count() > 0:
+		visible = false
+		lantern_toggled = false
 	
 	if not fuel == 0:
 		visible = lantern_toggled

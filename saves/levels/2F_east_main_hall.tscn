@@ -3,23 +3,23 @@
 [ext_resource path="res://tilesets/house/house1.tres" type="TileSet" id=1]
 [ext_resource path="res://tilesets/house/rug/rug1.tres" type="TileSet" id=2]
 [ext_resource path="res://characters/player/Player.gd" type="Script" id=3]
-[ext_resource path="res://levels/interfaces/Light-Effects.tscn" type="PackedScene" id=4]
+[ext_resource path="res://levels/interfaces/LightMask2D.tscn" type="PackedScene" id=4]
 [ext_resource path="res://characters/player/light_mask2d.png" type="Texture" id=5]
-[ext_resource path="res://levels/interfaces/LightMask2D.tscn" type="PackedScene" id=6]
-[ext_resource path="res://objects/door/Door.gd" type="Script" id=7]
-[ext_resource path="res://gui/inventory/InventoryGUI.gd" type="Script" id=8]
+[ext_resource path="res://levels/interfaces/Light-Effects.tscn" type="PackedScene" id=6]
+[ext_resource path="res://gui/inventory/InventoryGUI.gd" type="Script" id=7]
+[ext_resource path="res://objects/door/Door.gd" type="Script" id=8]
 [ext_resource path="res://levels/LightEffects.gd" type="Script" id=9]
-[ext_resource path="res://tilesets/Shadow.tscn" type="PackedScene" id=10]
-[ext_resource path="res://gui/inventory/Inventory.tscn" type="PackedScene" id=11]
-[ext_resource path="res://characters/player/player.tscn" type="PackedScene" id=12]
-[ext_resource path="res://objects/door/Door.tscn" type="PackedScene" id=13]
-[ext_resource path="res://tilesets/house/ledge/ledge.tres" type="TileSet" id=14]
-[ext_resource path="res://tilesets/shadows.tres" type="TileSet" id=15]
+[ext_resource path="res://gui/inventory/Inventory.tscn" type="PackedScene" id=10]
+[ext_resource path="res://objects/door/Door.tscn" type="PackedScene" id=11]
+[ext_resource path="res://tilesets/Shadow.tscn" type="PackedScene" id=12]
+[ext_resource path="res://characters/player/player.tscn" type="PackedScene" id=13]
+[ext_resource path="res://tilesets/shadows.tres" type="TileSet" id=14]
+[ext_resource path="res://tilesets/house/ledge/ledge.tres" type="TileSet" id=15]
 [ext_resource path="res://objects/paintings/painting-1.png" type="Texture" id=16]
-[ext_resource path="res://objects/paintings/painting-2.png" type="Texture" id=17]
-[ext_resource path="res://objects/paintings/painting-3.png" type="Texture" id=18]
-[ext_resource path="res://tilesets/house/concrete-wall-texture-21.jpg" type="Texture" id=19]
-[ext_resource path="res://objects/save_object/SaveObject.tscn" type="PackedScene" id=20]
+[ext_resource path="res://objects/paintings/painting-3.png" type="Texture" id=17]
+[ext_resource path="res://objects/paintings/painting-2.png" type="Texture" id=18]
+[ext_resource path="res://objects/save_object/SaveObject.tscn" type="PackedScene" id=19]
+[ext_resource path="res://tilesets/house/concrete-wall-texture-21.jpg" type="Texture" id=20]
 [ext_resource path="res://objects/save_object/SaveObject.gd" type="Script" id=21]
 
 [sub_resource type="CanvasItemMaterial" id=2]
@@ -36,7 +36,7 @@ __meta__ = {
 
 [node name="Player" type="KinematicBody2D" parent="." groups=[
 "save",
-] instance=ExtResource( 12 )]
+] instance=ExtResource( 13 )]
 position = Vector2( 120.692, 128 )
 z_index = 3
 collision_mask = 12
@@ -49,9 +49,9 @@ walk_step_interval = 0.7
 sprint_step_interval = 0.5
 look_dir = Vector2( 0, -1 )
 
-[node name="Shadow" type="TileMap" parent="." instance=ExtResource( 10 )]
+[node name="Shadow" type="TileMap" parent="." instance=ExtResource( 12 )]
 modulate = Color( 1, 1, 1, 0.392157 )
-tile_set = ExtResource( 15 )
+tile_set = ExtResource( 14 )
 cell_size = Vector2( 16, 16 )
 format = 1
 
@@ -70,7 +70,7 @@ material = SubResource( 2 )
 position = Vector2( 240, 56 )
 z_index = 2
 z_as_relative = false
-texture = ExtResource( 19 )
+texture = ExtResource( 20 )
 
 [node name="HouseF2" type="TileMap" parent="."]
 position = Vector2( 128, 160 )
@@ -90,11 +90,11 @@ tile_data = PoolIntArray( -131054, 6, 0, -131053, 2, 0, -131052, 7, 0, -65518, 5
 [node name="Ledge" type="TileMap" parent="."]
 position = Vector2( 0, -16 )
 z_index = 3
-tile_set = ExtResource( 14 )
+tile_set = ExtResource( 15 )
 cell_size = Vector2( 16, 16 )
 format = 1
 
-[node name="CanvasModulate" type="CanvasModulate" parent="." instance=ExtResource( 4 )]
+[node name="CanvasModulate" type="CanvasModulate" parent="." instance=ExtResource( 6 )]
 visible = false
 color = Color( 0.05, 0.05, 0.05, 1 )
 script = ExtResource( 9 )
@@ -104,7 +104,7 @@ __meta__ = {
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 
-[node name="LightMask2D" type="Sprite" parent="CanvasLayer" instance=ExtResource( 6 )]
+[node name="LightMask2D" type="Sprite" parent="CanvasLayer" instance=ExtResource( 4 )]
 material = SubResource( 1 )
 position = Vector2( 128, 96 )
 scale = Vector2( 1, 1.25 )
@@ -113,14 +113,14 @@ __meta__ = {
 "_edit_lock_": true
 }
 
-[node name="InventoryGUI" type="Control" parent="CanvasLayer" instance=ExtResource( 11 )]
+[node name="InventoryGUI" type="Control" parent="CanvasLayer" instance=ExtResource( 10 )]
 visible = false
 margin_left = 16.0
 margin_top = 16.0
 margin_right = 128.0
 margin_bottom = 136.0
 rect_pivot_offset = Vector2( 40.5, 60 )
-script = ExtResource( 8 )
+script = ExtResource( 7 )
 __meta__ = {
 "_edit_group_": true,
 "_edit_lock_": true,
@@ -128,9 +128,9 @@ __meta__ = {
 }
 player_path = NodePath("")
 
-[node name="Door" type="Area2D" parent="." instance=ExtResource( 13 )]
+[node name="Door" type="Area2D" parent="." instance=ExtResource( 11 )]
 position = Vector2( 200, 80 )
-script = ExtResource( 7 )
+script = ExtResource( 8 )
 scene_name = ""
 locked = false
 locked_dialogue = null
@@ -150,13 +150,13 @@ texture = ExtResource( 16 )
 
 [node name="painting-3" type="Sprite" parent="painting-1"]
 position = Vector2( 64, -7.86409 )
-texture = ExtResource( 18 )
+texture = ExtResource( 17 )
 
 [node name="painting-2" type="Sprite" parent="painting-1/painting-3"]
 position = Vector2( 24, 7.86408 )
-texture = ExtResource( 17 )
+texture = ExtResource( 18 )
 
-[node name="SaveObject" type="StaticBody2D" parent="." instance=ExtResource( 20 )]
+[node name="SaveObject" type="StaticBody2D" parent="." instance=ExtResource( 19 )]
 position = Vector2( 184, 110.75 )
 script = ExtResource( 21 )
 player_path = NodePath("../Player")

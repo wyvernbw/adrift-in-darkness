@@ -49,6 +49,7 @@ func _ready() -> void:
 func _physics_process(delta: float) -> void:
 	if not HpHandler.current_limbs["left_arm"]:
 		$Particles2D.visible = true
+		anim_suffix = "_left_arm"
 	if can_move:
 		_get_input()
 	_calculate_speed()

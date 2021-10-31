@@ -24,7 +24,7 @@ func _send_notification(item: Item) -> void:
 	item_notification.item = item
 
 
-func add_item(item: Item) -> void:
+func add_item(item: Item, notify := true) -> void:
 	print(str(item['item_name']) + " : " + str(item.quantity))
 	if item == null:
 		return
@@ -32,21 +32,24 @@ func add_item(item: Item) -> void:
 	if item_index != -1:
 		inventory[item.item_type][item_index].quantity += item.quantity
 		emit_signal("inventory_changed")
-		_send_notification(item)
+		if notify:
+			_send_notification(item)
 		return
 	else:
 		inventory[item.item_type].append(item)
-		_send_notification(item)
+		if notify:
+			_send_notification(item)
 	emit_signal("inventory_changed")
 
 
 func get_item(item: Item) -> int:
 	if item == null:
 		return -1
-	for i in inventory[item.item_type].size():
-		if inventory[item.item_type][i]['item_name'] == item['item_name']:
-			#print(i)
-			return i
+	for type in Item.ITEM_TYPES:
+		var items = inventory[Item.ITEM_TYPES[type]]
+		for iter in range(0, items.size()):
+			if item.item_name == items[iter].item_name:
+				return iter
 	return -1
 
 
@@ -66,17 +69,37 @@ func _on_item_used(item) -> void:
 
 func save() -> Dictionary:
 	var save_dict: Dictionary
-	save_dict["inventory"] = inventory.duplicate()
-	save_dict["key_items"] = key_items.duplicate()
-	save_dict["normal_items"] = normal_items.duplicate()
+	save_dict["inventory"] = Array()	
+	var key_items: Array
+	var normal_items: Array
+	save_dict["inventory"].append(key_items)
+	save_dict["inventory"].append(normal_items)
+	#save_dict["key_items"] = key_items.duplicate()
+	#save_dict["normal_items"] = normal_items.duplicate()
+	for type in Item.ITEM_TYPES:
+		#save_dict["inventory"].append(inventory[Item.ITEM_TYPES[type]])
+		for item in inventory[Item.ITEM_TYPES[type]]:
+			var item_dict: Dictionary
+			item_dict["item_name"] = item.item_name
+			item_dict["texture"] = item.texture
+			item_dict["quantity"] = item.quantity
+			item_dict["item_type"] = item.item_type
+			save_dict["inventory"][Item.ITEM_TYPES[type]].append(item_dict)
 	return save_dict
 
 
 func load(save : Dictionary) -> void:
-	inventory.clear()
-	inventory = save["inventory"].duplicate()
-	key_items.clear()
-	key_items = save["key_items"].duplicate()
-	normal_items.clear()
-	normal_items = save["normal_items"].duplicate()
-	emit_signal("inventory_changed")
+	#key_items.clear()
+	#key_items = save["key_items"].duplicate()
+	#normal_items.clear()
+	#normal_items = save["normal_items"].duplicate()
+	inventory[0].clear()
+	inventory[1].clear()
+	for type in Item.ITEM_TYPES:
+		for item_dict in save["inventory"][Item.ITEM_TYPES[type]]:
+			var item: Item = Item.new(
+					item_dict["item_name"],
+					item_dict["quantity"],
+					item_dict["texture"],
+					item_dict["item_type"])
+			add_item(item, false)

@@ -13,13 +13,14 @@ export var current_scene: String = "1F_main_room"
 
 var save_key = "game"
 
+
 func switch_scene(scene_name: String) -> void:
 	if not scene_name in levels.keys():
 		return
 	for node in self.get_children():
 		if not node is Node2D:
 			continue
-		#levels[node.get_name()] = node
+		levels[node.get_name()] = node
 		remove_child(node)
 		print("removed level " + node.get_name())
 		add_child(levels[scene_name])
@@ -40,31 +41,22 @@ func _on_Door_player_entered(scene_name) -> void:
 func save() -> Dictionary: 
 	var save_dict : Dictionary
 	# save levels
+	save_dict["levels"] = Dictionary()
 	for level in levels.keys():
-		save_dict[level] = SaveGameHandler.SAVE_FOLDER + "levels/" + str(level) + ".tscn"
+		save_dict["levels"][level] = SaveGameHandler.SAVE_FOLDER + "levels/" + str(level) + ".tscn"
 		var level_scene = PackedScene.new()
 		level_scene.pack(levels[level])
-		ResourceSaver.save(save_dict[level], level_scene)
-		print("level saved at " + save_dict[level])
+		ResourceSaver.save(save_dict["levels"][level], level_scene)
+		print("level saved at " + save_dict["levels"][level])
 	
-	# save player
-	#save_dict["player"] = SaveGameHandler.SAVE_FOLDER + "player/player.tscn"
-	#var player_scene = PackedScene.new()
-	#player_scene.pack(GlobalHandler.Player)
-	#ResourceSaver.save(save_dict["player"], player_scene)
-	
+	save_dict["current_scene"] = current_scene
 	return save_dict
 
 func load(save : Dictionary) -> void:
-	for level in save.keys():
-		if not level == "player":
-			levels[level] = load(save[level]).instance(1)
-	get_node(current_scene).queue_free()
+	for level in save["levels"].keys():
+		levels[level] = load(save["levels"][level]).instance(1)
+	remove_child(get_node(current_scene))
 	#var new_scene = levels[current_scene]
 	#new_scene.name = current_scene
 	#add_child(new_scene)
-	switch_scene(current_scene)
-
-	#GlobalHandler.Player.queue_free()
-	#var player_node = load(save["player"]).instance()
-	#get_node(current_scene).add_child(player_node)
+	switch_scene(save["current_scene"])
