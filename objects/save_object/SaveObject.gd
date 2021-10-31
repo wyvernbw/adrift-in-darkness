@@ -10,11 +10,6 @@ export var player_path: NodePath
 var player_is_colliding : bool = false
 var saves_left : int = MAX_SAVES
 
-func _ready() -> void:
-	if SaveGameHandler.save_object_dict.empty():
-		SaveGameHandler.save_object_dict[SAVE_KEY] = saves_left
-		return
-	saves_left = SaveGameHandler.save_object_dict[SAVE_KEY]
 
 func _process(delta: float) -> void:
 	if saves_left > 0:

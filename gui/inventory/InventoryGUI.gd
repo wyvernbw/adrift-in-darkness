@@ -49,35 +49,33 @@ func _process(_delta : float) -> void:
 				KeyItemsContainer.get_child(0).grab_focus()
 
 func populate_inventory() -> void:
-	for i in InventoryHandler.inventory[Item.ITEM_TYPES.KEY_ITEM].size():
-		print('inv populated')
-		var item_slot = ITEM_SLOT.instance()
-		var current_item = InventoryHandler.inventory[Item.ITEM_TYPES.KEY_ITEM][i]
-		
-		$KeyItemPanel/GridContainer.call_deferred('add_child', item_slot)
-		item_slot.visible = true
-		item_slot.set_name(str(current_item['item_name']))
-		item_slot.add_to_group('ItemSlot')
-		item_slot.set_item(current_item)
-	for i in InventoryHandler.inventory[Item.ITEM_TYPES.NORMAL_ITEM].size():
-		print('inv populated')		
-		var item_slot = ITEM_SLOT.instance()
-		var current_item = InventoryHandler.inventory[Item.ITEM_TYPES.NORMAL_ITEM][i]
-		
-		$NormalItemPanel/GridContainer.call_deferred('add_child', item_slot)
-		item_slot.set_name(str(current_item['item_name']))
-		item_slot.add_to_group('ItemSlot')
-		item_slot.set_item(current_item)
+	for type in Item.ITEM_TYPES:
+		var container: VBoxContainer
+		match Item.ITEM_TYPES[type]:
+			Item.ITEM_TYPES.KEY_ITEM:
+				container = $KeyItemPanel/GridContainer
+			Item.ITEM_TYPES.NORMAL_ITEM:
+				container = $NormalItemPanel/GridContainer
+		for item in InventoryHandler.inventory[Item.ITEM_TYPES[type]]:
+			var item_slot = ITEM_SLOT.instance()
+			item_slot.visible = true
+			item_slot.set_name(item.item_name)
+			item_slot.add_to_group('ItemSlot')
+			item_slot.set_item(item)
+			$KeyItemPanel/GridContainer.call_deferred('add_child', item_slot)
 
 func refresh_inventory() -> void:
 	call_deferred('_empty_inventory_panels')
 	populate_inventory()
-	if current_page == 0:
-		if KeyItemsContainer.get_child_count() > 0:
-			KeyItemsContainer.get_child(0).call_deferred("grab_focus")
-			print(str(KeyItemsContainer.get_child(0)) + "grabbed focus")
-	elif NormalItemsContainer.get_child_count() > 0:
-		NormalItemsContainer.get_child(0).call_deferred("grab_focus")
+	var current_container: VBoxContainer
+	match current_page:
+		0:
+			current_container = KeyItemsContainer
+		1: 
+			current_container = NormalItemsContainer
+	if current_container.get_child_count() > 0:
+		current_container.get_child(0).call_deferred("grab_focus")
+		print(str(current_container.get_child(0)) + "grabbed focus")
 
 func _empty_inventory_panels() -> void:
 	if get_tree() == null:

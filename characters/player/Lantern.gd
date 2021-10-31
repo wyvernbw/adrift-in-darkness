@@ -1,7 +1,6 @@
 extends Node2D
 
 const MAX_FUEL : int = 9000
-const SAVE_KEY : String = "Lantern"
 
 onready var target = get_parent()
 onready var static_effect = $Static/StaticAnim
@@ -12,11 +11,13 @@ var lantern_toggled : bool = false
 var fuel_loss_per_second : int = 30 
 var fuel : float = MAX_FUEL
 var light_loss_per_second : float = 0.025
-var static_per_second : float = 0.0025
+var static_per_second : float = 0.025
 var max_static : float = 0.5
+var save_key: String = "lantern"
 
 
 func _ready() -> void:
+	add_to_group("persist")
 	InventoryHandler.connect("inventory_item_used", self, "_on_item_used") 
 	$Light/AnimationPlayer.play("flicker")
 	$Spotlight/AnimationPlayer.play("flicker")
@@ -31,11 +32,12 @@ func _ready() -> void:
 func _process(delta: float) -> void:
 	GlobalHandler.lantern_fuel = fuel
 	GlobalHandler.lantern_toggled = self.lantern_toggled
-	if InventoryHandler.get_item(lantern_item) != -1: 
-		if DialogueHandler.get_child_count() == 0:
-		#	$Light2D.visible = true
-		#	$SpotLight.visible = true
-			visible = false
+	if InventoryHandler.get_item(lantern_item) == -1:
+		visible = false
+		lantern_toggled = false
+	elif DialogueHandler.get_child_count() > 0:
+		visible = false
+		lantern_toggled = false
 	
 	if not fuel == 0:
 		visible = lantern_toggled
@@ -89,15 +91,15 @@ func _on_item_used(item) -> void:
 		fuel = MAX_FUEL
 
 
-func save_game(game_save : Resource) -> void:
-	game_save.data[SAVE_KEY] = {
-		'fuel' : fuel,	
-		'toggled' : lantern_toggled
-	}
-	print(game_save.data[SAVE_KEY])
+func save() -> Dictionary:
+	var save_dict: Dictionary
+	save_dict["lantern_toggled"] = lantern_toggled
+	save_dict["fuel"] = fuel
+	return save_dict
 
-func load_game(game_save : Resource) -> void:
-	var data : Dictionary = game_save.data[SAVE_KEY]
-	print(data)
-	fuel = data['fuel']
-	lantern_toggled = data['toggled']
+
+func load(save : Dictionary) -> void:
+	GlobalHandler.lantern_toggled = save["lantern_toggled"]
+	lantern_toggled = save["lantern_toggled"]
+	visible = lantern_toggled
+	fuel = save["fuel"]
