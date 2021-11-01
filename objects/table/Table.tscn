@@ -10,12 +10,12 @@ extents = Vector2( 8, 2 )
 [sub_resource type="RectangleShape2D" id=2]
 extents = Vector2( 16, 16 )
 
-[sub_resource type="OccluderPolygon2D" id=4]
+[sub_resource type="OccluderPolygon2D" id=3]
 closed = false
 cull_mode = 1
 polygon = PoolVector2Array( -8, -8, 8, -8, 8, 8, 4.0883, 7.96156, -8, 8, -8, -8, 8, -8 )
 
-[sub_resource type="CanvasItemMaterial" id=5]
+[sub_resource type="CanvasItemMaterial" id=4]
 blend_mode = 3
 
 [node name="Table" type="StaticBody2D" groups=[
@@ -55,13 +55,13 @@ offset = Vector2( 8, 8 )
 [node name="LightOccluder2D" type="LightOccluder2D" parent="."]
 modulate = Color( 1, 1, 1, 0 )
 z_index = -4
-occluder = SubResource( 4 )
+occluder = SubResource( 3 )
 __meta__ = {
 "_edit_lock_": true
 }
 
 [node name="Polygon2D" type="Polygon2D" parent="."]
-material = SubResource( 5 )
+material = SubResource( 4 )
 color = Color( 0.313726, 0.290196, 0.286275, 1 )
 polygon = PoolVector2Array( -7.77465, -7.88452, 8, -8, 8, 8, -8, 8 )
 

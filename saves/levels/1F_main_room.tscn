@@ -1,37 +1,37 @@
 [gd_scene load_steps=31 format=2]
 
-[ext_resource path="res://tilesets/house/house1.tres" type="TileSet" id=1]
-[ext_resource path="res://tilesets/house/rug/rug1.tres" type="TileSet" id=2]
+[ext_resource path="res://tilesets/house/rug/rug1.tres" type="TileSet" id=1]
+[ext_resource path="res://tilesets/house/house1.tres" type="TileSet" id=2]
 [ext_resource path="res://characters/player/Player.gd" type="Script" id=3]
-[ext_resource path="res://objects/table/Table.gd" type="Script" id=4]
-[ext_resource path="res://objects/table/Table.tscn" type="PackedScene" id=5]
-[ext_resource path="res://levels/interfaces/LightMask2D.tscn" type="PackedScene" id=6]
-[ext_resource path="res://classes/DialogueResource.gd" type="Script" id=7]
-[ext_resource path="res://tilesets/blood/blood1.png" type="Texture" id=8]
-[ext_resource path="res://characters/player/light_mask2d.png" type="Texture" id=9]
-[ext_resource path="res://characters/player/light2d.png" type="Texture" id=10]
-[ext_resource path="res://objects/table/1F_main_room_lanternTable.tres" type="Resource" id=11]
+[ext_resource path="res://objects/table/Table.tscn" type="PackedScene" id=4]
+[ext_resource path="res://classes/DialogueResource.gd" type="Script" id=5]
+[ext_resource path="res://tilesets/blood/blood1.png" type="Texture" id=6]
+[ext_resource path="res://characters/player/light_mask2d.png" type="Texture" id=7]
+[ext_resource path="res://characters/player/light2d.png" type="Texture" id=8]
+[ext_resource path="res://levels/interfaces/LightMask2D.tscn" type="PackedScene" id=9]
+[ext_resource path="res://levels/interfaces/Light-Effects.tscn" type="PackedScene" id=10]
+[ext_resource path="res://objects/table/Table.gd" type="Script" id=11]
 [ext_resource path="res://characters/player/Player.tscn" type="PackedScene" id=12]
-[ext_resource path="res://levels/interfaces/Light-Effects.tscn" type="PackedScene" id=13]
+[ext_resource path="res://objects/door/Door.gd" type="Script" id=13]
 [ext_resource path="res://gui/inventory/InventoryGUI.gd" type="Script" id=14]
-[ext_resource path="res://objects/door/Door.gd" type="Script" id=15]
+[ext_resource path="res://objects/StaticObject.gd" type="Script" id=15]
 [ext_resource path="res://levels/LightEffects.gd" type="Script" id=16]
-[ext_resource path="res://objects/StaticObject.gd" type="Script" id=17]
-[ext_resource path="res://gui/inventory/Inventory.tscn" type="PackedScene" id=18]
-[ext_resource path="res://objects/bookshelf/Bookshelf.tscn" type="PackedScene" id=19]
-[ext_resource path="res://tilesets/house/staircase/Staircase.tscn" type="PackedScene" id=20]
-[ext_resource path="res://objects/door/Door.tscn" type="PackedScene" id=21]
+[ext_resource path="res://objects/table/1F_main_room_lanternTable.tres" type="Resource" id=17]
+[ext_resource path="res://tilesets/house/staircase/Staircase.tscn" type="PackedScene" id=18]
+[ext_resource path="res://objects/door/Door.tscn" type="PackedScene" id=19]
+[ext_resource path="res://gui/inventory/Inventory.tscn" type="PackedScene" id=20]
+[ext_resource path="res://objects/bookshelf/Bookshelf.tscn" type="PackedScene" id=21]
 [ext_resource path="res://tilesets/house/ledge/ledge.tres" type="TileSet" id=22]
-[ext_resource path="res://objects/paintings/painting-1.png" type="Texture" id=23]
-[ext_resource path="res://tilesets/blood/blood2.png" type="Texture" id=24]
-[ext_resource path="res://objects/paintings/painting-2.png" type="Texture" id=25]
+[ext_resource path="res://tilesets/blood/blood2.png" type="Texture" id=23]
+[ext_resource path="res://objects/paintings/painting-2.png" type="Texture" id=24]
+[ext_resource path="res://objects/paintings/painting-1.png" type="Texture" id=25]
 
 [sub_resource type="CanvasItemMaterial" id=1]
 blend_mode = 3
 light_mode = 1
 
 [sub_resource type="Resource" id=2]
-script = ExtResource( 7 )
+script = ExtResource( 5 )
 Text = [ "A dusty bookshelf." ]
 Answers = {
 }
@@ -41,7 +41,7 @@ item_type = 0
 read_box_text = ""
 
 [sub_resource type="Resource" id=3]
-script = ExtResource( 7 )
+script = ExtResource( 5 )
 Text = [  ]
 Answers = {
 }
@@ -51,7 +51,7 @@ item_type = 0
 read_box_text = ""
 
 [sub_resource type="Resource" id=4]
-script = ExtResource( 7 )
+script = ExtResource( 5 )
 Text = [ "The door is locked." ]
 Answers = {
 }
@@ -61,7 +61,7 @@ item_type = 0
 read_box_text = ""
 
 [sub_resource type="Resource" id=5]
-script = ExtResource( 7 )
+script = ExtResource( 5 )
 Text = [ "wooo locked" ]
 Answers = {
 }
@@ -79,25 +79,25 @@ __meta__ = {
 "persist",
 "save",
 ] instance=ExtResource( 12 )]
-position = Vector2( 128, 147.164 )
+position = Vector2( 282.921, -76.08 )
 z_index = 3
 collision_mask = 12
 script = ExtResource( 3 )
 deaccel = 0.4
-speed = 2.0
+speed = 48.0
 sprint_speed = 48.0
 stagger_speed = 16.0
 walk_step_interval = 0.7
 sprint_step_interval = 0.5
-look_dir = Vector2( 0, -1 )
+look_dir = Vector2( 1, 0 )
 
 [node name="HouseF1" type="TileMap" parent="."]
 z_as_relative = false
-tile_set = ExtResource( 1 )
+tile_set = ExtResource( 2 )
 cell_size = Vector2( 16, 16 )
 occluder_light_mask = 0
 format = 1
-tile_data = PoolIntArray( -196607, 14, 0, -196606, 14, 0, -196605, 14, 0, -196604, 14, 0, -196603, 14, 0, -196602, 14, 0, -196599, 14, 0, -196598, 14, 0, -196597, 14, 0, -196596, 14, 0, -196595, 14, 0, -196594, 14, 0, -131071, 18, 0, -131070, 18, 0, -131069, 18, 0, -131068, 18, 0, -131067, 18, 0, -131066, 18, 0, -131063, 18, 0, -131062, 18, 0, -131061, 18, 0, -131060, 18, 0, -131059, 18, 0, -131058, 18, 0, -131057, 2, 0, -65536, 5, 0, -65535, 15, 0, -65534, 15, 0, -65533, 15, 0, -65532, 15, 0, -65531, 15, 0, -65530, 15, 0, -65527, 15, 0, -65526, 15, 0, -65525, 15, 0, -65524, 15, 0, -65523, 15, 0, -65522, 15, 0, -65521, 3, 0, 0, 5, 0, 1, 17, 0, 2, 17, 0, 3, 17, 0, 4, 17, 0, 5, 17, 0, 6, 17, 0, 9, 17, 0, 10, 17, 0, 11, 17, 0, 12, 17, 0, 13, 17, 0, 14, 17, 0, 15, 11, 0, 16, 2, 0, 65536, 5, 0, 65537, 1, 0, 65538, 1, 0, 65539, 1, 0, 65540, 1, 0, 65541, 1, 0, 65542, 1, 0, 65543, 1, 0, 65544, 1, 0, 65545, 1, 0, 65546, 1, 0, 65547, 1, 0, 65548, 1, 0, 65549, 1, 0, 65550, 1, 0, 65551, 15, 0, 65552, 3, 0, 196607, 6, 0, 131072, 5, 0, 131073, 1, 0, 131074, 1, 0, 131075, 1, 0, 131076, 1, 0, 131077, 1, 0, 131078, 1, 0, 131079, 1, 0, 131080, 1, 0, 131081, 1, 0, 131082, 1, 0, 131083, 1, 0, 131084, 1, 0, 131085, 1, 0, 131086, 1, 0, 131087, 10, 0, 131088, 7, 0, 196608, 5, 0, 196609, 1, 0, 196610, 1, 0, 196611, 1, 0, 196612, 1, 0, 196613, 1, 0, 196614, 1, 0, 196615, 1, 0, 196616, 1, 0, 196617, 1, 0, 196618, 1, 0, 196619, 1, 0, 196620, 1, 0, 196621, 1, 0, 196622, 1, 0, 196623, 3, 0, 262144, 5, 0, 262145, 1, 0, 262146, 1, 0, 262147, 1, 0, 262148, 1, 0, 262149, 1, 0, 262150, 1, 0, 262151, 1, 0, 262152, 1, 0, 262153, 1, 0, 262154, 1, 0, 262155, 1, 0, 262156, 1, 0, 262157, 1, 0, 262158, 1, 0, 262159, 3, 0, 327680, 5, 0, 327681, 1, 0, 327682, 1, 0, 327683, 1, 0, 327684, 1, 0, 327685, 1, 0, 327686, 1, 0, 327687, 1, 0, 327688, 1, 0, 327689, 1, 0, 327690, 1, 0, 327691, 1, 0, 327692, 1, 0, 327693, 1, 0, 327694, 1, 0, 327695, 3, 0, 458751, 9, 0, 393216, 12, 0, 393217, 1, 0, 393218, 1, 0, 393219, 1, 0, 393220, 1, 0, 393221, 1, 0, 393222, 1, 0, 393223, 1, 0, 393224, 1, 0, 393225, 1, 0, 393226, 1, 0, 393227, 1, 0, 393228, 1, 0, 393229, 1, 0, 393230, 1, 0, 393231, 11, 0, 393232, 2, 0, 524287, 5, 0, 458752, 15, 0, 458753, 1, 0, 458754, 1, 0, 458755, 1, 0, 458756, 1, 0, 458757, 1, 0, 458758, 1, 0, 458759, 1, 0, 458760, 1, 0, 458761, 1, 0, 458762, 1, 0, 458763, 1, 0, 458764, 1, 0, 458765, 1, 0, 458766, 1, 0, 458767, 15, 0, 458768, 3, 0, 589823, 8, 0, 524288, 13, 0, 524289, 1, 0, 524290, 1, 0, 524291, 1, 0, 524292, 1, 0, 524293, 1, 0, 524294, 1, 0, 524295, 1, 0, 524296, 1, 0, 524297, 1, 0, 524298, 1, 0, 524299, 1, 0, 524300, 1, 0, 524301, 1, 0, 524302, 1, 0, 524303, 10, 0, 524304, 7, 0, 655359, 6, 0, 589824, 5, 0, 589825, 1, 0, 589826, 1, 0, 589827, 1, 0, 589828, 1, 0, 589829, 1, 0, 589830, 1, 0, 589831, 1, 0, 589832, 1, 0, 589833, 1, 0, 589834, 1, 0, 589835, 1, 0, 589836, 1, 0, 589837, 1, 0, 589838, 1, 0, 589839, 3, 0, 720895, 6, 0, 655360, 8, 0, 655361, 4, 0, 655362, 4, 0, 655363, 4, 0, 655364, 4, 0, 655365, 4, 0, 655366, 13, 0, 655367, 1, 0, 655368, 1, 0, 655369, 10, 0, 655370, 4, 0, 655371, 4, 0, 655372, 4, 0, 655373, 4, 0, 655374, 4, 0, 655375, 7, 0, 851973, 6, 0, 851974, 6, 0, 851975, 6, 0, 851976, 6, 0, 851977, 6, 0, 851978, 6, 0 )
+tile_data = PoolIntArray( -196607, 14, 0, -196606, 14, 0, -196605, 14, 0, -196604, 14, 0, -196603, 14, 0, -196602, 14, 0, -196599, 14, 0, -196598, 14, 0, -196597, 14, 0, -196596, 14, 0, -196595, 14, 0, -196594, 14, 0, -131071, 18, 0, -131070, 18, 0, -131069, 18, 0, -131068, 18, 0, -131067, 18, 0, -131066, 18, 0, -131063, 18, 0, -131062, 18, 0, -131061, 18, 0, -131060, 18, 0, -131059, 18, 0, -131058, 18, 0, -131057, 2, 0, -65536, 5, 0, -65535, 15, 0, -65534, 15, 0, -65533, 15, 0, -65532, 15, 0, -65531, 15, 0, -65530, 15, 0, -65527, 15, 0, -65526, 15, 0, -65525, 15, 0, -65524, 15, 0, -65523, 15, 0, -65522, 15, 0, -65521, 3, 0, 0, 5, 0, 1, 17, 0, 2, 17, 0, 3, 17, 0, 4, 17, 0, 5, 17, 0, 6, 17, 0, 9, 17, 0, 10, 17, 0, 11, 17, 0, 12, 17, 0, 13, 17, 0, 14, 17, 0, 15, 11, 0, 16, 2, 0, 65536, 5, 0, 65537, 1, 0, 65538, 1, 0, 65539, 1, 0, 65540, 1, 0, 65541, 1, 0, 65542, 1, 0, 65543, 1, 0, 65544, 1, 0, 65545, 1, 0, 65546, 1, 0, 65547, 1, 0, 65548, 1, 0, 65549, 1, 0, 65550, 1, 0, 65551, 15, 0, 65552, 3, 0, 196607, 6, 0, 131072, 5, 0, 131073, 1, 0, 131074, 1, 0, 131075, 1, 0, 131076, 1, 0, 131077, 1, 0, 131078, 1, 0, 131079, 1, 0, 131080, 1, 0, 131081, 1, 0, 131082, 1, 0, 131083, 1, 0, 131084, 1, 0, 131085, 1, 0, 131086, 1, 0, 131087, 10, 0, 131088, 7, 0, 196608, 5, 0, 196609, 1, 0, 196610, 1, 0, 196611, 1, 0, 196612, 1, 0, 196613, 1, 0, 196614, 1, 0, 196615, 1, 0, 196616, 1, 0, 196617, 1, 0, 196618, 1, 0, 196619, 1, 0, 196620, 1, 0, 196621, 1, 0, 196622, 1, 0, 196623, 3, 0, 262144, 5, 0, 262145, 1, 0, 262146, 1, 0, 262147, 1, 0, 262148, 1, 0, 262149, 1, 0, 262150, 1, 0, 262151, 1, 0, 262152, 1, 0, 262153, 1, 0, 262154, 1, 0, 262155, 1, 0, 262156, 1, 0, 262157, 1, 0, 262158, 1, 0, 262159, 3, 0, 327680, 5, 0, 327681, 1, 0, 327682, 1, 0, 327683, 1, 0, 327684, 1, 0, 327685, 1, 0, 327686, 1, 0, 327687, 1, 0, 327688, 1, 0, 327689, 1, 0, 327690, 1, 0, 327691, 1, 0, 327692, 1, 0, 327693, 1, 0, 327694, 1, 0, 327695, 3, 0, 458751, 9, 0, 393216, 12, 0, 393217, 1, 0, 393218, 1, 0, 393219, 1, 0, 393220, 1, 0, 393221, 1, 0, 393222, 1, 0, 393223, 1, 0, 393224, 1, 0, 393225, 1, 0, 393226, 1, 0, 393227, 1, 0, 393228, 1, 0, 393229, 1, 0, 393230, 1, 0, 393231, 11, 0, 393232, 2, 0, 524287, 5, 0, 458752, 15, 0, 458753, 1, 0, 458754, 1, 0, 458755, 1, 0, 458756, 1, 0, 458757, 1, 0, 458758, 1, 0, 458759, 1, 0, 458760, 1, 0, 458761, 1, 0, 458762, 1, 0, 458763, 1, 0, 458764, 1, 0, 458765, 1, 0, 458766, 1, 0, 458767, 15, 0, 458768, 3, 0, 589823, 8, 0, 524288, 13, 0, 524289, 1, 0, 524290, 1, 0, 524291, 1, 0, 524292, 1, 0, 524293, 1, 0, 524294, 1, 0, 524295, 1, 0, 524296, 1, 0, 524297, 1, 0, 524298, 1, 0, 524299, 1, 0, 524300, 1, 0, 524301, 1, 0, 524302, 1, 0, 524303, 10, 0, 524304, 7, 0, 655359, 6, 0, 589824, 5, 0, 589825, 1, 0, 589826, 1, 0, 589827, 1, 0, 589828, 1, 0, 589829, 1, 0, 589830, 1, 0, 589831, 1, 0, 589832, 1, 0, 589833, 1, 0, 589834, 1, 0, 589835, 1, 0, 589836, 1, 0, 589837, 1, 0, 589838, 1, 0, 589839, 3, 0, 720895, 6, 0, 655360, 8, 0, 655361, 4, 0, 655362, 4, 0, 655363, 4, 0, 655364, 4, 0, 655365, 4, 0, 655366, 13, 0, 655367, 1, 0, 655368, 1, 0, 655369, 10, 0, 655370, 4, 0, 655371, 4, 0, 655372, 4, 0, 655373, 4, 0, 655374, 4, 0, 655375, 7, 0, 655376, 6, 0, 786431, 6, 0, 720896, 6, 0, 720897, 6, 0, 720898, 6, 0, 720899, 6, 0, 720900, 6, 0, 720901, 6, 0, 720903, 6, 0, 720904, 6, 0, 720906, 6, 0, 720907, 6, 0, 720908, 6, 0, 720909, 6, 0, 720910, 6, 0, 720911, 6, 0, 720912, 6, 0, 786436, 6, 0, 786437, 6, 0, 786438, 6, 0, 786439, 6, 0, 786440, 6, 0, 786441, 6, 0, 786442, 6, 0, 851973, 6, 0, 851974, 6, 0, 851975, 6, 0, 851976, 6, 0, 851977, 6, 0, 851978, 6, 0 )
 __meta__ = {
 "_edit_lock_": true
 }
@@ -105,7 +105,7 @@ __meta__ = {
 [node name="HouseF2" type="TileMap" parent="."]
 position = Vector2( 128, 160 )
 z_as_relative = false
-tile_set = ExtResource( 1 )
+tile_set = ExtResource( 2 )
 cell_size = Vector2( 16, 16 )
 occluder_light_mask = 0
 format = 1
@@ -115,7 +115,7 @@ __meta__ = {
 }
 
 [node name="Rug" type="TileMap" parent="."]
-tile_set = ExtResource( 2 )
+tile_set = ExtResource( 1 )
 cell_size = Vector2( 16, 16 )
 format = 1
 tile_data = PoolIntArray( -327680, 6, 0, -327679, 2, 0, -327678, 2, 0, -327677, 2, 0, -327676, 2, 0, -327675, 2, 0, -327674, 2, 0, -327673, 2, 0, -327672, 2, 0, -327671, 2, 0, -327670, 2, 0, -327669, 2, 0, -327668, 2, 0, -327667, 2, 0, -327666, 2, 0, -327665, 7, 0, -262144, 9, 0, -262143, 4, 0, -262142, 4, 0, -262141, 4, 0, -262140, 4, 0, -262139, 4, 0, -262138, 4, 0, -262137, 4, 0, -262136, 4, 0, -262135, 4, 0, -262134, 4, 0, -262133, 4, 0, -262132, 4, 0, -262131, 4, 0, -262130, 4, 0, -262129, 8, 0, 196611, 6, 0, 196612, 2, 0, 196613, 2, 0, 196614, 2, 0, 196615, 2, 0, 196616, 2, 0, 196617, 2, 0, 196618, 2, 0, 196619, 2, 0, 196620, 7, 0, 262147, 5, 0, 262148, 1, 0, 262149, 1, 0, 262150, 1, 0, 262151, 1, 0, 262152, 1, 0, 262153, 1, 0, 262154, 1, 0, 262155, 1, 0, 262156, 3, 0, 327683, 5, 0, 327684, 1, 0, 327685, 0, 0, 327686, 0, 0, 327687, 0, 0, 327688, 0, 0, 327689, 0, 0, 327690, 0, 0, 327691, 1, 0, 327692, 3, 0, 393219, 5, 0, 393220, 1, 0, 393221, 0, 0, 393222, 0, 0, 393223, 0, 0, 393224, 0, 0, 393225, 0, 0, 393226, 0, 0, 393227, 1, 0, 393228, 3, 0, 458755, 5, 0, 458756, 1, 0, 458757, 1, 0, 458758, 1, 0, 458759, 1, 0, 458760, 1, 0, 458761, 1, 0, 458762, 1, 0, 458763, 1, 0, 458764, 3, 0, 524291, 9, 0, 524292, 4, 0, 524293, 4, 0, 524294, 4, 0, 524295, 4, 0, 524296, 4, 0, 524297, 4, 0, 524298, 4, 0, 524299, 4, 0, 524300, 8, 0 )
@@ -129,8 +129,8 @@ occluder_light_mask = 2
 format = 1
 tile_data = PoolIntArray( -131071, 5, 0, -131070, 5, 0, -131069, 5, 0, -131068, 5, 0, -131067, 5, 0, -131066, 5, 0, -131063, 5, 0, -131062, 5, 0, -131061, 5, 0, -131060, 5, 0, -131059, 5, 0, -131058, 5, 0 )
 
-[node name="CanvasModulate" type="CanvasModulate" parent="." instance=ExtResource( 13 )]
-color = Color( 0.05, 0.05, 0.05, 1 )
+[node name="CanvasModulate" type="CanvasModulate" parent="." instance=ExtResource( 10 )]
+color = Color( 0.1, 0.1, 0.1, 1 )
 script = ExtResource( 16 )
 __meta__ = {
 "_edit_lock_": true
@@ -138,16 +138,16 @@ __meta__ = {
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 
-[node name="LightMask2D" type="Sprite" parent="CanvasLayer" instance=ExtResource( 6 )]
+[node name="LightMask2D" type="Sprite" parent="CanvasLayer" instance=ExtResource( 9 )]
 modulate = Color( 1, 1, 1, 0.109804 )
 material = SubResource( 1 )
 position = Vector2( 128, 98 )
-texture = ExtResource( 9 )
+texture = ExtResource( 7 )
 __meta__ = {
 "_edit_lock_": true
 }
 
-[node name="InventoryGUI" type="Control" parent="CanvasLayer" instance=ExtResource( 18 )]
+[node name="InventoryGUI" type="Control" parent="CanvasLayer" instance=ExtResource( 20 )]
 visible = false
 margin_left = 16.0
 margin_top = 16.0
@@ -162,49 +162,49 @@ __meta__ = {
 }
 player_path = NodePath("../../../1F_main_room/Player")
 
-[node name="Staircase" type="StaticBody2D" parent="." instance=ExtResource( 20 )]
+[node name="Staircase" type="StaticBody2D" parent="." instance=ExtResource( 18 )]
 position = Vector2( 128, 3.29613 )
 scale = Vector2( 1, 1.5 )
 
 [node name="Furniture" type="Node2D" parent="."]
 position = Vector2( 8, 71.864 )
 
-[node name="Bookshelf" type="StaticBody2D" parent="Furniture" instance=ExtResource( 19 )]
+[node name="Bookshelf" type="StaticBody2D" parent="Furniture" instance=ExtResource( 21 )]
 position = Vector2( 160, -71.8641 )
-script = ExtResource( 17 )
+script = ExtResource( 15 )
 dialogue = SubResource( 2 )
 
 [node name="Table" type="StaticBody2D" parent="Furniture" groups=[
 "save",
-] instance=ExtResource( 5 )]
+] instance=ExtResource( 4 )]
 position = Vector2( 144, 72.136 )
 collision_layer = 3
-script = ExtResource( 4 )
-dialogue = ExtResource( 11 )
+script = ExtResource( 11 )
+dialogue = ExtResource( 17 )
 
 [node name="Table2" type="StaticBody2D" parent="Furniture" groups=[
 "save",
-] instance=ExtResource( 5 )]
+] instance=ExtResource( 4 )]
 position = Vector2( 16, 48.136 )
 collision_layer = 3
-script = ExtResource( 4 )
+script = ExtResource( 11 )
 dialogue = SubResource( 3 )
 
 [node name="BloodSplatters" type="Node2D" parent="."]
 
 [node name="Blood2" type="Sprite" parent="BloodSplatters"]
 position = Vector2( 168, 32 )
-texture = ExtResource( 24 )
+texture = ExtResource( 23 )
 
 [node name="Blood1" type="Sprite" parent="BloodSplatters"]
 position = Vector2( 216, 40 )
-texture = ExtResource( 8 )
+texture = ExtResource( 6 )
 
 [node name="Light2D" type="Light2D" parent="."]
 position = Vector2( 128, 131.201 )
 rotation = -3.14159
 scale = Vector2( 1, 1.39066 )
-texture = ExtResource( 10 )
+texture = ExtResource( 8 )
 color = Color( 0.784314, 0.941176, 1, 1 )
 energy = 0.35
 
@@ -212,12 +212,12 @@ energy = 0.35
 
 [node name="1" type="Sprite" parent="Paintings"]
 position = Vector2( 80, -16 )
-texture = ExtResource( 23 )
+texture = ExtResource( 25 )
 offset = Vector2( 8, 8 )
 
 [node name="2" type="Sprite" parent="Paintings"]
 position = Vector2( 96, -25.25 )
-texture = ExtResource( 25 )
+texture = ExtResource( 24 )
 offset = Vector2( 8, 8 )
 
 [node name="Paintings2" type="Node2D" parent="."]
@@ -225,21 +225,21 @@ position = Vector2( 96, -96 )
 
 [node name="1" type="Sprite" parent="Paintings2"]
 position = Vector2( 80, -16 )
-texture = ExtResource( 23 )
+texture = ExtResource( 25 )
 offset = Vector2( 8, 8 )
 
 [node name="2" type="Sprite" parent="Paintings2"]
 position = Vector2( 64, -16 )
-texture = ExtResource( 25 )
+texture = ExtResource( 24 )
 offset = Vector2( 8, 8 )
 
 [node name="Doors" type="Node2D" parent="."]
 
-[node name="Door4" type="Area2D" parent="Doors" instance=ExtResource( 21 )]
+[node name="Door4" type="Area2D" parent="Doors" instance=ExtResource( 19 )]
 visible = false
 position = Vector2( 8, 120 )
 collision_layer = 2
-script = ExtResource( 15 )
+script = ExtResource( 13 )
 scene_name = "1F_west_hall"
 locked = true
 locked_dialogue = SubResource( 4 )
@@ -249,10 +249,10 @@ inventory_gui_path = NodePath("../../CanvasLayer/InventoryGUI")
 player_path = NodePath("../../Player")
 required_look_dir = Vector2( -1, 0 )
 
-[node name="Door3" type="Area2D" parent="Doors" instance=ExtResource( 21 )]
+[node name="Door3" type="Area2D" parent="Doors" instance=ExtResource( 19 )]
 visible = false
 position = Vector2( -24, -88 )
-script = ExtResource( 15 )
+script = ExtResource( 13 )
 scene_name = "2F_west_small_room"
 locked = false
 locked_dialogue = SubResource( 5 )
@@ -262,10 +262,10 @@ inventory_gui_path = NodePath("../../CanvasLayer/InventoryGUI")
 player_path = NodePath("../../Player")
 required_look_dir = Vector2( -1, 0 )
 
-[node name="Door" type="Area2D" parent="Doors" instance=ExtResource( 21 )]
+[node name="Door" type="Area2D" parent="Doors" instance=ExtResource( 19 )]
 visible = false
 position = Vector2( 120.692, 135.864 )
-script = ExtResource( 15 )
+script = ExtResource( 13 )
 scene_name = ""
 locked = true
 locked_dialogue = null
@@ -275,10 +275,10 @@ inventory_gui_path = NodePath("../../CanvasLayer/InventoryGUI")
 player_path = NodePath("../../Player")
 required_look_dir = Vector2( 0, 1 )
 
-[node name="Door2" type="Area2D" parent="Doors" instance=ExtResource( 21 )]
+[node name="Door2" type="Area2D" parent="Doors" instance=ExtResource( 19 )]
 visible = false
 position = Vector2( 135.492, 135.864 )
-script = ExtResource( 15 )
+script = ExtResource( 13 )
 scene_name = ""
 locked = true
 locked_dialogue = null
@@ -288,10 +288,10 @@ inventory_gui_path = NodePath("../../CanvasLayer/InventoryGUI")
 player_path = NodePath("../../Player")
 required_look_dir = Vector2( 0, 1 )
 
-[node name="Door5" type="Area2D" parent="Doors" instance=ExtResource( 21 )]
+[node name="Door5" type="Area2D" parent="Doors" instance=ExtResource( 19 )]
 visible = false
 position = Vector2( 250.309, 24 )
-script = ExtResource( 15 )
+script = ExtResource( 13 )
 scene_name = "1F_kitchen"
 locked = false
 locked_dialogue = null
@@ -301,9 +301,10 @@ inventory_gui_path = NodePath("../../CanvasLayer/InventoryGUI")
 player_path = NodePath("../../Player")
 required_look_dir = Vector2( 1, 0 )
 
-[node name="Door6" type="Area2D" parent="Doors" instance=ExtResource( 21 )]
+[node name="Door6" type="Area2D" parent="Doors" instance=ExtResource( 19 )]
+visible = false
 position = Vector2( 280, -88 )
-script = ExtResource( 15 )
+script = ExtResource( 13 )
 scene_name = "2F_east_main_hall"
 locked = false
 locked_dialogue = null

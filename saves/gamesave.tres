@@ -8,7 +8,7 @@ script = ExtResource( 1 )
 game_version = ""
 data = {
 "game": {
-"current_scene": "1F_main_room",
+"current_scene": "2F_east_main_hall",
 "levels": {
 "1F_kitchen": "res://saves/levels/1F_kitchen.tscn",
 "1F_main_room": "res://saves/levels/1F_main_room.tscn",
@@ -42,8 +42,8 @@ data = {
 } ], [  ] ]
 },
 "lantern": {
-"fuel": 9000.0,
-"lantern_toggled": false
+"fuel": 8756.45,
+"lantern_toggled": true
 },
 "player": {
 "save_path": "res://saves/player/player.tscn"

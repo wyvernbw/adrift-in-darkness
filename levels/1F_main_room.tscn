@@ -236,6 +236,7 @@ player_path = NodePath("../../Player")
 required_look_dir = Vector2( 1, 0 )
 
 [node name="Door6" parent="Doors" instance=ExtResource( 12 )]
+visible = false
 position = Vector2( 280, -88 )
 scene_name = "2F_east_main_hall"
 inventory_gui_path = NodePath("../../CanvasLayer/InventoryGUI")

@@ -5,6 +5,7 @@ var light_value : float
 
 func _ready() -> void:
 	setLightColor(GlobalHandler.global_light)
+	visible = true
 
 func _process(delta : float) -> void:
 	setLightColor(GlobalHandler.current_light)
