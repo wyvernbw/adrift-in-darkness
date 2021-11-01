@@ -7,7 +7,8 @@ export var levels: Dictionary = {
 	"2F_west_small_room": preload("res://levels/2F_west_small_room.tscn").instance(),
 	"1F_west_office": preload("res://levels/1F_west_office.tscn").instance(),
 	"1F_kitchen": preload("res://levels/1F_kitchen.tscn").instance(),
-	"2F_east_main_hall": preload("res://levels/2F_east_main_hall.tscn").instance()
+	"2F_east_main_hall": preload("res://levels/2F_east_main_hall.tscn").instance(),
+	"1F_east_hall": preload("res://levels/1F_east_hall.tscn").instance(),
 }
 export var current_scene: String = "1F_main_room"
 

@@ -35,9 +35,6 @@ func _process(delta: float) -> void:
 	if InventoryHandler.get_item(lantern_item) == -1:
 		visible = false
 		lantern_toggled = false
-	elif DialogueHandler.get_child_count() > 0:
-		visible = false
-		lantern_toggled = false
 	
 	if not fuel == 0:
 		visible = lantern_toggled
@@ -53,7 +50,7 @@ func _process(delta: float) -> void:
 		if DialogueHandler.get_child_count() > 0:
 			return
 		DialogueHandler.dialogue = ran_out_of_fuel_resource
-		DialogueHandler.page_index += 1
+		DialogueHandler.page_index = 0
 		DialogueHandler.add_dialogue_box()
 
 	# darken things up

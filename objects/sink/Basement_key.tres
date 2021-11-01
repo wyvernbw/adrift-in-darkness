@@ -8,7 +8,7 @@ script = ExtResource( 2 )
 Text = [ "You find a key in the pool of bloody water." ]
 Answers = {
 }
-item_name = "Basement key"
+item_name = "Grey key"
 item_texture = ExtResource( 1 )
 item_quantity = 1
 item_type = 0

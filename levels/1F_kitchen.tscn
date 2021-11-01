@@ -30,6 +30,7 @@ tile_data = PoolIntArray( 65540, 9, 0, 65541, 14, 0, 65542, 14, 0, 65543, 14, 0,
 
 [node name="CanvasModulate" parent="." index="6"]
 visible = true
+color = Color( 0.1, 0.1, 0.1, 1 )
 
 [node name="Door" parent="." index="7" instance=ExtResource( 1 )]
 position = Vector2( 71.4762, 104 )
