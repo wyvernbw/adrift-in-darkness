@@ -27,11 +27,13 @@ func _ready() -> void:
 	# visible = false
 	if GlobalHandler.lantern_fuel != -1:
 		fuel = GlobalHandler.lantern_fuel
+	else:
+		GlobalHandler.lantern_fuel = MAX_FUEL
 
 
 func _process(delta: float) -> void:
-	GlobalHandler.lantern_fuel = fuel
-	GlobalHandler.lantern_toggled = self.lantern_toggled
+	fuel = GlobalHandler.lantern_fuel
+	lantern_toggled = GlobalHandler.lantern_toggled
 	if InventoryHandler.get_item(lantern_item) == -1:
 		visible = false
 		lantern_toggled = false
@@ -46,12 +48,14 @@ func _process(delta: float) -> void:
 
 	# ran out of fuel.
 	if fuel == 0 and visible:
+		$awno.stop()
+		GlobalHandler.lantern_ran_out = true
 		visible = false
-		if DialogueHandler.get_child_count() > 0:
-			return
-		DialogueHandler.dialogue = ran_out_of_fuel_resource
-		DialogueHandler.page_index = 0
-		DialogueHandler.add_dialogue_box()
+		if not GlobalHandler.lantern_ran_out:
+			if not DialogueHandler.get_child_count() > 0:	
+				DialogueHandler.dialogue = ran_out_of_fuel_resource
+				DialogueHandler.page_index = 0
+				DialogueHandler.add_dialogue_box()
 
 	# darken things up
 	if visible == false:
@@ -76,6 +80,8 @@ func _process(delta: float) -> void:
 		rotation_degrees = 360
 	if target.look_dir == Vector2.UP:
 		rotation_degrees = -180
+	GlobalHandler.lantern_fuel = fuel
+	GlobalHandler.lantern_toggled = self.lantern_toggled
 
 
 func _on_item_used(item) -> void:
@@ -84,8 +90,11 @@ func _on_item_used(item) -> void:
 			lantern_toggled = false
 		else:
 			lantern_toggled = true
+		GlobalHandler.lantern_toggled = self.lantern_toggled
 	elif item.item_name == "Oil":
 		fuel = MAX_FUEL
+		GlobalHandler.lantern_ran_out = false
+		$awno.play("awcrap")
 
 
 func save() -> Dictionary:

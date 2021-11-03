@@ -8,4 +8,4 @@ func _on_SoundArea_player_unpaused():
 	var lantern_node := player_node.get_node("Lantern")
 	if GlobalHandler.lantern_fuel == 0:
 		return
-	lantern_node.fuel = 0
+	GlobalHandler.lantern_fuel = 0
