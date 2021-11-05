@@ -1,4 +1,4 @@
-[gd_scene load_steps=97 format=2]
+[gd_scene load_steps=98 format=2]
 
 [ext_resource path="res://characters/player/Player.gd" type="Script" id=1]
 [ext_resource path="res://characters/player/lantern_no_fuel.tres" type="Resource" id=2]
@@ -368,6 +368,22 @@ angle_random = 1.0
 scale_random = 1.0
 color_ramp = SubResource( 46 )
 
+[sub_resource type="Animation" id=48]
+length = 2.0
+loop = true
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:energy")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0.1, 1, 1.9 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 0,
+"values": [ 1.12, 0.99, 1.12 ]
+}
+
 [node name="Player" type="KinematicBody2D" groups=[
 "save",
 ]]
@@ -388,7 +404,7 @@ texture = ExtResource( 31 )
 material = SubResource( 1 )
 frames = SubResource( 39 )
 animation = "idle_down"
-frame = 6
+frame = 1
 playing = true
 
 [node name="CollisionBox" type="CollisionShape2D" parent="."]
@@ -502,5 +518,26 @@ amount = 4
 local_coords = false
 process_material = SubResource( 47 )
 texture = ExtResource( 49 )
+
+[node name="Candle" type="Light2D" parent="."]
+visible = false
+position = Vector2( 0.999989, 3.8147e-06 )
+scale = Vector2( 0.551843, 0.551843 )
+z_index = -5
+z_as_relative = false
+texture = ExtResource( 30 )
+texture_scale = 3.2
+color = Color( 0.901961, 0.670588, 0.419608, 1 )
+energy = 0.8
+range_height = -10.0
+shadow_enabled = true
+shadow_filter = 3
+shadow_filter_smooth = 12.2
+__meta__ = {
+"_editor_description_": ""
+}
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Candle"]
+anims/flicker = SubResource( 48 )
 
 [connection signal="timeout" from="Sounds/Move/StepTimer" to="." method="_on_StepTimer_timeout"]

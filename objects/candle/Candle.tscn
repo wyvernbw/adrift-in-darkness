@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=2]
+[gd_scene load_steps=12 format=2]
 
 [ext_resource path="res://items/candle1.png" type="Texture" id=1]
 [ext_resource path="res://objects/StaticObject.tscn" type="PackedScene" id=2]
@@ -6,6 +6,8 @@
 [ext_resource path="res://items/candle4.png" type="Texture" id=4]
 [ext_resource path="res://items/candle3.png" type="Texture" id=5]
 [ext_resource path="res://characters/player/light2d.png" type="Texture" id=6]
+[ext_resource path="res://objects/candle/Candle.gd" type="Script" id=7]
+[ext_resource path="res://objects/candle/Candle.tres" type="Resource" id=8]
 
 [sub_resource type="StreamTexture" id=1]
 load_path = "res://.import/candle-sheet.png-00d741579150b96f5f396b3481f44a5e.stex"
@@ -35,6 +37,8 @@ tracks/0/keys = {
 }
 
 [node name="Candle" instance=ExtResource( 2 )]
+script = ExtResource( 7 )
+dialogue = ExtResource( 8 )
 
 [node name="Texture" parent="." index="1"]
 visible = false
@@ -48,7 +52,7 @@ visible = false
 [node name="AnimatedSprite" type="AnimatedSprite" parent="." index="4"]
 frames = SubResource( 2 )
 animation = "fire"
-frame = 1
+frame = 3
 playing = true
 
 [node name="Light" type="Light2D" parent="." index="5"]
@@ -58,8 +62,8 @@ z_index = -5
 z_as_relative = false
 texture = ExtResource( 6 )
 texture_scale = 3.2
-color = Color( 0.894118, 0.596078, 0.27451, 1 )
-energy = 1.1
+color = Color( 0.901961, 0.670588, 0.419608, 1 )
+energy = 0.8
 range_height = -10.0
 shadow_enabled = true
 shadow_filter = 3

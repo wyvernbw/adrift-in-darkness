@@ -1,7 +1,7 @@
 extends PanelContainer
 
-onready var label = $Label 
-onready var icon  = $Icon 
+onready var label = $HBoxContainer/Label 
+onready var icon  = $HBoxContainer/Icon 
 var item : Item setget set_item
 
 func set_item(new_item):

@@ -15,6 +15,7 @@ export var sprint_step_interval: float = 0.1
 var move_dir: Vector2 = Vector2.ZERO
 export var look_dir: Vector2 = Vector2.DOWN
 var velocity: Vector2 = Vector2.ZERO
+var candle_item: Item = Item.new("Candle", 1, null, Item.ITEM_TYPES.NORMAL_ITEM) 
 var stamina: float = MAX_STAMINA
 var moving: bool = false
 var staggered: bool = false
@@ -51,6 +52,8 @@ func _physics_process(delta: float) -> void:
 	if not HpHandler.current_limbs["left_arm"]:
 		$Particles2D.visible = true
 		anim_suffix = "_left_arm"
+	if not InventoryHandler.get_item(candle_item) == -1:
+		$Candle.visible = true
 	if can_move:
 		_get_input()
 	_calculate_speed()
