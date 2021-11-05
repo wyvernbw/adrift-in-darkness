@@ -1,7 +1,8 @@
-[gd_scene load_steps=7 format=2]
+[gd_scene load_steps=8 format=2]
 
 [ext_resource path="res://objects/StaticObject.gd" type="Script" id=1]
 [ext_resource path="res://objects/kitchen_table/kitchen_table.png" type="Texture" id=2]
+[ext_resource path="res://objects/kitchen_table/kitchen_table_normal.png" type="Texture" id=3]
 
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 16, 5.00003 )
@@ -31,6 +32,7 @@ one_way_collision_margin = 0.0
 [node name="Texture" type="Sprite" parent="."]
 position = Vector2( 8, -8 )
 texture = ExtResource( 2 )
+normal_map = ExtResource( 3 )
 
 [node name="InteractionArea" type="Area2D" parent="."]
 __meta__ = {
