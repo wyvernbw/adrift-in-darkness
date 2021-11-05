@@ -9,8 +9,8 @@ extents = Vector2( 8, 2.5 )
 extents = Vector2( 16, 16 )
 
 [sub_resource type="OccluderPolygon2D" id=3]
-closed = false
-polygon = PoolVector2Array( -6.88925, -7.21202, 5.9926, -7.02799, 6.16779, 5.86011, -6.94408, 5.86011, -7.07327, -7.39605, 5.80857, -7.21202 )
+cull_mode = 1
+polygon = PoolVector2Array( 8, -8, 8, 8, -8, 8, -8, -8, 8, -8 )
 
 [node name="Object" type="StaticBody2D"]
 position = Vector2( 8, 8 )

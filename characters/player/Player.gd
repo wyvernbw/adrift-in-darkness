@@ -1,6 +1,7 @@
 class_name Player
 extends KinematicBody2D
 
+
 const BASE_SPEED: float = 24.0
 const MAX_STAMINA: float = 600.0
 

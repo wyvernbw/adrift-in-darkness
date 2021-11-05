@@ -60,4 +60,12 @@ inventory_gui_path = NodePath("../CanvasLayer/InventoryGUI")
 player_path = NodePath("../Player")
 required_look_dir = Vector2( -1, 0 )
 
+[node name="Door2" parent="." index="11" instance=ExtResource( 4 )]
+visible = false
+position = Vector2( 280, 104 )
+scene_name = "1F_blood_room"
+inventory_gui_path = NodePath("../CanvasLayer/InventoryGUI")
+player_path = NodePath("../Player")
+required_look_dir = Vector2( 1, 0 )
+
 [editable path="SoundArea"]

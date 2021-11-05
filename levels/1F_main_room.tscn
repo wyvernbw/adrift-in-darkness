@@ -121,7 +121,6 @@ format = 1
 tile_data = PoolIntArray( -131071, 5, 0, -131070, 5, 0, -131069, 5, 0, -131068, 5, 0, -131067, 5, 0, -131066, 5, 0, -131063, 5, 0, -131062, 5, 0, -131061, 5, 0, -131060, 5, 0, -131059, 5, 0, -131058, 5, 0 )
 
 [node name="CanvasModulate" parent="." instance=ExtResource( 4 )]
-visible = false
 color = Color( 0.1, 0.1, 0.1, 1 )
 script = ExtResource( 19 )
 
