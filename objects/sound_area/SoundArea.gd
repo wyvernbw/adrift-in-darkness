@@ -7,15 +7,15 @@ const CAPTION_BOX_SCENE := preload("res://gui/caption/Caption.tscn")
 
 onready var Sound = $Sound
 
-var played : bool = false
-var playerEntered : bool = false
-var player_node : KinematicBody2D
-export var activateOnce : bool = false
-export var volume : float = 0.0
-export var pause_player : bool = true
-export var pause_player_duration : float = 1 # seconds
-export var caption : String = ""
-export var player_path : NodePath
+var played: bool = false
+var playerEntered: bool = false
+var player_node: KinematicBody2D
+export var activateOnce: bool = false
+export var volume: float = 0.0
+export var pause_player: bool = true
+export var pause_player_duration: float = 1  # seconds
+export var caption: String = ""
+export var player_path: NodePath
 
 
 func _ready():
@@ -26,10 +26,10 @@ func _ready():
 	connect("player_unpaused", player_node, "_on_player_unpaused")
 
 
-func _on_SoundArea_body_entered(body) -> void :
+func _on_SoundArea_body_entered(body) -> void:
 	if activateOnce == true and played == true:
 		return
-	if body is Player :
+	if body is Player:
 		Sound.play()
 		played = true
 		# add captions

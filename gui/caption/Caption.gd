@@ -1,7 +1,6 @@
 extends CanvasLayer
 
-
-var text : String 
+var text: String
 
 
 func _ready() -> void:

@@ -1,7 +1,6 @@
 class_name Player
 extends KinematicBody2D
 
-
 const BASE_SPEED: float = 24.0
 const MAX_STAMINA: float = 600.0
 
@@ -15,7 +14,7 @@ export var sprint_step_interval: float = 0.1
 var move_dir: Vector2 = Vector2.ZERO
 export var look_dir: Vector2 = Vector2.DOWN
 var velocity: Vector2 = Vector2.ZERO
-var candle_item: Item = Item.new("Candle", 1, null, Item.ITEM_TYPES.NORMAL_ITEM) 
+var candle_item: Item = Item.new("Candle", 1, null, Item.ITEM_TYPES.NORMAL_ITEM)
 var stamina: float = MAX_STAMINA
 var moving: bool = false
 var staggered: bool = false
@@ -160,7 +159,7 @@ func change_animation_speed(fps: float) -> void:
 
 
 func save() -> Dictionary:
-	var save_dict : Dictionary
+	var save_dict: Dictionary
 	save_dict["save_path"] = SaveGameHandler.SAVE_FOLDER + "player/player.tscn"
 	var player_scene = PackedScene.new()
 	player_scene.pack(self)
@@ -168,9 +167,10 @@ func save() -> Dictionary:
 	return save_dict
 
 
-func load(save : Dictionary) -> void:	
+func load(save: Dictionary) -> void:
 	var player_node = load(save["save_path"]).instance()
 	self.replace_by(player_node)
+
 
 """
 SIGNAL METHODS vvv

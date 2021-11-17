@@ -1,9 +1,9 @@
 extends StaticObject
 
-onready var sprite : AnimatedSprite = $AnimatedSprite
-onready var red_screen : Polygon2D = $CanvasLayer/Polygon2D
-var arm_message : Resource = preload("res://objects/sink/Arm_severd.tres")
-var key_found : Resource = preload("res://objects/sink/Basement_key.tres")
+onready var sprite: AnimatedSprite = $AnimatedSprite
+onready var red_screen: Polygon2D = $CanvasLayer/Polygon2D
+var arm_message: Resource = preload("res://objects/sink/Arm_severd.tres")
+var key_found: Resource = preload("res://objects/sink/Basement_key.tres")
 var event_finished: bool = false
 
 
@@ -15,7 +15,7 @@ func _ready() -> void:
 
 
 func on_DialogueHandler_player_unpause() -> void:
-	if event_finished: 
+	if event_finished:
 		return
 	if $AnimatedSprite.animation == "flood":
 		self.dialogue = key_found
@@ -44,7 +44,7 @@ func _on_AnimationPlayer_animation_finished(anim_name):
 
 
 func _on_AnimatedSprite_animation_finished():
-	if $AnimatedSprite.animation == "flood" :
+	if $AnimatedSprite.animation == "flood":
 		$AnimatedSprite.play("aftermath")
 		self.dialogue = key_found
 		event_finished = true

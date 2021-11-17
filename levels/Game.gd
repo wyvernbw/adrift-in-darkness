@@ -1,5 +1,5 @@
 extends Node2D
-
+
 export var levels: Dictionary = {
 	"1F_main_room": preload("res://levels/1F_main_room.tscn").instance(),
 	"1F_west_hall": preload("res://levels/1F_west_hall.tscn").instance(),
@@ -27,21 +27,24 @@ func switch_scene(scene_name: String) -> void:
 		print("removed level " + node.get_name())
 		add_child(levels[scene_name])
 		print("added level " + levels[scene_name].get_name())
-		current_scene = scene_name	
+		current_scene = scene_name
+
 		return
 	# if game has no level
 	add_child(levels[scene_name])
 	print("added level " + levels[scene_name].get_name())
-	current_scene = scene_name	
+	current_scene = scene_name
+
 	print("no previous level. Added " + scene_name)
+
 
 func _on_Door_player_entered(scene_name) -> void:
 	switch_scene(scene_name)
 	print(scene_name)
 
 
-func save() -> Dictionary: 
-	var save_dict : Dictionary
+func save() -> Dictionary:
+	var save_dict: Dictionary
 	# save levels
 	save_dict["levels"] = Dictionary()
 	for level in levels.keys():
@@ -50,11 +53,12 @@ func save() -> Dictionary:
 		level_scene.pack(levels[level])
 		ResourceSaver.save(save_dict["levels"][level], level_scene)
 		print("level saved at " + save_dict["levels"][level])
-	
+
 	save_dict["current_scene"] = current_scene
 	return save_dict
 
-func load(save : Dictionary) -> void:
+
+func load(save: Dictionary) -> void:
 	for level in save["levels"].keys():
 		levels[level] = load(save["levels"][level]).instance(1)
 	remove_child(get_node(current_scene))

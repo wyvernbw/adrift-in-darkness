@@ -1,4 +1,4 @@
-extends Node 
+extends Node
 
 """
 DIALOGUE HANDLER.
@@ -15,16 +15,16 @@ const DIALOGUE_BOX_SCENE = preload("res://gui/dialogue_box/DialogueBox.tscn")
 const BRANCHING_DIALOGUE_BOX_SCENE = preload("res://gui/branching_dialogue_box/BranchingDialogueBox.tscn")
 const READ_BOX_SCENE = preload("res://gui/read_box/ReadBox.tscn")
 
-var dialogue_branch : int = 0
+var dialogue_branch: int = 0
 var dialogue_open: bool = false
 var dialogue_branching: bool = false
 var page_index: int = -1
 var item_held: Item
 var SAVE_KEY: String = "DialogueHandler"
-var dialogue : Resource setget set_dialogue
+var dialogue: Resource setget set_dialogue
 
 
-func _input(event : InputEvent) -> void:
+func _input(event: InputEvent) -> void:
 	if event.is_action_pressed("interact"):
 		if dialogue == null:
 			return
@@ -41,31 +41,33 @@ func _input(event : InputEvent) -> void:
 		add_dialogue_box()
 
 
-func set_dialogue(new_dialogue : Resource) -> void:
+func set_dialogue(new_dialogue: Resource) -> void:
 	"""
 	Sets the dialogue resource, resets the page index and adds the required item to the player's inventory (if applicable)
 	"""
 
 	if new_dialogue == null:
 		print("ERROR: DIALOGUE IS NULL")
-		return 
+		return
 	print("dialogue set")
 	emit_signal("player_pause")
 	page_index = -1
-	dialogue = new_dialogue 
+	dialogue = new_dialogue
 	dialogue_open = true
-	if dialogue.item_name == '':
+	if dialogue.item_name == "":
 		return
 	if not dialogue.item_texture:
 		return
 	if dialogue.item_quantity == -1:
 		return
-	item_held = Item.new(dialogue.item_name, dialogue.item_quantity, dialogue.item_texture, dialogue.item_type)
+	item_held = Item.new(
+		dialogue.item_name, dialogue.item_quantity, dialogue.item_texture, dialogue.item_type
+	)
 	InventoryHandler.add_item(item_held)
-	dialogue.item_name = ''
+	dialogue.item_name = ""
 
 
-func set_dialogue_only(res : Resource) -> void:
+func set_dialogue_only(res: Resource) -> void:
 	dialogue = res
 
 
@@ -80,6 +82,7 @@ func remove_dialogue_box() -> void:
 	if get_node_or_null("ReadBox"):
 		get_node("ReadBox").free()
 		emit_signal("player_unpause")
+
 
 func add_dialogue_box() -> void:
 	"""
@@ -120,7 +123,7 @@ func add_dialogue_box() -> void:
 	dialogue_open = false
 
 
-func _on_BranchingDialogueBox_option_pressed(branch : int) -> void:
+func _on_BranchingDialogueBox_option_pressed(branch: int) -> void:
 	get_node("BranchingDialogueBox").queue_free()
 	var keys = dialogue.Answers.keys()
 	dialogue_branch = branch

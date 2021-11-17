@@ -3,7 +3,7 @@
 [ext_resource path="res://items/candle1.png" type="Texture" id=1]
 [ext_resource path="res://classes/DialogueResource.gd" type="Script" id=2]
 
-[sub_resource type="Resource" id=4]
+[sub_resource type="Resource" id=1]
 script = ExtResource( 2 )
 Text = [  ]
 Answers = {
@@ -13,7 +13,7 @@ item_quantity = 0
 item_type = 0
 read_box_text = ""
 
-[sub_resource type="Resource" id=5]
+[sub_resource type="Resource" id=2]
 script = ExtResource( 2 )
 Text = [  ]
 Answers = {
@@ -28,8 +28,8 @@ read_box_text = ""
 script = ExtResource( 2 )
 Text = [ "A lit candle." ]
 Answers = {
-"Leave": SubResource( 4 ),
-"Pick up": SubResource( 5 )
+"Leave": SubResource( 1 ),
+"Pick up": SubResource( 2 )
 }
 item_name = ""
 item_quantity = 0

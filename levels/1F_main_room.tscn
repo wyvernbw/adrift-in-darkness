@@ -155,6 +155,7 @@ position = Vector2( 16, 48.136 )
 dialogue = SubResource( 2 )
 
 [node name="BloodSplatters" type="Node2D" parent="."]
+modulate = Color( 0.752941, 0.466667, 0.466667, 1 )
 
 [node name="Blood2" type="Sprite" parent="BloodSplatters"]
 position = Vector2( 168, 32 )

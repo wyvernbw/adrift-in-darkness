@@ -28,6 +28,7 @@ func save_game() -> void:
 	ResourceSaver.save(save_path, save_game)
 	print("game saved at " + save_path)
 
+
 func load_game() -> void:
 	var save_game = ResourceLoader.load(save_path)
 	var save_nodes = get_tree().get_nodes_in_group("persist")

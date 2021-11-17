@@ -25,7 +25,7 @@ func _send_notification(item: Item) -> void:
 
 
 func add_item(item: Item, notify := true) -> void:
-	print(str(item['item_name']) + " : " + str(item.quantity))
+	print(str(item["item_name"]) + " : " + str(item.quantity))
 	if item == null:
 		return
 	var item_index = get_item(item)
@@ -69,7 +69,7 @@ func _on_item_used(item) -> void:
 
 func save() -> Dictionary:
 	var save_dict: Dictionary
-	save_dict["inventory"] = Array()	
+	save_dict["inventory"] = Array()
 	var key_items: Array
 	var normal_items: Array
 	save_dict["inventory"].append(key_items)
@@ -88,7 +88,7 @@ func save() -> Dictionary:
 	return save_dict
 
 
-func load(save : Dictionary) -> void:
+func load(save: Dictionary) -> void:
 	#key_items.clear()
 	#key_items = save["key_items"].duplicate()
 	#normal_items.clear()
@@ -98,8 +98,9 @@ func load(save : Dictionary) -> void:
 	for type in Item.ITEM_TYPES:
 		for item_dict in save["inventory"][Item.ITEM_TYPES[type]]:
 			var item: Item = Item.new(
-					item_dict["item_name"],
-					item_dict["quantity"],
-					item_dict["texture"],
-					item_dict["item_type"])
+				item_dict["item_name"],
+				item_dict["quantity"],
+				item_dict["texture"],
+				item_dict["item_type"]
+			)
 			add_item(item, false)

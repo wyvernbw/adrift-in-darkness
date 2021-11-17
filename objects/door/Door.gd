@@ -4,26 +4,27 @@ signal page_changed
 signal player_entered(scene_name)
 
 const DIALOGUE_BOX_SCENE = preload("res://gui/dialogue_box/DialogueBox.tscn")
-const INTERACT_DELAY : float = 0.2 # seconds
+const INTERACT_DELAY: float = 0.2  # seconds
 
-onready var inventory_gui 
+onready var inventory_gui
 onready var player_node
-onready var interact_delay_timer : Timer = $InteractDelay
+onready var interact_delay_timer: Timer = $InteractDelay
 
-var player_is_colliding : bool
-var dialogue_open : bool
-var player_is_looking : bool
-var required_item : Item
-var can_interact : bool = true
+var player_is_colliding: bool
+var dialogue_open: bool
+var player_is_looking: bool
+var required_item: Item
+var can_interact: bool = true
 
-export var scene_name : String
-export var locked : bool 
-export var locked_dialogue : Resource
-export var unlocked_text : String
-export var key_name : String 
-export var inventory_gui_path : NodePath 
-export var player_path : NodePath
-export var required_look_dir : Vector2
+export var scene_name: String
+export var locked: bool
+export var locked_dialogue: Resource
+export var unlocked_text: String
+export var key_name: String
+export var inventory_gui_path: NodePath
+export var player_path: NodePath
+export var required_look_dir: Vector2
+
 
 func _ready() -> void:
 	# get nodes
@@ -38,12 +39,13 @@ func _ready() -> void:
 
 	$CanvasLayer/Sprite.visible = true
 	$CanvasLayer/Sprite/AnimationPlayer.play("fade out")
-	
+
 	interact_delay_timer.autostart = true
 	can_interact = true
 	interact_delay_timer.start()
 
-func _process(_delta : float) -> void:
+
+func _process(_delta: float) -> void:
 	var interact = Input.is_action_just_pressed("interact")
 
 	# things that prevent the player from opening the door
@@ -58,9 +60,9 @@ func _process(_delta : float) -> void:
 	if not player_node.look_dir == required_look_dir:
 		player_is_looking = false
 		return
-	else: 
+	else:
 		player_is_looking = true
-	if not player_is_colliding :
+	if not player_is_colliding:
 		return
 
 	# nothing preventing the player from opening the door
@@ -80,23 +82,27 @@ func _process(_delta : float) -> void:
 				$Sounds/Locked.play()
 				print("locked")
 				DialogueHandler.dialogue = locked_dialogue
-				DialogueHandler.page_index += 1 
+				DialogueHandler.page_index += 1
 				DialogueHandler.add_dialogue_box()
 				dialogue_open = true
+
 
 func _on_dialogue_box_removed() -> void:
 	# can_interact = true
 	if dialogue_open == true:
 		start_delay()
 		dialogue_open = false
-		
-func _on_Door_body_entered(body : Node) -> void:
+
+
+func _on_Door_body_entered(body: Node) -> void:
 	if body is Player:
 		player_is_colliding = true
 
-func _on_Door_body_exited(body : Node) -> void:
+
+func _on_Door_body_exited(body: Node) -> void:
 	if body is Player:
 		player_is_colliding = false
+
 
 func _on_Open_finished():
 	emit_signal("player_entered", scene_name)
@@ -107,6 +113,7 @@ func _on_Open_finished():
 
 func _on_InteractDelay_timeout() -> void:
 	can_interact = true
+
 
 func start_delay() -> void:
 	can_interact = false
