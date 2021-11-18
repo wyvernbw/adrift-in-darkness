@@ -7,6 +7,7 @@ scripts.
 """
 
 signal playerDied
+signal limb_cut(limb)
 
 const max_blood = 4500
 const blood_loss_rate = 1
@@ -39,6 +40,7 @@ func cut_limb(limb: String):
 	_remove_limb(limb)
 	_set_limb_bleeding(limb)
 	get_node("/root/Game/WorldEnvironment").environment = preload("res://blood.tres")
+	emit_signal("limb_cut", limb)
 
 
 func _remove_limb(limb: String) -> void:

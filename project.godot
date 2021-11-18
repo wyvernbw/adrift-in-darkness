@@ -63,6 +63,10 @@ SaveGameHandler="*res://singletons/SaveGameHandler.gd"
 HpHandler="*res://singletons/HpHandler.gd"
 GlobalHandler="*res://singletons/globalHandler.gd"
 
+[debug]
+
+settings/stdout/print_fps=true
+
 [display]
 
 window/size/width=256
