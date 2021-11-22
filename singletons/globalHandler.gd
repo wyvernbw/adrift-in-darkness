@@ -16,3 +16,5 @@ var current_light: float = global_light
 var current_static: float = 0.0
 var Player: KinematicBody2D
 var InventoryGUI
+
+var fullscreen: bool = false

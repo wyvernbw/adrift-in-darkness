@@ -1,0 +1,300 @@
+[gd_scene load_steps=26 format=2]
+
+[ext_resource path="res://fonts/RobotoMono-VariableFont_wght.ttf" type="DynamicFontData" id=1]
+[ext_resource path="res://characters/player/light_mask2d_v2.0.png" type="Texture" id=2]
+[ext_resource path="res://environment.tres" type="Environment" id=3]
+[ext_resource path="res://gui/main_menu/button_focus.tres" type="StyleBox" id=4]
+[ext_resource path="res://gui/main_menu/button_normal.tres" type="StyleBox" id=5]
+[ext_resource path="res://gui/main_menu/button_pressed.tres" type="StyleBox" id=6]
+[ext_resource path="res://gui/main_menu/Settings.gd" type="Script" id=7]
+[ext_resource path="res://gui/main_menu/slider.tres" type="StyleBox" id=8]
+[ext_resource path="res://gui/main_menu/grabber_area_highlight.tres" type="StyleBox" id=9]
+[ext_resource path="res://gui/main_menu/grabber_area.tres" type="StyleBox" id=10]
+
+[sub_resource type="DynamicFont" id=2]
+font_data = ExtResource( 1 )
+
+[sub_resource type="DynamicFont" id=1]
+size = 10
+font_data = ExtResource( 1 )
+
+[sub_resource type="ImageTexture" id=6]
+
+[sub_resource type="ImageTexture" id=7]
+
+[sub_resource type="ImageTexture" id=8]
+
+[sub_resource type="ImageTexture" id=9]
+
+[sub_resource type="DynamicFont" id=11]
+size = 10
+font_data = ExtResource( 1 )
+
+[sub_resource type="DynamicFont" id=17]
+size = 10
+font_data = ExtResource( 1 )
+
+[sub_resource type="DynamicFont" id=18]
+size = 10
+font_data = ExtResource( 1 )
+
+[sub_resource type="ImageTexture" id=15]
+
+[sub_resource type="ImageTexture" id=16]
+
+[sub_resource type="ImageTexture" id=14]
+
+[sub_resource type="DynamicFont" id=19]
+size = 10
+font_data = ExtResource( 1 )
+
+[sub_resource type="DynamicFont" id=12]
+size = 10
+font_data = ExtResource( 1 )
+
+[sub_resource type="CanvasItemMaterial" id=10]
+blend_mode = 3
+
+[node name="Settings" type="Control"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+script = ExtResource( 7 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+custom_constants/margin_right = 16
+custom_constants/margin_top = 16
+custom_constants/margin_left = 16
+custom_constants/margin_bottom = 16
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="ScrollContainer" type="ScrollContainer" parent="MarginContainer"]
+margin_left = 16.0
+margin_top = 16.0
+margin_right = 240.0
+margin_bottom = 179.0
+follow_focus = true
+scroll_horizontal_enabled = false
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/ScrollContainer"]
+margin_right = 212.0
+margin_bottom = 206.0
+size_flags_horizontal = 3
+custom_constants/separation = 2
+alignment = 1
+
+[node name="Settings" type="Label" parent="MarginContainer/ScrollContainer/VBoxContainer"]
+margin_right = 212.0
+margin_bottom = 22.0
+custom_fonts/font = SubResource( 2 )
+text = "- Settings -"
+align = 1
+uppercase = true
+
+[node name="Volume" type="GridContainer" parent="MarginContainer/ScrollContainer/VBoxContainer"]
+margin_top = 24.0
+margin_right = 212.0
+margin_bottom = 56.0
+columns = 2
+
+[node name="MasterVolume" type="Label" parent="MarginContainer/ScrollContainer/VBoxContainer/Volume"]
+margin_right = 84.0
+margin_bottom = 14.0
+custom_fonts/font = SubResource( 1 )
+text = "master volume"
+uppercase = true
+
+[node name="MasterSlider" type="HSlider" parent="MarginContainer/ScrollContainer/VBoxContainer/Volume"]
+margin_left = 88.0
+margin_right = 212.0
+margin_bottom = 12.0
+focus_next = NodePath("../AmbientSlider")
+mouse_default_cursor_shape = 6
+size_flags_horizontal = 3
+custom_icons/tick = SubResource( 6 )
+custom_icons/grabber_disabled = SubResource( 7 )
+custom_icons/grabber_highlight = SubResource( 8 )
+custom_icons/grabber = SubResource( 9 )
+custom_styles/slider = ExtResource( 8 )
+custom_styles/grabber_area_highlight = ExtResource( 9 )
+custom_styles/grabber_area = ExtResource( 10 )
+max_value = 2.0
+step = 0.1
+value = 1.0
+tick_count = 20
+
+[node name="AmbientVolume" type="Label" parent="MarginContainer/ScrollContainer/VBoxContainer/Volume"]
+margin_top = 18.0
+margin_right = 84.0
+margin_bottom = 32.0
+custom_fonts/font = SubResource( 1 )
+text = "ambient volume"
+uppercase = true
+
+[node name="AmbientSlider" type="HSlider" parent="MarginContainer/ScrollContainer/VBoxContainer/Volume"]
+margin_left = 88.0
+margin_top = 18.0
+margin_right = 212.0
+margin_bottom = 30.0
+focus_next = NodePath("../../Fullscreen/CheckButton")
+focus_previous = NodePath("../MasterSlider")
+size_flags_horizontal = 3
+custom_icons/tick = SubResource( 6 )
+custom_icons/grabber_disabled = SubResource( 7 )
+custom_icons/grabber_highlight = SubResource( 8 )
+custom_icons/grabber = SubResource( 9 )
+custom_styles/slider = ExtResource( 8 )
+custom_styles/grabber_area_highlight = ExtResource( 9 )
+custom_styles/grabber_area = ExtResource( 10 )
+max_value = 2.0
+step = 0.1
+value = 1.0
+tick_count = 20
+
+[node name="Fullscreen" type="HBoxContainer" parent="MarginContainer/ScrollContainer/VBoxContainer"]
+margin_top = 58.0
+margin_right = 212.0
+margin_bottom = 98.0
+alignment = 1
+
+[node name="Label" type="Label" parent="MarginContainer/ScrollContainer/VBoxContainer/Fullscreen"]
+margin_left = 36.0
+margin_top = 13.0
+margin_right = 96.0
+margin_bottom = 27.0
+custom_fonts/font = SubResource( 11 )
+text = "Fullscreen"
+
+[node name="CheckButton" type="CheckButton" parent="MarginContainer/ScrollContainer/VBoxContainer/Fullscreen"]
+margin_left = 100.0
+margin_right = 176.0
+margin_bottom = 40.0
+focus_next = NodePath("../../Captions/CheckButton")
+focus_previous = NodePath("../../Volume/AmbientSlider")
+
+[node name="Captions" type="HBoxContainer" parent="MarginContainer/ScrollContainer/VBoxContainer"]
+margin_top = 100.0
+margin_right = 212.0
+margin_bottom = 140.0
+alignment = 1
+
+[node name="Label" type="Label" parent="MarginContainer/ScrollContainer/VBoxContainer/Captions"]
+margin_left = 39.0
+margin_top = 13.0
+margin_right = 93.0
+margin_bottom = 27.0
+custom_fonts/font = SubResource( 11 )
+text = "Subtitles"
+
+[node name="CheckButton" type="CheckButton" parent="MarginContainer/ScrollContainer/VBoxContainer/Captions"]
+margin_left = 97.0
+margin_right = 173.0
+margin_bottom = 40.0
+focus_next = NodePath("../../About/Button")
+focus_previous = NodePath("../../Fullscreen/CheckButton")
+
+[node name="CaptionsDuration" type="VBoxContainer" parent="MarginContainer/ScrollContainer/VBoxContainer"]
+margin_top = 142.0
+margin_right = 212.0
+margin_bottom = 174.0
+
+[node name="Label" type="Label" parent="MarginContainer/ScrollContainer/VBoxContainer/CaptionsDuration"]
+margin_right = 212.0
+margin_bottom = 14.0
+custom_fonts/font = SubResource( 17 )
+text = "Captions duration (seconds)"
+
+[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer/ScrollContainer/VBoxContainer/CaptionsDuration"]
+margin_top = 18.0
+margin_right = 212.0
+margin_bottom = 32.0
+
+[node name="Label2" type="Label" parent="MarginContainer/ScrollContainer/VBoxContainer/CaptionsDuration/HBoxContainer"]
+margin_right = 12.0
+margin_bottom = 14.0
+custom_fonts/font = SubResource( 18 )
+text = "1s"
+
+[node name="HSlider" type="HSlider" parent="MarginContainer/ScrollContainer/VBoxContainer/CaptionsDuration/HBoxContainer"]
+margin_left = 16.0
+margin_right = 190.0
+margin_bottom = 12.0
+size_flags_horizontal = 3
+custom_icons/grabber_disabled = SubResource( 15 )
+custom_icons/grabber_highlight = SubResource( 16 )
+custom_icons/grabber = SubResource( 14 )
+custom_styles/slider = ExtResource( 8 )
+custom_styles/grabber_area_highlight = ExtResource( 9 )
+custom_styles/grabber_area = ExtResource( 10 )
+min_value = 1.0
+max_value = 10.0
+value = 2.0
+tick_count = 10
+ticks_on_borders = true
+
+[node name="Label" type="Label" parent="MarginContainer/ScrollContainer/VBoxContainer/CaptionsDuration/HBoxContainer"]
+margin_left = 194.0
+margin_right = 212.0
+margin_bottom = 14.0
+custom_fonts/font = SubResource( 19 )
+text = "10s"
+
+[node name="About" type="HBoxContainer" parent="MarginContainer/ScrollContainer/VBoxContainer"]
+margin_top = 176.0
+margin_right = 212.0
+margin_bottom = 190.0
+alignment = 1
+
+[node name="Button" type="Button" parent="MarginContainer/ScrollContainer/VBoxContainer/About"]
+margin_left = 91.0
+margin_right = 121.0
+margin_bottom = 14.0
+focus_previous = NodePath("../../Captions/CheckButton")
+size_flags_horizontal = 12
+custom_styles/pressed = ExtResource( 6 )
+custom_styles/focus = ExtResource( 4 )
+custom_styles/normal = ExtResource( 5 )
+custom_fonts/font = SubResource( 12 )
+text = "About"
+flat = true
+
+[node name="Back" type="HBoxContainer" parent="MarginContainer/ScrollContainer/VBoxContainer"]
+margin_top = 192.0
+margin_right = 212.0
+margin_bottom = 206.0
+alignment = 1
+
+[node name="Button" type="Button" parent="MarginContainer/ScrollContainer/VBoxContainer/Back"]
+margin_left = 94.0
+margin_right = 118.0
+margin_bottom = 14.0
+focus_previous = NodePath("../../Captions/CheckButton")
+size_flags_horizontal = 12
+custom_styles/pressed = ExtResource( 6 )
+custom_styles/focus = ExtResource( 4 )
+custom_styles/normal = ExtResource( 5 )
+custom_fonts/font = SubResource( 12 )
+text = "Back"
+flat = true
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="light_mask2d_v20" type="Sprite" parent="CanvasLayer"]
+material = SubResource( 10 )
+position = Vector2( 128.837, 98.5619 )
+scale = Vector2( 2.16, 1.72 )
+texture = ExtResource( 2 )
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = ExtResource( 3 )
+
+[connection signal="toggled" from="MarginContainer/ScrollContainer/VBoxContainer/Fullscreen/CheckButton" to="." method="_on_FullscreenCheckButton_toggled"]
+[connection signal="toggled" from="MarginContainer/ScrollContainer/VBoxContainer/Captions/CheckButton" to="." method="_on_CaptionsCheckButton_toggled"]
+[connection signal="value_changed" from="MarginContainer/ScrollContainer/VBoxContainer/CaptionsDuration/HBoxContainer/HSlider" to="." method="_on_HSlider_value_changed"]
+[connection signal="pressed" from="MarginContainer/ScrollContainer/VBoxContainer/Back/Button" to="." method="_on_Button_pressed"]

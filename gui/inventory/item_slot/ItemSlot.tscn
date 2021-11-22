@@ -7,7 +7,7 @@
 [ext_resource path="res://gui/main_menu/roboto_mono.tres" type="DynamicFont" id=5]
 [ext_resource path="res://fonts/RobotoMono-VariableFont_wght.ttf" type="DynamicFontData" id=6]
 
-[sub_resource type="DynamicFont" id=2]
+[sub_resource type="DynamicFont" id=1]
 size = 8
 font_data = ExtResource( 6 )
 
@@ -54,7 +54,7 @@ margin_left = 96.0
 margin_right = 112.0
 margin_bottom = 16.0
 rect_pivot_offset = Vector2( 8, 8 )
-custom_fonts/font = SubResource( 2 )
+custom_fonts/font = SubResource( 1 )
 text = "x69"
 valign = 2
 __meta__ = {
