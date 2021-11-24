@@ -45,5 +45,5 @@ void fragment() {
 
 	float final = fbm(coord + motion);
 
-	COLOR = vec4(color, final * 0.2);
+	COLOR = vec4(mix(color, textureLod(SCREEN_TEXTURE, SCREEN_UV, 0.5).rgb, 0.1), final * 0.2);
 }

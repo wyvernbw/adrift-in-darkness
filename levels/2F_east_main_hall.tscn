@@ -91,3 +91,12 @@ locked_dialogue = SubResource( 2 )
 inventory_gui_path = NodePath("../CanvasLayer/InventoryGUI")
 player_path = NodePath("../Player")
 required_look_dir = Vector2( 1, 0 )
+
+[node name="Door4" parent="." index="13" instance=ExtResource( 2 )]
+visible = false
+position = Vector2( 360, 56 )
+scene_name = "2F_bathroom"
+locked_dialogue = SubResource( 2 )
+inventory_gui_path = NodePath("../CanvasLayer/InventoryGUI")
+player_path = NodePath("../Player")
+required_look_dir = Vector2( 1, 0 )
