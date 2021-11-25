@@ -9,6 +9,7 @@ func _ready():
 	$Panel/option1.grab_focus()
 # warning-ignore:return_value_discarded
 	connect("option_pressed", DialogueHandler, "_on_BranchingDialogueBox_option_pressed")
+	connect("option_pressed", HpHandler, "_on_BranchingDialogueBox_option_pressed")
 
 
 func draw_box(_option_1: String, _option_2: String):

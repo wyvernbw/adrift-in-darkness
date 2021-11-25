@@ -1,5 +1,6 @@
 extends CanvasLayer
 
+
 onready var anim_player := $BlurSprite/AnimationPlayer
 onready var blur_sprite := $BlurSprite
 

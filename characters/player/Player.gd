@@ -10,6 +10,9 @@ export var sprint_speed: float = 48.0
 export var stagger_speed: float = 16.0
 export var walk_step_interval: float = 0.5
 export var sprint_step_interval: float = 0.1
+export var stop_bleeding_dialogue: Resource
+export var cant_use_bandages_dialogue: Resource
+export var bleeding_stopped_dialogue: Resource
 
 var move_dir: Vector2 = Vector2.ZERO
 export var look_dir: Vector2 = Vector2.DOWN
@@ -36,7 +39,7 @@ On different occasions and events, increase the insanity score. Higher insanity 
 func _ready() -> void:
 	GlobalHandler.Player = self
 	StepTimer.wait_time = walk_step_interval
-	$Particles2D.visible = false
+	$Particles2D.emitting = false
 
 	step_sounds.append(load("res://characters/player/wood_step1.wav"))
 	step_sounds.append(load("res://characters/player/wood_step2.wav"))
@@ -48,9 +51,11 @@ func _ready() -> void:
 
 
 func _physics_process(delta: float) -> void:
-	if not HpHandler.current_limbs["left_arm"]:
-		$Particles2D.visible = true
+	if HpHandler.bleeding_limbs["left_arm"]:
+		$Particles2D.emitting = true
 		anim_suffix = "_left_arm"
+	else:
+		$Particles2D.emitting = false
 	if not InventoryHandler.get_item(candle_item) == -1:
 		$Candle.visible = true
 	if can_move:

@@ -5,6 +5,7 @@ shader_type canvas_item;
 
 // uniform vec3 color = vec3(0.9, 0.43, 0.68);
 uniform vec3 color = vec3(0.33, 0.29, 0.61);
+//uniform vec3 color = vec3(1.0, 1.0, 1.0);
 uniform int OCTAVES = 4;
 
 float rand(vec2 coord){
@@ -45,5 +46,5 @@ void fragment() {
 
 	float final = fbm(coord + motion);
 
-	COLOR = vec4(mix(color, textureLod(SCREEN_TEXTURE, SCREEN_UV, 0.5).rgb, 0.1), final * 0.2);
+	COLOR = vec4(mix(color, textureLod(SCREEN_TEXTURE, SCREEN_UV, 0.2).rgb, 0.2), final * 0.3);
 }

@@ -1,13 +1,49 @@
-[gd_scene load_steps=9 format=2]
+[gd_scene load_steps=17 format=2]
 
 [ext_resource path="res://levels/base_level.tscn" type="PackedScene" id=1]
 [ext_resource path="res://tilesets/blood/blood1.png" type="Texture" id=2]
 [ext_resource path="res://tilesets/blood/blood2.png" type="Texture" id=3]
 [ext_resource path="res://objects/sink/Sink.tscn" type="PackedScene" id=4]
-[ext_resource path="res://objects/cupboard/cupboard.tscn" type="PackedScene" id=5]
+[ext_resource path="res://objects/cupboard/cupboard.png" type="Texture" id=5]
 [ext_resource path="res://objects/StaticObject.gd" type="Script" id=6]
 [ext_resource path="res://characters/player/PlayerMirror.tscn" type="PackedScene" id=7]
 [ext_resource path="res://objects/door/Door.tscn" type="PackedScene" id=8]
+[ext_resource path="res://items/bandage.png" type="Texture" id=9]
+[ext_resource path="res://classes/DialogueResource.gd" type="Script" id=10]
+[ext_resource path="res://objects/cupboard/cupboard_normal.png" type="Texture" id=11]
+
+[sub_resource type="Resource" id=1]
+script = ExtResource( 10 )
+Text = [ "You find some dirty bandages." ]
+Answers = {
+}
+item_name = "Bandages"
+item_texture = ExtResource( 9 )
+item_quantity = 1
+item_type = 0
+read_box_text = ""
+
+[sub_resource type="Resource" id=2]
+script = ExtResource( 10 )
+Text = [ "A cabinet." ]
+Answers = {
+"Leave": null,
+"Open": SubResource( 1 )
+}
+item_name = ""
+item_quantity = 0
+item_type = 0
+read_box_text = ""
+
+[sub_resource type="RectangleShape2D" id=3]
+extents = Vector2( 8, 3.00002 )
+
+[sub_resource type="RectangleShape2D" id=4]
+extents = Vector2( 8, 12 )
+
+[sub_resource type="OccluderPolygon2D" id=5]
+cull_mode = 1
+polygon = PoolVector2Array( -8, -8, 8, -8, 8, 8, 0, 8, -8, 8 )
 
 [node name="2F_Bathroom" instance=ExtResource( 1 )]
 
@@ -25,13 +61,47 @@ tile_data = PoolIntArray( -393213, 24, 0 )
 visible = true
 color = Color( 0.1, 0.1, 0.1, 1 )
 
+[node name="LightMask2D" parent="CanvasLayer" index="0"]
+visible = true
+
 [node name="Sink" parent="." index="8" instance=ExtResource( 4 )]
 position = Vector2( 184, 82 )
 script = ExtResource( 6 )
 dialogue = null
 
-[node name="Cupboard" parent="." index="9" instance=ExtResource( 5 )]
+[node name="Cupboard" type="StaticBody2D" parent="." index="9"]
 position = Vector2( 168, 64 )
+script = ExtResource( 6 )
+dialogue = SubResource( 2 )
+
+[node name="CollisionBox" type="CollisionShape2D" parent="Cupboard" index="0"]
+position = Vector2( 0, -3 )
+rotation = 3.14159
+z_index = 1
+shape = SubResource( 3 )
+one_way_collision_margin = 0.0
+
+[node name="Texture" type="Sprite" parent="Cupboard" index="1"]
+texture = ExtResource( 5 )
+normal_map = ExtResource( 11 )
+
+[node name="InteractionArea" type="Area2D" parent="Cupboard" index="2"]
+__meta__ = {
+"_edit_group_": true,
+"_edit_lock_": true
+}
+
+[node name="InteractionBox" type="CollisionShape2D" parent="Cupboard/InteractionArea" index="0"]
+modulate = Color( 0.854902, 0.835294, 0.509804, 1 )
+position = Vector2( 0, 12 )
+shape = SubResource( 4 )
+
+[node name="LightOccluder2D" type="LightOccluder2D" parent="Cupboard" index="3"]
+z_index = -1
+occluder = SubResource( 5 )
+__meta__ = {
+"_edit_lock_": true
+}
 
 [node name="blood2" type="Sprite" parent="Cupboard" index="4"]
 modulate = Color( 0.337255, 0.243137, 0.243137, 0.784314 )
@@ -67,3 +137,9 @@ polygon = PoolVector2Array( 176, 64, 192, 64, 192, 80, 176, 80 )
 visible = false
 position = Vector2( 136, 100 )
 scene_name = "2F_east_main_hall"
+inventory_gui_path = NodePath("../CanvasLayer/InventoryGUI")
+player_path = NodePath("../Player")
+required_look_dir = Vector2( -1, 0 )
+
+[connection signal="body_entered" from="Cupboard/InteractionArea" to="Cupboard" method="_on_InteractionArea_body_entered"]
+[connection signal="body_exited" from="Cupboard/InteractionArea" to="Cupboard" method="_on_InteractionArea_body_exited"]

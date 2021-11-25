@@ -24,7 +24,7 @@ void fragment(){
 
 [sub_resource type="ShaderMaterial" id=3]
 shader = SubResource( 2 )
-shader_param/lod = 2.0
+shader_param/lod = 3.012
 
 [sub_resource type="Animation" id=4]
 resource_name = "blur"

@@ -15,6 +15,7 @@ const total_limbs = 4
 
 var blood = max_blood
 var save_key = "hp_handler"
+var using_bandages = false
 export var current_limbs: Dictionary = {
 	"right_arm": true, "left_arm": true, "right_leg": true, "left_leg": true
 }
@@ -26,6 +27,7 @@ export var bleeding_limbs: Dictionary = {
 
 func _ready() -> void:
 	add_to_group("persist")
+	InventoryHandler.connect("inventory_item_used", self, "_on_item_used")
 
 
 func _process(delta: float) -> void:
@@ -59,6 +61,7 @@ func _set_limb_bleeding(limb: String) -> void:
 		return
 
 	bleeding_limbs[limb] = true
+	GlobalHandler.Player.get_node("Particles2D").emitting = true
 
 
 #Heal Player
@@ -69,6 +72,12 @@ func stop_limb_bleeding(limb: String) -> void:
 		return
 
 	bleeding_limbs[limb] = false
+	for element in bleeding_limbs.values():
+		if element == true:
+			return
+	get_node("/root/Game/WorldEnvironment").environment = preload("res://environment.tres")
+	GlobalHandler.Player.get_node("Particles2D").emitting = false
+
 
 
 func reset_blood() -> void:
@@ -100,6 +109,30 @@ func calculate_blood_loss() -> void:
 
 	blood -= blood_loss_rate * bleeding_limbs_count
 	print(blood)
+
+
+func _on_item_used(item : Item) -> void:
+	if item.item_name == "Bandages":
+		DialogueHandler.dialogue = GlobalHandler.Player.stop_bleeding_dialogue
+		DialogueHandler.page_index += 1
+		DialogueHandler.add_dialogue_box()
+		using_bandages = true
+
+
+func _on_BranchingDialogueBox_option_pressed(branch: int) -> void:
+	if not using_bandages:
+		return
+	if branch == 1 and bleeding_limbs["left_arm"]:
+		stop_limb_bleeding("left_arm")	
+		DialogueHandler.dialogue = GlobalHandler.Player.bleeding_stopped_dialogue
+		DialogueHandler.page_index += 1
+		DialogueHandler.add_dialogue_box()
+		using_bandages = false
+	elif branch == 1:
+		DialogueHandler.dialogue = GlobalHandler.Player.cant_use_bandages_dialogue
+		DialogueHandler.page_index += 1
+		DialogueHandler.add_dialogue_box()
+		using_bandages = false
 
 
 func save() -> Dictionary:
