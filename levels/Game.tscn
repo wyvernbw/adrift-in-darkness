@@ -15,16 +15,15 @@ shader_param/OCTAVES = 4
 [sub_resource type="Shader" id=2]
 code = "shader_type canvas_item;
 
-uniform float lod: hint_range(0.0, 5) = 2.0;
+uniform float blur_amount : hint_range(0, 5);
 
-void fragment(){
-	vec4 color = textureLod(SCREEN_TEXTURE, SCREEN_UV, lod);
-	COLOR = color;
+void fragment() {
+	COLOR = textureLod(SCREEN_TEXTURE, SCREEN_UV, blur_amount);
 }"
 
 [sub_resource type="ShaderMaterial" id=3]
 shader = SubResource( 2 )
-shader_param/lod = 3.012
+shader_param/blur_amount = 2.837
 
 [sub_resource type="Animation" id=4]
 resource_name = "blur"
@@ -73,7 +72,7 @@ texture = ExtResource( 4 )
 script = ExtResource( 6 )
 
 [node name="BlurSprite" type="Sprite" parent="BlurLayer"]
-modulate = Color( 1, 1, 1, 0.309396 )
+modulate = Color( 1, 1, 1, 0.514556 )
 material = SubResource( 3 )
 position = Vector2( 133.462, 84.255 )
 scale = Vector2( 0.439999, 0.56 )
