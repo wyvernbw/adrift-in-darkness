@@ -30,6 +30,8 @@ var save_key = "player"
 
 onready var StepTimer := $Sounds/Move/StepTimer
 onready var LookRaycast := $look_dir
+onready var occluder_forward := preload("res://characters/player/occluder_polygon_forward.tres")
+onready var occluder_side := preload("res://characters/player/occluder_polygon_side.tres")
 
 """
 On different occasions and events, increase the insanity score. Higher insanity score means higher threats and visual confusion.
@@ -72,6 +74,7 @@ func _physics_process(delta: float) -> void:
 	apply_motion()
 	apply_friction()
 	change_animation_speed(speed / 6)
+	change_occluder(look_dir)
 
 	#move body along vector
 	move_and_slide(velocity, Vector2.UP)
@@ -162,6 +165,12 @@ func change_animation_speed(fps: float) -> void:
 	var sprite: AnimatedSprite = $AnimatedSprite
 	sprite.frames.set_animation_speed(sprite.animation, fps)
 
+
+func change_occluder(dir: Vector2) -> void:
+	if dir.y != 0:
+		$LightOccluder2D.occluder = occluder_forward
+	if dir.x != 0:
+		$LightOccluder2D.occluder = occluder_side
 
 func save() -> Dictionary:
 	var save_dict: Dictionary
