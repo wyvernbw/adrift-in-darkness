@@ -58,7 +58,6 @@ z_index = -6
 tile_data = PoolIntArray( -393213, 24, 0 )
 
 [node name="CanvasModulate" parent="." index="6"]
-visible = true
 color = Color( 0.1, 0.1, 0.1, 1 )
 
 [node name="LightMask2D" parent="CanvasLayer" index="0"]

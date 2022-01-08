@@ -46,13 +46,14 @@ func _ready() -> void:
 	step_sounds.append(load("res://characters/player/wood_step1.wav"))
 	step_sounds.append(load("res://characters/player/wood_step2.wav"))
 
-	$"/root/DialogueHandler".connect("player_unpause", self, "_on_player_unpaused")
-	$"/root/DialogueHandler".connect("player_pause", self, "_on_player_paused")
+	var _error
+	_error = $"/root/DialogueHandler".connect("player_unpause", self, "_on_player_unpaused")
+	_error = $"/root/DialogueHandler".connect("player_pause", self, "_on_player_paused")
 
 	add_to_group("persist")
 
 
-func _physics_process(delta: float) -> void:
+func _physics_process(_delta: float) -> void:
 	if HpHandler.bleeding_limbs["left_arm"]:
 		$Particles2D.emitting = true
 		anim_suffix = "_left_arm"
@@ -77,7 +78,7 @@ func _physics_process(delta: float) -> void:
 	change_occluder(look_dir)
 
 	#move body along vector
-	move_and_slide(velocity, Vector2.UP)
+	velocity = move_and_slide(velocity, Vector2.UP)
 
 
 func apply_motion():
@@ -173,11 +174,11 @@ func change_occluder(dir: Vector2) -> void:
 		$LightOccluder2D.occluder = occluder_side
 
 func save() -> Dictionary:
-	var save_dict: Dictionary
+	var save_dict: Dictionary = {}
 	save_dict["save_path"] = SaveGameHandler.SAVE_FOLDER + "player/player.tscn"
 	var player_scene = PackedScene.new()
 	player_scene.pack(self)
-	ResourceSaver.save(save_dict["save_path"], player_scene)
+	var _save_error = ResourceSaver.save(save_dict["save_path"], player_scene)
 	return save_dict
 
 
