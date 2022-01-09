@@ -63,10 +63,6 @@ SaveGameHandler="*res://singletons/SaveGameHandler.gd"
 HpHandler="*res://singletons/HpHandler.gd"
 GlobalHandler="*res://singletons/globalHandler.gd"
 
-[debug]
-
-settings/stdout/print_fps=true
-
 [display]
 
 window/size/width=256
@@ -180,5 +176,5 @@ move_right={
 
 [rendering]
 
-environment/default_clear_color=Color( 0.482353, 0.482353, 0.482353, 1 )
+environment/default_clear_color=Color( 0, 0, 0, 1 )
 environment/default_environment="res://default_env.tres"

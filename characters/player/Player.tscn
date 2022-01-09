@@ -494,7 +494,7 @@ scale = Vector2( 0.551843, 0.551843 )
 z_index = -5
 z_as_relative = false
 texture = ExtResource( 43 )
-offset = Vector2( -1.52865, 136.627 )
+offset = Vector2( 2.0956, 151.124 )
 texture_scale = 2.7
 color = Color( 1, 0.517647, 0.164706, 1 )
 range_height = -10.0
@@ -523,6 +523,8 @@ hframes = 4
 [node name="AnimationPlayer" type="AnimationPlayer" parent="Lantern/Static"]
 root_node = NodePath("../StaticAnim")
 anims/static = SubResource( 48 )
+
+[node name="Rotate" type="Tween" parent="Lantern"]
 
 [node name="Sounds" type="Node2D" parent="."]
 __meta__ = {

@@ -4,6 +4,7 @@ const MAX_FUEL: int = 9000
 
 onready var target = get_parent()
 onready var static_effect = $Static/StaticAnim
+onready var rotate_tween: Tween = $Rotate
 
 export var ran_out_of_fuel_resource: Resource
 var lantern_item: Item = Item.new("Lantern", 1, null, Item.ITEM_TYPES.KEY_ITEM)
@@ -15,7 +16,7 @@ var static_per_second: float = 0.025
 var max_static: float = 0.5
 var save_key: String = "lantern"
 var last_dir: Vector2 = Vector2.DOWN
-var last_tween: Tween = Tween.new()
+var last_rotation: float = 0.0
 
 
 func _ready() -> void:
@@ -93,11 +94,21 @@ func _on_item_used(item) -> void:
 		$awno.play("awcrap")
 
 func _on_player_look_dir_changed(dir: Vector2) -> void:
-	var rotate := last_dir.angle_to(dir)
-	rotate = rad2deg(rotate)
-	rotation_degrees += rotate
+	rotate_tween.seek(1)
+	rotate_tween.stop_all()
+	var rotate := atan2(dir.y, dir.x) - atan2(1, 0)
+	rotate_tween.interpolate_property(
+		self, 
+		"rotation", 
+		rotation, rotate,
+		1.0,
+		Tween.TRANS_QUINT, Tween.EASE_OUT
+	)
+	last_rotation = rotation
+	rotate_tween.start()
+	#rotation_degrees = target_rotation
 	last_dir = dir
-
+	
 
 func save() -> Dictionary:
 	var save_dict: Dictionary
