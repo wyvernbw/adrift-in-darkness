@@ -78,7 +78,7 @@ __meta__ = {
 [node name="Player" parent="." groups=[
 "persist",
 ] instance=ExtResource( 2 )]
-position = Vector2( 128, 147.164 )
+position = Vector2( 100.25, 111.005 )
 speed = 2.0
 look_dir = Vector2( 0, -1 )
 
@@ -267,3 +267,5 @@ required_look_dir = Vector2( 1, 0 )
 
 [connection signal="inventory_closed" from="CanvasLayer/InventoryGUI" to="Player" method="_on_InventoryGUI_inventory_closed"]
 [connection signal="inventory_opened" from="CanvasLayer/InventoryGUI" to="Player" method="_on_InventoryGUI_inventory_opened"]
+
+[editable path="Player"]

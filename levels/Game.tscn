@@ -48,6 +48,9 @@ tracks/0/keys = {
 "save",
 ]]
 script = ExtResource( 1 )
+__meta__ = {
+"_edit_horizontal_guides_": [  ]
+}
 
 [node name="Notifications" type="CanvasLayer" parent="."]
 
@@ -64,7 +67,7 @@ scroll_base_scale = Vector2( 1.25, 1.25 )
 
 [node name="FogSprite" type="Sprite" parent="Fog/FogLayer"]
 material = SubResource( 1 )
-position = Vector2( 139.274, 70.7346 )
+position = Vector2( 142.664, 73.2773 )
 scale = Vector2( 1.36856, 1.33884 )
 z_as_relative = false
 texture = ExtResource( 4 )
@@ -75,7 +78,7 @@ script = ExtResource( 6 )
 [node name="BlurSprite" type="Sprite" parent="BlurLayer"]
 modulate = Color( 1, 1, 1, 0.514556 )
 material = SubResource( 3 )
-position = Vector2( 133.462, 84.255 )
+position = Vector2( 129.102, 85.153 )
 scale = Vector2( 0.439999, 0.56 )
 texture = ExtResource( 4 )
 

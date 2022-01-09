@@ -14,6 +14,8 @@ var light_loss_per_second: float = 0.025
 var static_per_second: float = 0.025
 var max_static: float = 0.5
 var save_key: String = "lantern"
+var last_dir: Vector2 = Vector2.DOWN
+var last_tween: Tween = Tween.new()
 
 
 func _ready() -> void:
@@ -74,14 +76,6 @@ func _process(delta: float) -> void:
 			GlobalHandler.current_static = min(GlobalHandler.current_static, max_static)
 		static_effect.modulate = Color(1.0, 1.0, 1.0, GlobalHandler.current_static)
 
-	if target.look_dir == Vector2.RIGHT:
-		rotation_degrees = -90
-	if target.look_dir == Vector2.LEFT:
-		rotation_degrees = 90
-	if target.look_dir == Vector2.DOWN:
-		rotation_degrees = 360
-	if target.look_dir == Vector2.UP:
-		rotation_degrees = -180
 	GlobalHandler.lantern_fuel = fuel
 	GlobalHandler.lantern_toggled = self.lantern_toggled
 
@@ -98,6 +92,12 @@ func _on_item_used(item) -> void:
 		GlobalHandler.lantern_ran_out = false
 		$awno.play("awcrap")
 
+func _on_player_look_dir_changed(dir: Vector2) -> void:
+	var rotate := last_dir.angle_to(dir)
+	rotate = rad2deg(rotate)
+	rotation_degrees += rotate
+	last_dir = dir
+
 
 func save() -> Dictionary:
 	var save_dict: Dictionary
@@ -111,3 +111,4 @@ func load(save: Dictionary) -> void:
 	lantern_toggled = save["lantern_toggled"]
 	visible = lantern_toggled
 	fuel = save["fuel"]
+

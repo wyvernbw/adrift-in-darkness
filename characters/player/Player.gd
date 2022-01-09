@@ -1,6 +1,8 @@
 class_name Player
 extends KinematicBody2D
 
+signal player_look_dir_changed(look_dir)
+
 const BASE_SPEED: float = 24.0
 const MAX_STAMINA: float = 600.0
 
@@ -16,6 +18,7 @@ export var bleeding_stopped_dialogue: Resource
 
 var move_dir: Vector2 = Vector2.ZERO
 export var look_dir: Vector2 = Vector2.DOWN
+var last_look_dir: Vector2 = Vector2.DOWN
 var velocity: Vector2 = Vector2.ZERO
 var candle_item: Item = Item.new("Candle", 1, null, Item.ITEM_TYPES.NORMAL_ITEM)
 var stamina: float = MAX_STAMINA
@@ -49,6 +52,7 @@ func _ready() -> void:
 	var _error
 	_error = $"/root/DialogueHandler".connect("player_unpause", self, "_on_player_unpaused")
 	_error = $"/root/DialogueHandler".connect("player_pause", self, "_on_player_paused")
+	_error = connect("player_look_dir_changed", $Lantern, "_on_player_look_dir_changed")
 
 	add_to_group("persist")
 
@@ -100,6 +104,9 @@ func _update_look_dir() -> void:
 		look_dir = Vector2.DOWN
 	if Input.is_action_pressed("move_up"):
 		look_dir = Vector2.UP
+	if look_dir != last_look_dir: 
+		emit_signal("player_look_dir_changed", look_dir)
+	last_look_dir = look_dir
 
 	LookRaycast.cast_to = look_dir * 8
 
@@ -170,8 +177,13 @@ func change_animation_speed(fps: float) -> void:
 func change_occluder(dir: Vector2) -> void:
 	if dir.y != 0:
 		$LightOccluder2D.occluder = occluder_forward
+		$LightOccluder2D.position.x = 0
+		$LightOccluder2D.position.y = 3 if dir.y == -1 else -16
 	if dir.x != 0:
 		$LightOccluder2D.occluder = occluder_side
+		$LightOccluder2D.position.y = 0
+		$LightOccluder2D.position.x = 6 if dir.x == -1 else -2
+		
 
 func save() -> Dictionary:
 	var save_dict: Dictionary = {}
