@@ -7,6 +7,8 @@ onready var static_effect = $Static/StaticAnim
 onready var rotate_tween: Tween = $Rotate
 
 export var ran_out_of_fuel_resource: Resource
+export var do_rotate_animation: bool = false
+
 var lantern_item: Item = Item.new("Lantern", 1, null, Item.ITEM_TYPES.KEY_ITEM)
 var lantern_toggled: bool = false
 var fuel_loss_per_second: int = 30
@@ -97,16 +99,17 @@ func _on_player_look_dir_changed(dir: Vector2) -> void:
 	rotate_tween.seek(1)
 	rotate_tween.stop_all()
 	var rotate := atan2(dir.y, dir.x) - atan2(1, 0)
-	rotate_tween.interpolate_property(
-		self, 
-		"rotation", 
-		rotation, rotate,
-		1.0,
-		Tween.TRANS_QUINT, Tween.EASE_OUT
-	)
-	last_rotation = rotation
-	rotate_tween.start()
-	#rotation_degrees = target_rotation
+	if do_rotate_animation:
+		rotate_tween.interpolate_property(
+			self, 
+			"rotation", 
+			rotation, rotate,
+			1.0,
+			Tween.TRANS_QUINT, Tween.EASE_OUT
+		)
+		rotate_tween.start()
+	else:
+		rotation = rotate
 	last_dir = dir
 	
 

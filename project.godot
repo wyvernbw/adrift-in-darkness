@@ -51,7 +51,7 @@ _global_script_class_icons={
 [application]
 
 config/name="Adrift In Darkness"
-run/main_scene="res://levels/Game.tscn"
+run/main_scene="res://gui/main_menu/MainMenu.tscn"
 boot_splash/bg_color=Color( 0.105882, 0.113725, 0.113725, 1 )
 config/version="1.0.0"
 

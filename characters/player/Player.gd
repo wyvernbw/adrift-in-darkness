@@ -3,7 +3,7 @@ extends KinematicBody2D
 
 signal player_look_dir_changed(look_dir)
 
-const BASE_SPEED: float = 24.0
+const BASE_SPEED: float = 2400.0
 const MAX_STAMINA: float = 600.0
 
 export var deaccel: float = 0.30
@@ -57,42 +57,44 @@ func _ready() -> void:
 	add_to_group("persist")
 
 
-func _physics_process(_delta: float) -> void:
+func _physics_process(delta: float) -> void:
+	apply_motion(delta)
+	apply_friction(delta)
+	print(move_dir)
+
+	# move body along vector
+	velocity = move_and_slide(velocity, Vector2.ZERO)
+	
+
+func _process(_delta): 
+	change_occluder(look_dir)
+	change_animation_speed(speed / 600)
+	if moving:
+		play_anim("move_", look_dir)
+	else:
+		play_anim("idle_", look_dir)
 	if HpHandler.bleeding_limbs["left_arm"]:
 		$Particles2D.emitting = true
 		anim_suffix = "_left_arm"
 	else:
 		$Particles2D.emitting = false
+
 	if not InventoryHandler.get_item(candle_item) == -1:
 		$Candle.visible = true
+
 	if can_move:
 		_get_input()
 	_calculate_speed()
 	if can_look:
 		_update_look_dir()
 
-	if moving:
-		play_anim("move_", look_dir)
-	else:
-		play_anim("idle_", look_dir)
 
-	apply_motion()
-	apply_friction()
-	change_animation_speed(speed / 6)
-	change_occluder(look_dir)
+func apply_motion(delta):
+	velocity = move_dir * speed * delta
 
-	#move body along vector
-	velocity = move_and_slide(velocity, Vector2.UP)
-
-
-func apply_motion():
-	velocity.x += speed * move_dir.x
-	velocity.y += speed * move_dir.y
-
-
-func apply_friction():
-	velocity.x = lerp(velocity.x, 0, deaccel)
-	velocity.y = lerp(velocity.y, 0, deaccel)
+func apply_friction(delta):
+	velocity.x = lerp(velocity.x, 0, deaccel * delta)
+	velocity.y = lerp(velocity.y, 0, deaccel * delta)
 
 
 func _update_look_dir() -> void:
@@ -113,13 +115,13 @@ func _update_look_dir() -> void:
 
 func _get_input() -> void:
 	#get keyboard input
-	var moving_right := Input.is_action_pressed("move_right")
-	var moving_left := Input.is_action_pressed("move_left")
-	var moving_up := Input.is_action_pressed("move_up")
-	var moving_down := Input.is_action_pressed("move_down")
+	var moving_right := Input.get_action_strength("move_right")
+	var moving_left := Input.get_action_strength("move_left")
+	var moving_up := Input.get_action_strength("move_up")
+	var moving_down := Input.get_action_strength("move_down")
 
-	move_dir.x = int(moving_right) - int(moving_left)
-	move_dir.y = int(moving_down) - int(moving_up)
+	move_dir.x = moving_right - moving_left
+	move_dir.y = moving_down - moving_up
 
 	if move_dir.x == 0 and move_dir.y == 0:
 		moving = false

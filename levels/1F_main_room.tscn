@@ -78,7 +78,7 @@ __meta__ = {
 [node name="Player" parent="." groups=[
 "persist",
 ] instance=ExtResource( 2 )]
-position = Vector2( 100.25, 111.005 )
+position = Vector2( 128.553, 162.141 )
 speed = 2.0
 look_dir = Vector2( 0, -1 )
 
