@@ -2,9 +2,9 @@
 
 [ext_resource path="res://gui/main_menu/MainMenu.gd" type="Script" id=1]
 [ext_resource path="res://environment.tres" type="Environment" id=2]
-[ext_resource path="res://fonts/RobotoMono-VariableFont_wght.ttf" type="DynamicFontData" id=3]
+[ext_resource path="res://fonts/RobotoMono_VariableFont_wght.ttf" type="DynamicFontData" id=3]
 [ext_resource path="res://characters/player/light_mask2d_v2.0.png" type="Texture" id=4]
-[ext_resource path="res://gui/main_menu/adrift-in-darkness-cover.png" type="Texture" id=6]
+[ext_resource path="res://gui/main_menu/adrift_in_darkness_cover.png" type="Texture" id=6]
 
 [sub_resource type="DynamicFont" id=1]
 font_data = ExtResource( 3 )

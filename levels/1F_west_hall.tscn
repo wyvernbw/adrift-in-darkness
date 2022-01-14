@@ -1,9 +1,9 @@
 [gd_scene load_steps=11 format=2]
 
 [ext_resource path="res://objects/StaticObject.gd" type="Script" id=1]
-[ext_resource path="res://objects/paintings/painting-1.png" type="Texture" id=2]
+[ext_resource path="res://objects/paintings/painting_1.png" type="Texture" id=2]
 [ext_resource path="res://objects/bookshelf/bookshelf.png" type="Texture" id=3]
-[ext_resource path="res://objects/paintings/painting-3.png" type="Texture" id=4]
+[ext_resource path="res://objects/paintings/painting_3.png" type="Texture" id=4]
 [ext_resource path="res://objects/door/Door.tscn" type="PackedScene" id=5]
 [ext_resource path="res://levels/base_level.tscn" type="PackedScene" id=6]
 

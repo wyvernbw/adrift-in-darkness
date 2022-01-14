@@ -1,7 +1,7 @@
 [gd_scene load_steps=10 format=2]
 
 [ext_resource path="res://texture1.png" type="Texture" id=1]
-[ext_resource path="res://fonts/RobotoMono-VariableFont_wght.ttf" type="DynamicFontData" id=2]
+[ext_resource path="res://fonts/RobotoMono_VariableFont_wght.ttf" type="DynamicFontData" id=2]
 [ext_resource path="res://gui/notification/notification.gd" type="Script" id=3]
 [ext_resource path="res://items/silver_key.png" type="Texture" id=4]
 

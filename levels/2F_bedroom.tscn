@@ -5,8 +5,8 @@
 [ext_resource path="res://levels/base_level.tscn" type="PackedScene" id=3]
 [ext_resource path="res://objects/door/Door.tscn" type="PackedScene" id=4]
 [ext_resource path="res://tilesets/blood/blood2.png" type="Texture" id=5]
-[ext_resource path="res://objects/paintings/painting-2.png" type="Texture" id=6]
-[ext_resource path="res://objects/paintings/painting-1.png" type="Texture" id=7]
+[ext_resource path="res://objects/paintings/painting_2.png" type="Texture" id=6]
+[ext_resource path="res://objects/paintings/painting_1.png" type="Texture" id=7]
 [ext_resource path="res://classes/DialogueResource.gd" type="Script" id=8]
 [ext_resource path="res://objects/StaticObject.gd" type="Script" id=9]
 

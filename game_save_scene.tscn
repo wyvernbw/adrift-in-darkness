@@ -17,9 +17,9 @@
 [ext_resource path="res://levels/LightEffects.gd" type="Script" id=15]
 [ext_resource path="res://levels/1F_main_room.tscn" type="PackedScene" id=16]
 [ext_resource path="res://tilesets/blood/blood2.png" type="Texture" id=17]
-[ext_resource path="res://objects/paintings/painting-2.png" type="Texture" id=18]
+[ext_resource path="res://objects/paintings/painting_2.png" type="Texture" id=18]
 [ext_resource path="res://tilesets/blood/blood1.png" type="Texture" id=19]
-[ext_resource path="res://objects/paintings/painting-1.png" type="Texture" id=20]
+[ext_resource path="res://objects/paintings/painting_1.png" type="Texture" id=20]
 [ext_resource path="res://objects/save_object/SaveObject.tscn" type="PackedScene" id=21]
 
 

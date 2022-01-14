@@ -60,7 +60,6 @@ func _ready() -> void:
 func _physics_process(delta: float) -> void:
 	apply_motion(delta)
 	apply_friction(delta)
-	print(move_dir)
 
 	# move body along vector
 	velocity = move_and_slide(velocity, Vector2.ZERO)

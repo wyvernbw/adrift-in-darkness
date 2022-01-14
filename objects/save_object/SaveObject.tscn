@@ -3,7 +3,7 @@
 [ext_resource path="res://objects/save_object/SaveObject.gd" type="Script" id=1]
 [ext_resource path="res://tilesets/house/flower_vase_save.png" type="Texture" id=2]
 [ext_resource path="res://objects/table/Table.tscn" type="PackedScene" id=3]
-[ext_resource path="res://fonts/RobotoMono-VariableFont_wght.ttf" type="DynamicFontData" id=4]
+[ext_resource path="res://fonts/RobotoMono_VariableFont_wght.ttf" type="DynamicFontData" id=4]
 
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 8, 2.5 )
