@@ -166,12 +166,12 @@ position = Vector2( 216, 40 )
 texture = ExtResource( 15 )
 
 [node name="Light2D" type="Light2D" parent="."]
-position = Vector2( 128, 131.201 )
+position = Vector2( 130.381, 144.853 )
 rotation = -3.14159
 scale = Vector2( 1, 1.39066 )
 texture = ExtResource( 16 )
 color = Color( 0.784314, 0.941176, 1, 1 )
-energy = 0.35
+energy = 0.55
 
 [node name="Paintings" type="Node2D" parent="."]
 
