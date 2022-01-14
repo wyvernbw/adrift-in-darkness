@@ -29,12 +29,14 @@ func switch_scene(scene_name: String) -> void:
 		print("removed level " + node.get_name())
 		add_child(levels[scene_name])
 		print("added level " + levels[scene_name].get_name())
+		GlobalHandler.Player = levels[scene_name].get_node("Player")
 		current_scene = scene_name
 
 		return
 	# if game has no level
 	add_child(levels[scene_name])
 	print("added level " + levels[scene_name].get_name())
+	GlobalHandler.Player = levels[scene_name].get_node("Player")
 	current_scene = scene_name
 
 	print("no previous level. Added " + scene_name)
