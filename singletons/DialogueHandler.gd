@@ -124,8 +124,10 @@ func add_dialogue_box() -> void:
 
 
 func _on_BranchingDialogueBox_option_pressed(branch: int) -> void:
-	get_node("BranchingDialogueBox").queue_free()
+	get_child(0).queue_free()
 	var keys = dialogue.Answers.keys()
+	if dialogue.Answers[keys[branch]] == null:
+		return
 	dialogue_branch = branch
 	self.dialogue = dialogue.Answers[keys[branch]]
 	dialogue_branching = false

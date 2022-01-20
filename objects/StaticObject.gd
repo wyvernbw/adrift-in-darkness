@@ -23,6 +23,13 @@ var SAVE_KEY
 var interact
 
 
+func _process(delta: float) -> void:
+	if not get_node_or_null("Debug"):
+		return 
+	$Debug/PlayerColliding.text = "colliding: " + str(player_is_colliding)
+	$Debug/PlayerLooking.text = "looking: " + str(player_is_looking)
+
+
 func _ready() -> void:
 	connect_signals()
 	SAVE_KEY = self.get_path()
@@ -31,7 +38,10 @@ func _ready() -> void:
 
 func _input(event: InputEvent) -> void:
 	if not GlobalHandler.Player.LookRaycast.get_collider() == InteractionArea:
+		player_is_looking = false
 		return
+	else:
+		player_is_looking = true
 	if not player_is_colliding:
 		return
 	if GlobalHandler.InventoryGUI.visible:

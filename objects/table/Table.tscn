@@ -22,7 +22,7 @@ blend_mode = 3
 "save",
 ]]
 position = Vector2( 8, 8 )
-collision_layer = 3
+collision_mask = 2
 script = ExtResource( 2 )
 
 [node name="CollisionBox" type="CollisionShape2D" parent="."]
@@ -34,7 +34,7 @@ shape = SubResource( 1 )
 one_way_collision_margin = 0.0
 
 [node name="InteractionArea" type="Area2D" parent="."]
-collision_layer = 2
+collision_mask = 2
 __meta__ = {
 "_edit_group_": true
 }
