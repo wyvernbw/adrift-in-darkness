@@ -4,7 +4,7 @@
 
 [sub_resource type="Resource" id=1]
 script = ExtResource( 1 )
-Text = [ "page 1 example" ]
+Text = [  ]
 Answers = {
 }
 item_name = ""

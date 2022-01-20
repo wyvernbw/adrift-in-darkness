@@ -34,6 +34,8 @@ func _ready() -> void:
 	connect_signals()
 	SAVE_KEY = self.get_path()
 	add_to_group("save")
+	if dialogue == null:
+		GlobalHandler.Player.LookRaycast.add_exception(self)
 
 
 func _input(event: InputEvent) -> void:

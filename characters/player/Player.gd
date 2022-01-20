@@ -86,11 +86,11 @@ func _process(_delta):
 	_calculate_speed()
 	if can_look:
 		_update_look_dir()
-	if LookRaycast.is_colliding():
-		var collider_path: String = LookRaycast.get_collider().get_parent().get_name()
-		collider_path += "/"
-		collider_path += LookRaycast.get_collider().get_name()
-		print(collider_path)
+	#if LookRaycast.is_colliding():
+	#	var collider_path: String = LookRaycast.get_collider().get_parent().get_name()
+	#	collider_path += "/"
+	#	collider_path += LookRaycast.get_collider().get_name()
+	#	print(collider_path)
 
 
 func apply_motion(delta):

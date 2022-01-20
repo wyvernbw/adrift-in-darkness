@@ -17,13 +17,13 @@ func _ready() -> void:
 func on_DialogueHandler_player_unpause() -> void:
 	if event_finished:
 		return
-	if $AnimatedSprite.animation == "flood":
-		self.dialogue = key_found
+	#if $AnimatedSprite.animation == "flood":
+	#	self.dialogue = key_found
 	if not HpHandler.current_limbs["left_arm"]:
 		if DialogueHandler.dialogue == arm_message:
 			$AnimatedSprite.play("flood")
 			return
-		if DialogueHandler.dialogue == key_found:
+		if dialogue == key_found:
 			dialogue = null
 			return
 	if DialogueHandler.dialogue_branch == 1:
