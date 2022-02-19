@@ -108,7 +108,6 @@ func calculate_blood_loss() -> void:
 		return
 
 	blood -= blood_loss_rate * bleeding_limbs_count
-	print(blood)
 
 
 func _on_item_used(item : Item) -> void:

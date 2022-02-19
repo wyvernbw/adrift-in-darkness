@@ -46,8 +46,8 @@ func _process(_delta: float) -> void:
 			
 	
 func change_page(page: int) -> void:
-	refresh_inventory()
 	current_page = page
+	refresh_inventory()
 	var container: VBoxContainer
 	match current_page:
 		PAGES.NORMAL_ITEMS:
@@ -58,34 +58,29 @@ func change_page(page: int) -> void:
 			NormalItemsPanel.hide()
 			KeyItemsPanel.show()
 			container = KeyItemsContainer
+	if container.get_child_count():
+		container.get_child(0).grab_focus()
 
 
 func populate_inventory() -> void:
-	for type in Item.ITEM_TYPES.values():
-		var container: VBoxContainer
-		match type:
-			Item.ITEM_TYPES.NORMAL_ITEM:
-				container = NormalItemsContainer
-			Item.ITEM_TYPES.KEY_ITEM:
-				container = KeyItemsContainer
-		for item in InventoryHandler.inventory[type]:
-			var item_slot = ITEM_SLOT.instance()
-			item_slot.visible = true
-			item_slot.set_name(item.item_name)
-			item_slot.add_to_group("ItemSlot")
-			item_slot.set_item(item)
-			container.call_deferred("add_child", item_slot)
+	var container: VBoxContainer
+	match current_page:
+		PAGES.NORMAL_ITEMS:
+			container = NormalItemsContainer
+		PAGES.KEY_ITEMS:
+			container = KeyItemsContainer
+	for item in InventoryHandler.inventory[int(!current_page)]:
+		var item_slot = ITEM_SLOT.instance()
+		item_slot.visible = true
+		item_slot.set_name(item.item_name)
+		item_slot.add_to_group("ItemSlot")
+		item_slot.set_item(item)
+		container.call_deferred("add_child", item_slot)
 
 
 func refresh_inventory() -> void:
 	call_deferred("_empty_inventory_panels")
 	populate_inventory()
-	var current_container: VBoxContainer
-	match current_page:
-		0:
-			current_container = KeyItemsContainer
-		1:
-			current_container = NormalItemsContainer
 
 
 func _empty_inventory_panels() -> void:
