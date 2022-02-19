@@ -1,20 +1,27 @@
-[gd_scene load_steps=6 format=2]
+[gd_scene load_steps=8 format=2]
 
 [ext_resource path="res://gui/inventory/InventoryGUI.gd" type="Script" id=1]
-[ext_resource path="res://fonts/LinLibertine_R.ttf" type="DynamicFontData" id=2]
+[ext_resource path="res://fonts/PatrickHandSC-Regular.ttf" type="DynamicFontData" id=2]
 [ext_resource path="res://gui/inventory/select.wav" type="AudioStream" id=3]
 [ext_resource path="res://gui/inventory/InventoryPanel.tres" type="StyleBox" id=4]
+[ext_resource path="res://gui/inventory/item_slot/ItemSlot.tscn" type="PackedScene" id=5]
+[ext_resource path="res://gui/inventory/arrow.png" type="Texture" id=6]
 
 [sub_resource type="DynamicFont" id=1]
 outline_size = 1
-outline_color = Color( 0, 0, 0, 1 )
+outline_color = Color( 0.0901961, 0.0901961, 0.0901961, 1 )
 font_data = ExtResource( 2 )
 
 [node name="InventoryGUI" type="Control"]
-margin_left = 16.0
-margin_top = 16.0
-margin_right = 128.0
-margin_bottom = 136.0
+modulate = Color( 1, 1, 1, 0.819608 )
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -56.0
+margin_top = -60.0
+margin_right = 56.0
+margin_bottom = 60.0
 rect_pivot_offset = Vector2( 40.5, 60 )
 script = ExtResource( 1 )
 __meta__ = {
@@ -24,22 +31,24 @@ __meta__ = {
 }
 
 [node name="KeyItemPanel" type="Panel" parent="."]
-margin_right = 112.0
-margin_bottom = 120.0
+visible = false
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -64.0
+margin_top = -64.0
+margin_right = 64.0
+margin_bottom = 64.0
 custom_styles/panel = ExtResource( 4 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="GridContainer" type="VBoxContainer" parent="KeyItemPanel"]
-margin_top = 18.0
-margin_right = 112.0
-margin_bottom = 112.0
-
 [node name="KeyItemsLabel" type="Label" parent="KeyItemPanel"]
-margin_top = -8.0
-margin_right = 112.0
-margin_bottom = 9.0
+anchor_right = 1.0
+margin_top = -7.0
+margin_bottom = 19.0
 custom_fonts/font = SubResource( 1 )
 text = "Key Items"
 align = 1
@@ -47,25 +56,94 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="NormalItemPanel" type="Panel" parent="."]
-visible = false
-margin_right = 112.0
-margin_bottom = 120.0
-custom_styles/panel = ExtResource( 4 )
+[node name="ScrollContainer" type="ScrollContainer" parent="KeyItemPanel"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 8.0
+margin_top = 16.0
+margin_right = -8.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
 
-[node name="GridContainer" type="VBoxContainer" parent="NormalItemPanel"]
-margin_top = 18.0
+[node name="VBoxContainer" type="VBoxContainer" parent="KeyItemPanel/ScrollContainer"]
 margin_right = 112.0
 margin_bottom = 112.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="ItemSlot" parent="KeyItemPanel/ScrollContainer/VBoxContainer" instance=ExtResource( 5 )]
+margin_bottom = 14.0
+
+[node name="ItemSlot2" parent="KeyItemPanel/ScrollContainer/VBoxContainer" instance=ExtResource( 5 )]
+margin_top = 18.0
+margin_bottom = 32.0
+
+[node name="ItemSlot3" parent="KeyItemPanel/ScrollContainer/VBoxContainer" instance=ExtResource( 5 )]
+margin_top = 36.0
+margin_bottom = 50.0
+
+[node name="ItemSlot4" parent="KeyItemPanel/ScrollContainer/VBoxContainer" instance=ExtResource( 5 )]
+margin_top = 54.0
+margin_bottom = 68.0
+
+[node name="ItemSlot5" parent="KeyItemPanel/ScrollContainer/VBoxContainer" instance=ExtResource( 5 )]
+margin_top = 72.0
+margin_bottom = 86.0
+
+[node name="NormalItemPanel" type="Panel" parent="."]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -64.0
+margin_top = -64.0
+margin_right = 64.0
+margin_bottom = 64.0
+custom_styles/panel = ExtResource( 4 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
 
 [node name="NormalItemsLabel" type="Label" parent="NormalItemPanel"]
-margin_left = -8.0
-margin_top = -8.0
-margin_right = 112.0
-margin_bottom = 9.0
+anchor_right = 1.0
+margin_top = -7.0
+margin_bottom = 19.0
 custom_fonts/font = SubResource( 1 )
 text = "Normal items"
 align = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="ScrollContainer" type="ScrollContainer" parent="NormalItemPanel"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 8.0
+margin_top = 16.0
+margin_right = -8.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="VBoxContainer" type="VBoxContainer" parent="NormalItemPanel/ScrollContainer"]
+margin_right = 112.0
+margin_bottom = 112.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="ItemSlot" parent="NormalItemPanel/ScrollContainer/VBoxContainer" instance=ExtResource( 5 )]
+margin_bottom = 14.0
 
 [node name="Select" type="AudioStreamPlayer" parent="."]
 stream = ExtResource( 3 )
+
+[node name="Sprite" type="Sprite" parent="."]
+position = Vector2( 0, 60 )
+scale = Vector2( 2, 2 )
+texture = ExtResource( 6 )
+
+[node name="Sprite2" type="Sprite" parent="."]
+position = Vector2( 112, 60 )
+scale = Vector2( -2, 2 )
+texture = ExtResource( 6 )

@@ -5,15 +5,16 @@ signal inventory_closed
 
 const ITEM_SLOT = preload("res://gui/inventory/item_slot/ItemSlot.tscn")
 
-onready var InventoryHandler = $"/root/InventoryHandler"
-onready var KeyItemsPanel = $KeyItemPanel
-onready var NormalItemsPanel = $NormalItemPanel
-onready var KeyItemsContainer = $KeyItemPanel/GridContainer
-onready var NormalItemsContainer = $NormalItemPanel/GridContainer
+enum PAGES { NORMAL_ITEMS = 0, KEY_ITEMS = 1 }
+
+onready var KeyItemsPanel := $KeyItemPanel
+onready var NormalItemsPanel := $NormalItemPanel
+onready var KeyItemsContainer := $KeyItemPanel/ScrollContainer/VBoxContainer
+onready var NormalItemsContainer := $NormalItemPanel/ScrollContainer/VBoxContainer
 
 export var player_path: NodePath
 
-var current_page: int = 0
+var current_page: int = PAGES.NORMAL_ITEMS
 
 
 func _ready() -> void:
@@ -22,14 +23,13 @@ func _ready() -> void:
 	$"/root/InventoryHandler".connect(
 		"inventory_changed", self, "_on_InventoryHandler_inventory_changed"
 	)
+	connect("inventory_opened", GlobalHandler.Player, "_on_InventoryGUI_inventory_opened")
+	connect("inventory_closed", GlobalHandler.Player, "_on_InventoryGUI_inventory_closed")
 	visible = false
 	refresh_inventory()
 
 
 func _process(_delta: float) -> void:
-	if visible:
-		if DialogueHandler.dialogue_open:
-			visible = false
 	if Input.is_action_just_pressed("open_inventory"):
 		if visible:
 			visible = false
@@ -37,37 +37,44 @@ func _process(_delta: float) -> void:
 		elif DialogueHandler.dialogue_open == false:
 			visible = true
 			emit_signal("inventory_opened")
-			InventoryHandler.emit_signal("inventory_changed")
+			change_page(current_page)
 	if visible:
-		if Input.is_action_just_pressed("ui_right"):
-			KeyItemsPanel.visible = false
-			NormalItemsPanel.visible = true
-			current_page = 1
-			if NormalItemsContainer.get_children():
-				NormalItemsContainer.get_child(0).grab_focus()
-		if Input.is_action_just_pressed("ui_left"):
-			KeyItemsPanel.visible = true
-			NormalItemsPanel.visible = false
-			current_page = 0
-			if KeyItemsContainer.get_children():
-				KeyItemsContainer.get_child(0).grab_focus()
+		visible = !DialogueHandler.dialogue_open
+		var page_change: bool = Input.is_action_just_pressed("ui_right") or Input.is_action_just_pressed("ui_left")
+		if page_change:
+			change_page(!current_page)
+			
+	
+func change_page(page: int) -> void:
+	refresh_inventory()
+	current_page = page
+	var container: VBoxContainer
+	match current_page:
+		PAGES.NORMAL_ITEMS:
+			KeyItemsPanel.hide()
+			NormalItemsPanel.show()
+			container = NormalItemsContainer
+		PAGES.KEY_ITEMS:
+			NormalItemsPanel.hide()
+			KeyItemsPanel.show()
+			container = KeyItemsContainer
 
 
 func populate_inventory() -> void:
-	for type in Item.ITEM_TYPES:
+	for type in Item.ITEM_TYPES.values():
 		var container: VBoxContainer
-		match Item.ITEM_TYPES[type]:
-			Item.ITEM_TYPES.KEY_ITEM:
-				container = $KeyItemPanel/GridContainer
+		match type:
 			Item.ITEM_TYPES.NORMAL_ITEM:
-				container = $NormalItemPanel/GridContainer
-		for item in InventoryHandler.inventory[Item.ITEM_TYPES[type]]:
+				container = NormalItemsContainer
+			Item.ITEM_TYPES.KEY_ITEM:
+				container = KeyItemsContainer
+		for item in InventoryHandler.inventory[type]:
 			var item_slot = ITEM_SLOT.instance()
 			item_slot.visible = true
 			item_slot.set_name(item.item_name)
 			item_slot.add_to_group("ItemSlot")
 			item_slot.set_item(item)
-			$KeyItemPanel/GridContainer.call_deferred("add_child", item_slot)
+			container.call_deferred("add_child", item_slot)
 
 
 func refresh_inventory() -> void:
@@ -79,9 +86,6 @@ func refresh_inventory() -> void:
 			current_container = KeyItemsContainer
 		1:
 			current_container = NormalItemsContainer
-	if current_container.get_child_count() > 0:
-		current_container.get_child(0).call_deferred("grab_focus")
-		print(str(current_container.get_child(0)) + "grabbed focus")
 
 
 func _empty_inventory_panels() -> void:

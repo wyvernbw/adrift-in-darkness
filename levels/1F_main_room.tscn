@@ -76,9 +76,7 @@ __meta__ = {
 "_edit_lock_": true
 }
 
-[node name="Player" parent="." groups=[
-"persist",
-] instance=ExtResource( 2 )]
+[node name="Player" parent="." groups=["persist"] instance=ExtResource( 2 )]
 position = Vector2( 128.889, 159.993 )
 speed = 2.0
 look_dir = Vector2( 0, -1 )
