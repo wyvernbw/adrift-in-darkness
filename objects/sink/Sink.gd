@@ -22,6 +22,7 @@ func on_DialogueHandler_player_unpause() -> void:
 	if not HpHandler.current_limbs["left_arm"]:
 		if DialogueHandler.dialogue == arm_message:
 			$AnimatedSprite.play("flood")
+			DialogueHandler.emit_signal("player_pause")
 			return
 		if dialogue == key_found:
 			dialogue = null
@@ -32,7 +33,7 @@ func on_DialogueHandler_player_unpause() -> void:
 		HpHandler.cut_limb("left_arm")
 		red_screen.visible = true
 		red_screen.get_node("AnimationPlayer").play("fade")
-		DialogueHandler.emit_signal("player_paused")
+		DialogueHandler.emit_signal("player_pause")
 		GlobalHandler.Player.position.y += 16
 
 
@@ -48,3 +49,4 @@ func _on_AnimatedSprite_animation_finished():
 		$AnimatedSprite.play("aftermath")
 		self.dialogue = key_found
 		event_finished = true
+		DialogueHandler.emit_signal("player_unpause")

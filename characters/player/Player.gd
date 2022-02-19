@@ -72,6 +72,7 @@ func _process(_delta):
 		play_anim("move_", look_dir)
 	else:
 		play_anim("idle_", look_dir)
+
 	if HpHandler.bleeding_limbs["left_arm"]:
 		$Particles2D.emitting = true
 		anim_suffix = "_left_arm"

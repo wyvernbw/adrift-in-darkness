@@ -23,7 +23,7 @@ var SAVE_KEY
 var interact
 
 
-func _process(delta: float) -> void:
+func _process(_delta: float) -> void:
 	if not get_node_or_null("Debug"):
 		return 
 	$Debug/PlayerColliding.text = "colliding: " + str(player_is_colliding)
