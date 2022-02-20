@@ -30,4 +30,5 @@ func _ready() -> void:
 
 
 func _on_button_pressed(scene_path: String) -> void:
+	GlobalHandler.previous_scene = get_tree().get_current_scene().get_filename()
 	get_tree().change_scene(scene_path)

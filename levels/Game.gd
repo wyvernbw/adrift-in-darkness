@@ -18,6 +18,11 @@ export var current_scene: String = "1F_main_room"
 var save_key = "game"
 
 
+func _ready():
+	GlobalHandler.previous_scene = get_tree().get_current_scene().get_filename()
+	GlobalHandler.Game = self
+
+
 func switch_scene(scene_name: String) -> void:
 	if not scene_name in levels.keys():
 		return

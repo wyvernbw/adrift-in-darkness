@@ -1,5 +1,7 @@
 extends Control
 
+const MAIN_MENU_SCENE: String = "res://gui/main_menu/MainMenu.tscn"
+
 onready var master_volume_slider := $MarginContainer/ScrollContainer/VBoxContainer/Volume/MasterSlider
 onready var fullscreen_button := $MarginContainer/ScrollContainer/VBoxContainer/Fullscreen/CheckButton
 onready var captions_slider := $MarginContainer/ScrollContainer/VBoxContainer/CaptionsDuration/HBoxContainer/HSlider
@@ -14,7 +16,7 @@ func _ready() -> void:
 
 
 func _on_Button_pressed():
-	get_tree().change_scene("res://gui/main_menu/MainMenu.tscn")
+	var _error = get_tree().change_scene(GlobalHandler.previous_scene)
 
 
 func _on_FullscreenCheckButton_toggled(button_pressed: bool) -> void:
