@@ -64,7 +64,7 @@ func save() -> Dictionary:
 
 func load(save: Dictionary) -> void:
 	for level in save["levels"].keys():
-		levels[level] = load(save["levels"][level]).instance(1)
+		levels[level] = load(save["levels"][level]).instance()
 	remove_child(get_node(current_scene))
 	#var new_scene = levels[current_scene]
 	#new_scene.name = current_scene

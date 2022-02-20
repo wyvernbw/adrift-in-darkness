@@ -7,7 +7,7 @@ var save_path: String = SAVE_FOLDER + SAVE_NAME
 #var save_file: Resource = GameSave.new()
 
 
-func _process(delta: float) -> void:
+func _process(_delta: float) -> void:
 	_debug()
 
 
