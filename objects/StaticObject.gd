@@ -3,13 +3,9 @@ class_name StaticObject
 
 signal player_obtained_item(item)
 signal player_interacted(res)
-signal next_page
-signal text_ended
 
 const INTERACT_DELAY: float = 0.050  # 50 ms
 
-onready var DialogueHandler = $"/root/DialogueHandler"
-onready var InventoryHandler = $"/root/InventoryHandler"
 onready var InteractionArea = $InteractionArea
 
 export var dialogue: Resource
@@ -26,8 +22,8 @@ var interact
 func _process(_delta: float) -> void:
 	if not get_node_or_null("Debug"):
 		return 
-	$Debug/PlayerColliding.text = "colliding: " + str(player_is_colliding)
-	$Debug/PlayerLooking.text = "looking: " + str(player_is_looking)
+	$Debug/PlayerColliding.text = "colliding: %s" % player_is_colliding 
+	$Debug/PlayerLooking.text = "looking: %s" % player_is_looking 
 
 
 func _ready() -> void:
@@ -119,9 +115,6 @@ func load_game(game_save: Resource) -> void:
 			dialogue.Answers[answers[0]].item_name = data["dialogue"]["branch_1_item_name"]
 		if data["dialogue"].has("branch_2_item_name"):
 			dialogue.Answers[answers[1]].item_name = data["dialogue"]["branch_2_item_name"]
-
-
-#--------------------------------------------------
 
 
 func action():

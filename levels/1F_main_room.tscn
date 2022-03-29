@@ -1,4 +1,4 @@
-[gd_scene load_steps=26 format=2]
+[gd_scene load_steps=28 format=2]
 
 [ext_resource path="res://tilesets/house/house1.tres" type="TileSet" id=1]
 [ext_resource path="res://characters/player/player.tscn" type="PackedScene" id=2]
@@ -20,6 +20,10 @@
 [ext_resource path="res://objects/paintings/painting_1.png" type="Texture" id=18]
 [ext_resource path="res://levels/LightEffects.gd" type="Script" id=19]
 [ext_resource path="res://banner.png" type="Texture" id=20]
+[ext_resource path="res://characters/player/light_mask2d.png" type="Texture" id=21]
+
+[sub_resource type="CanvasItemMaterial" id=6]
+blend_mode = 3
 
 [sub_resource type="Resource" id=1]
 script = ExtResource( 5 )
@@ -127,6 +131,7 @@ script = ExtResource( 19 )
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 
 [node name="LightMask2D" parent="CanvasLayer" instance=ExtResource( 3 )]
+visible = false
 modulate = Color( 1, 1, 1, 0.109804 )
 position = Vector2( 128, 98 )
 scale = Vector2( 1, 1 )
@@ -134,6 +139,16 @@ scale = Vector2( 1, 1 )
 [node name="InventoryGUI" parent="CanvasLayer" instance=ExtResource( 9 )]
 visible = false
 player_path = NodePath("../../../1F_main_room/Player")
+
+[node name="TextureRect" type="TextureRect" parent="CanvasLayer"]
+material = SubResource( 6 )
+anchor_right = 1.0
+anchor_bottom = 1.0
+texture = ExtResource( 21 )
+expand = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
 
 [node name="Staircase" parent="." instance=ExtResource( 10 )]
 position = Vector2( 128, 3.29613 )
