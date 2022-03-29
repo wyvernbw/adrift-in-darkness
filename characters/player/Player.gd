@@ -3,8 +3,8 @@ extends KinematicBody2D
 
 signal player_look_dir_changed(look_dir)
 
-const BASE_SPEED: float = 2400.0
-const MAX_STAMINA: float = 600.0
+const BASE_SPEED: float = 16.0
+const MAX_STAMINA: float = 12.0
 
 export var speed: float = 24.0
 export var sprint_speed: float = 48.0
@@ -58,16 +58,16 @@ func _ready() -> void:
 
 
 func _physics_process(delta: float) -> void:
-	apply_motion(delta)
-	apply_friction(delta)
+	apply_motion()
+	apply_friction()
 
 	# move body along vector
 	velocity = move_and_slide(velocity, Vector2.ZERO)
 	
 
-func _process(_delta: float) -> void: 
+func _process(delta: float) -> void: 
 	change_occluder(look_dir)
-	change_animation_speed(speed / 600)
+	change_animation_speed(speed / 8)
 	if moving:
 		play_anim("move_", look_dir)
 	else:
@@ -84,7 +84,7 @@ func _process(_delta: float) -> void:
 
 	if can_move:
 		_get_input()
-	_calculate_speed()
+	_calculate_speed(delta)
 	if can_look:
 		_update_look_dir()
 	#if LookRaycast.is_colliding():
@@ -94,12 +94,12 @@ func _process(_delta: float) -> void:
 	#	print(collider_path)
 
 
-func apply_motion(delta) -> void:
-	velocity = move_dir * speed * delta
+func apply_motion() -> void:
+	velocity += move_dir * speed
 
-func apply_friction(delta) -> void:
-	velocity.x = lerp(velocity.x, 0, deaccel * delta)
-	velocity.y = lerp(velocity.y, 0, deaccel * delta)
+func apply_friction() -> void:
+	velocity.x = lerp(velocity.x, 0, deaccel)
+	velocity.y = lerp(velocity.y, 0, deaccel)
 
 
 func _update_look_dir() -> void:
@@ -134,31 +134,24 @@ func _get_input() -> void:
 		moving = true
 
 
-func _calculate_speed() -> void:
-	if Input.is_action_pressed("sprint"):
-		if stamina > 0 and moving and not staggered:
-			speed = sprint_speed
-			stamina -= 1
+func _calculate_speed(delta: float) -> void:
+	if staggered:
+		speed = stagger_speed 
+	elif Input.is_action_pressed("sprint"):
+		speed = sprint_speed
+		if moving:
+			stamina -= delta
 			StepTimer.wait_time = sprint_step_interval
-		else:
-			speed = BASE_SPEED
-			StepTimer.wait_time = walk_step_interval
 	else:
 		speed = BASE_SPEED
-		stamina += 1
-		StepTimer.wait_time = walk_step_interval
-
-	if stamina == 0 and staggered == false:
-		staggered = true
-	if stamina == 200 and staggered == true:
-		staggered = false
-	if staggered:
-		speed = stagger_speed
-
+		if not moving:
+			stamina += delta
+			StepTimer.wait_time = walk_step_interval
 	stamina = clamp(stamina, 0, MAX_STAMINA)
-
-	if not moving:
-		stamina += 1
+	if stamina <= 0:
+		staggered = true
+	elif staggered and stamina >= MAX_STAMINA / 2:
+		staggered = false
 
 
 func play_anim(anim: String, dir: Vector2) -> void:
