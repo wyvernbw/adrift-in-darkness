@@ -6,10 +6,10 @@ signal player_look_dir_changed(look_dir)
 const BASE_SPEED: float = 2400.0
 const MAX_STAMINA: float = 600.0
 
-export var deaccel: float = 0.30
 export var speed: float = 24.0
 export var sprint_speed: float = 48.0
 export var stagger_speed: float = 16.0
+export var deaccel: float = 0.30
 export var walk_step_interval: float = 0.5
 export var sprint_step_interval: float = 0.1
 export var stop_bleeding_dialogue: Resource
@@ -29,7 +29,7 @@ var can_look: bool = true
 var step_sounds: Array = []
 var anim_suffix: String = ""
 var insanity: int = 0
-var save_key = "player"
+var save_key: String = "player"
 
 onready var StepTimer := $Sounds/Move/StepTimer
 onready var LookRaycast := $look_dir
@@ -65,7 +65,7 @@ func _physics_process(delta: float) -> void:
 	velocity = move_and_slide(velocity, Vector2.ZERO)
 	
 
-func _process(_delta): 
+func _process(_delta: float) -> void: 
 	change_occluder(look_dir)
 	change_animation_speed(speed / 600)
 	if moving:
@@ -94,10 +94,10 @@ func _process(_delta):
 	#	print(collider_path)
 
 
-func apply_motion(delta):
+func apply_motion(delta) -> void:
 	velocity = move_dir * speed * delta
 
-func apply_friction(delta):
+func apply_friction(delta) -> void:
 	velocity.x = lerp(velocity.x, 0, deaccel * delta)
 	velocity.y = lerp(velocity.y, 0, deaccel * delta)
 

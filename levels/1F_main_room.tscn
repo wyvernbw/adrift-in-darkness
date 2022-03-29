@@ -78,7 +78,6 @@ __meta__ = {
 
 [node name="Player" parent="." groups=["persist"] instance=ExtResource( 2 )]
 position = Vector2( 128.889, 159.993 )
-speed = 2.0
 look_dir = Vector2( 0, -1 )
 
 [node name="HouseF1" type="TileMap" parent="."]
@@ -275,5 +274,3 @@ texture = ExtResource( 20 )
 
 [connection signal="inventory_closed" from="CanvasLayer/InventoryGUI" to="Player" method="_on_InventoryGUI_inventory_closed"]
 [connection signal="inventory_opened" from="CanvasLayer/InventoryGUI" to="Player" method="_on_InventoryGUI_inventory_opened"]
-
-[editable path="Player"]
