@@ -5,7 +5,7 @@
 [ext_resource path="res://fonts/LinLibertine_R.ttf" type="DynamicFontData" id=3]
 
 [sub_resource type="DynamicFont" id=1]
-size = 12
+use_mipmaps = true
 font_data = ExtResource( 3 )
 
 [node name="DialogueBox" type="CanvasLayer"]
