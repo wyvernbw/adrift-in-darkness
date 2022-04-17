@@ -23,8 +23,8 @@
 
 [sub_resource type="Resource" id=1]
 script = ExtResource( 5 )
-Text = [ "A dusty bookshelf." ]
-Answers = {
+text = [ "page 1 example" ]
+answers = {
 }
 item_name = ""
 item_quantity = 0
@@ -33,8 +33,8 @@ read_box_text = ""
 
 [sub_resource type="Resource" id=2]
 script = ExtResource( 5 )
-Text = [  ]
-Answers = {
+text = [ "page 1 example" ]
+answers = {
 }
 item_name = ""
 item_quantity = 0
@@ -43,8 +43,8 @@ read_box_text = ""
 
 [sub_resource type="Resource" id=3]
 script = ExtResource( 5 )
-Text = [ "The door is locked." ]
-Answers = {
+text = [ "page 1 example" ]
+answers = {
 }
 item_name = ""
 item_quantity = 0
@@ -53,8 +53,8 @@ read_box_text = ""
 
 [sub_resource type="Resource" id=4]
 script = ExtResource( 5 )
-Text = [ "wooo locked" ]
-Answers = {
+text = [ "page 1 example" ]
+answers = {
 }
 item_name = ""
 item_quantity = 0
@@ -63,8 +63,8 @@ read_box_text = ""
 
 [sub_resource type="Resource" id=5]
 script = ExtResource( 5 )
-Text = [ "It's locked." ]
-Answers = {
+text = [ "page 1 example" ]
+answers = {
 }
 item_name = ""
 item_quantity = 0

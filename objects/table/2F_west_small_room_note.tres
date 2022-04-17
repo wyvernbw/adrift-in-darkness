@@ -5,8 +5,8 @@
 
 [resource]
 script = ExtResource( 2 )
-Text = [ "You open the drawer and find a silver key." ]
-Answers = {
+text = [ "page 1 example" ]
+answers = {
 }
 item_name = "Silver Key"
 item_texture = ExtResource( 1 )

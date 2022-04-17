@@ -15,7 +15,7 @@ var delay_active: bool = false
 var player_is_colliding: bool = false
 var player_is_looking: bool = false
 var can_interact: bool = true
-var SAVE_KEY
+var save_key
 var interact
 
 
@@ -28,7 +28,7 @@ func _process(_delta: float) -> void:
 
 func _ready() -> void:
 	connect_signals()
-	SAVE_KEY = self.get_path()
+	save_key = self.get_path()
 	add_to_group("save")
 	if dialogue == null:
 		GlobalHandler.Player.LookRaycast.add_exception(self)
@@ -49,7 +49,7 @@ func _input(event: InputEvent) -> void:
 
 
 func connect_signals() -> void:
-	#Dialoue Handler
+	# Dialoue Handler
 	DialogueHandler.connect("player_unpause", self, "on_DialogueHandler_player_unpaused")
 	connect("next_page", DialogueHandler, "_on_Object_page_changed")
 	connect("player_interacted", DialogueHandler, "_on_Object_player_interacted")
@@ -75,46 +75,35 @@ func on_DialogueHandler_player_unpaused():
 
 
 func save_game(game_save: Resource) -> void:
-	game_save.data[SAVE_KEY] = {
-		"position": {"x": position.x, "y": position.y},
-		"dialogue": {"item_name": "", "branch1_item_name": "", "branch2_item_name": ""}
+	var save_dict : Dictionary = game_save.data[save_key]
+	save_dict = {
+		"position": {
+			"x": position.x, 
+			"y": position.y
+		},
+		"dialogue": dialogue,
 	}
-	if dialogue:
-		game_save.data[SAVE_KEY]["dialogue"]["item_name"] = dialogue.item_name
+	# if dialogue:
+	# 	save_dict["dialogue"]["item_name"] = dialogue.item_name
 
-		if not dialogue.Answers.empty():
-			var answers: Array = dialogue.Answers.keys()
-			var branch_1: Resource = dialogue.Answers[answers[0]]
-			var item_branch_1: Item = Item.new(
-				branch_1.item_name,
-				branch_1.item_quantity,
-				branch_1.item_texture,
-				branch_1.item_type
-			)
-			var branch_2: Resource = dialogue.Answers[answers[1]]
-			var item_branch_2: Item = Item.new(
-				branch_2.item_name,
-				branch_2.item_quantity,
-				branch_2.item_texture,
-				branch_2.item_type
-			)
-			game_save.data[SAVE_KEY]["dialogue"]["branch_1_item_name"] = dialogue.Answers[answers[0]].item_name
-			game_save.data[SAVE_KEY]["dialogue"]["branch_2_item_name"] = dialogue.Answers[answers[1]].item_name
+	# 	if not dialogue.answers.empty():
+	# 		var answers = dialogue.answers.values()
+	# 		save_dict["dialogue"]["branch_1_item"] = answers[0].item_held
+	# 		save_dict["dialogue"]["branch_2_item"] = answers[1].item_held
 
 
 func load_game(game_save: Resource) -> void:
-	var data: Dictionary = game_save.data[SAVE_KEY]
+	var data: Dictionary = game_save.data[save_key]
 
 	position.x = data["position"]["x"]
 	position.y = data["position"]["y"]
 
-	if dialogue:
-		var answers: Array = dialogue.Answers.keys()
-		dialogue.item_name = data["dialogue"]["item_name"]
-		if data["dialogue"].has("branch_1_item_name"):
-			dialogue.Answers[answers[0]].item_name = data["dialogue"]["branch_1_item_name"]
-		if data["dialogue"].has("branch_2_item_name"):
-			dialogue.Answers[answers[1]].item_name = data["dialogue"]["branch_2_item_name"]
+	dialogue = data["dialogue"]
+
+		# if dialogue_data.answers:
+		# 	dialogue.answers[answers[0]].item_name = data["dialogue"]["branch_1_item_name"]
+		# if data["dialogue"].has("branch_2_item_name"):
+		# 	dialogue.answers[answers[1]].item_name = data["dialogue"]["branch_2_item_name"]
 
 
 func action():

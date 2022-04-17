@@ -5,31 +5,31 @@
 
 [sub_resource type="Resource" id=1]
 script = ExtResource( 1 )
-Text = [  ]
-Answers = {
+text = [ "You find a lantern. It's glass is cracked, but it still has some oil inside." ]
+answers = {
+}
+item_name = "Lantern"
+item_texture = ExtResource( 2 )
+item_quantity = 1
+item_type = 0
+read_box_text = ""
+
+[sub_resource type="Resource" id=2]
+script = ExtResource( 1 )
+text = [ "page 1 example" ]
+answers = {
 }
 item_name = ""
 item_quantity = 0
 item_type = 0
 read_box_text = ""
 
-[sub_resource type="Resource" id=2]
-script = ExtResource( 1 )
-Text = [ "You found a lantern. There is still some fuel inside." ]
-Answers = {
-}
-item_name = "Lantern"
-item_texture = ExtResource( 2 )
-item_quantity = 1
-item_type = 1
-read_box_text = ""
-
 [resource]
 script = ExtResource( 1 )
-Text = [ "A dirty, old table." ]
-Answers = {
-"Leave": SubResource( 1 ),
-"Look underneath": SubResource( 2 )
+text = [ "An old table. A dim light shines beneath." ]
+answers = {
+"Leave": SubResource( 2 ),
+"Look underneath": SubResource( 1 )
 }
 item_name = ""
 item_quantity = -1

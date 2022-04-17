@@ -5,8 +5,8 @@
 
 [resource]
 script = ExtResource( 2 )
-Text = [ "You find a key in the pool of bloody water." ]
-Answers = {
+text = [ "page 1 example" ]
+answers = {
 }
 item_name = "Grey key"
 item_texture = ExtResource( 1 )
