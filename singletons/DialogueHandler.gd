@@ -36,7 +36,6 @@ func _input(event: InputEvent) -> void:
 			remove_dialogue_box()
 			return
 		page_index += 1
-		print("next page [" + str(page_index) + "]")
 		remove_dialogue_box()
 		add_dialogue_box()
 
@@ -49,7 +48,6 @@ func set_dialogue(new_dialogue: Resource) -> void:
 	if new_dialogue == null:
 		print("ERROR: DIALOGUE IS NULL")
 		return
-	print("dialogue set")
 	emit_signal("player_pause")
 	page_index = -1
 	dialogue = new_dialogue
@@ -61,7 +59,10 @@ func set_dialogue(new_dialogue: Resource) -> void:
 	if dialogue.item_quantity == -1:
 		return
 	item_held = Item.new(
-		dialogue.item_name, dialogue.item_quantity, dialogue.item_texture, dialogue.item_type
+		dialogue.item_name, 
+		dialogue.item_quantity, 
+		dialogue.item_texture, 
+		dialogue.item_type
 	)
 	InventoryHandler.add_item(item_held)
 	dialogue.item_name = ""
@@ -92,27 +93,26 @@ func add_dialogue_box() -> void:
 	"""
 
 	print("read text is empty: " + str(dialogue.read_box_text.empty()))
-	if page_index < dialogue.Text.size():
+	if page_index < dialogue.text.size():
 		if page_index == -1 and dialogue.read_box_text.empty():
 			emit_signal("player_unpause")
 			return
 		var dialogue_box = DIALOGUE_BOX_SCENE.instance()
 		var label = dialogue_box.get_node("Panel/Label")
-		label.bbcode_text = dialogue.Text[page_index]
-		label.bbcode_text = "[center]" + label.bbcode_text + "[/center]"
+		label.bbcode_text = dialogue.text[page_index]
+		label.bbcode_text = "[center] %s [/center]" % label.bbcode_text
 		add_child(dialogue_box)
 		return
 
 	if not dialogue.read_box_text.empty():
-		print("read box now")
 		var read_box = READ_BOX_SCENE.instance()
 		read_box.get_node("Text").text = dialogue.read_box_text
 		add_child(read_box)
 		return
 
-	if not dialogue.Answers.empty() == true:
+	if not dialogue.answers.empty():
 		var b_dialogue_box = BRANCHING_DIALOGUE_BOX_SCENE.instance()
-		var answer_keys = dialogue.Answers.keys()
+		var answer_keys = dialogue.answers.keys()
 
 		dialogue_branching = true
 
@@ -125,11 +125,11 @@ func add_dialogue_box() -> void:
 
 func _on_BranchingDialogueBox_option_pressed(branch: int) -> void:
 	get_child(0).queue_free()
-	var keys = dialogue.Answers.keys()
-	if dialogue.Answers[keys[branch]] == null:
+	var answers = dialogue.answers.values()
+	if answers.empty():
 		return
 	dialogue_branch = branch
-	self.dialogue = dialogue.Answers[keys[branch]]
 	dialogue_branching = false
+	self.dialogue = answers[branch]
 	page_index += 1
 	add_dialogue_box()

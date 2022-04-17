@@ -5,7 +5,7 @@
 [ext_resource path="res://fonts/LinLibertine_R.ttf" type="DynamicFontData" id=3]
 
 [sub_resource type="DynamicFont" id=1]
-size = 12
+use_mipmaps = true
 font_data = ExtResource( 3 )
 
 [node name="DialogueBox" type="CanvasLayer"]
@@ -16,22 +16,24 @@ script = ExtResource( 1 )
 anchor_top = 1.0
 anchor_right = 1.0
 anchor_bottom = 1.0
-margin_top = -70.0
+margin_top = -68.0
 rect_pivot_offset = Vector2( 128, 32 )
 custom_styles/panel = ExtResource( 2 )
 __meta__ = {
 "_edit_group_": true,
-"_edit_use_anchors_": true
+"_edit_use_anchors_": false
 }
 
 [node name="Label" type="RichTextLabel" parent="Panel"]
 anchor_right = 1.0
 anchor_bottom = 1.0
 rect_min_size = Vector2( 256, 0 )
+size_flags_vertical = 6
 custom_fonts/normal_font = SubResource( 1 )
 bbcode_enabled = true
 visible_characters = 0
 percent_visible = 0.0
+fit_content_height = true
 __meta__ = {
 "_edit_use_anchors_": false
 }

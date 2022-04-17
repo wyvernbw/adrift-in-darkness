@@ -4,8 +4,8 @@
 
 [resource]
 script = ExtResource( 1 )
-Text = [ "Your arm has been severd." ]
-Answers = {
+text = [ "page 1 example" ]
+answers = {
 }
 item_name = ""
 item_quantity = 0

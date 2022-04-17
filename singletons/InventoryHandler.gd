@@ -31,15 +31,11 @@ func add_item(item: Item, notify := true) -> void:
 	var item_index = get_item(item)
 	if item_index != -1:
 		inventory[item.item_type][item_index].quantity += item.quantity
-		emit_signal("inventory_changed")
-		if notify:
-			_send_notification(item)
-		return
 	else:
 		inventory[item.item_type].append(item)
-		if notify:
-			_send_notification(item)
 	emit_signal("inventory_changed")
+	if notify:
+		_send_notification(item)
 
 
 func get_item(item: Item) -> int:

@@ -1,7 +1,8 @@
-[gd_scene load_steps=10 format=2]
+[gd_scene load_steps=12 format=2]
 
 [ext_resource path="res://levels/LightEffects.gd" type="Script" id=1]
 [ext_resource path="res://tilesets/Shadow.tscn" type="PackedScene" id=2]
+[ext_resource path="res://characters/player/light_mask2d.png" type="Texture" id=3]
 [ext_resource path="res://levels/interfaces/LightMask2D.tscn" type="PackedScene" id=5]
 [ext_resource path="res://gui/inventory/Inventory.tscn" type="PackedScene" id=6]
 [ext_resource path="res://levels/interfaces/Light_Effects.tscn" type="PackedScene" id=7]
@@ -9,6 +10,9 @@
 [ext_resource path="res://tilesets/house/rug/rug1.tres" type="TileSet" id=11]
 [ext_resource path="res://tilesets/house/house1.tres" type="TileSet" id=12]
 [ext_resource path="res://characters/player/player.tscn" type="PackedScene" id=13]
+
+[sub_resource type="CanvasItemMaterial" id=1]
+blend_mode = 3
 
 [node name="level_name" type="Node2D"]
 __meta__ = {
@@ -68,3 +72,13 @@ scale = Vector2( 1, 1.25 )
 
 [node name="InventoryGUI" parent="CanvasLayer" instance=ExtResource( 6 )]
 visible = false
+
+[node name="TextureRect" type="TextureRect" parent="CanvasLayer"]
+material = SubResource( 1 )
+anchor_right = 1.0
+anchor_bottom = 1.0
+texture = ExtResource( 3 )
+expand = true
+__meta__ = {
+"_edit_use_anchors_": false
+}

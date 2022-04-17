@@ -1,4 +1,4 @@
-[gd_scene load_steps=104 format=2]
+[gd_scene load_steps=105 format=2]
 
 [ext_resource path="res://characters/player/Player.gd" type="Script" id=1]
 [ext_resource path="res://classes/DialogueResource.gd" type="Script" id=2]
@@ -51,7 +51,7 @@
 [ext_resource path="res://tilesets/blood/blood1.png" type="Texture" id=49]
 [ext_resource path="res://characters/player/occluder_polygon_side.tres" type="OccluderPolygon2D" id=50]
 [ext_resource path="res://characters/player/lantern_light2d_mask.png" type="Texture" id=51]
-[ext_resource path="res://gui/pause_menu/PauseMenu.tscn" type="PackedScene" id=52]
+[ext_resource path="res://characters/player/light_mask2d.png" type="Texture" id=52]
 
 [sub_resource type="Resource" id=1]
 script = ExtResource( 2 )
@@ -105,7 +105,54 @@ item_quantity = 0
 item_type = 0
 read_box_text = ""
 
+[sub_resource type="CanvasItemMaterial" id=52]
+blend_mode = 3
+
 [sub_resource type="CanvasItemMaterial" id=6]
+
+[sub_resource type="AtlasTexture" id=29]
+atlas = ExtResource( 48 )
+region = Rect2( 480, 0, 16, 24 )
+
+[sub_resource type="AtlasTexture" id=30]
+atlas = ExtResource( 48 )
+region = Rect2( 496, 0, 16, 24 )
+
+[sub_resource type="AtlasTexture" id=31]
+atlas = ExtResource( 48 )
+region = Rect2( 512, 0, 16, 24 )
+
+[sub_resource type="AtlasTexture" id=32]
+atlas = ExtResource( 48 )
+region = Rect2( 528, 0, 16, 24 )
+
+[sub_resource type="AtlasTexture" id=33]
+atlas = ExtResource( 48 )
+region = Rect2( 544, 0, 16, 24 )
+
+[sub_resource type="AtlasTexture" id=34]
+atlas = ExtResource( 48 )
+region = Rect2( 560, 0, 16, 24 )
+
+[sub_resource type="AtlasTexture" id=14]
+atlas = ExtResource( 48 )
+region = Rect2( 0, 0, 16, 24 )
+
+[sub_resource type="AtlasTexture" id=15]
+atlas = ExtResource( 48 )
+region = Rect2( 16, 0, 16, 24 )
+
+[sub_resource type="AtlasTexture" id=16]
+atlas = ExtResource( 48 )
+region = Rect2( 32, 0, 16, 24 )
+
+[sub_resource type="AtlasTexture" id=17]
+atlas = ExtResource( 48 )
+region = Rect2( 48, 0, 16, 24 )
+
+[sub_resource type="AtlasTexture" id=39]
+atlas = ExtResource( 48 )
+region = Rect2( 576, 0, 16, 24 )
 
 [sub_resource type="AtlasTexture" id=35]
 atlas = ExtResource( 48 )
@@ -138,50 +185,6 @@ region = Rect2( 448, 0, 16, 24 )
 [sub_resource type="AtlasTexture" id=28]
 atlas = ExtResource( 48 )
 region = Rect2( 464, 0, 16, 24 )
-
-[sub_resource type="AtlasTexture" id=39]
-atlas = ExtResource( 48 )
-region = Rect2( 576, 0, 16, 24 )
-
-[sub_resource type="AtlasTexture" id=14]
-atlas = ExtResource( 48 )
-region = Rect2( 0, 0, 16, 24 )
-
-[sub_resource type="AtlasTexture" id=15]
-atlas = ExtResource( 48 )
-region = Rect2( 16, 0, 16, 24 )
-
-[sub_resource type="AtlasTexture" id=16]
-atlas = ExtResource( 48 )
-region = Rect2( 32, 0, 16, 24 )
-
-[sub_resource type="AtlasTexture" id=17]
-atlas = ExtResource( 48 )
-region = Rect2( 48, 0, 16, 24 )
-
-[sub_resource type="AtlasTexture" id=29]
-atlas = ExtResource( 48 )
-region = Rect2( 480, 0, 16, 24 )
-
-[sub_resource type="AtlasTexture" id=30]
-atlas = ExtResource( 48 )
-region = Rect2( 496, 0, 16, 24 )
-
-[sub_resource type="AtlasTexture" id=31]
-atlas = ExtResource( 48 )
-region = Rect2( 512, 0, 16, 24 )
-
-[sub_resource type="AtlasTexture" id=32]
-atlas = ExtResource( 48 )
-region = Rect2( 528, 0, 16, 24 )
-
-[sub_resource type="AtlasTexture" id=33]
-atlas = ExtResource( 48 )
-region = Rect2( 544, 0, 16, 24 )
-
-[sub_resource type="AtlasTexture" id=34]
-atlas = ExtResource( 48 )
-region = Rect2( 560, 0, 16, 24 )
 
 [sub_resource type="AtlasTexture" id=7]
 atlas = ExtResource( 48 )
@@ -257,34 +260,24 @@ region = Rect2( 400, 0, 16, 24 )
 
 [sub_resource type="SpriteFrames" id=44]
 animations = [ {
-"frames": [ SubResource( 35 ), SubResource( 36 ), SubResource( 37 ), SubResource( 38 ) ],
-"loop": true,
-"name": "move_up_left_arm",
-"speed": 5.0
-}, {
-"frames": [ SubResource( 25 ), SubResource( 26 ), SubResource( 27 ), SubResource( 28 ) ],
-"loop": true,
-"name": "move_left_left_arm",
-"speed": 5.0
-}, {
-"frames": [ SubResource( 39 ) ],
-"loop": true,
-"name": "idle_up_left_arm",
-"speed": 5.0
-}, {
 "frames": [ ExtResource( 20 ) ],
 "loop": true,
 "name": "idle_up",
 "speed": 5.0
 }, {
+"frames": [ ExtResource( 33 ), ExtResource( 6 ), ExtResource( 22 ), ExtResource( 28 ) ],
+"loop": true,
+"name": "move_down",
+"speed": 5.0
+}, {
+"frames": [ SubResource( 29 ), SubResource( 30 ), SubResource( 31 ), SubResource( 32 ), SubResource( 33 ), SubResource( 34 ) ],
+"loop": true,
+"name": "idle_left_left_arm",
+"speed": 5.0
+}, {
 "frames": [ ExtResource( 10 ), ExtResource( 40 ), ExtResource( 32 ), ExtResource( 27 ) ],
 "loop": true,
 "name": "move_up",
-"speed": 5.0
-}, {
-"frames": [ SubResource( 14 ), SubResource( 15 ), SubResource( 16 ), SubResource( 17 ) ],
-"loop": true,
-"name": "move_down_left_arm",
 "speed": 5.0
 }, {
 "frames": [ ExtResource( 25 ), ExtResource( 29 ), ExtResource( 5 ), ExtResource( 14 ), ExtResource( 15 ), ExtResource( 12 ), ExtResource( 26 ) ],
@@ -297,19 +290,14 @@ animations = [ {
 "name": "move_left",
 "speed": 5.0
 }, {
-"frames": [ SubResource( 29 ), SubResource( 30 ), SubResource( 31 ), SubResource( 32 ), SubResource( 33 ), SubResource( 34 ) ],
+"frames": [ SubResource( 14 ), SubResource( 15 ), SubResource( 16 ), SubResource( 17 ) ],
 "loop": true,
-"name": "idle_left_left_arm",
+"name": "move_down_left_arm",
 "speed": 5.0
 }, {
-"frames": [ SubResource( 7 ), SubResource( 8 ), SubResource( 9 ), SubResource( 10 ), SubResource( 11 ), SubResource( 12 ), SubResource( 13 ) ],
+"frames": [ ExtResource( 13 ), ExtResource( 35 ), ExtResource( 36 ), ExtResource( 34 ) ],
 "loop": true,
-"name": "idle_down_left_arm",
-"speed": 5.0
-}, {
-"frames": [ ExtResource( 33 ), ExtResource( 6 ), ExtResource( 22 ), ExtResource( 28 ) ],
-"loop": true,
-"name": "move_down",
+"name": "move_right",
 "speed": 5.0
 }, {
 "frames": [ ExtResource( 21 ), ExtResource( 4 ), ExtResource( 38 ), ExtResource( 9 ), ExtResource( 16 ), ExtResource( 39 ), ExtResource( 24 ) ],
@@ -317,10 +305,25 @@ animations = [ {
 "name": "idle_down",
 "speed": 4.0
 }, {
-"frames": [ ExtResource( 19 ), ExtResource( 41 ), ExtResource( 17 ), ExtResource( 46 ), ExtResource( 42 ), ExtResource( 44 ), ExtResource( 8 ) ],
+"frames": [ SubResource( 39 ) ],
 "loop": true,
-"name": "idle_right",
-"speed": 4.0
+"name": "idle_up_left_arm",
+"speed": 5.0
+}, {
+"frames": [ SubResource( 35 ), SubResource( 36 ), SubResource( 37 ), SubResource( 38 ) ],
+"loop": true,
+"name": "move_up_left_arm",
+"speed": 5.0
+}, {
+"frames": [ SubResource( 25 ), SubResource( 26 ), SubResource( 27 ), SubResource( 28 ) ],
+"loop": true,
+"name": "move_left_left_arm",
+"speed": 5.0
+}, {
+"frames": [ SubResource( 7 ), SubResource( 8 ), SubResource( 9 ), SubResource( 10 ), SubResource( 11 ), SubResource( 12 ), SubResource( 13 ) ],
+"loop": true,
+"name": "idle_down_left_arm",
+"speed": 5.0
 }, {
 "frames": [ SubResource( 18 ), SubResource( 19 ), SubResource( 20 ), SubResource( 21 ), SubResource( 22 ), SubResource( 23 ), SubResource( 24 ) ],
 "loop": true,
@@ -332,10 +335,10 @@ animations = [ {
 "name": "move_right_left_arm",
 "speed": 5.0
 }, {
-"frames": [ ExtResource( 13 ), ExtResource( 35 ), ExtResource( 36 ), ExtResource( 34 ) ],
+"frames": [ ExtResource( 19 ), ExtResource( 41 ), ExtResource( 17 ), ExtResource( 46 ), ExtResource( 42 ), ExtResource( 44 ), ExtResource( 8 ) ],
 "loop": true,
-"name": "move_right",
-"speed": 5.0
+"name": "idle_right",
+"speed": 4.0
 } ]
 
 [sub_resource type="CapsuleShape2D" id=45]
@@ -442,16 +445,30 @@ z_index = 3
 collision_layer = 2
 collision_mask = 25
 script = ExtResource( 1 )
+base_speed = 800.0
+sprint_speed = 2000.0
+stagger_speed = 400.0
 deaccel = 0.4
-speed = 2400.0
-sprint_speed = 4800.0
-stagger_speed = 1600.0
 walk_step_interval = 0.7
 sprint_step_interval = 0.5
 stop_bleeding_dialogue = SubResource( 3 )
 cant_use_bandages_dialogue = SubResource( 4 )
 bleeding_stopped_dialogue = SubResource( 5 )
-look_dir = Vector2( 1, 0 )
+
+[node name="LightMaskLayer" type="CanvasLayer" parent="."]
+layer = 2
+
+[node name="TextureRect" type="TextureRect" parent="LightMaskLayer"]
+material = SubResource( 52 )
+anchor_right = 1.0
+anchor_bottom = 1.0
+rect_pivot_offset = Vector2( 160, 90 )
+texture = ExtResource( 52 )
+expand = true
+stretch_mode = 7
+__meta__ = {
+"_edit_use_anchors_": false
+}
 
 [node name="shadow" type="Sprite" parent="."]
 modulate = Color( 1, 1, 1, 0.152941 )
@@ -474,7 +491,7 @@ shape = SubResource( 45 )
 [node name="Camera2D" type="Camera2D" parent="."]
 rotating = true
 current = true
-zoom = Vector2( 0.7, 0.7 )
+zoom = Vector2( 0.5, 0.5 )
 
 [node name="look_dir" type="RayCast2D" parent="."]
 modulate = Color( 1, 0.447059, 0.203922, 1 )
@@ -625,9 +642,5 @@ position = Vector2( 6, 0 )
 z_index = -4
 occluder = ExtResource( 50 )
 light_mask = 2
-
-[node name="CanvasLayer" type="CanvasLayer" parent="."]
-
-[node name="PauseMenu" parent="CanvasLayer" instance=ExtResource( 52 )]
 
 [connection signal="timeout" from="Sounds/Move/StepTimer" to="." method="_on_StepTimer_timeout"]
