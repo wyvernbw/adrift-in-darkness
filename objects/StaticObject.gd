@@ -83,13 +83,6 @@ func save_game(game_save: Resource) -> void:
 		},
 		"dialogue": dialogue,
 	}
-	# if dialogue:
-	# 	save_dict["dialogue"]["item_name"] = dialogue.item_name
-
-	# 	if not dialogue.answers.empty():
-	# 		var answers = dialogue.answers.values()
-	# 		save_dict["dialogue"]["branch_1_item"] = answers[0].item_held
-	# 		save_dict["dialogue"]["branch_2_item"] = answers[1].item_held
 
 
 func load_game(game_save: Resource) -> void:
@@ -99,11 +92,6 @@ func load_game(game_save: Resource) -> void:
 	position.y = data["position"]["y"]
 
 	dialogue = data["dialogue"]
-
-		# if dialogue_data.answers:
-		# 	dialogue.answers[answers[0]].item_name = data["dialogue"]["branch_1_item_name"]
-		# if data["dialogue"].has("branch_2_item_name"):
-		# 	dialogue.answers[answers[1]].item_name = data["dialogue"]["branch_2_item_name"]
 
 
 func action():
