@@ -49,7 +49,7 @@ func _input(event: InputEvent) -> void:
 
 
 func connect_signals() -> void:
-	# Dialoue Handler
+	# Dialogue Handler
 	DialogueHandler.connect("player_unpause", self, "on_DialogueHandler_player_unpaused")
 	connect("next_page", DialogueHandler, "_on_Object_page_changed")
 	connect("player_interacted", DialogueHandler, "_on_Object_player_interacted")
@@ -95,4 +95,4 @@ func load_game(game_save: Resource) -> void:
 
 
 func action():
-	pass  #Overwrite this function to add custom behaviour
+	pass  #Overwrite this function to add custom behavior
