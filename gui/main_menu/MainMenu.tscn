@@ -47,6 +47,7 @@ custom_fonts/font = SubResource( 1 )
 text = "Adrift in Darkness"
 align = 1
 valign = 1
+uppercase = true
 __meta__ = {
 "_edit_use_anchors_": false
 }
@@ -55,7 +56,7 @@ __meta__ = {
 
 [node name="light_mask2d_v20" type="Sprite" parent="CanvasLayer"]
 material = SubResource( 2 )
-position = Vector2( 128.837, 98.5619 )
+position = Vector2( 160, 80 )
 scale = Vector2( 2.16, 1.72 )
 texture = ExtResource( 4 )
 
@@ -69,6 +70,7 @@ mode = 3
 environment = ExtResource( 2 )
 
 [node name="adrift-in-darkness-cover" type="Sprite" parent="."]
+visible = false
 modulate = Color( 0.0392157, 0.0392157, 0.0392157, 1 )
 position = Vector2( 112.813, 73.8069 )
 scale = Vector2( 0.119999, 0.119999 )

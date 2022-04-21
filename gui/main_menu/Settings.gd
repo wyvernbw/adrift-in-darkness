@@ -2,10 +2,15 @@ extends Control
 
 const MAIN_MENU_SCENE: String = "res://gui/main_menu/MainMenu.tscn"
 
-onready var master_volume_slider := $MarginContainer/ScrollContainer/VBoxContainer/Volume/MasterSlider
-onready var fullscreen_button := $MarginContainer/ScrollContainer/VBoxContainer/Fullscreen/CheckButton
-onready var captions_slider := $MarginContainer/ScrollContainer/VBoxContainer/CaptionsDuration/HBoxContainer/HSlider
-onready var captions_button := $MarginContainer/ScrollContainer/VBoxContainer/Captions/CheckButton
+export var master_volume_slider_path : NodePath
+export var fullscreen_button_path : NodePath
+export var captions_slider_path : NodePath
+export var captions_button_path : NodePath
+
+onready var master_volume_slider := get_node(master_volume_slider_path)
+onready var fullscreen_button := get_node(fullscreen_button_path)
+onready var captions_slider := get_node(captions_slider_path)
+onready var captions_button := get_node(captions_button_path)
 
 
 func _ready() -> void:

@@ -63,10 +63,18 @@ script = ExtResource( 7 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
+master_volume_slider_path = NodePath("MarginContainer/VBoxContainer/ScrollContainer/VBoxContainer/Volume/MasterSlider")
+fullscreen_button_path = NodePath("MarginContainer/VBoxContainer/ScrollContainer/VBoxContainer/Fullscreen/CheckButton")
+captions_slider_path = NodePath("MarginContainer/VBoxContainer/ScrollContainer/VBoxContainer/CaptionsDuration/HBoxContainer/HSlider")
+captions_button_path = NodePath("MarginContainer/VBoxContainer/ScrollContainer/VBoxContainer/Captions/CheckButton")
 
 [node name="MarginContainer" type="MarginContainer" parent="."]
 anchor_right = 1.0
 anchor_bottom = 1.0
+margin_left = 24.0
+margin_top = 8.0
+margin_right = -24.0
+margin_bottom = -8.0
 custom_constants/margin_right = 16
 custom_constants/margin_top = 16
 custom_constants/margin_left = 16
@@ -75,45 +83,54 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="ScrollContainer" type="ScrollContainer" parent="MarginContainer"]
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer"]
 margin_left = 16.0
 margin_top = 16.0
+margin_right = 256.0
+margin_bottom = 148.0
+
+[node name="Settings" type="Label" parent="MarginContainer/VBoxContainer"]
 margin_right = 240.0
-margin_bottom = 179.0
-follow_focus = true
-scroll_horizontal_enabled = false
-
-[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/ScrollContainer"]
-margin_right = 212.0
-margin_bottom = 206.0
-size_flags_horizontal = 3
-custom_constants/separation = 2
-alignment = 1
-
-[node name="Settings" type="Label" parent="MarginContainer/ScrollContainer/VBoxContainer"]
-margin_right = 212.0
 margin_bottom = 22.0
 custom_fonts/font = SubResource( 2 )
 text = "- Settings -"
 align = 1
 uppercase = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
 
-[node name="Volume" type="GridContainer" parent="MarginContainer/ScrollContainer/VBoxContainer"]
-margin_top = 24.0
-margin_right = 212.0
-margin_bottom = 56.0
+[node name="ScrollContainer" type="ScrollContainer" parent="MarginContainer/VBoxContainer"]
+margin_top = 26.0
+margin_right = 240.0
+margin_bottom = 132.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+follow_focus = true
+scroll_horizontal_enabled = false
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/VBoxContainer/ScrollContainer"]
+margin_right = 228.0
+margin_bottom = 182.0
+size_flags_horizontal = 3
+custom_constants/separation = 2
+alignment = 1
+
+[node name="Volume" type="GridContainer" parent="MarginContainer/VBoxContainer/ScrollContainer/VBoxContainer"]
+margin_right = 228.0
+margin_bottom = 32.0
 columns = 2
 
-[node name="MasterVolume" type="Label" parent="MarginContainer/ScrollContainer/VBoxContainer/Volume"]
+[node name="MasterVolume" type="Label" parent="MarginContainer/VBoxContainer/ScrollContainer/VBoxContainer/Volume"]
 margin_right = 84.0
 margin_bottom = 14.0
 custom_fonts/font = SubResource( 1 )
 text = "master volume"
 uppercase = true
 
-[node name="MasterSlider" type="HSlider" parent="MarginContainer/ScrollContainer/VBoxContainer/Volume"]
+[node name="MasterSlider" type="HSlider" parent="MarginContainer/VBoxContainer/ScrollContainer/VBoxContainer/Volume"]
 margin_left = 88.0
-margin_right = 212.0
+margin_right = 228.0
 margin_bottom = 12.0
 focus_next = NodePath("../AmbientSlider")
 mouse_default_cursor_shape = 6
@@ -130,7 +147,7 @@ step = 0.1
 value = 1.0
 tick_count = 20
 
-[node name="AmbientVolume" type="Label" parent="MarginContainer/ScrollContainer/VBoxContainer/Volume"]
+[node name="AmbientVolume" type="Label" parent="MarginContainer/VBoxContainer/ScrollContainer/VBoxContainer/Volume"]
 margin_top = 18.0
 margin_right = 84.0
 margin_bottom = 32.0
@@ -138,10 +155,10 @@ custom_fonts/font = SubResource( 1 )
 text = "ambient volume"
 uppercase = true
 
-[node name="AmbientSlider" type="HSlider" parent="MarginContainer/ScrollContainer/VBoxContainer/Volume"]
+[node name="AmbientSlider" type="HSlider" parent="MarginContainer/VBoxContainer/ScrollContainer/VBoxContainer/Volume"]
 margin_left = 88.0
 margin_top = 18.0
-margin_right = 212.0
+margin_right = 228.0
 margin_bottom = 30.0
 focus_next = NodePath("../../Fullscreen/CheckButton")
 focus_previous = NodePath("../MasterSlider")
@@ -158,73 +175,73 @@ step = 0.1
 value = 1.0
 tick_count = 20
 
-[node name="Fullscreen" type="HBoxContainer" parent="MarginContainer/ScrollContainer/VBoxContainer"]
-margin_top = 58.0
-margin_right = 212.0
-margin_bottom = 98.0
+[node name="Fullscreen" type="HBoxContainer" parent="MarginContainer/VBoxContainer/ScrollContainer/VBoxContainer"]
+margin_top = 34.0
+margin_right = 228.0
+margin_bottom = 74.0
 alignment = 1
 
-[node name="Label" type="Label" parent="MarginContainer/ScrollContainer/VBoxContainer/Fullscreen"]
-margin_left = 36.0
+[node name="Label" type="Label" parent="MarginContainer/VBoxContainer/ScrollContainer/VBoxContainer/Fullscreen"]
+margin_left = 44.0
 margin_top = 13.0
-margin_right = 96.0
+margin_right = 104.0
 margin_bottom = 27.0
 custom_fonts/font = SubResource( 11 )
 text = "Fullscreen"
 
-[node name="CheckButton" type="CheckButton" parent="MarginContainer/ScrollContainer/VBoxContainer/Fullscreen"]
-margin_left = 100.0
-margin_right = 176.0
+[node name="CheckButton" type="CheckButton" parent="MarginContainer/VBoxContainer/ScrollContainer/VBoxContainer/Fullscreen"]
+margin_left = 108.0
+margin_right = 184.0
 margin_bottom = 40.0
 focus_next = NodePath("../../Captions/CheckButton")
 focus_previous = NodePath("../../Volume/AmbientSlider")
 
-[node name="Captions" type="HBoxContainer" parent="MarginContainer/ScrollContainer/VBoxContainer"]
-margin_top = 100.0
-margin_right = 212.0
-margin_bottom = 140.0
+[node name="Captions" type="HBoxContainer" parent="MarginContainer/VBoxContainer/ScrollContainer/VBoxContainer"]
+margin_top = 76.0
+margin_right = 228.0
+margin_bottom = 116.0
 alignment = 1
 
-[node name="Label" type="Label" parent="MarginContainer/ScrollContainer/VBoxContainer/Captions"]
-margin_left = 39.0
+[node name="Label" type="Label" parent="MarginContainer/VBoxContainer/ScrollContainer/VBoxContainer/Captions"]
+margin_left = 47.0
 margin_top = 13.0
-margin_right = 93.0
+margin_right = 101.0
 margin_bottom = 27.0
 custom_fonts/font = SubResource( 11 )
 text = "Subtitles"
 
-[node name="CheckButton" type="CheckButton" parent="MarginContainer/ScrollContainer/VBoxContainer/Captions"]
-margin_left = 97.0
-margin_right = 173.0
+[node name="CheckButton" type="CheckButton" parent="MarginContainer/VBoxContainer/ScrollContainer/VBoxContainer/Captions"]
+margin_left = 105.0
+margin_right = 181.0
 margin_bottom = 40.0
 focus_next = NodePath("../../About/Button")
 focus_previous = NodePath("../../Fullscreen/CheckButton")
 
-[node name="CaptionsDuration" type="VBoxContainer" parent="MarginContainer/ScrollContainer/VBoxContainer"]
-margin_top = 142.0
-margin_right = 212.0
-margin_bottom = 174.0
+[node name="CaptionsDuration" type="VBoxContainer" parent="MarginContainer/VBoxContainer/ScrollContainer/VBoxContainer"]
+margin_top = 118.0
+margin_right = 228.0
+margin_bottom = 150.0
 
-[node name="Label" type="Label" parent="MarginContainer/ScrollContainer/VBoxContainer/CaptionsDuration"]
-margin_right = 212.0
+[node name="Label" type="Label" parent="MarginContainer/VBoxContainer/ScrollContainer/VBoxContainer/CaptionsDuration"]
+margin_right = 228.0
 margin_bottom = 14.0
 custom_fonts/font = SubResource( 17 )
 text = "Captions duration (seconds)"
 
-[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer/ScrollContainer/VBoxContainer/CaptionsDuration"]
+[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer/VBoxContainer/ScrollContainer/VBoxContainer/CaptionsDuration"]
 margin_top = 18.0
-margin_right = 212.0
+margin_right = 228.0
 margin_bottom = 32.0
 
-[node name="Label2" type="Label" parent="MarginContainer/ScrollContainer/VBoxContainer/CaptionsDuration/HBoxContainer"]
+[node name="Label2" type="Label" parent="MarginContainer/VBoxContainer/ScrollContainer/VBoxContainer/CaptionsDuration/HBoxContainer"]
 margin_right = 12.0
 margin_bottom = 14.0
 custom_fonts/font = SubResource( 18 )
 text = "1s"
 
-[node name="HSlider" type="HSlider" parent="MarginContainer/ScrollContainer/VBoxContainer/CaptionsDuration/HBoxContainer"]
+[node name="HSlider" type="HSlider" parent="MarginContainer/VBoxContainer/ScrollContainer/VBoxContainer/CaptionsDuration/HBoxContainer"]
 margin_left = 16.0
-margin_right = 190.0
+margin_right = 206.0
 margin_bottom = 12.0
 size_flags_horizontal = 3
 custom_icons/grabber_disabled = SubResource( 15 )
@@ -239,22 +256,22 @@ value = 2.0
 tick_count = 10
 ticks_on_borders = true
 
-[node name="Label" type="Label" parent="MarginContainer/ScrollContainer/VBoxContainer/CaptionsDuration/HBoxContainer"]
-margin_left = 194.0
-margin_right = 212.0
+[node name="Label" type="Label" parent="MarginContainer/VBoxContainer/ScrollContainer/VBoxContainer/CaptionsDuration/HBoxContainer"]
+margin_left = 210.0
+margin_right = 228.0
 margin_bottom = 14.0
 custom_fonts/font = SubResource( 19 )
 text = "10s"
 
-[node name="About" type="HBoxContainer" parent="MarginContainer/ScrollContainer/VBoxContainer"]
-margin_top = 176.0
-margin_right = 212.0
-margin_bottom = 190.0
+[node name="About" type="HBoxContainer" parent="MarginContainer/VBoxContainer/ScrollContainer/VBoxContainer"]
+margin_top = 152.0
+margin_right = 228.0
+margin_bottom = 166.0
 alignment = 1
 
-[node name="Button" type="Button" parent="MarginContainer/ScrollContainer/VBoxContainer/About"]
-margin_left = 91.0
-margin_right = 121.0
+[node name="Button" type="Button" parent="MarginContainer/VBoxContainer/ScrollContainer/VBoxContainer/About"]
+margin_left = 99.0
+margin_right = 129.0
 margin_bottom = 14.0
 focus_previous = NodePath("../../Captions/CheckButton")
 size_flags_horizontal = 12
@@ -265,15 +282,15 @@ custom_styles/normal = ExtResource( 5 )
 text = "About"
 flat = true
 
-[node name="Back" type="HBoxContainer" parent="MarginContainer/ScrollContainer/VBoxContainer"]
-margin_top = 192.0
-margin_right = 212.0
-margin_bottom = 206.0
+[node name="Back" type="HBoxContainer" parent="MarginContainer/VBoxContainer/ScrollContainer/VBoxContainer"]
+margin_top = 168.0
+margin_right = 228.0
+margin_bottom = 182.0
 alignment = 1
 
-[node name="Button" type="Button" parent="MarginContainer/ScrollContainer/VBoxContainer/Back"]
-margin_left = 94.0
-margin_right = 118.0
+[node name="Button" type="Button" parent="MarginContainer/VBoxContainer/ScrollContainer/VBoxContainer/Back"]
+margin_left = 102.0
+margin_right = 126.0
 margin_bottom = 14.0
 focus_previous = NodePath("../../Captions/CheckButton")
 size_flags_horizontal = 12
@@ -295,7 +312,7 @@ texture = ExtResource( 2 )
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = ExtResource( 3 )
 
-[connection signal="toggled" from="MarginContainer/ScrollContainer/VBoxContainer/Fullscreen/CheckButton" to="." method="_on_FullscreenCheckButton_toggled"]
-[connection signal="toggled" from="MarginContainer/ScrollContainer/VBoxContainer/Captions/CheckButton" to="." method="_on_CaptionsCheckButton_toggled"]
-[connection signal="value_changed" from="MarginContainer/ScrollContainer/VBoxContainer/CaptionsDuration/HBoxContainer/HSlider" to="." method="_on_HSlider_value_changed"]
-[connection signal="pressed" from="MarginContainer/ScrollContainer/VBoxContainer/Back/Button" to="." method="_on_Button_pressed"]
+[connection signal="toggled" from="MarginContainer/VBoxContainer/ScrollContainer/VBoxContainer/Fullscreen/CheckButton" to="." method="_on_FullscreenCheckButton_toggled"]
+[connection signal="toggled" from="MarginContainer/VBoxContainer/ScrollContainer/VBoxContainer/Captions/CheckButton" to="." method="_on_CaptionsCheckButton_toggled"]
+[connection signal="value_changed" from="MarginContainer/VBoxContainer/ScrollContainer/VBoxContainer/CaptionsDuration/HBoxContainer/HSlider" to="." method="_on_HSlider_value_changed"]
+[connection signal="pressed" from="MarginContainer/VBoxContainer/ScrollContainer/VBoxContainer/Back/Button" to="." method="_on_Button_pressed"]
