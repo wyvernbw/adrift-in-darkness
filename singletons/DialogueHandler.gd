@@ -116,8 +116,8 @@ func add_dialogue_box() -> void:
 
 		dialogue_branching = true
 
-		b_dialogue_box.draw_box(answer_keys[0], answer_keys[1])
 		add_child(b_dialogue_box)
+		b_dialogue_box.draw_box(answer_keys[0], answer_keys[1])
 		return
 	emit_signal("player_unpause")
 	dialogue_open = false
