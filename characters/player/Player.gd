@@ -33,6 +33,7 @@ var save_key: String = "player"
 
 onready var StepTimer := $Sounds/Move/StepTimer
 onready var LookRaycast := $look_dir
+onready var sprite := $AnimatedSprite
 onready var occluder_forward := preload("res://characters/player/occluder_polygon_forward.tres")
 onready var occluder_side := preload("res://characters/player/occluder_polygon_side.tres")
 

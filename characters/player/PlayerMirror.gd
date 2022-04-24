@@ -1,30 +1,49 @@
-extends KinematicBody2D
+extends AnimatedSprite
+
+export var mirror_pivot_path: NodePath
+export var mirror_plane: Vector2
+
+onready var mirror_pivot: Position2D = get_node(mirror_pivot_path)
+onready var player = GlobalHandler.Player
+
+func _physics_process(_delta):
+	mirror_position()
+
+func _process(_delta):
+	mirror_animations()
 
 
-export var offset := Vector2.ZERO
+func mirror_animations() -> void:	
+	var player_look_dir: Vector2 = player.look_dir 
+	var mirrored_dir = Vector2(
+		player_look_dir.x,
+		-player_look_dir.y
+	)
+	if player.moving:
+		play_anim("move_", mirrored_dir)
+	else:
+		play_anim("idle_", mirrored_dir)
 
 
-func _process(_delta: float) -> void:
-	var velocity: Vector2
-	if not GlobalHandler.Player.is_on_wall():
-		velocity.x = GlobalHandler.Player.velocity.x
-	if not GlobalHandler.Player.is_on_ceiling():
-		if not GlobalHandler.Player.is_on_floor():
-			velocity.y = -GlobalHandler.Player.velocity.y
+func play_anim(anim: String, dir: Vector2) -> void:
+	var dir_str: String = "up"
+	match dir:
+		Vector2.RIGHT:
+			dir_str = "right"
+		Vector2.LEFT:
+			dir_str = "left"
+		Vector2.UP:
+			dir_str = "up"
+		Vector2.DOWN:
+			dir_str = "down"
+	var mirrored_animation: String = anim + dir_str + player.anim_suffix
+	animation = mirrored_animation
+	frame = player.sprite.frame
 
-	var player_anim: String = GlobalHandler.Player.get_node("AnimatedSprite").animation
-	var anim_properties: Array = player_anim.split("_")
 
-	if anim_properties[1] == "up":
-		anim_properties[1] = "down"
-	elif anim_properties[1] == "down":
-		anim_properties[1] = "up"
-
-	var anim: String
-	for property in anim_properties:
-		anim += property
-		if property != anim_properties.back():
-			anim += "_"
-
-	$AnimatedSprite.play(anim)
-	move_and_slide(velocity, Vector2.UP)
+func mirror_position() -> void:
+	var dist_vector := mirror_pivot.position.project(Vector2.DOWN)
+	var dist_from_origin := dist_vector.length()
+	var dist_from_plane = mirror_plane.dot(player.position) - dist_from_origin
+	position = player.position - mirror_plane * dist_from_plane * 2
+	print(dist_from_plane)

@@ -75,8 +75,8 @@ script = ExtResource( 6 )
 [node name="BlurSprite" type="Sprite" parent="BlurLayer"]
 modulate = Color( 1, 1, 1, 0 )
 material = SubResource( 3 )
-position = Vector2( 129.102, 85.153 )
-scale = Vector2( 0.439999, 0.56 )
+position = Vector2( 166.52, 85.153 )
+scale = Vector2( 0.558786, 0.56 )
 texture = ExtResource( 4 )
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="BlurLayer/BlurSprite"]

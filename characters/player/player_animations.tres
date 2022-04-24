@@ -1,0 +1,272 @@
+[gd_resource type="SpriteFrames" load_steps=77 format=2]
+
+[ext_resource path="res://characters/player/sprites/player_sprites6.png" type="Texture" id=1]
+[ext_resource path="res://characters/player/sprites/player_sprites18.png" type="Texture" id=2]
+[ext_resource path="res://characters/player/sprites/player_sprites8.png" type="Texture" id=3]
+[ext_resource path="res://characters/player/sprites/player_sprites30.png" type="Texture" id=4]
+[ext_resource path="res://characters/player/sprites/player_sprites23.png" type="Texture" id=5]
+[ext_resource path="res://characters/player/sprites/player_sprites35.png" type="Texture" id=6]
+[ext_resource path="res://characters/player/sprites/player_sprites11.png" type="Texture" id=7]
+[ext_resource path="res://characters/player/sprites/player_sprites31.png" type="Texture" id=8]
+[ext_resource path="res://characters/player/sprites/player_sprites4.png" type="Texture" id=9]
+[ext_resource path="res://characters/player/sprites/player_sprites15.png" type="Texture" id=10]
+[ext_resource path="res://characters/player/sprites/player_sprites16.png" type="Texture" id=11]
+[ext_resource path="res://characters/player/sprites/player_sprites2.png" type="Texture" id=12]
+[ext_resource path="res://characters/player/sprites/player_sprites32.png" type="Texture" id=13]
+[ext_resource path="res://characters/player/sprites/player_sprites14.png" type="Texture" id=14]
+[ext_resource path="res://characters/player/sprites/player_sprites37.png" type="Texture" id=15]
+[ext_resource path="res://characters/player/sprites/player_sprites38.png" type="Texture" id=16]
+[ext_resource path="res://characters/player/sprites/player_sprites9.png" type="Texture" id=17]
+[ext_resource path="res://characters/player/sprites/player_sprites24.png" type="Texture" id=18]
+[ext_resource path="res://characters/player/sprites/player_sprites22.png" type="Texture" id=19]
+[ext_resource path="res://characters/player/sprites/player_sprites27.png" type="Texture" id=20]
+[ext_resource path="res://characters/player/sprites/player_sprites25.png" type="Texture" id=21]
+[ext_resource path="res://characters/player/sprites/player_sprites3.png" type="Texture" id=22]
+[ext_resource path="res://characters/player/sprites/player_sprites26.png" type="Texture" id=23]
+[ext_resource path="res://characters/player/sprites/player_sprites33.png" type="Texture" id=24]
+[ext_resource path="res://characters/player/sprites/player_sprites36.png" type="Texture" id=25]
+[ext_resource path="res://characters/player/sprites/player_sprites29.png" type="Texture" id=26]
+[ext_resource path="res://characters/player/sprites/player_sprites34.png" type="Texture" id=27]
+[ext_resource path="res://characters/player/sprites/player_sprites7.png" type="Texture" id=28]
+[ext_resource path="res://characters/player/sprites/player_sprites10.png" type="Texture" id=29]
+[ext_resource path="res://characters/player/sprites/player_sprites1.png" type="Texture" id=30]
+[ext_resource path="res://characters/player/sprites/player_sprites12.png" type="Texture" id=31]
+[ext_resource path="res://characters/player/sprites/player_sprites5.png" type="Texture" id=32]
+[ext_resource path="res://characters/player/sprites/player_lost_left_arm.png" type="Texture" id=33]
+[ext_resource path="res://characters/player/sprites/player_sprites13.png" type="Texture" id=34]
+[ext_resource path="res://characters/player/sprites/player_sprites20.png" type="Texture" id=35]
+[ext_resource path="res://characters/player/sprites/player_sprites19.png" type="Texture" id=36]
+[ext_resource path="res://characters/player/sprites/player_sprites17.png" type="Texture" id=37]
+[ext_resource path="res://characters/player/sprites/player_sprites28.png" type="Texture" id=38]
+[ext_resource path="res://characters/player/sprites/playe_sprites21.png" type="Texture" id=39]
+
+[sub_resource type="AtlasTexture" id=14]
+atlas = ExtResource( 33 )
+region = Rect2( 0, 0, 16, 24 )
+
+[sub_resource type="AtlasTexture" id=15]
+atlas = ExtResource( 33 )
+region = Rect2( 16, 0, 16, 24 )
+
+[sub_resource type="AtlasTexture" id=16]
+atlas = ExtResource( 33 )
+region = Rect2( 32, 0, 16, 24 )
+
+[sub_resource type="AtlasTexture" id=17]
+atlas = ExtResource( 33 )
+region = Rect2( 48, 0, 16, 24 )
+
+[sub_resource type="AtlasTexture" id=25]
+atlas = ExtResource( 33 )
+region = Rect2( 416, 0, 16, 24 )
+
+[sub_resource type="AtlasTexture" id=26]
+atlas = ExtResource( 33 )
+region = Rect2( 432, 0, 16, 24 )
+
+[sub_resource type="AtlasTexture" id=27]
+atlas = ExtResource( 33 )
+region = Rect2( 448, 0, 16, 24 )
+
+[sub_resource type="AtlasTexture" id=28]
+atlas = ExtResource( 33 )
+region = Rect2( 464, 0, 16, 24 )
+
+[sub_resource type="AtlasTexture" id=18]
+atlas = ExtResource( 33 )
+region = Rect2( 240, 0, 16, 24 )
+
+[sub_resource type="AtlasTexture" id=19]
+atlas = ExtResource( 33 )
+region = Rect2( 256, 0, 16, 24 )
+
+[sub_resource type="AtlasTexture" id=20]
+atlas = ExtResource( 33 )
+region = Rect2( 272, 0, 16, 24 )
+
+[sub_resource type="AtlasTexture" id=21]
+atlas = ExtResource( 33 )
+region = Rect2( 288, 0, 16, 24 )
+
+[sub_resource type="AtlasTexture" id=22]
+atlas = ExtResource( 33 )
+region = Rect2( 304, 0, 16, 24 )
+
+[sub_resource type="AtlasTexture" id=23]
+atlas = ExtResource( 33 )
+region = Rect2( 320, 0, 16, 24 )
+
+[sub_resource type="AtlasTexture" id=24]
+atlas = ExtResource( 33 )
+region = Rect2( 336, 0, 16, 24 )
+
+[sub_resource type="AtlasTexture" id=39]
+atlas = ExtResource( 33 )
+region = Rect2( 576, 0, 16, 24 )
+
+[sub_resource type="AtlasTexture" id=7]
+atlas = ExtResource( 33 )
+region = Rect2( 64, 0, 16, 24 )
+
+[sub_resource type="AtlasTexture" id=8]
+atlas = ExtResource( 33 )
+region = Rect2( 80, 0, 16, 24 )
+
+[sub_resource type="AtlasTexture" id=9]
+atlas = ExtResource( 33 )
+region = Rect2( 96, 0, 16, 24 )
+
+[sub_resource type="AtlasTexture" id=10]
+atlas = ExtResource( 33 )
+region = Rect2( 112, 0, 16, 24 )
+
+[sub_resource type="AtlasTexture" id=11]
+atlas = ExtResource( 33 )
+region = Rect2( 128, 0, 16, 24 )
+
+[sub_resource type="AtlasTexture" id=12]
+atlas = ExtResource( 33 )
+region = Rect2( 144, 0, 16, 24 )
+
+[sub_resource type="AtlasTexture" id=13]
+atlas = ExtResource( 33 )
+region = Rect2( 160, 0, 16, 24 )
+
+[sub_resource type="AtlasTexture" id=29]
+atlas = ExtResource( 33 )
+region = Rect2( 480, 0, 16, 24 )
+
+[sub_resource type="AtlasTexture" id=30]
+atlas = ExtResource( 33 )
+region = Rect2( 496, 0, 16, 24 )
+
+[sub_resource type="AtlasTexture" id=31]
+atlas = ExtResource( 33 )
+region = Rect2( 512, 0, 16, 24 )
+
+[sub_resource type="AtlasTexture" id=32]
+atlas = ExtResource( 33 )
+region = Rect2( 528, 0, 16, 24 )
+
+[sub_resource type="AtlasTexture" id=33]
+atlas = ExtResource( 33 )
+region = Rect2( 544, 0, 16, 24 )
+
+[sub_resource type="AtlasTexture" id=34]
+atlas = ExtResource( 33 )
+region = Rect2( 560, 0, 16, 24 )
+
+[sub_resource type="AtlasTexture" id=40]
+atlas = ExtResource( 33 )
+region = Rect2( 352, 0, 16, 24 )
+
+[sub_resource type="AtlasTexture" id=41]
+atlas = ExtResource( 33 )
+region = Rect2( 368, 0, 16, 24 )
+
+[sub_resource type="AtlasTexture" id=42]
+atlas = ExtResource( 33 )
+region = Rect2( 384, 0, 16, 24 )
+
+[sub_resource type="AtlasTexture" id=43]
+atlas = ExtResource( 33 )
+region = Rect2( 400, 0, 16, 24 )
+
+[sub_resource type="AtlasTexture" id=35]
+atlas = ExtResource( 33 )
+region = Rect2( 176, 0, 16, 24 )
+
+[sub_resource type="AtlasTexture" id=36]
+atlas = ExtResource( 33 )
+region = Rect2( 192, 0, 16, 24 )
+
+[sub_resource type="AtlasTexture" id=37]
+atlas = ExtResource( 33 )
+region = Rect2( 208, 0, 16, 24 )
+
+[sub_resource type="AtlasTexture" id=38]
+atlas = ExtResource( 33 )
+region = Rect2( 224, 0, 16, 24 )
+
+[resource]
+animations = [ {
+"frames": [ ExtResource( 8 ), ExtResource( 13 ), ExtResource( 24 ), ExtResource( 27 ), ExtResource( 6 ), ExtResource( 25 ), ExtResource( 15 ) ],
+"loop": true,
+"name": "idle_left",
+"speed": 5.0
+}, {
+"frames": [ ExtResource( 30 ), ExtResource( 9 ), ExtResource( 22 ), ExtResource( 12 ) ],
+"loop": true,
+"name": "move_down",
+"speed": 5.0
+}, {
+"frames": [ ExtResource( 20 ), ExtResource( 38 ), ExtResource( 26 ), ExtResource( 4 ) ],
+"loop": true,
+"name": "move_left",
+"speed": 5.0
+}, {
+"frames": [ ExtResource( 31 ), ExtResource( 34 ), ExtResource( 14 ), ExtResource( 10 ) ],
+"loop": true,
+"name": "move_up",
+"speed": 5.0
+}, {
+"frames": [ SubResource( 14 ), SubResource( 15 ), SubResource( 16 ), SubResource( 17 ) ],
+"loop": true,
+"name": "move_down_left_arm",
+"speed": 5.0
+}, {
+"frames": [ SubResource( 25 ), SubResource( 26 ), SubResource( 27 ), SubResource( 28 ) ],
+"loop": true,
+"name": "move_left_left_arm",
+"speed": 5.0
+}, {
+"frames": [ SubResource( 18 ), SubResource( 19 ), SubResource( 20 ), SubResource( 21 ), SubResource( 22 ), SubResource( 23 ), SubResource( 24 ) ],
+"loop": true,
+"name": "idle_right_left_arm",
+"speed": 5.0
+}, {
+"frames": [ ExtResource( 32 ), ExtResource( 1 ), ExtResource( 28 ), ExtResource( 3 ), ExtResource( 17 ), ExtResource( 29 ), ExtResource( 7 ) ],
+"loop": true,
+"name": "idle_down",
+"speed": 4.0
+}, {
+"frames": [ SubResource( 39 ) ],
+"loop": true,
+"name": "idle_up_left_arm",
+"speed": 5.0
+}, {
+"frames": [ SubResource( 7 ), SubResource( 8 ), SubResource( 9 ), SubResource( 10 ), SubResource( 11 ), SubResource( 12 ), SubResource( 13 ) ],
+"loop": true,
+"name": "idle_down_left_arm",
+"speed": 5.0
+}, {
+"frames": [ SubResource( 29 ), SubResource( 30 ), SubResource( 31 ), SubResource( 32 ), SubResource( 33 ), SubResource( 34 ) ],
+"loop": true,
+"name": "idle_left_left_arm",
+"speed": 5.0
+}, {
+"frames": [ ExtResource( 11 ), ExtResource( 37 ), ExtResource( 2 ), ExtResource( 36 ), ExtResource( 35 ), ExtResource( 39 ), ExtResource( 19 ) ],
+"loop": true,
+"name": "idle_right",
+"speed": 4.0
+}, {
+"frames": [ ExtResource( 16 ) ],
+"loop": true,
+"name": "idle_up",
+"speed": 5.0
+}, {
+"frames": [ SubResource( 40 ), SubResource( 41 ), SubResource( 42 ), SubResource( 43 ) ],
+"loop": true,
+"name": "move_right_left_arm",
+"speed": 5.0
+}, {
+"frames": [ SubResource( 35 ), SubResource( 36 ), SubResource( 37 ), SubResource( 38 ) ],
+"loop": true,
+"name": "move_up_left_arm",
+"speed": 5.0
+}, {
+"frames": [ ExtResource( 5 ), ExtResource( 18 ), ExtResource( 21 ), ExtResource( 23 ) ],
+"loop": true,
+"name": "move_right",
+"speed": 5.0
+} ]
