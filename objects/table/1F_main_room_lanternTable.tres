@@ -5,7 +5,7 @@
 
 [sub_resource type="Resource" id=2]
 script = ExtResource( 1 )
-text = [ "page 1 example" ]
+text = [  ]
 answers = {
 }
 item_name = ""
@@ -26,12 +26,12 @@ read_box_text = ""
 
 [resource]
 script = ExtResource( 1 )
-text = [ "An old table. A dim light shines beneath." ]
+text = [ "An old table. A dim light shines beneath.", "", "lmfao" ]
 answers = {
 "Leave": SubResource( 2 ),
 "Look underneath": SubResource( 1 )
 }
 item_name = ""
 item_quantity = -1
-item_type = 0
+item_type = -1
 read_box_text = ""

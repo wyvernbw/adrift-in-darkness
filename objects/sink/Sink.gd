@@ -39,9 +39,7 @@ func on_DialogueHandler_player_unpause() -> void:
 
 func _on_AnimationPlayer_animation_finished(anim_name):
 	if anim_name == "fade":
-		DialogueHandler.dialogue = arm_message
-		DialogueHandler.page_index = 0
-		DialogueHandler.add_dialogue_box()
+		DialogueHandler.start_dialogue(arm_message)
 
 
 func _on_AnimatedSprite_animation_finished():

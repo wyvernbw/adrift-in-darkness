@@ -9,6 +9,11 @@
 config_version=4
 
 _global_script_classes=[ {
+"base": "CanvasLayer",
+"class": "BranchingBox",
+"language": "GDScript",
+"path": "res://gui/branching_dialogue_box/BranchingDialogueBox.gd"
+}, {
 "base": "Resource",
 "class": "DialogueResource",
 "language": "GDScript",
@@ -45,6 +50,7 @@ _global_script_classes=[ {
 "path": "res://objects/table/Table.gd"
 } ]
 _global_script_class_icons={
+"BranchingBox": "",
 "DialogueResource": "",
 "GameSave": "",
 "Item": "",

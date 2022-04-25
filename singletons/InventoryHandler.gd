@@ -25,9 +25,11 @@ func _send_notification(item: Item) -> void:
 
 
 func add_item(item: Item, notify := true) -> void:
-	print(str(item["item_name"]) + " : " + str(item.quantity))
-	if item == null:
+	if not item:
 		return
+	if item.item_type == Item.ITEM_TYPES.INVALID_ITEM:
+		return
+	print(str(item["item_name"]) + " : " + str(item.quantity))
 	var item_index = get_item(item)
 	if item_index != -1:
 		inventory[item.item_type][item_index].quantity += item.quantity

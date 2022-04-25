@@ -1,4 +1,5 @@
 extends CanvasLayer
+class_name BranchingBox
 
 signal option_pressed(branch)
 

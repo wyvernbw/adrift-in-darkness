@@ -58,10 +58,7 @@ func _process(delta: float) -> void:
 		visible = false
 		if not GlobalHandler.lantern_ran_out:
 			if not DialogueHandler.get_child_count() > 0:
-				DialogueHandler.dialogue = ran_out_of_fuel_resource
-				DialogueHandler.page_index = 0
-				DialogueHandler.add_dialogue_box()
-
+				DialogueHandler.start_dialogue(ran_out_of_fuel_resource)
 	# darken things up
 	if visible == false:
 		GlobalHandler.current_light -= light_loss_per_second * delta

@@ -13,6 +13,8 @@ const max_blood = 4500
 const blood_loss_rate = 1
 const total_limbs = 4
 
+onready var player = GlobalHandler.Player
+
 var blood = max_blood
 var save_key = "hp_handler"
 var using_bandages = false
@@ -112,9 +114,7 @@ func calculate_blood_loss() -> void:
 
 func _on_item_used(item : Item) -> void:
 	if item.item_name == "Bandages":
-		DialogueHandler.dialogue = GlobalHandler.Player.stop_bleeding_dialogue
-		DialogueHandler.page_index += 1
-		DialogueHandler.add_dialogue_box()
+		DialogueHandler.start_dialogue(player.bleeding_stopped_dialogue)
 		using_bandages = true
 
 
@@ -123,14 +123,10 @@ func _on_BranchingDialogueBox_option_pressed(branch: int) -> void:
 		return
 	if branch == 1 and bleeding_limbs["left_arm"]:
 		stop_limb_bleeding("left_arm")	
-		DialogueHandler.dialogue = GlobalHandler.Player.bleeding_stopped_dialogue
-		DialogueHandler.page_index += 1
-		DialogueHandler.add_dialogue_box()
+		DialogueHandler.start_dialogue(player.bleeding_stopped_dialogue)
 		using_bandages = false
 	elif branch == 1:
-		DialogueHandler.dialogue = GlobalHandler.Player.cant_use_bandages_dialogue
-		DialogueHandler.page_index += 1
-		DialogueHandler.add_dialogue_box()
+		DialogueHandler.start_dialogue(player.cant_use_bandages_dialogue)
 		using_bandages = false
 
 

@@ -81,9 +81,7 @@ func _process(_delta: float) -> void:
 			else:
 				$Sounds/Locked.play()
 				print("locked")
-				DialogueHandler.dialogue = locked_dialogue
-				DialogueHandler.page_index += 1
-				DialogueHandler.add_dialogue_box()
+				DialogueHandler.start_dialogue(locked_dialogue)
 				dialogue_open = true
 
 

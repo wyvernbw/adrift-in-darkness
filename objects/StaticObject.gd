@@ -45,14 +45,12 @@ func _input(event: InputEvent) -> void:
 	if GlobalHandler.InventoryGUI.visible:
 		return
 	if event.is_action_pressed("interact") and not DialogueHandler.dialogue_open:
-		DialogueHandler.set_dialogue(dialogue)
+		DialogueHandler.start_dialogue(dialogue)
 
 
 func connect_signals() -> void:
 	# Dialoue Handler
 	DialogueHandler.connect("player_unpause", self, "on_DialogueHandler_player_unpaused")
-	connect("next_page", DialogueHandler, "_on_Object_page_changed")
-	connect("player_interacted", DialogueHandler, "_on_Object_player_interacted")
 
 
 func _on_InteractionArea_body_entered(body) -> void:
