@@ -1,47 +1,7 @@
-[gd_scene load_steps=12 format=2]
+[gd_scene load_steps=3 format=2]
 
 [ext_resource path="res://levels/Game.gd" type="Script" id=1]
 [ext_resource path="res://levels/1F_main_room.tscn" type="PackedScene" id=2]
-[ext_resource path="res://environment.tres" type="Environment" id=3]
-[ext_resource path="res://banner.png" type="Texture" id=4]
-[ext_resource path="res://fog.gdshader" type="Shader" id=5]
-[ext_resource path="res://levels/BlurLayer.gd" type="Script" id=6]
-[ext_resource path="res://gui/DebugFPS.tscn" type="PackedScene" id=7]
-
-[sub_resource type="ShaderMaterial" id=1]
-shader = ExtResource( 5 )
-shader_param/color = Vector3( 0.33, 0.29, 0.61 )
-shader_param/OCTAVES = 4
-
-[sub_resource type="Shader" id=2]
-code = "shader_type canvas_item;
-
-uniform float blur_amount : hint_range(0, 5);
-
-void fragment() {
-	COLOR = textureLod(SCREEN_TEXTURE, SCREEN_UV, blur_amount);
-}"
-
-[sub_resource type="ShaderMaterial" id=3]
-shader = SubResource( 2 )
-shader_param/blur_amount = 2.837
-
-[sub_resource type="Animation" id=4]
-resource_name = "blur"
-length = 5.0
-loop = true
-tracks/0/type = "value"
-tracks/0/path = NodePath(".:modulate")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/keys = {
-"times": PoolRealArray( 0, 0.8, 1.6, 2.6, 3.4, 4.2 ),
-"transitions": PoolRealArray( 1.41421, 1.41421, 1.41421, 1.41421, 1.41421, 1.41421 ),
-"update": 0,
-"values": [ Color( 1, 1, 1, 0 ), Color( 1, 1, 1, 1 ), Color( 1, 1, 1, 0 ), Color( 1, 1, 1, 0 ), Color( 1, 1, 1, 1 ), Color( 1, 1, 1, 0 ) ]
-}
 
 [node name="Game" type="Node2D" groups=["persist", "save"]]
 script = ExtResource( 1 )
@@ -49,38 +9,4 @@ __meta__ = {
 "_edit_horizontal_guides_": [  ]
 }
 
-[node name="Notifications" type="CanvasLayer" parent="."]
-
 [node name="1F_main_room" parent="." instance=ExtResource( 2 )]
-
-[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
-environment = ExtResource( 3 )
-
-[node name="Fog" type="ParallaxBackground" parent="."]
-layer = 1
-scroll_base_scale = Vector2( 1.25, 1.25 )
-
-[node name="FogLayer" type="ParallaxLayer" parent="Fog"]
-
-[node name="FogSprite" type="Sprite" parent="Fog/FogLayer"]
-material = SubResource( 1 )
-position = Vector2( 142.664, 73.2773 )
-scale = Vector2( 1.36856, 1.33884 )
-z_as_relative = false
-texture = ExtResource( 4 )
-
-[node name="BlurLayer" type="CanvasLayer" parent="."]
-script = ExtResource( 6 )
-
-[node name="BlurSprite" type="Sprite" parent="BlurLayer"]
-modulate = Color( 1, 1, 1, 0 )
-material = SubResource( 3 )
-position = Vector2( 166.52, 85.153 )
-scale = Vector2( 0.558786, 0.56 )
-texture = ExtResource( 4 )
-
-[node name="AnimationPlayer" type="AnimationPlayer" parent="BlurLayer/BlurSprite"]
-anims/blur = SubResource( 4 )
-
-[node name="DebugFPS" parent="." instance=ExtResource( 7 )]
-layer = 9

@@ -54,6 +54,8 @@ func _ready() -> void:
 	_error = $"/root/DialogueHandler".connect("player_unpause", self, "_on_player_unpaused")
 	_error = $"/root/DialogueHandler".connect("player_pause", self, "_on_player_paused")
 	_error = connect("player_look_dir_changed", $Lantern, "_on_player_look_dir_changed")
+	_error = Gui.inventory.connect("inventory_closed", self, "_on_InventoryGUI_inventory_closed")
+	_error = Gui.inventory.connect("inventory_opened", self, "_on_InventoryGUI_inventory_opened")
 
 	add_to_group("persist")
 
@@ -233,6 +235,7 @@ func _on_player_paused() -> void:
 func _on_InventoryGUI_inventory_closed() -> void:
 	can_move = true
 	can_look = true
+	print("move again")
 
 
 func _on_InventoryGUI_inventory_opened() -> void:
@@ -240,3 +243,4 @@ func _on_InventoryGUI_inventory_opened() -> void:
 	can_look = false
 	moving = false
 	move_dir = Vector2.ZERO
+	print("stop moving")

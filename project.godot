@@ -29,7 +29,12 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://classes/Item.gd"
 }, {
-"base": "Button",
+"base": "Resource",
+"class": "ItemResource",
+"language": "GDScript",
+"path": "res://classes/ItemResource.gd"
+}, {
+"base": "AspectRatioContainer",
 "class": "ItemSlot",
 "language": "GDScript",
 "path": "res://gui/inventory/item_slot/ItemSlot.gd"
@@ -54,6 +59,7 @@ _global_script_class_icons={
 "DialogueResource": "",
 "GameSave": "",
 "Item": "",
+"ItemResource": "",
 "ItemSlot": "",
 "Player": "",
 "StaticObject": "",
@@ -74,15 +80,14 @@ DialogueHandler="*res://singletons/DialogueHandler.gd"
 SaveGameHandler="*res://singletons/SaveGameHandler.gd"
 HpHandler="*res://singletons/HpHandler.gd"
 GlobalHandler="*res://singletons/globalHandler.gd"
+Gui="*res://gui/GUI.tscn"
 
 [display]
 
-window/size/width=320
-window/size/height=180
-window/size/test_width=640
-window/size/test_height=360
+window/size/width=1920
+window/size/height=1080
 window/vsync/use_vsync=false
-window/stretch/mode="viewport"
+window/stretch/mode="2d"
 window/stretch/aspect="keep"
 
 [global]

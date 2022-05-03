@@ -1,4 +1,4 @@
-extends Control
+extends AspectRatioContainer
 
 signal inventory_opened
 signal inventory_closed
@@ -7,10 +7,10 @@ const ITEM_SLOT = preload("res://gui/inventory/item_slot/ItemSlot.tscn")
 
 enum PAGES { NORMAL_ITEMS = 0, KEY_ITEMS = 1 }
 
-onready var KeyItemsPanel := $KeyItemPanel
-onready var NormalItemsPanel := $NormalItemPanel
-onready var KeyItemsContainer := $KeyItemPanel/ScrollContainer/VBoxContainer
-onready var NormalItemsContainer := $NormalItemPanel/ScrollContainer/VBoxContainer
+onready var KeyItemsPanel := $PanelContainer/MarginContainer/KeyItems
+onready var NormalItemsPanel := $PanelContainer/MarginContainer/NormalItems
+onready var KeyItemsContainer := KeyItemsPanel.get_node("ScrollContainer/VBoxContainer")
+onready var NormalItemsContainer := NormalItemsPanel.get_node("ScrollContainer/VBoxContainer")
 
 export var player_path: NodePath
 
@@ -72,10 +72,11 @@ func populate_inventory() -> void:
 	for item in InventoryHandler.inventory[int(!current_page)]:
 		var item_slot = ITEM_SLOT.instance()
 		item_slot.visible = true
-		item_slot.set_name(item.item_name)
+		item_slot.set_name(item.name)
 		item_slot.add_to_group("ItemSlot")
-		item_slot.set_item(item)
 		container.call_deferred("add_child", item_slot)
+		yield(item_slot, "ready")
+		item_slot.set_item(item)
 
 
 func refresh_inventory() -> void:

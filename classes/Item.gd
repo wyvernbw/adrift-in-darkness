@@ -2,17 +2,15 @@ extends Object
 class_name Item
 
 var texture: Texture
-var item_name: String
+var name: String
 var quantity: int
-var item_type: int
+var type: int = -1
 
-enum ITEM_TYPES { INVALID_ITEM = -1, KEY_ITEM = 0, NORMAL_ITEM = 1 }
+enum ITEM_TYPES { KEY_ITEM = 0, NORMAL_ITEM = 1 }
 
 
-func _init(_item_name, _quantity, _texture, _item_type) -> void:
-	if _item_name.empty() or not _quantity or not _texture:
-		return
-	item_name = _item_name
+func _init(_item_name := "", _quantity := 0, _texture = null, _item_type := -1) -> void:
+	name = _item_name
 	quantity = _quantity
 	texture = _texture
-	item_type = _item_type
+	type = _item_type

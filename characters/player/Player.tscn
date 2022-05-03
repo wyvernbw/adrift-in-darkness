@@ -1,4 +1,4 @@
-[gd_scene load_steps=27 format=2]
+[gd_scene load_steps=25 format=2]
 
 [ext_resource path="res://characters/player/Player.gd" type="Script" id=1]
 [ext_resource path="res://classes/DialogueResource.gd" type="Script" id=2]
@@ -13,16 +13,12 @@
 [ext_resource path="res://tilesets/blood/blood1.png" type="Texture" id=49]
 [ext_resource path="res://characters/player/occluder_polygon_side.tres" type="OccluderPolygon2D" id=50]
 [ext_resource path="res://characters/player/lantern_light2d_mask.png" type="Texture" id=51]
-[ext_resource path="res://characters/player/light_mask2d.png" type="Texture" id=52]
 
 [sub_resource type="Resource" id=3]
 script = ExtResource( 2 )
 text = [ "page 1 example" ]
 answers = {
 }
-item_name = ""
-item_quantity = 0
-item_type = 0
 read_box_text = ""
 
 [sub_resource type="Resource" id=4]
@@ -30,9 +26,6 @@ script = ExtResource( 2 )
 text = [ "page 1 example" ]
 answers = {
 }
-item_name = ""
-item_quantity = 0
-item_type = 0
 read_box_text = ""
 
 [sub_resource type="Resource" id=5]
@@ -40,13 +33,7 @@ script = ExtResource( 2 )
 text = [ "page 1 example" ]
 answers = {
 }
-item_name = ""
-item_quantity = 0
-item_type = 0
 read_box_text = ""
-
-[sub_resource type="CanvasItemMaterial" id=52]
-blend_mode = 3
 
 [sub_resource type="CanvasItemMaterial" id=6]
 
@@ -163,21 +150,6 @@ sprint_step_interval = 0.5
 stop_bleeding_dialogue = SubResource( 3 )
 cant_use_bandages_dialogue = SubResource( 4 )
 bleeding_stopped_dialogue = SubResource( 5 )
-
-[node name="LightMaskLayer" type="CanvasLayer" parent="."]
-layer = 2
-
-[node name="TextureRect" type="TextureRect" parent="LightMaskLayer"]
-material = SubResource( 52 )
-anchor_right = 1.0
-anchor_bottom = 1.0
-rect_pivot_offset = Vector2( 160, 90 )
-texture = ExtResource( 52 )
-expand = true
-stretch_mode = 7
-__meta__ = {
-"_edit_use_anchors_": false
-}
 
 [node name="shadow" type="Sprite" parent="."]
 modulate = Color( 1, 1, 1, 0.152941 )

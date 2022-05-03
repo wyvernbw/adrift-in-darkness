@@ -20,7 +20,6 @@ var dialogue_branch: int = 0
 var dialogue_open: bool = false
 var dialogue_branching: bool = false
 var page_index: int = -1
-var item_held: Item
 var SAVE_KEY: String = "DialogueHandler"
 var dialogue: Resource setget set_dialogue
 var text_template: String = "[center] %s [/center]"
@@ -42,17 +41,11 @@ func set_dialogue(new_dialogue: DialogueResource) -> void:
 		return
 	dialogue = new_dialogue
 	dialogue_open = true
-	emit_signal("player_pause")
-	if dialogue.item_name.empty() or not dialogue.item_quantity or not dialogue.item_texture:
-		return
-	item_held = Item.new(
-		dialogue.item_name,
-		dialogue.item_quantity,
-		dialogue.item_texture,
-		dialogue.item_type
-	)
-	InventoryHandler.add_item(item_held)
-	dialogue.expend_item()
+	if dialogue.item_held:
+		var item = dialogue.item_held.get_item()
+		print(item.name)
+		InventoryHandler.add_item(item)
+		dialogue.expend_item()
 
 
 func start_dialogue(new_dialogue: DialogueResource) -> void:

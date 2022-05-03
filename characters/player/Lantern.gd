@@ -81,13 +81,13 @@ func _process(delta: float) -> void:
 
 
 func _on_item_used(item) -> void:
-	if item.item_name == "Lantern":
+	if item.name == "Lantern":
 		if lantern_toggled:
 			lantern_toggled = false
 		else:
 			lantern_toggled = true
 		GlobalHandler.lantern_toggled = self.lantern_toggled
-	elif item.item_name == "Oil":
+	elif item.name == "Oil":
 		fuel = MAX_FUEL
 		GlobalHandler.lantern_ran_out = false
 		$awno.play("awcrap")

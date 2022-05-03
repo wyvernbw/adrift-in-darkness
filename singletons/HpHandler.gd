@@ -113,7 +113,7 @@ func calculate_blood_loss() -> void:
 
 
 func _on_item_used(item : Item) -> void:
-	if item.item_name == "Bandages":
+	if item.name == "Bandages":
 		DialogueHandler.start_dialogue(player.bleeding_stopped_dialogue)
 		using_bandages = true
 

@@ -20,21 +20,19 @@ func _ready() -> void:
 
 func _send_notification(item: Item) -> void:
 	var item_notification = notification.instance()
-	get_node("../Game/Notifications").add_child(item_notification)
+	Gui.add_child(item_notification)
 	item_notification.item = item
 
 
-func add_item(item: Item, notify := true) -> void:
+func add_item(item, notify := true) -> void:
+	print(str(item.name) + " : " + str(item.quantity))
 	if not item:
 		return
-	if item.item_type == Item.ITEM_TYPES.INVALID_ITEM:
-		return
-	print(str(item["item_name"]) + " : " + str(item.quantity))
 	var item_index = get_item(item)
 	if item_index != -1:
-		inventory[item.item_type][item_index].quantity += item.quantity
+		inventory[item.type][item_index].quantity += item.quantity
 	else:
-		inventory[item.item_type].append(item)
+		inventory[item.type].append(item)
 	emit_signal("inventory_changed")
 	if notify:
 		_send_notification(item)
@@ -46,7 +44,7 @@ func get_item(item: Item) -> int:
 	for type in Item.ITEM_TYPES:
 		var items = inventory[Item.ITEM_TYPES[type]]
 		for iter in range(0, items.size()):
-			if item.item_name == items[iter].item_name:
+			if item.name == items[iter].name:
 				return iter
 	return -1
 
@@ -55,8 +53,8 @@ func subtract_item(item: Item, amount: int) -> void:
 	var item_index = get_item(item)
 	if item_index == -1:
 		return
-	inventory[item.item_type][item_index].quantity -= amount
-	if inventory[item.item_type][item_index].quantity <= 0:
+	inventory[item.type][item_index].quantity -= amount
+	if inventory[item.type][item_index].quantity <= 0:
 		inventory.erase(item)
 	emit_signal("inventory_changed")
 
@@ -76,13 +74,13 @@ func save() -> Dictionary:
 	#save_dict["normal_items"] = normal_items.duplicate()
 	for type in Item.ITEM_TYPES:
 		#save_dict["inventory"].append(inventory[Item.ITEM_TYPES[type]])
-		for item in inventory[Item.ITEM_TYPES[type]]:
+		for item in inventory[type]:
 			var item_dict: Dictionary
-			item_dict["item_name"] = item.item_name
+			item_dict["name"] = item.name
 			item_dict["texture"] = item.texture
 			item_dict["quantity"] = item.quantity
-			item_dict["item_type"] = item.item_type
-			save_dict["inventory"][Item.ITEM_TYPES[type]].append(item_dict)
+			item_dict["item_type"] = item.type
+			save_dict["inventory"][type].append(item_dict)
 	return save_dict
 
 
@@ -94,9 +92,9 @@ func load(save: Dictionary) -> void:
 	inventory[0].clear()
 	inventory[1].clear()
 	for type in Item.ITEM_TYPES:
-		for item_dict in save["inventory"][Item.ITEM_TYPES[type]]:
+		for item_dict in save["inventory"][type]:
 			var item: Item = Item.new(
-				item_dict["item_name"],
+				item_dict["name"],
 				item_dict["quantity"],
 				item_dict["texture"],
 				item_dict["item_type"]

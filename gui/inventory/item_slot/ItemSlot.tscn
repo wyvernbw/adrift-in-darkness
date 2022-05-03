@@ -1,45 +1,59 @@
-[gd_scene load_steps=9 format=2]
+[gd_scene load_steps=7 format=2]
 
 [ext_resource path="res://gui/inventory/item_slot/ItemSlotFocus.tres" type="StyleBox" id=1]
 [ext_resource path="res://gui/inventory/item_slot/ItemSlotNormal.tres" type="StyleBox" id=2]
 [ext_resource path="res://gui/inventory/item_slot/ItemSlot.gd" type="Script" id=3]
 [ext_resource path="res://items/bottle_of_poison.png" type="Texture" id=4]
-[ext_resource path="res://gui/main_menu/roboto_mono.tres" type="DynamicFont" id=5]
-[ext_resource path="res://fonts/PatrickHandSC-Regular.ttf" type="DynamicFontData" id=6]
+[ext_resource path="res://gui/menu_font.tres" type="DynamicFont" id=5]
 [ext_resource path="res://gui/inventory/item_slot/ItemSlotPressed.tres" type="StyleBox" id=7]
 
-[sub_resource type="DynamicFont" id=1]
-size = 8
-font_data = ExtResource( 6 )
-
-[node name="ItemSlot" type="Button" groups=["ItemSlot"]]
-margin_right = 112.0
-margin_bottom = 16.0
+[node name="ItemSlot" type="AspectRatioContainer" groups=["ItemSlot"]]
+margin_right = 369.0
+margin_bottom = 85.0
+focus_mode = 2
 mouse_filter = 2
-custom_styles/pressed = ExtResource( 7 )
-custom_styles/focus = ExtResource( 1 )
-custom_styles/normal = ExtResource( 2 )
-button_mask = 0
+ratio = 7.0
 script = ExtResource( 3 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="HBoxContainer" type="HBoxContainer" parent="."]
-anchor_right = 1.0
-margin_top = -2.0
-margin_bottom = 13.0
+[node name="Button" type="Button" parent="."]
+margin_top = 16.1429
+margin_right = 369.0
+margin_bottom = 68.8571
+custom_styles/pressed = ExtResource( 7 )
+custom_styles/focus = ExtResource( 1 )
+custom_styles/normal = ExtResource( 2 )
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+margin_right = 369.0
+margin_bottom = 85.0
+custom_constants/margin_right = 64
+custom_constants/margin_left = 64
+custom_constants/margin_bottom = 8
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer"]
+margin_left = 64.0
+margin_right = 305.0
+margin_bottom = 77.0
 rect_clip_content = true
+size_flags_horizontal = 3
+size_flags_vertical = 3
 custom_constants/separation = 4
 alignment = 1
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="Name" type="Label" parent="HBoxContainer"]
-margin_left = 29.0
-margin_right = 46.0
-margin_bottom = 15.0
+[node name="Name" type="Label" parent="MarginContainer/HBoxContainer"]
+margin_right = 98.0
+margin_bottom = 77.0
+size_flags_horizontal = 11
+size_flags_vertical = 3
 custom_colors/font_color = Color( 0.105882, 0.105882, 0.188235, 1 )
 custom_fonts/font = ExtResource( 5 )
 text = "name"
@@ -48,26 +62,28 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="Icon" type="TextureRect" parent="HBoxContainer"]
-margin_left = 50.0
-margin_right = 66.0
-margin_bottom = 16.0
+[node name="Icon" type="TextureRect" parent="MarginContainer/HBoxContainer"]
+margin_left = 102.0
+margin_right = 147.0
+margin_bottom = 77.0
 rect_pivot_offset = Vector2( 16, 8 )
-rect_clip_content = true
-size_flags_horizontal = 4
-size_flags_vertical = 12
+size_flags_horizontal = 3
+size_flags_vertical = 3
 texture = ExtResource( 4 )
+expand = true
+stretch_mode = 6
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="Quantity" type="Label" parent="HBoxContainer"]
-margin_left = 70.0
-margin_top = 2.0
-margin_right = 83.0
-margin_bottom = 14.0
+[node name="Quantity" type="Label" parent="MarginContainer/HBoxContainer"]
+margin_left = 151.0
+margin_right = 241.0
+margin_bottom = 77.0
 rect_pivot_offset = Vector2( 8, 8 )
-custom_fonts/font = SubResource( 1 )
+size_flags_horizontal = 2
+size_flags_vertical = 3
+custom_fonts/font = ExtResource( 5 )
 text = "x 69"
 align = 1
 valign = 1
@@ -76,4 +92,5 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[connection signal="pressed" from="." to="." method="_on_ItemSlot_pressed"]
+[connection signal="focus_entered" from="." to="." method="_on_ItemSlot_focus_entered"]
+[connection signal="pressed" from="Button" to="." method="_on_Button_pressed"]

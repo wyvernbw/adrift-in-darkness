@@ -7,7 +7,4 @@ script = ExtResource( 2 )
 text = [ "page 1 example" ]
 answers = {
 }
-item_name = ""
-item_quantity = 0
-item_type = 0
 read_box_text = ""

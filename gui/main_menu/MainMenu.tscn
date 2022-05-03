@@ -6,12 +6,13 @@
 [ext_resource path="res://characters/player/light_mask2d_v2.0.png" type="Texture" id=4]
 [ext_resource path="res://gui/main_menu/adrift_in_darkness_cover.png" type="Texture" id=6]
 
-[sub_resource type="DynamicFont" id=1]
-font_data = ExtResource( 3 )
-
 [sub_resource type="CanvasItemMaterial" id=2]
 blend_mode = 3
 light_mode = 1
+
+[sub_resource type="DynamicFont" id=1]
+size = 96
+font_data = ExtResource( 3 )
 
 [node name="MainMenu" type="Control"]
 anchor_right = 1.0
@@ -25,39 +26,14 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 option_keys = [ "New Game", "Load", "Settings", "Quit" ]
-option_scenes = [ "res://levels/Game.tscn", "res://gui/main_menu/Load.tscn", "res://gui/main_menu/Settings.tscn", "res://gui/main_menu/Quit.tscn" ]
-
-[node name="VBoxContainer" type="VBoxContainer" parent="."]
-anchor_left = 0.5
-anchor_right = 0.5
-anchor_bottom = 1.0
-margin_top = 48.0
-grow_horizontal = 2
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
-[node name="Title" type="Label" parent="."]
-anchor_left = 0.5
-anchor_right = 0.5
-margin_left = -126.0
-margin_right = 126.0
-margin_bottom = 33.0
-custom_fonts/font = SubResource( 1 )
-text = "Adrift in Darkness"
-align = 1
-valign = 1
-uppercase = true
-__meta__ = {
-"_edit_use_anchors_": false
-}
+option_scenes = [ "res://World.tscn", "res://gui/main_menu/Load.tscn", "res://gui/main_menu/Settings.tscn", "res://gui/main_menu/Quit.tscn" ]
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 
 [node name="light_mask2d_v20" type="Sprite" parent="CanvasLayer"]
 material = SubResource( 2 )
-position = Vector2( 160, 80 )
-scale = Vector2( 2.16, 1.72 )
+position = Vector2( 960.244, 543.936 )
+scale = Vector2( 11.247, 8.413 )
 texture = ExtResource( 4 )
 
 [node name="Light2D" type="Light2D" parent="CanvasLayer"]
@@ -76,3 +52,41 @@ position = Vector2( 112.813, 73.8069 )
 scale = Vector2( 0.119999, 0.119999 )
 z_index = -1
 texture = ExtResource( 6 )
+
+[node name="VBoxContainer2" type="VBoxContainer" parent="."]
+anchor_left = 0.5
+anchor_right = 0.5
+anchor_bottom = 1.0
+margin_left = -522.0
+margin_top = 164.0
+margin_right = 522.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Title" type="Label" parent="VBoxContainer2"]
+margin_right = 1044.0
+margin_bottom = 128.0
+custom_fonts/font = SubResource( 1 )
+text = "Adrift in Darkness"
+align = 1
+valign = 1
+uppercase = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="MarginContainer" type="MarginContainer" parent="VBoxContainer2"]
+margin_top = 132.0
+margin_right = 1044.0
+margin_bottom = 132.0
+custom_constants/margin_right = 384
+custom_constants/margin_left = 384
+
+[node name="VBoxContainer" type="VBoxContainer" parent="VBoxContainer2/MarginContainer"]
+margin_left = 384.0
+margin_right = 660.0
+grow_horizontal = 2
+__meta__ = {
+"_edit_use_anchors_": false
+}

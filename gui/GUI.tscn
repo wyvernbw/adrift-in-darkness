@@ -1,0 +1,9 @@
+[gd_scene load_steps=3 format=2]
+
+[ext_resource path="res://gui/inventory/Inventory.tscn" type="PackedScene" id=1]
+[ext_resource path="res://gui/GUI.gd" type="Script" id=2]
+
+[node name="GUI" type="CanvasLayer"]
+script = ExtResource( 2 )
+
+[node name="InventoryGUI" parent="." instance=ExtResource( 1 )]
