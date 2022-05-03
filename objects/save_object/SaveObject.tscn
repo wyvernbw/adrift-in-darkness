@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=2]
+[gd_scene load_steps=10 format=2]
 
 [ext_resource path="res://objects/save_object/SaveObject.gd" type="Script" id=1]
 [ext_resource path="res://tilesets/house/flower_vase_save.png" type="Texture" id=2]
@@ -11,6 +11,10 @@ extents = Vector2( 8, 2.5 )
 [sub_resource type="RectangleShape2D" id=2]
 extents = Vector2( 16, 16 )
 
+[sub_resource type="DynamicFont" id=4]
+size = 12
+font_data = ExtResource( 4 )
+
 [sub_resource type="StyleBoxFlat" id=5]
 bg_color = Color( 0, 0, 0, 0.227451 )
 corner_radius_top_left = 2
@@ -18,9 +22,8 @@ corner_radius_top_right = 2
 corner_radius_bottom_right = 2
 corner_radius_bottom_left = 2
 
-[sub_resource type="DynamicFont" id=4]
-size = 12
-font_data = ExtResource( 4 )
+[sub_resource type="CanvasItemMaterial" id=6]
+blend_mode = 1
 
 [node name="SaveObject" type="StaticBody2D"]
 script = ExtResource( 1 )
@@ -53,8 +56,8 @@ visible = false
 margin_top = 168.0
 margin_right = 120.0
 margin_bottom = 185.0
-custom_styles/normal = SubResource( 5 )
 custom_fonts/font = SubResource( 4 )
+custom_styles/normal = SubResource( 5 )
 text = " - progress saved"
 __meta__ = {
 "_edit_use_anchors_": false
@@ -68,6 +71,9 @@ one_shot = true
 pause_mode = 1
 position = Vector2( 0, 0 )
 script = null
+
+[node name="Illumination" type="Sprite" parent="."]
+material = SubResource( 6 )
 
 [connection signal="body_entered" from="InteractionArea" to="." method="_on_InteractionArea_body_entered"]
 [connection signal="body_exited" from="InteractionArea" to="." method="_on_InteractionArea_body_exited"]

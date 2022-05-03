@@ -79,7 +79,7 @@ InventoryHandler="*res://singletons/InventoryHandler.gd"
 DialogueHandler="*res://singletons/DialogueHandler.gd"
 SaveGameHandler="*res://singletons/SaveGameHandler.gd"
 HpHandler="*res://singletons/HpHandler.gd"
-GlobalHandler="*res://singletons/globalHandler.gd"
+GlobalHandler="*res://Globals.tscn"
 Gui="*res://gui/GUI.tscn"
 
 [display]

@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=2]
+[gd_scene load_steps=9 format=2]
 
 [ext_resource path="res://objects/StaticObject.gd" type="Script" id=1]
 [ext_resource path="res://objects/kitchen_table/kitchen_table.png" type="Texture" id=2]
@@ -16,6 +16,9 @@ polygon = PoolVector2Array( -8, -11, 24, -11, 24, 8, -8, 8 )
 
 [sub_resource type="CanvasItemMaterial" id=4]
 blend_mode = 3
+
+[sub_resource type="CanvasItemMaterial" id=5]
+blend_mode = 1
 
 [node name="Kitchen_table" type="StaticBody2D"]
 position = Vector2( 8, 8 )
@@ -61,6 +64,9 @@ polygon = PoolVector2Array( -7.77465, -7.88452, 23, -8, 23, 8, -8, 8 )
 __meta__ = {
 "_editor_description_": ""
 }
+
+[node name="Illumination" type="Sprite" parent="."]
+material = SubResource( 5 )
 
 [connection signal="body_entered" from="InteractionArea" to="." method="_on_InteractionArea_body_entered"]
 [connection signal="body_exited" from="InteractionArea" to="." method="_on_InteractionArea_body_exited"]

@@ -1,7 +1,10 @@
-[gd_scene load_steps=3 format=2]
+[gd_scene load_steps=4 format=2]
 
 [ext_resource path="res://objects/door/door_unlocked.wav" type="AudioStream" id=1]
 [ext_resource path="res://objects/sound_area/SoundArea.gd" type="Script" id=2]
+
+[sub_resource type="CanvasItemMaterial" id=1]
+blend_mode = 1
 
 [node name="SoundArea" type="Area2D"]
 script = ExtResource( 2 )
@@ -14,6 +17,9 @@ attenuation = 0.554785
 
 [node name="PauseTimer" type="Timer" parent="."]
 one_shot = true
+
+[node name="Illumination" type="Sprite" parent="."]
+material = SubResource( 1 )
 
 [connection signal="body_entered" from="." to="." method="_on_SoundArea_body_entered"]
 [connection signal="timeout" from="PauseTimer" to="." method="_on_PauseTimer_timeout"]

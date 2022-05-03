@@ -1,10 +1,13 @@
-[gd_scene load_steps=8 format=2]
+[gd_scene load_steps=9 format=2]
 
 [ext_resource path="res://objects/StaticObject.gd" type="Script" id=1]
 [ext_resource path="res://fonts/RobotoMono_VariableFont_wght.ttf" type="DynamicFontData" id=2]
 
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 8, 3 )
+
+[sub_resource type="CanvasItemMaterial" id=6]
+blend_mode = 1
 
 [sub_resource type="RectangleShape2D" id=2]
 extents = Vector2( 16, 16 )
@@ -32,6 +35,9 @@ shape = SubResource( 1 )
 one_way_collision_margin = 0.0
 
 [node name="Texture" type="Sprite" parent="."]
+
+[node name="Illumination" type="Sprite" parent="."]
+material = SubResource( 6 )
 
 [node name="InteractionArea" type="Area2D" parent="."]
 collision_mask = 2

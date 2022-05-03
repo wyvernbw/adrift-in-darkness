@@ -6,6 +6,7 @@ export var bloodstainsMainHall: bool = false
 export var global_light: float = 0.1
 export var captions_enabled: bool = true
 export var captions_duration: float = 1.5  # seconds
+export var global_object_illumination: Color
 
 var left_arm: bool = true
 var do_static_effect: bool = true

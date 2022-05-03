@@ -7,6 +7,8 @@ signal player_interacted(res)
 const INTERACT_DELAY: float = 0.050  # 50 ms
 
 onready var InteractionArea = $InteractionArea
+onready var illumination := $Illumination
+onready var object_sprite := $Texture
 
 export var dialogue: Resource
 
@@ -32,6 +34,8 @@ func _ready() -> void:
 	add_to_group("save")
 	if dialogue == null:
 		GlobalHandler.Player.LookRaycast.add_exception(self)
+	illumination.texture = object_sprite.texture
+	illumination.modulate = GlobalHandler.global_object_illumination
 
 
 func _input(event: InputEvent) -> void:

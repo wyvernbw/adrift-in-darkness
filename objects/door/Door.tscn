@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=2]
+[gd_scene load_steps=11 format=2]
 
 [ext_resource path="res://objects/door/Door.gd" type="Script" id=1]
 [ext_resource path="res://objects/door/fade out.tres" type="Animation" id=2]
@@ -13,6 +13,9 @@ extents = Vector2( 8, 4 )
 
 [sub_resource type="GradientTexture" id=2]
 width = 22
+
+[sub_resource type="CanvasItemMaterial" id=3]
+blend_mode = 1
 
 [node name="Door" type="Area2D"]
 collision_layer = 16
@@ -54,6 +57,12 @@ volume_db = -16.0
 [node name="Locked" type="AudioStreamPlayer2D" parent="Sounds"]
 stream = ExtResource( 5 )
 volume_db = -16.0
+
+[node name="Illumination" type="Sprite" parent="."]
+material = SubResource( 3 )
+position = Vector2( 0, 4 )
+scale = Vector2( 1, 0.75 )
+texture = ExtResource( 4 )
 
 [node name="Sprite" type="Sprite" parent="."]
 position = Vector2( 0, 4 )

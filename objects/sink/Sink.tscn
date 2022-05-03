@@ -6,10 +6,6 @@
 [ext_resource path="res://objects/sink/Sink.tres" type="Resource" id=4]
 [ext_resource path="res://objects/sink/sink_normal.png" type="Texture" id=5]
 
-[sub_resource type="OccluderPolygon2D" id=1]
-cull_mode = 1
-polygon = PoolVector2Array( -7.96659, -3.98537, -2.07333, -4.05158, -2.07333, -7.95835, 2.03209, -7.95835, 2.09831, -3.98537, 7.99157, -3.98537, 8.05779, 6.07953, -8.03281, 6.07953 )
-
 [sub_resource type="Animation" id=19]
 resource_name = "fade"
 tracks/0/type = "value"
@@ -25,6 +21,10 @@ tracks/0/keys = {
 "values": [ Color( 1, 1, 1, 1 ), Color( 1, 1, 1, 0 ) ]
 }
 
+[sub_resource type="OccluderPolygon2D" id=1]
+cull_mode = 1
+polygon = PoolVector2Array( -7.96659, -3.98537, -2.07333, -4.05158, -2.07333, -7.95835, 2.03209, -7.95835, 2.09831, -3.98537, 7.99157, -3.98537, 8.05779, 6.07953, -8.03281, 6.07953 )
+
 [node name="Sink" instance=ExtResource( 1 )]
 script = ExtResource( 3 )
 dialogue = ExtResource( 4 )
@@ -37,9 +37,6 @@ position = Vector2( 0, 8 )
 normal_map = ExtResource( 5 )
 hframes = 16
 frame = 1
-
-[node name="LightOccluder2D" parent="." index="3"]
-occluder = SubResource( 1 )
 
 [node name="AnimatedSprite" type="AnimatedSprite" parent="." index="4"]
 position = Vector2( 0, 8 )
@@ -57,6 +54,9 @@ polygon = PoolVector2Array( -0.935425, -0.228622, 257.159, 0.478485, 256.451, 19
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="CanvasLayer/Polygon2D" index="0"]
 anims/fade = SubResource( 19 )
+
+[node name="LightOccluder2D" parent="." index="6"]
+occluder = SubResource( 1 )
 
 [connection signal="animation_finished" from="AnimatedSprite" to="." method="_on_AnimatedSprite_animation_finished"]
 [connection signal="animation_finished" from="CanvasLayer/Polygon2D/AnimationPlayer" to="." method="_on_AnimationPlayer_animation_finished"]
