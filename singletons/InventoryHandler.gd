@@ -72,7 +72,7 @@ func save() -> Dictionary:
 	save_dict["inventory"].append(normal_items)
 	#save_dict["key_items"] = key_items.duplicate()
 	#save_dict["normal_items"] = normal_items.duplicate()
-	for type in Item.ITEM_TYPES:
+	for type in Item.ITEM_TYPES.values():
 		#save_dict["inventory"].append(inventory[Item.ITEM_TYPES[type]])
 		for item in inventory[type]:
 			var item_dict: Dictionary
@@ -91,7 +91,7 @@ func load(save: Dictionary) -> void:
 	#normal_items = save["normal_items"].duplicate()
 	inventory[0].clear()
 	inventory[1].clear()
-	for type in Item.ITEM_TYPES:
+	for type in Item.ITEM_TYPES.values():
 		for item_dict in save["inventory"][type]:
 			var item: Item = Item.new(
 				item_dict["name"],

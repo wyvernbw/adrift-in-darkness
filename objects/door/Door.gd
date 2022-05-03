@@ -28,9 +28,7 @@ export var required_look_dir: Vector2
 
 func _ready() -> void:
 	# get nodes
-	var game_node = get_node("/root/Game")
-	inventory_gui = get_node(inventory_gui_path)
-	player_node = get_node(player_path)
+	var game_node = owner.get_parent()
 
 	connect("player_entered", game_node, "_on_Door_player_entered")
 	DialogueHandler.connect("dialogue_box_removed", self, "_on_dialogue_box_removed")
@@ -47,17 +45,16 @@ func _ready() -> void:
 
 func _process(_delta: float) -> void:
 	var interact = Input.is_action_just_pressed("interact")
+	var player = GlobalHandler.Player
 
 	# things that prevent the player from opening the door
 	if not can_interact:
 		return
 	if DialogueHandler.dialogue_open:
 		return
-	if not inventory_gui:
+	if Gui.inventory.visible:
 		return
-	if inventory_gui.visible:
-		return
-	if not player_node.look_dir == required_look_dir:
+	if not player.look_dir == required_look_dir:
 		player_is_looking = false
 		return
 	else:
@@ -104,7 +101,7 @@ func _on_Door_body_exited(body: Node) -> void:
 
 func _on_Open_finished():
 	emit_signal("player_entered", scene_name)
-	inventory_gui.refresh_inventory()
+	Gui.inventory.refresh_inventory()
 	$CanvasLayer/Sprite/AnimationPlayer.play("fade out")
 	can_interact = true
 
