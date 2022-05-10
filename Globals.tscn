@@ -4,4 +4,4 @@
 
 [node name="Globals" type="Node"]
 script = ExtResource( 1 )
-global_object_illumination = Color( 1, 1, 1, 0.2 )
+global_object_illumination = Color( 1, 1, 1, 0.0431373 )

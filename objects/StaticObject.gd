@@ -10,6 +10,7 @@ onready var InteractionArea = $InteractionArea
 onready var illumination := $Illumination
 onready var object_sprite := $Texture
 
+export var has_dialogue: bool = true 
 export var dialogue: Resource
 
 var delay: float = 0
@@ -39,6 +40,8 @@ func _ready() -> void:
 
 
 func _input(event: InputEvent) -> void:
+	if not has_dialogue:
+		return
 	if not GlobalHandler.Player.LookRaycast.get_collider() == InteractionArea:
 		player_is_looking = false
 		return

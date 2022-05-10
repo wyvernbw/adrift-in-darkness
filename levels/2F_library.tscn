@@ -1,0 +1,82 @@
+[gd_scene load_steps=8 format=2]
+
+[ext_resource path="res://levels/base_level.tscn" type="PackedScene" id=1]
+[ext_resource path="res://tilesets/house/paper.png" type="Texture" id=2]
+[ext_resource path="res://objects/table/TableCovered.tscn" type="PackedScene" id=3]
+[ext_resource path="res://objects/bookshelf/Bookshelf.tscn" type="PackedScene" id=4]
+[ext_resource path="res://objects/door/Door.tscn" type="PackedScene" id=5]
+
+[sub_resource type="Shader" id=1]
+code = "shader_type canvas_item;
+
+void fragment() {
+	vec4 pixel = texture(TEXTURE, UV);
+	float average = (pixel.r + pixel.g + pixel.b) / 3.0;
+	pixel.rgb = vec3(average);
+	COLOR = pixel;
+}"
+
+[sub_resource type="ShaderMaterial" id=2]
+shader = SubResource( 1 )
+
+[node name="2F_library" instance=ExtResource( 1 )]
+
+[node name="Player" parent="." index="0"]
+position = Vector2( 73.8334, 132.7 )
+
+[node name="HouseF1" parent="." index="2"]
+tile_data = PoolIntArray( 262142, 6, 0, 262143, 6, 0, 196608, 6, 0, 196609, 6, 0, 196610, 6, 0, 196611, 6, 0, 196612, 6, 0, 196613, 6, 0, 196614, 6, 0, 196615, 6, 0, 196616, 6, 0, 196617, 6, 0, 196618, 6, 0, 327678, 6, 0, 327679, 9, 0, 262144, 14, 0, 262145, 14, 0, 262146, 14, 0, 262147, 14, 0, 262148, 14, 0, 262149, 14, 0, 262150, 14, 0, 262151, 14, 0, 262152, 14, 0, 262153, 2, 0, 262154, 6, 0, 393213, 6, 0, 393214, 6, 0, 393215, 5, 0, 327680, 18, 0, 327681, 18, 0, 327682, 18, 0, 327683, 18, 0, 327684, 18, 0, 327685, 18, 0, 327686, 18, 0, 327687, 18, 0, 327688, 18, 0, 327689, 3, 0, 327690, 6, 0, 327691, 6, 0, 458749, 6, 0, 458750, 9, 0, 458751, 12, 0, 393216, 18, 0, 393217, 18, 0, 393218, 18, 0, 393219, 18, 0, 393220, 18, 0, 393221, 18, 0, 393222, 18, 0, 393223, 18, 0, 393224, 18, 0, 393225, 11, 0, 393226, 2, 0, 393227, 6, 0, 524285, 6, 0, 524286, 5, 0, 524287, 15, 0, 458752, 17, 0, 458753, 17, 0, 458754, 17, 0, 458755, 17, 0, 458756, 17, 0, 458757, 17, 0, 458758, 17, 0, 458759, 17, 0, 458760, 17, 0, 458761, 15, 0, 458762, 3, 0, 458763, 6, 0, 589821, 6, 0, 589822, 8, 0, 589823, 13, 0, 524288, 1, 0, 524289, 1, 0, 524290, 1, 0, 524291, 1, 0, 524292, 1, 0, 524293, 1, 0, 524294, 1, 0, 524295, 1, 0, 524296, 1, 0, 524297, 10, 0, 524298, 7, 0, 524299, 6, 0, 655357, 6, 0, 655358, 6, 0, 655359, 5, 0, 589824, 1, 0, 589825, 1, 0, 589826, 1, 0, 589827, 1, 0, 589828, 1, 0, 589829, 1, 0, 589830, 1, 0, 589831, 1, 0, 589832, 1, 0, 589833, 3, 0, 589834, 6, 0, 589835, 6, 0, 720894, 6, 0, 720895, 8, 0, 655360, 4, 0, 655361, 4, 0, 655362, 4, 0, 655363, 4, 0, 655364, 4, 0, 655365, 4, 0, 655366, 4, 0, 655367, 4, 0, 655368, 4, 0, 655369, 7, 0, 655370, 6, 0, 786430, 6, 0, 786431, 6, 0, 720896, 6, 0, 720897, 6, 0, 720898, 6, 0, 720899, 6, 0, 720900, 6, 0, 720901, 6, 0, 720902, 6, 0, 720903, 6, 0, 720904, 6, 0, 720905, 6, 0, 720906, 6, 0 )
+
+[node name="Rug" parent="." index="4"]
+tile_data = PoolIntArray( 524289, 6, 0, 524290, 2, 0, 524291, 2, 0, 524292, 2, 0, 524293, 2, 0, 524294, 2, 0, 524295, 7, 0, 589825, 5, 0, 589826, 0, 0, 589827, 0, 0, 589828, 1, 0, 589829, 0, 0, 589830, 0, 0, 589831, 3, 0 )
+
+[node name="Papers" type="Node2D" parent="." index="7"]
+
+[node name="Paper" type="Sprite" parent="Papers" index="0"]
+material = SubResource( 2 )
+position = Vector2( 16.0153, 135.799 )
+rotation = 0.166414
+texture = ExtResource( 2 )
+
+[node name="Paper2" type="Sprite" parent="Papers" index="1"]
+material = SubResource( 2 )
+position = Vector2( 9.33773, 148.651 )
+rotation = 0.671302
+texture = ExtResource( 2 )
+
+[node name="Paper3" type="Sprite" parent="Papers" index="2"]
+material = SubResource( 2 )
+position = Vector2( 27.3546, 146.635 )
+rotation = 1.5632
+texture = ExtResource( 2 )
+
+[node name="Paper4" type="Sprite" parent="Papers" index="3"]
+material = SubResource( 2 )
+position = Vector2( 45.1195, 136.807 )
+rotation = 0.989935
+texture = ExtResource( 2 )
+
+[node name="Paper5" type="Sprite" parent="Papers" index="4"]
+material = SubResource( 2 )
+position = Vector2( 71.3258, 150.541 )
+rotation = 0.275615
+texture = ExtResource( 2 )
+
+[node name="Paper6" type="Sprite" parent="Papers" index="5"]
+material = SubResource( 2 )
+position = Vector2( 2.15618, 138.445 )
+rotation = -0.245148
+texture = ExtResource( 2 )
+
+[node name="bookshelf" parent="." index="8" instance=ExtResource( 4 )]
+position = Vector2( 56, 112 )
+has_dialogue = false
+
+[node name="Table" parent="." index="9" instance=ExtResource( 3 )]
+position = Vector2( 104, 152 )
+has_dialogue = false
+
+[node name="Door" parent="." index="10" instance=ExtResource( 5 )]
+position = Vector2( 152, 120.738 )
+scene_name = "2F_east_main_hall"
+required_look_dir = Vector2( 1, 0 )

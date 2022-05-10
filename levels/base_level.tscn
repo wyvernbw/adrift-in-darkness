@@ -20,8 +20,8 @@ position = Vector2( 128.692, 112.307 )
 look_dir = Vector2( 0, -1 )
 
 [node name="Shadow" parent="." instance=ExtResource( 2 )]
-modulate = Color( 1, 1, 1, 0.392157 )
 material = SubResource( 1 )
+tile_data = PoolIntArray(  )
 
 [node name="HouseF1" type="TileMap" parent="."]
 tile_set = ExtResource( 12 )
