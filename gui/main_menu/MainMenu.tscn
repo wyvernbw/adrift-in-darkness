@@ -1,14 +1,8 @@
-[gd_scene load_steps=8 format=2]
+[gd_scene load_steps=5 format=2]
 
 [ext_resource path="res://gui/main_menu/MainMenu.gd" type="Script" id=1]
-[ext_resource path="res://environment.tres" type="Environment" id=2]
-[ext_resource path="res://fonts/RobotoMono_VariableFont_wght.ttf" type="DynamicFontData" id=3]
-[ext_resource path="res://characters/player/light_mask2d_v2.0.png" type="Texture" id=4]
-[ext_resource path="res://gui/main_menu/adrift_in_darkness_cover.png" type="Texture" id=6]
-
-[sub_resource type="CanvasItemMaterial" id=2]
-blend_mode = 3
-light_mode = 1
+[ext_resource path="res://gui/main_menu/background.png" type="Texture" id=2]
+[ext_resource path="res://fonts/KosugiMaru-Regular.ttf" type="DynamicFontData" id=3]
 
 [sub_resource type="DynamicFont" id=1]
 size = 96
@@ -17,10 +11,6 @@ font_data = ExtResource( 3 )
 [node name="MainMenu" type="Control"]
 anchor_right = 1.0
 anchor_bottom = 1.0
-margin_left = 16.0
-margin_top = 32.0
-margin_right = -16.0
-margin_bottom = -16.0
 script = ExtResource( 1 )
 __meta__ = {
 "_edit_use_anchors_": false
@@ -28,45 +18,28 @@ __meta__ = {
 option_keys = [ "New Game", "Load", "Settings", "Quit" ]
 option_scenes = [ "res://World.tscn", "res://gui/main_menu/Load.tscn", "res://gui/main_menu/Settings.tscn", "res://gui/main_menu/Quit.tscn" ]
 
-[node name="CanvasLayer" type="CanvasLayer" parent="."]
-
-[node name="light_mask2d_v20" type="Sprite" parent="CanvasLayer"]
-material = SubResource( 2 )
-position = Vector2( 960.244, 543.936 )
-scale = Vector2( 11.247, 8.413 )
-texture = ExtResource( 4 )
-
-[node name="Light2D" type="Light2D" parent="CanvasLayer"]
-visible = false
-position = Vector2( 128.489, 96.8713 )
-texture = ExtResource( 4 )
-mode = 3
-
-[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
-environment = ExtResource( 2 )
-
-[node name="adrift-in-darkness-cover" type="Sprite" parent="."]
-visible = false
-modulate = Color( 0.0392157, 0.0392157, 0.0392157, 1 )
-position = Vector2( 112.813, 73.8069 )
-scale = Vector2( 0.119999, 0.119999 )
-z_index = -1
-texture = ExtResource( 6 )
+[node name="TextureRect" type="TextureRect" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+texture = ExtResource( 2 )
+expand = true
 
 [node name="VBoxContainer2" type="VBoxContainer" parent="."]
 anchor_left = 0.5
 anchor_right = 0.5
 anchor_bottom = 1.0
 margin_left = -522.0
-margin_top = 164.0
 margin_right = 522.0
+custom_constants/separation = 64
+alignment = 1
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
 [node name="Title" type="Label" parent="VBoxContainer2"]
+margin_top = 459.0
 margin_right = 1044.0
-margin_bottom = 128.0
+margin_bottom = 556.0
 custom_fonts/font = SubResource( 1 )
 text = "Adrift in Darkness"
 align = 1
@@ -77,9 +50,9 @@ __meta__ = {
 }
 
 [node name="MarginContainer" type="MarginContainer" parent="VBoxContainer2"]
-margin_top = 132.0
+margin_top = 620.0
 margin_right = 1044.0
-margin_bottom = 132.0
+margin_bottom = 620.0
 custom_constants/margin_right = 384
 custom_constants/margin_left = 384
 
@@ -87,6 +60,7 @@ custom_constants/margin_left = 384
 margin_left = 384.0
 margin_right = 660.0
 grow_horizontal = 2
+custom_constants/separation = 40
 __meta__ = {
 "_edit_use_anchors_": false
 }

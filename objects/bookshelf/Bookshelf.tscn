@@ -53,6 +53,7 @@ __meta__ = {
 
 [node name="Illumination" type="Sprite" parent="."]
 material = SubResource( 4 )
+position = Vector2( 8, 8 )
 
 [connection signal="body_entered" from="InteractionArea" to="." method="_on_InteractionArea_body_entered"]
 [connection signal="body_exited" from="InteractionArea" to="." method="_on_InteractionArea_body_exited"]

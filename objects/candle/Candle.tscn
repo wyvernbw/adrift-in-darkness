@@ -10,7 +10,6 @@
 [ext_resource path="res://objects/candle/Candle.tres" type="Resource" id=8]
 
 [sub_resource type="StreamTexture" id=1]
-load_path = "res://.import/candle-sheet.png-00d741579150b96f5f396b3481f44a5e.stex"
 
 [sub_resource type="SpriteFrames" id=2]
 animations = [ {
@@ -46,13 +45,10 @@ texture = SubResource( 1 )
 hframes = 4
 frame = 3
 
-[node name="LightOccluder2D" parent="." index="3"]
-visible = false
-
 [node name="AnimatedSprite" type="AnimatedSprite" parent="." index="4"]
 frames = SubResource( 2 )
 animation = "fire"
-frame = 3
+frame = 1
 playing = true
 
 [node name="Light" type="Light2D" parent="." index="5"]
@@ -71,3 +67,6 @@ shadow_filter_smooth = 12.2
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="Light" index="0"]
 anims/flicker = SubResource( 3 )
+
+[node name="LightOccluder2D" parent="." index="6"]
+visible = false

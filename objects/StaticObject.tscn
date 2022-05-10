@@ -58,6 +58,7 @@ __meta__ = {
 }
 
 [node name="Debug" type="VBoxContainer" parent="."]
+visible = false
 material = SubResource( 4 )
 margin_left = -8.0
 margin_top = -31.0

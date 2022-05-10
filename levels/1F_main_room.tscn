@@ -1,12 +1,14 @@
-[gd_scene load_steps=24 format=2]
+[gd_scene load_steps=26 format=2]
 
 [ext_resource path="res://tilesets/house/house1.tres" type="TileSet" id=1]
 [ext_resource path="res://characters/player/player.tscn" type="PackedScene" id=2]
+[ext_resource path="res://objects/table/TableCoveredCandle.tscn" type="PackedScene" id=3]
 [ext_resource path="res://levels/interfaces/Light_Effects.tscn" type="PackedScene" id=4]
 [ext_resource path="res://classes/DialogueResource.gd" type="Script" id=5]
 [ext_resource path="res://tilesets/house/rug/rug1.tres" type="TileSet" id=6]
 [ext_resource path="res://objects/table/Table.tscn" type="PackedScene" id=7]
 [ext_resource path="res://objects/table/1F_main_room_lanternTable.tres" type="Resource" id=8]
+[ext_resource path="res://tilesets/Shadow.tscn" type="PackedScene" id=9]
 [ext_resource path="res://tilesets/house/staircase/Staircase.tscn" type="PackedScene" id=10]
 [ext_resource path="res://tilesets/house/ledge/ledge.tres" type="TileSet" id=11]
 [ext_resource path="res://objects/door/Door.tscn" type="PackedScene" id=12]
@@ -103,6 +105,11 @@ occluder_light_mask = 2
 format = 1
 tile_data = PoolIntArray( -131071, 5, 0, -131070, 5, 0, -131069, 5, 0, -131068, 5, 0, -131067, 5, 0, -131066, 5, 0, -131063, 5, 0, -131062, 5, 0, -131061, 5, 0, -131060, 5, 0, -131059, 5, 0, -131058, 5, 0 )
 
+[node name="Shadow" parent="." instance=ExtResource( 9 )]
+modulate = Color( 0.458824, 0.458824, 0.458824, 0.376471 )
+z_index = 1
+tile_data = PoolIntArray( 10, 2, 0, 15, 2, 0, 65537, 0, 0, 65538, 0, 0, 65539, 0, 0, 65540, 0, 0, 65541, 0, 0, 65542, 0, 0, 65543, 0, 0, 65544, 0, 0, 65545, 0, 0, 65546, 0, 0, 65547, 0, 0, 65548, 0, 0, 65549, 0, 0, 65550, 1, 0, 131073, 0, 0, 196609, 0, 0, 262145, 0, 0, 262159, 2, 0, 327681, 0, 0, 393217, 0, 0, 458753, 0, 0, 524289, 0, 0, 589825, 1, 0 )
+
 [node name="CanvasModulate" parent="." instance=ExtResource( 4 )]
 color = Color( 0.1, 0.1, 0.1, 1 )
 script = ExtResource( 19 )
@@ -115,11 +122,11 @@ scale = Vector2( 1, 1.5 )
 position = Vector2( 8, 71.864 )
 
 [node name="Bookshelf" parent="Furniture" instance=ExtResource( 13 )]
-position = Vector2( 160, -71.8641 )
+position = Vector2( 160, -71.864 )
 dialogue = SubResource( 1 )
 
 [node name="Table" parent="Furniture" instance=ExtResource( 7 )]
-position = Vector2( 144, 72.136 )
+position = Vector2( 144, 80.136 )
 dialogue = ExtResource( 8 )
 
 [node name="Table2" parent="Furniture" instance=ExtResource( 7 )]
@@ -236,3 +243,6 @@ position = Vector2( 128.418, 126.666 )
 scale = Vector2( 0.04001, 0.04001 )
 z_index = 4
 texture = ExtResource( 20 )
+
+[node name="Table2" parent="." instance=ExtResource( 3 )]
+position = Vector2( 72, 71.864 )
