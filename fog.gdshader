@@ -4,7 +4,7 @@ shader_type canvas_item;
 // If you use this shader, I would prefer it if you gave credit to me and my channel
 
 // uniform vec3 color = vec3(0.9, 0.43, 0.68);
-uniform vec3 color = vec3(0.33, 0.29, 0.61);
+uniform vec4 color : hint_color = vec4(0.33, 0.29, 0.61, 1.0);
 //uniform vec3 color = vec3(1.0, 1.0, 1.0);
 uniform int OCTAVES = 4;
 
@@ -46,5 +46,5 @@ void fragment() {
 
 	float final = fbm(coord + motion);
 
-	COLOR = vec4(mix(color, textureLod(SCREEN_TEXTURE, SCREEN_UV, 0.2).rgb, 0.2), final * 0.3);
+	COLOR = vec4(mix(color.rgb, textureLod(SCREEN_TEXTURE, SCREEN_UV, 0.2).rgb, 0.2), final * 0.3);
 }
