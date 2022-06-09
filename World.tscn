@@ -11,9 +11,6 @@
 [ext_resource path="res://environment.tres" type="Environment" id=9]
 [ext_resource path="res://bayer4tile8.png" type="Texture" id=10]
 
-[sub_resource type="CanvasItemMaterial" id=6]
-blend_mode = 3
-
 [sub_resource type="Shader" id=7]
 code = "/* 
 This shader is under MIT license. Feel free to use, improve and 
@@ -136,26 +133,15 @@ tracks/0/keys = {
 "values": [ Color( 1, 1, 1, 0 ), Color( 1, 1, 1, 1 ), Color( 1, 1, 1, 0 ), Color( 1, 1, 1, 0 ), Color( 1, 1, 1, 1 ), Color( 1, 1, 1, 0 ) ]
 }
 
+[sub_resource type="CanvasItemMaterial" id=6]
+blend_mode = 3
+
 [node name="World" type="Node2D"]
 
 [node name="Notifications" type="CanvasLayer" parent="."]
 
 [node name="DebugFPS" parent="." instance=ExtResource( 5 )]
 layer = 9
-
-[node name="LightMaskLayer" type="CanvasLayer" parent="."]
-
-[node name="TextureRect" type="TextureRect" parent="LightMaskLayer"]
-material = SubResource( 6 )
-anchor_right = 1.0
-anchor_bottom = 1.0
-rect_pivot_offset = Vector2( 160, 90 )
-texture = ExtResource( 6 )
-expand = true
-stretch_mode = 7
-__meta__ = {
-"_edit_use_anchors_": false
-}
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 
@@ -215,3 +201,24 @@ anims/blur = SubResource( 5 )
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="ViewportContainer/Viewport"]
 environment = ExtResource( 9 )
+
+[node name="LightMaskLayer" type="CanvasLayer" parent="."]
+
+[node name="TextureRect" type="TextureRect" parent="LightMaskLayer"]
+material = SubResource( 6 )
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -1335.62
+margin_top = -734.596
+margin_right = 584.385
+margin_bottom = 345.404
+rect_scale = Vector2( 1.5, 1.5 )
+rect_pivot_offset = Vector2( 160, 90 )
+texture = ExtResource( 6 )
+expand = true
+stretch_mode = 7
+__meta__ = {
+"_edit_use_anchors_": false
+}
