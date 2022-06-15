@@ -7,6 +7,8 @@ I've rewritten this script to have all the dialogue playing happen on the Dialog
 """
 
 signal player_unpause
+signal dialogue_finished
+signal branch_chosen
 signal player_pause
 signal resource_changed
 signal dialogue_box_removed
@@ -17,12 +19,16 @@ const BRANCHING_DIALOGUE_BOX_SCENE = preload("res://gui/branching_dialogue_box/B
 const READ_BOX_SCENE = preload("res://gui/read_box/ReadBox.tscn")
 
 var dialogue_branch: int = 0
-var dialogue_open: bool = false
+var dialogue_open: bool setget set_dialogue_open
 var dialogue_branching: bool = false
 var page_index: int = -1
 var SAVE_KEY: String = "DialogueHandler"
 var dialogue: Resource setget set_dialogue
 var text_template: String = "[center] %s [/center]"
+
+
+func _ready():
+	dialogue_open = false
 
 
 func _input(event: InputEvent) -> void:
@@ -40,7 +46,6 @@ func set_dialogue(new_dialogue: DialogueResource) -> void:
 		print("ERROR: DIALOGUE IS NULL")
 		return
 	dialogue = new_dialogue
-	dialogue_open = true
 	if dialogue.item_held:
 		var item = dialogue.item_held.get_item()
 		print(item.name)
@@ -49,6 +54,7 @@ func set_dialogue(new_dialogue: DialogueResource) -> void:
 
 
 func start_dialogue(new_dialogue: DialogueResource) -> void:
+	self.dialogue_open = true
 	# set the dialogue resource
 	set_dialogue(new_dialogue)
 	# wait a frame
@@ -58,8 +64,10 @@ func start_dialogue(new_dialogue: DialogueResource) -> void:
 	# run the dialogue
 	for line in dialogue.text:	
 		add_dialogue_box(line)
+		print("dialogue open, waiting for input...")
 		yield(self, "next_page")
 		remove_dialogue_box()
+		print("advanced!")
 	# add a big reading box
 	yield(
 		add_read_box(dialogue.read_box_text), 
@@ -72,7 +80,8 @@ func start_dialogue(new_dialogue: DialogueResource) -> void:
 	)
 	# unpause the player
 	emit_signal("player_unpause")
-	dialogue_open = false
+	emit_signal("dialogue_finished")
+	self.dialogue_open = false
 
 
 func add_read_box(paragraph: String) -> void:
@@ -132,3 +141,9 @@ func _on_BranchingDialogueBox_option_pressed(branch: int) -> void:
 	dialogue_branch = branch
 	dialogue_branching = false
 	start_dialogue(answers[branch])
+	emit_signal("branch_chosen")
+
+
+func set_dialogue_open(value : bool) -> void:
+	print("dialogue open -> ", value)
+	dialogue_open = value

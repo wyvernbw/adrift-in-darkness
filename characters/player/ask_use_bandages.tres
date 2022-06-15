@@ -1,9 +1,15 @@
 [gd_resource type="Resource" load_steps=4 format=2]
 
 [ext_resource path="res://classes/DialogueResource.gd" type="Script" id=1]
-[ext_resource path="res://objects/sink/reach.tres" type="Resource" id=2]
 
-[sub_resource type="Resource" id=1]
+[sub_resource type="Resource" id=52]
+script = ExtResource( 1 )
+text = [  ]
+answers = {
+}
+read_box_text = ""
+
+[sub_resource type="Resource" id=53]
 script = ExtResource( 1 )
 text = [  ]
 answers = {
@@ -12,9 +18,9 @@ read_box_text = ""
 
 [resource]
 script = ExtResource( 1 )
-text = [ "A sink. There is something shiny down the drain" ]
+text = [ "A roll of slightly dirty bandages." ]
 answers = {
-"Leave": SubResource( 1 ),
-"Reach for it": ExtResource( 2 )
+"Do nothing": SubResource( 52 ),
+"Use": SubResource( 53 )
 }
 read_box_text = ""

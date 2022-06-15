@@ -1,7 +1,11 @@
-[gd_scene load_steps=2 format=2]
+[gd_scene load_steps=4 format=2]
 
 [ext_resource path="res://singletons/globalHandler.gd" type="Script" id=1]
+[ext_resource path="res://sunset-red-1x.png" type="Texture" id=2]
+[ext_resource path="res://oil-6-1x.png" type="Texture" id=3]
 
 [node name="Globals" type="Node"]
 script = ExtResource( 1 )
 global_object_illumination = Color( 1, 1, 1, 0.0431373 )
+bloodshot_pallete = ExtResource( 2 )
+regular_pallete = ExtResource( 3 )

@@ -9,6 +9,7 @@
 [ext_resource path="res://levels/base_level.tscn" type="PackedScene" id=7]
 [ext_resource path="res://objects/sound_area/SoundArea.tscn" type="PackedScene" id=8]
 
+
 [sub_resource type="Resource" id=1]
 script = ExtResource( 2 )
 Text = [ " There are some old chemestry and anatomy books on the shelves." ]

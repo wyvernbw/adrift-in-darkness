@@ -4,7 +4,7 @@
 
 [resource]
 script = ExtResource( 1 )
-text = [ "page 1 example" ]
+text = [ "You feel a tight grip on your arm.", "Someone is pulling on your arm." ]
 answers = {
 }
 read_box_text = ""

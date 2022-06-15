@@ -13,6 +13,7 @@ export var levels: Dictionary = {
 	"2F_bedroom": preload("res://levels/2F_bedroom.tscn").instance(),
 	"2F_bathroom": preload("res://levels/2F_bathroom.tscn").instance(),
 	"2F_library": preload("res://levels/2F_library.tscn").instance(),
+	"2F_paper_room": preload("res://levels/2F_paper_room.tscn").instance()
 }
 export var current_scene: String = "1F_main_room"
 

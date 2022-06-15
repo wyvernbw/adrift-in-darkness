@@ -13,11 +13,11 @@ const max_blood = 4500
 const blood_loss_rate = 1
 const total_limbs = 4
 
-onready var player = GlobalHandler.Player
-
 var blood = max_blood
 var save_key = "hp_handler"
 var using_bandages = false
+var bandage_item: Item
+
 export var current_limbs: Dictionary = {
 	"right_arm": true, "left_arm": true, "right_leg": true, "left_leg": true
 }
@@ -43,7 +43,6 @@ func cut_limb(limb: String):
 	GlobalHandler.Player.anim_suffix = "_" + limb
 	_remove_limb(limb)
 	_set_limb_bleeding(limb)
-	get_node("/root/Game/WorldEnvironment").environment = preload("res://blood.tres")
 	emit_signal("limb_cut", limb)
 
 
@@ -77,7 +76,7 @@ func stop_limb_bleeding(limb: String) -> void:
 	for element in bleeding_limbs.values():
 		if element == true:
 			return
-	get_node("/root/Game/WorldEnvironment").environment = preload("res://environment.tres")
+	GlobalHandler.MainViewport.pallete = GlobalHandler.regular_pallete
 	GlobalHandler.Player.get_node("Particles2D").emitting = false
 
 
@@ -113,21 +112,27 @@ func calculate_blood_loss() -> void:
 
 
 func _on_item_used(item : Item) -> void:
+	var player = GlobalHandler.Player
 	if item.name == "Bandages":
-		DialogueHandler.start_dialogue(player.bleeding_stopped_dialogue)
+		bandage_item = item
+		yield(get_tree(), "idle_frame")
+		DialogueHandler.start_dialogue(player.stop_bleeding_dialogue)
 		using_bandages = true
 
 
 func _on_BranchingDialogueBox_option_pressed(branch: int) -> void:
+	var player = GlobalHandler.Player
 	if not using_bandages:
 		return
-	if branch == 1 and bleeding_limbs["left_arm"]:
-		stop_limb_bleeding("left_arm")	
-		DialogueHandler.start_dialogue(player.bleeding_stopped_dialogue)
-		using_bandages = false
-	elif branch == 1:
-		DialogueHandler.start_dialogue(player.cant_use_bandages_dialogue)
-		using_bandages = false
+	if branch == 1:
+		if bleeding_limbs["left_arm"]:
+			InventoryHandler.subtract_item(bandage_item)
+			stop_limb_bleeding("left_arm")	
+			DialogueHandler.start_dialogue(player.bleeding_stopped_dialogue)
+			using_bandages = false
+		else:
+			DialogueHandler.start_dialogue(player.cant_use_bandages_dialogue)
+			using_bandages = false
 
 
 func save() -> Dictionary:

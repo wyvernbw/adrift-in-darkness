@@ -1,0 +1,383 @@
+[gd_scene load_steps=7 format=2]
+
+[ext_resource path="res://tilesets/house/paper.png" type="Texture" id=1]
+[ext_resource path="res://levels/base_level.tscn" type="PackedScene" id=2]
+[ext_resource path="res://objects/chair/Chair.tscn" type="PackedScene" id=3]
+[ext_resource path="res://objects/bookshelf/Bookshelf.tscn" type="PackedScene" id=4]
+[ext_resource path="res://levels/grayscale_shader.tres" type="Material" id=5]
+[ext_resource path="res://objects/door/Door.tscn" type="PackedScene" id=6]
+
+[node name="level_name" instance=ExtResource( 2 )]
+
+[node name="Player" parent="." index="0"]
+position = Vector2( 121, 109 )
+look_dir = Vector2( 1, 0 )
+
+[node name="HouseF1" parent="." index="2"]
+tile_data = PoolIntArray( 65537, 9, 0, 65538, 14, 0, 65539, 14, 0, 65540, 14, 0, 65541, 14, 0, 65542, 14, 0, 65543, 2, 0, 131073, 5, 0, 131074, 18, 0, 131075, 18, 0, 131076, 18, 0, 131077, 18, 0, 131078, 18, 0, 131079, 3, 0, 196608, 6, 0, 196609, 5, 0, 196610, 18, 0, 196611, 18, 0, 196612, 18, 0, 196613, 18, 0, 196614, 18, 0, 196615, 3, 0, 262144, 6, 0, 262145, 5, 0, 262146, 17, 0, 262147, 17, 0, 262148, 17, 0, 262149, 17, 0, 262150, 17, 0, 262151, 3, 0, 327680, 6, 0, 327681, 5, 0, 327682, 1, 0, 327683, 1, 0, 327684, 1, 0, 327685, 1, 0, 327686, 1, 0, 327687, 11, 0, 327688, 2, 0, 393216, 6, 0, 393217, 5, 0, 393218, 1, 0, 393219, 1, 0, 393220, 1, 0, 393221, 1, 0, 393222, 1, 0, 393223, 15, 0, 393224, 3, 0, 458752, 6, 0, 458753, 5, 0, 458754, 1, 0, 458755, 1, 0, 458756, 1, 0, 458757, 1, 0, 458758, 1, 0, 458759, 10, 0, 458760, 7, 0, 524288, 6, 0, 524289, 5, 0, 524290, 1, 0, 524291, 1, 0, 524292, 1, 0, 524293, 1, 0, 524294, 1, 0, 524295, 3, 0, 589824, 6, 0, 589825, 5, 0, 589826, 1, 0, 589827, 1, 0, 589828, 1, 0, 589829, 1, 0, 589830, 1, 0, 589831, 3, 0, 655360, 6, 0, 655361, 8, 0, 655362, 4, 0, 655363, 4, 0, 655364, 4, 0, 655365, 4, 0, 655366, 4, 0, 655367, 7, 0, 720896, 6, 0, 720897, 6, 0, 720898, 6, 0, 720899, 6, 0, 720900, 6, 0, 720901, 6, 0, 720902, 6, 0 )
+
+[node name="Rug" parent="." index="4"]
+tile_data = PoolIntArray( 327682, 6, 0, 327683, 2, 0, 327684, 2, 0, 327685, 2, 0, 327686, 7, 0, 393218, 5, 0, 393219, 0, 0, 393220, 0, 0, 393221, 0, 0, 393222, 3, 0, 458754, 5, 0, 458755, 0, 0, 458756, 1, 0, 458757, 0, 0, 458758, 3, 0, 524290, 5, 0, 524291, 0, 0, 524292, 0, 0, 524293, 0, 0, 524294, 3, 0, 589826, 9, 0, 589827, 4, 0, 589828, 4, 0, 589829, 4, 0, 589830, 8, 0 )
+
+[node name="Papers" type="Node2D" parent="." index="6"]
+material = ExtResource( 5 )
+
+[node name="Batch1" type="Node2D" parent="Papers" index="0"]
+
+[node name="Paper" type="Sprite" parent="Papers/Batch1" index="0"]
+position = Vector2( 48, 112 )
+texture = ExtResource( 1 )
+
+[node name="Paper2" type="Sprite" parent="Papers/Batch1" index="1"]
+position = Vector2( 56, 119 )
+rotation = 0.785398
+texture = ExtResource( 1 )
+
+[node name="Paper4" type="Sprite" parent="Papers/Batch1" index="2"]
+position = Vector2( 56, 114 )
+rotation = 1.5708
+texture = ExtResource( 1 )
+
+[node name="Paper5" type="Sprite" parent="Papers/Batch1" index="3"]
+position = Vector2( 48, 117 )
+rotation = 0.261799
+texture = ExtResource( 1 )
+
+[node name="Paper6" type="Sprite" parent="Papers/Batch1" index="4"]
+position = Vector2( 56, 125 )
+rotation = -2.0944
+texture = ExtResource( 1 )
+
+[node name="Paper7" type="Sprite" parent="Papers/Batch1" index="5"]
+position = Vector2( 50, 123 )
+rotation = -0.261799
+texture = ExtResource( 1 )
+
+[node name="Paper3" type="Sprite" parent="Papers/Batch1" index="6"]
+position = Vector2( 64, 112 )
+rotation = 0.261799
+texture = ExtResource( 1 )
+
+[node name="Batch2" type="Node2D" parent="Papers" index="1"]
+position = Vector2( 6, 15 )
+
+[node name="Paper" type="Sprite" parent="Papers/Batch2" index="0"]
+position = Vector2( 48, 112 )
+texture = ExtResource( 1 )
+
+[node name="Paper2" type="Sprite" parent="Papers/Batch2" index="1"]
+position = Vector2( 56, 119 )
+rotation = 0.785398
+texture = ExtResource( 1 )
+
+[node name="Paper4" type="Sprite" parent="Papers/Batch2" index="2"]
+position = Vector2( 56, 114 )
+rotation = 1.5708
+texture = ExtResource( 1 )
+
+[node name="Paper5" type="Sprite" parent="Papers/Batch2" index="3"]
+position = Vector2( 48, 117 )
+rotation = 0.261799
+texture = ExtResource( 1 )
+
+[node name="Paper6" type="Sprite" parent="Papers/Batch2" index="4"]
+position = Vector2( 56, 125 )
+rotation = -2.0944
+texture = ExtResource( 1 )
+
+[node name="Paper7" type="Sprite" parent="Papers/Batch2" index="5"]
+position = Vector2( 50, 123 )
+rotation = -0.261799
+texture = ExtResource( 1 )
+
+[node name="Paper3" type="Sprite" parent="Papers/Batch2" index="6"]
+position = Vector2( 64, 112 )
+rotation = 0.261799
+texture = ExtResource( 1 )
+
+[node name="Batch3" type="Node2D" parent="Papers" index="2"]
+position = Vector2( 50, -8 )
+rotation = 0.261799
+
+[node name="Paper" type="Sprite" parent="Papers/Batch3" index="0"]
+position = Vector2( 48, 112 )
+texture = ExtResource( 1 )
+
+[node name="Paper2" type="Sprite" parent="Papers/Batch3" index="1"]
+position = Vector2( 56, 119 )
+rotation = 0.785398
+texture = ExtResource( 1 )
+
+[node name="Paper4" type="Sprite" parent="Papers/Batch3" index="2"]
+position = Vector2( 56, 114 )
+rotation = 1.5708
+texture = ExtResource( 1 )
+
+[node name="Paper5" type="Sprite" parent="Papers/Batch3" index="3"]
+position = Vector2( 48, 117 )
+rotation = 0.261799
+texture = ExtResource( 1 )
+
+[node name="Paper6" type="Sprite" parent="Papers/Batch3" index="4"]
+position = Vector2( 56, 125 )
+rotation = -2.0944
+texture = ExtResource( 1 )
+
+[node name="Paper7" type="Sprite" parent="Papers/Batch3" index="5"]
+position = Vector2( 50, 123 )
+rotation = -0.261799
+texture = ExtResource( 1 )
+
+[node name="Paper3" type="Sprite" parent="Papers/Batch3" index="6"]
+position = Vector2( 64, 112 )
+rotation = 0.261799
+texture = ExtResource( 1 )
+
+[node name="Batch4" type="Node2D" parent="Papers" index="3"]
+position = Vector2( 56, 7 )
+rotation = 0.261799
+
+[node name="Paper" type="Sprite" parent="Papers/Batch4" index="0"]
+position = Vector2( 48, 112 )
+texture = ExtResource( 1 )
+
+[node name="Paper2" type="Sprite" parent="Papers/Batch4" index="1"]
+position = Vector2( 56, 119 )
+rotation = 0.785398
+texture = ExtResource( 1 )
+
+[node name="Paper4" type="Sprite" parent="Papers/Batch4" index="2"]
+position = Vector2( 56, 114 )
+rotation = 1.5708
+texture = ExtResource( 1 )
+
+[node name="Paper5" type="Sprite" parent="Papers/Batch4" index="3"]
+position = Vector2( 48, 117 )
+rotation = 0.261799
+texture = ExtResource( 1 )
+
+[node name="Paper6" type="Sprite" parent="Papers/Batch4" index="4"]
+position = Vector2( 56, 125 )
+rotation = -2.0944
+texture = ExtResource( 1 )
+
+[node name="Paper7" type="Sprite" parent="Papers/Batch4" index="5"]
+position = Vector2( 50, 123 )
+rotation = -0.261799
+texture = ExtResource( 1 )
+
+[node name="Paper3" type="Sprite" parent="Papers/Batch4" index="6"]
+position = Vector2( 64, 112 )
+rotation = 0.261799
+texture = ExtResource( 1 )
+
+[node name="Batch5" type="Node2D" parent="Papers" index="4"]
+position = Vector2( 68, -6 )
+rotation = 0.261799
+
+[node name="Paper" type="Sprite" parent="Papers/Batch5" index="0"]
+position = Vector2( 48, 112 )
+texture = ExtResource( 1 )
+
+[node name="Paper2" type="Sprite" parent="Papers/Batch5" index="1"]
+position = Vector2( 56, 119 )
+rotation = 0.785398
+texture = ExtResource( 1 )
+
+[node name="Paper4" type="Sprite" parent="Papers/Batch5" index="2"]
+position = Vector2( 56, 114 )
+rotation = 1.5708
+texture = ExtResource( 1 )
+
+[node name="Paper5" type="Sprite" parent="Papers/Batch5" index="3"]
+position = Vector2( 48, 117 )
+rotation = 0.261799
+texture = ExtResource( 1 )
+
+[node name="Paper6" type="Sprite" parent="Papers/Batch5" index="4"]
+position = Vector2( 56, 125 )
+rotation = -2.0944
+texture = ExtResource( 1 )
+
+[node name="Paper7" type="Sprite" parent="Papers/Batch5" index="5"]
+position = Vector2( 50, 123 )
+rotation = -0.261799
+texture = ExtResource( 1 )
+
+[node name="Paper3" type="Sprite" parent="Papers/Batch5" index="6"]
+position = Vector2( 64, 112 )
+rotation = 0.261799
+texture = ExtResource( 1 )
+
+[node name="Batch6" type="Node2D" parent="Papers" index="5"]
+position = Vector2( 64, -22 )
+rotation = 0.261799
+
+[node name="Paper" type="Sprite" parent="Papers/Batch6" index="0"]
+position = Vector2( 48, 112 )
+texture = ExtResource( 1 )
+
+[node name="Paper2" type="Sprite" parent="Papers/Batch6" index="1"]
+position = Vector2( 56, 119 )
+rotation = 0.785398
+texture = ExtResource( 1 )
+
+[node name="Paper4" type="Sprite" parent="Papers/Batch6" index="2"]
+position = Vector2( 56, 114 )
+rotation = 1.5708
+texture = ExtResource( 1 )
+
+[node name="Paper5" type="Sprite" parent="Papers/Batch6" index="3"]
+position = Vector2( 48, 117 )
+rotation = 0.261799
+texture = ExtResource( 1 )
+
+[node name="Paper6" type="Sprite" parent="Papers/Batch6" index="4"]
+position = Vector2( 56, 125 )
+rotation = -2.0944
+texture = ExtResource( 1 )
+
+[node name="Paper7" type="Sprite" parent="Papers/Batch6" index="5"]
+position = Vector2( 50, 123 )
+rotation = -0.261799
+texture = ExtResource( 1 )
+
+[node name="Paper3" type="Sprite" parent="Papers/Batch6" index="6"]
+position = Vector2( 64, 112 )
+rotation = 0.261799
+texture = ExtResource( 1 )
+
+[node name="Batch7" type="Node2D" parent="Papers" index="6"]
+position = Vector2( 42, -26 )
+rotation = 0.261799
+
+[node name="Paper" type="Sprite" parent="Papers/Batch7" index="0"]
+position = Vector2( 48, 112 )
+texture = ExtResource( 1 )
+
+[node name="Paper2" type="Sprite" parent="Papers/Batch7" index="1"]
+position = Vector2( 56, 119 )
+rotation = 0.785398
+texture = ExtResource( 1 )
+
+[node name="Paper4" type="Sprite" parent="Papers/Batch7" index="2"]
+position = Vector2( 56, 114 )
+rotation = 1.5708
+texture = ExtResource( 1 )
+
+[node name="Paper5" type="Sprite" parent="Papers/Batch7" index="3"]
+position = Vector2( 48, 117 )
+rotation = 0.261799
+texture = ExtResource( 1 )
+
+[node name="Paper6" type="Sprite" parent="Papers/Batch7" index="4"]
+position = Vector2( 56, 125 )
+rotation = -2.0944
+texture = ExtResource( 1 )
+
+[node name="Paper7" type="Sprite" parent="Papers/Batch7" index="5"]
+position = Vector2( 50, 123 )
+rotation = -0.261799
+texture = ExtResource( 1 )
+
+[node name="Paper3" type="Sprite" parent="Papers/Batch7" index="6"]
+position = Vector2( 64, 112 )
+rotation = 0.261799
+texture = ExtResource( 1 )
+
+[node name="Batch8" type="Node2D" parent="Papers" index="7"]
+position = Vector2( 29, -27 )
+rotation = 0.261799
+
+[node name="Paper" type="Sprite" parent="Papers/Batch8" index="0"]
+position = Vector2( 48, 112 )
+texture = ExtResource( 1 )
+
+[node name="Paper2" type="Sprite" parent="Papers/Batch8" index="1"]
+position = Vector2( 56, 119 )
+rotation = 0.785398
+texture = ExtResource( 1 )
+
+[node name="Paper4" type="Sprite" parent="Papers/Batch8" index="2"]
+position = Vector2( 56, 114 )
+rotation = 1.5708
+texture = ExtResource( 1 )
+
+[node name="Paper5" type="Sprite" parent="Papers/Batch8" index="3"]
+position = Vector2( 48, 117 )
+rotation = 0.261799
+texture = ExtResource( 1 )
+
+[node name="Paper6" type="Sprite" parent="Papers/Batch8" index="4"]
+position = Vector2( 56, 125 )
+rotation = -2.0944
+texture = ExtResource( 1 )
+
+[node name="Paper7" type="Sprite" parent="Papers/Batch8" index="5"]
+position = Vector2( 50, 123 )
+rotation = -0.261799
+texture = ExtResource( 1 )
+
+[node name="Paper3" type="Sprite" parent="Papers/Batch8" index="6"]
+position = Vector2( 64, 112 )
+rotation = 0.261799
+texture = ExtResource( 1 )
+
+[node name="Batch9" type="Node2D" parent="Papers" index="8"]
+position = Vector2( 28, -2.99999 )
+rotation = 0.261799
+
+[node name="Paper" type="Sprite" parent="Papers/Batch9" index="0"]
+position = Vector2( 48, 112 )
+texture = ExtResource( 1 )
+
+[node name="Paper2" type="Sprite" parent="Papers/Batch9" index="1"]
+position = Vector2( 56, 119 )
+rotation = 0.785398
+texture = ExtResource( 1 )
+
+[node name="Paper4" type="Sprite" parent="Papers/Batch9" index="2"]
+position = Vector2( 56, 114 )
+rotation = 1.5708
+texture = ExtResource( 1 )
+
+[node name="Paper5" type="Sprite" parent="Papers/Batch9" index="3"]
+position = Vector2( 48, 117 )
+rotation = 0.261799
+texture = ExtResource( 1 )
+
+[node name="Paper6" type="Sprite" parent="Papers/Batch9" index="4"]
+position = Vector2( 56, 125 )
+rotation = -2.0944
+texture = ExtResource( 1 )
+
+[node name="Paper7" type="Sprite" parent="Papers/Batch9" index="5"]
+position = Vector2( 50, 123 )
+rotation = -0.261799
+texture = ExtResource( 1 )
+
+[node name="Paper3" type="Sprite" parent="Papers/Batch9" index="6"]
+position = Vector2( 64, 112 )
+rotation = 0.261799
+texture = ExtResource( 1 )
+
+[node name="bookshelf" parent="." index="8" instance=ExtResource( 4 )]
+position = Vector2( 40, 64 )
+
+[node name="bookshelf2" parent="." index="9" instance=ExtResource( 4 )]
+position = Vector2( 74, 64 )
+
+[node name="bookshelf3" parent="." index="10" instance=ExtResource( 4 )]
+position = Vector2( 82, 160 )
+
+[node name="bookshelf4" parent="." index="11" instance=ExtResource( 4 )]
+position = Vector2( 48, 160 )
+
+[node name="Chair" parent="." index="12" instance=ExtResource( 3 )]
+position = Vector2( 72, 110 )
+
+[node name="Door" parent="." index="13" instance=ExtResource( 6 )]
+visible = false
+position = Vector2( 120, 104 )
+scene_name = "2F_library"
+required_look_dir = Vector2( 1, 0 )

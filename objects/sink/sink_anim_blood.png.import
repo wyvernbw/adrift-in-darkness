@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/bookshelf_left.png-e687b455672299741ecd62e4c3fd3ea5.stex"
+path="res://.import/sink_anim_blood.png-5a14cc387d43ba75b0020e1df6159e39.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://objects/bookshelf/bookshelf_left.png"
-dest_files=[ "res://.import/bookshelf_left.png-e687b455672299741ecd62e4c3fd3ea5.stex" ]
+source_file="res://objects/sink/sink_anim_blood.png"
+dest_files=[ "res://.import/sink_anim_blood.png-5a14cc387d43ba75b0020e1df6159e39.stex" ]
 
 [params]
 
@@ -20,7 +20,7 @@ compress/hdr_mode=0
 compress/bptc_ldr=0
 compress/normal_map=0
 flags/repeat=0
-flags/filter=false
+flags/filter=true
 flags/mipmaps=false
 flags/anisotropic=false
 flags/srgb=2
@@ -31,5 +31,5 @@ process/invert_color=false
 process/normal_map_invert_y=false
 stream=false
 size_limit=0
-detect_3d=false
+detect_3d=true
 svg/scale=1.0

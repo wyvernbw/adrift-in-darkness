@@ -1,25 +1,13 @@
-[gd_scene load_steps=8 format=2]
+[gd_scene load_steps=10 format=2]
 
 [ext_resource path="res://objects/StaticObject.tscn" type="PackedScene" id=1]
 [ext_resource path="res://objects/sink/sink_frames.tres" type="SpriteFrames" id=2]
 [ext_resource path="res://objects/sink/Sink.gd" type="Script" id=3]
-[ext_resource path="res://objects/sink/Sink.tres" type="Resource" id=4]
+[ext_resource path="res://objects/sink/sink.tres" type="Resource" id=4]
 [ext_resource path="res://objects/sink/sink_normal.png" type="Texture" id=5]
-
-[sub_resource type="Animation" id=19]
-resource_name = "fade"
-tracks/0/type = "value"
-tracks/0/path = NodePath(".:modulate")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/keys = {
-"times": PoolRealArray( 0, 0.5 ),
-"transitions": PoolRealArray( 1, 1 ),
-"update": 0,
-"values": [ Color( 1, 1, 1, 1 ), Color( 1, 1, 1, 0 ) ]
-}
+[ext_resource path="res://objects/sink/basement_key.tres" type="Resource" id=6]
+[ext_resource path="res://objects/sink/reach.tres" type="Resource" id=7]
+[ext_resource path="res://objects/sink/arm_severed.tres" type="Resource" id=8]
 
 [sub_resource type="OccluderPolygon2D" id=1]
 cull_mode = 1
@@ -28,6 +16,11 @@ polygon = PoolVector2Array( -7.96659, -3.98537, -2.07333, -4.05158, -2.07333, -7
 [node name="Sink" instance=ExtResource( 1 )]
 script = ExtResource( 3 )
 dialogue = ExtResource( 4 )
+reach_branch = 1
+initial_res = ExtResource( 4 )
+reach_res = ExtResource( 7 )
+arm_res = ExtResource( 8 )
+key_res = ExtResource( 6 )
 
 [node name="CollisionBox" parent="." index="0"]
 position = Vector2( 0, -3 )
@@ -42,21 +35,8 @@ frame = 1
 position = Vector2( 0, 8 )
 frames = ExtResource( 2 )
 animation = "flood"
+frame = 11
+playing = true
 
-[node name="CanvasLayer" type="CanvasLayer" parent="." index="5"]
-
-[node name="Polygon2D" type="Polygon2D" parent="CanvasLayer" index="0"]
-visible = false
-position = Vector2( -141.279, -77.7826 )
-scale = Vector2( 2, 2 )
-color = Color( 0.4, 0.0392157, 0.0392157, 1 )
-polygon = PoolVector2Array( -0.935425, -0.228622, 257.159, 0.478485, 256.451, 195.64, 0.47879, 196.347 )
-
-[node name="AnimationPlayer" type="AnimationPlayer" parent="CanvasLayer/Polygon2D" index="0"]
-anims/fade = SubResource( 19 )
-
-[node name="LightOccluder2D" parent="." index="6"]
+[node name="LightOccluder2D" parent="." index="5"]
 occluder = SubResource( 1 )
-
-[connection signal="animation_finished" from="AnimatedSprite" to="." method="_on_AnimatedSprite_animation_finished"]
-[connection signal="animation_finished" from="CanvasLayer/Polygon2D/AnimationPlayer" to="." method="_on_AnimationPlayer_animation_finished"]

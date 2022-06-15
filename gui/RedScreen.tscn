@@ -1,0 +1,28 @@
+[gd_scene load_steps=2 format=2]
+
+[sub_resource type="Animation" id=19]
+resource_name = "fade"
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0.2, 0.6 ),
+"transitions": PoolRealArray( 0.5, 1 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 1 ), Color( 1, 1, 1, 0 ) ]
+}
+
+[node name="RedScreen" type="CanvasLayer"]
+
+[node name="Polygon2D" type="Polygon2D" parent="."]
+visible = false
+position = Vector2( -174.422, -201.454 )
+scale = Vector2( 9.67002, 7.74277 )
+color = Color( 0.686275, 0.152941, 0.278431, 1 )
+polygon = PoolVector2Array( -0.935425, -0.228622, 257.159, 0.478485, 256.451, 195.64, 0.47879, 196.347 )
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Polygon2D"]
+anims/fade = SubResource( 19 )

@@ -4,6 +4,7 @@
 [ext_resource path="res://classes/DialogueResource.gd" type="Script" id=2]
 [ext_resource path="res://characters/player/Lantern.gd" type="Script" id=3]
 [ext_resource path="res://characters/player/player_animations.tres" type="SpriteFrames" id=4]
+[ext_resource path="res://characters/player/ask_use_bandages.tres" type="Resource" id=5]
 [ext_resource path="res://characters/player/static.png" type="Texture" id=7]
 [ext_resource path="res://characters/player/light2d.png" type="Texture" id=30]
 [ext_resource path="res://characters/player/sprites/shadow.png" type="Texture" id=31]
@@ -14,23 +15,16 @@
 [ext_resource path="res://characters/player/occluder_polygon_side.tres" type="OccluderPolygon2D" id=50]
 [ext_resource path="res://characters/player/lantern_light2d_mask.png" type="Texture" id=51]
 
-[sub_resource type="Resource" id=3]
-script = ExtResource( 2 )
-text = [ "page 1 example" ]
-answers = {
-}
-read_box_text = ""
-
 [sub_resource type="Resource" id=4]
 script = ExtResource( 2 )
-text = [ "page 1 example" ]
+text = [ "You have no reason to." ]
 answers = {
 }
 read_box_text = ""
 
 [sub_resource type="Resource" id=5]
 script = ExtResource( 2 )
-text = [ "page 1 example" ]
+text = [ "You used the bandages to stop the bleeding." ]
 answers = {
 }
 read_box_text = ""
@@ -118,7 +112,8 @@ tracks/0/keys = {
 "values": [ 0, 3 ]
 }
 
-[sub_resource type="ShaderMaterial" id=50]
+[sub_resource type="CanvasItemMaterial" id=52]
+light_mode = 1
 
 [sub_resource type="Animation" id=51]
 length = 2.0
@@ -147,7 +142,7 @@ stagger_speed = 400.0
 deaccel = 0.4
 walk_step_interval = 0.7
 sprint_step_interval = 0.5
-stop_bleeding_dialogue = SubResource( 3 )
+stop_bleeding_dialogue = ExtResource( 5 )
 cant_use_bandages_dialogue = SubResource( 4 )
 bleeding_stopped_dialogue = SubResource( 5 )
 
@@ -280,13 +275,14 @@ texture = ExtResource( 30 )
 energy = 0.3
 
 [node name="Particles2D" type="CPUParticles2D" parent="."]
+modulate = Color( 0, 0, 0, 1 )
 light_mask = 2
-material = SubResource( 50 )
+material = SubResource( 52 )
 position = Vector2( -2.43475, 12 )
 z_index = 2
 z_as_relative = false
-emitting = false
-amount = 4
+amount = 400
+lifetime = 100.0
 local_coords = false
 texture = ExtResource( 49 )
 direction = Vector2( 0, 0 )

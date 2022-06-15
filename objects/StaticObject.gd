@@ -3,6 +3,7 @@ class_name StaticObject
 
 signal player_obtained_item(item)
 signal player_interacted(res)
+signal interacted(res)
 
 const INTERACT_DELAY: float = 0.050  # 50 ms
 
@@ -20,6 +21,7 @@ var player_is_looking: bool = false
 var can_interact: bool = true
 var save_key
 var interact
+var interrupted = false
 
 
 func _process(_delta: float) -> void:
@@ -51,13 +53,15 @@ func _input(event: InputEvent) -> void:
 		return
 	if GlobalHandler.InventoryGUI.visible:
 		return
-	if event.is_action_pressed("interact") and not DialogueHandler.dialogue_open:
+	if event.is_action_pressed("interact") and not DialogueHandler.dialogue_open and not interrupted:
 		DialogueHandler.start_dialogue(dialogue)
+		emit_signal("interacted", dialogue)
 
 
 func connect_signals() -> void:
-	# Dialoue Handler
+	# Dialogue Handler
 	DialogueHandler.connect("player_unpause", self, "on_DialogueHandler_player_unpaused")
+	connect("interacted", self, "_on_player_interacted")
 
 
 func _on_InteractionArea_body_entered(body) -> void:

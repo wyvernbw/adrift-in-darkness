@@ -7,9 +7,9 @@
 [ext_resource path="res://gui/DebugFPS.tscn" type="PackedScene" id=5]
 [ext_resource path="res://characters/player/light_mask2d.png" type="Texture" id=6]
 [ext_resource path="res://oil-6-1x.png" type="Texture" id=7]
-[ext_resource path="res://levels/interfaces/LightMask2D.tscn" type="PackedScene" id=8]
 [ext_resource path="res://environment.tres" type="Environment" id=9]
 [ext_resource path="res://bayer4tile8.png" type="Texture" id=10]
+[ext_resource path="res://main_viewport.gd" type="Script" id=11]
 
 [sub_resource type="Shader" id=7]
 code = "/* 
@@ -93,7 +93,7 @@ void fragment()
 shader = SubResource( 7 )
 shader_param/u_bit_depth = 64
 shader_param/u_contrast = 1.4
-shader_param/u_offset = 0.05
+shader_param/u_offset = 0.02
 shader_param/u_dither_size = 1
 shader_param/u_dither_tex = ExtResource( 10 )
 shader_param/u_color_tex = ExtResource( 7 )
@@ -114,7 +114,7 @@ void fragment() {
 
 [sub_resource type="ShaderMaterial" id=4]
 shader = SubResource( 2 )
-shader_param/blur_amount = 2.837
+shader_param/blur_amount = 3.666
 
 [sub_resource type="Animation" id=5]
 resource_name = "blur"
@@ -143,19 +143,12 @@ blend_mode = 3
 [node name="DebugFPS" parent="." instance=ExtResource( 5 )]
 layer = 9
 
-[node name="CanvasLayer" type="CanvasLayer" parent="."]
-
-[node name="LightMask2D" parent="CanvasLayer" instance=ExtResource( 8 )]
-visible = false
-modulate = Color( 1, 1, 1, 0.109804 )
-position = Vector2( 128, 98 )
-scale = Vector2( 1, 1 )
-
 [node name="ViewportContainer" type="ViewportContainer" parent="."]
 material = SubResource( 8 )
 margin_right = 320.0
 margin_bottom = 180.0
 rect_scale = Vector2( 6, 6 )
+script = ExtResource( 11 )
 __meta__ = {
 "_edit_use_anchors_": false
 }

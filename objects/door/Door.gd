@@ -6,8 +6,6 @@ signal player_entered(scene_name)
 const DIALOGUE_BOX_SCENE = preload("res://gui/dialogue_box/DialogueBox.tscn")
 const INTERACT_DELAY: float = 0.2  # seconds
 
-onready var inventory_gui
-onready var player_node
 onready var interact_delay_timer: Timer = $InteractDelay
 
 var player_is_colliding: bool
@@ -21,8 +19,6 @@ export var locked: bool
 export var locked_dialogue: Resource
 export var unlocked_text: String
 export var key_name: String
-export var inventory_gui_path: NodePath
-export var player_path: NodePath
 export var required_look_dir: Vector2
 
 

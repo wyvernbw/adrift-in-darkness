@@ -49,7 +49,7 @@ func get_item(item: Item) -> int:
 	return -1
 
 
-func subtract_item(item: Item, amount: int) -> void:
+func subtract_item(item: Item, amount := 1) -> void:
 	var item_index = get_item(item)
 	if item_index == -1:
 		return
