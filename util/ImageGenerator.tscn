@@ -1,0 +1,266 @@
+[gd_scene load_steps=9 format=2]
+
+[ext_resource path="res://util/flat_panel_r8.tres" type="StyleBox" id=1]
+[ext_resource path="res://util/flat_panel_r8_pressed.tres" type="StyleBox" id=2]
+[ext_resource path="res://util/55725854_p0 (1).png" type="Texture" id=3]
+[ext_resource path="res://dithering.tres" type="Material" id=5]
+[ext_resource path="res://util/monofont.tres" type="DynamicFont" id=7]
+[ext_resource path="res://util/config_panel.gd" type="Script" id=9]
+
+[sub_resource type="Shader" id=2]
+code = "shader_type canvas_item;
+
+uniform float blur_amount : hint_range(0, 5);
+uniform vec4 base_color : hint_color;
+
+void fragment() {
+	vec4 blurred_color = textureLod(SCREEN_TEXTURE, SCREEN_UV, blur_amount);
+	vec4 new_color = mix(base_color, blurred_color, vec4(0.5, 0.5, 0.5, 1));
+	COLOR = new_color;
+}"
+
+[sub_resource type="ShaderMaterial" id=3]
+shader = SubResource( 2 )
+shader_param/blur_amount = 2.291
+shader_param/base_color = Color( 0, 0, 0, 1 )
+
+[node name="ImageGenerator" type="Control"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+__meta__ = {
+"_edit_lock_": true,
+"_edit_use_anchors_": false
+}
+
+[node name="ViewportContainer" type="ViewportContainer" parent="."]
+material = ExtResource( 5 )
+anchor_right = 1.0
+anchor_bottom = 1.0
+rect_scale = Vector2( 6, 6 )
+__meta__ = {
+"_edit_lock_": true,
+"_edit_use_anchors_": false,
+"_editor_description_": ""
+}
+
+[node name="Viewport" type="Viewport" parent="ViewportContainer"]
+size = Vector2( 320, 180 )
+transparent_bg = true
+handle_input_locally = false
+render_target_update_mode = 3
+audio_listener_enable_2d = true
+audio_listener_enable_3d = true
+__meta__ = {
+"_editor_description_": ""
+}
+
+[node name="Img" type="Sprite" parent="ViewportContainer/Viewport"]
+texture = ExtResource( 3 )
+
+[node name="PanelContainer" type="PanelContainer" parent="."]
+material = SubResource( 3 )
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = -600.0
+margin_top = -600.0
+rect_min_size = Vector2( 600, 600 )
+custom_styles/panel = ExtResource( 1 )
+script = ExtResource( 9 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+sprite_path = NodePath("../ViewportContainer/Viewport/Img")
+source_button_path = NodePath("MarginContainer/VBoxContainer/ImgSrc/SourceButton")
+open_file_dialog_path = NodePath("../OpenDialog")
+save_file_dialog_path = NodePath("../SaveDialog")
+
+[node name="MarginContainer" type="MarginContainer" parent="PanelContainer"]
+margin_right = 600.0
+margin_bottom = 600.0
+custom_constants/margin_right = 20
+custom_constants/margin_top = 20
+custom_constants/margin_left = 20
+custom_constants/margin_bottom = 20
+
+[node name="VBoxContainer" type="VBoxContainer" parent="PanelContainer/MarginContainer"]
+margin_left = 20.0
+margin_top = 20.0
+margin_right = 580.0
+margin_bottom = 580.0
+custom_constants/separation = 16
+
+[node name="ImgSrc" type="HBoxContainer" parent="PanelContainer/MarginContainer/VBoxContainer"]
+margin_right = 560.0
+margin_bottom = 43.0
+
+[node name="Label" type="Label" parent="PanelContainer/MarginContainer/VBoxContainer/ImgSrc"]
+margin_right = 266.0
+margin_bottom = 43.0
+custom_fonts/font = ExtResource( 7 )
+text = "* img source: "
+
+[node name="SourceButton" type="Button" parent="PanelContainer/MarginContainer/VBoxContainer/ImgSrc"]
+margin_left = 270.0
+margin_right = 560.0
+margin_bottom = 43.0
+size_flags_horizontal = 3
+custom_fonts/font = ExtResource( 7 )
+custom_styles/hover = ExtResource( 1 )
+custom_styles/pressed = ExtResource( 2 )
+custom_styles/focus = ExtResource( 1 )
+custom_styles/disabled = ExtResource( 1 )
+custom_styles/normal = ExtResource( 1 )
+text = "browse..."
+clip_text = true
+
+[node name="ImgPos" type="VBoxContainer" parent="PanelContainer/MarginContainer/VBoxContainer"]
+margin_top = 59.0
+margin_right = 560.0
+margin_bottom = 208.0
+custom_constants/separation = 16
+
+[node name="Label" type="Label" parent="PanelContainer/MarginContainer/VBoxContainer/ImgPos"]
+margin_right = 560.0
+margin_bottom = 43.0
+custom_fonts/font = ExtResource( 7 )
+text = "* img position:"
+
+[node name="MarginContainer" type="MarginContainer" parent="PanelContainer/MarginContainer/VBoxContainer/ImgPos"]
+margin_top = 59.0
+margin_right = 560.0
+margin_bottom = 149.0
+custom_constants/margin_left = 48
+
+[node name="VBoxContainer" type="VBoxContainer" parent="PanelContainer/MarginContainer/VBoxContainer/ImgPos/MarginContainer"]
+margin_left = 48.0
+margin_right = 560.0
+margin_bottom = 90.0
+
+[node name="X" type="HBoxContainer" parent="PanelContainer/MarginContainer/VBoxContainer/ImgPos/MarginContainer/VBoxContainer"]
+margin_right = 512.0
+margin_bottom = 43.0
+
+[node name="Label" type="Label" parent="PanelContainer/MarginContainer/VBoxContainer/ImgPos/MarginContainer/VBoxContainer/X"]
+margin_right = 38.0
+margin_bottom = 43.0
+custom_fonts/font = ExtResource( 7 )
+text = "x:"
+
+[node name="XSlider" type="HSlider" parent="PanelContainer/MarginContainer/VBoxContainer/ImgPos/MarginContainer/VBoxContainer/X"]
+margin_left = 42.0
+margin_right = 512.0
+margin_bottom = 43.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+min_value = -100.0
+
+[node name="Y" type="HBoxContainer" parent="PanelContainer/MarginContainer/VBoxContainer/ImgPos/MarginContainer/VBoxContainer"]
+margin_top = 47.0
+margin_right = 512.0
+margin_bottom = 90.0
+
+[node name="Label" type="Label" parent="PanelContainer/MarginContainer/VBoxContainer/ImgPos/MarginContainer/VBoxContainer/Y"]
+margin_right = 38.0
+margin_bottom = 43.0
+custom_fonts/font = ExtResource( 7 )
+text = "y:"
+
+[node name="YSlider" type="HSlider" parent="PanelContainer/MarginContainer/VBoxContainer/ImgPos/MarginContainer/VBoxContainer/Y"]
+margin_left = 42.0
+margin_right = 512.0
+margin_bottom = 43.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+min_value = -100.0
+
+[node name="HBoxContainer" type="HBoxContainer" parent="PanelContainer/MarginContainer/VBoxContainer"]
+margin_top = 224.0
+margin_right = 560.0
+margin_bottom = 267.0
+
+[node name="Label" type="Label" parent="PanelContainer/MarginContainer/VBoxContainer/HBoxContainer"]
+margin_right = 247.0
+margin_bottom = 43.0
+custom_fonts/font = ExtResource( 7 )
+text = "* img scale: "
+
+[node name="LineEdit" type="LineEdit" parent="PanelContainer/MarginContainer/VBoxContainer/HBoxContainer"]
+margin_left = 251.0
+margin_right = 479.0
+margin_bottom = 43.0
+custom_fonts/font = ExtResource( 7 )
+custom_styles/read_only = ExtResource( 1 )
+custom_styles/focus = ExtResource( 1 )
+custom_styles/normal = ExtResource( 1 )
+align = 1
+placeholder_text = "1.0"
+caret_blink = true
+
+[node name="CenterContainer" type="CenterContainer" parent="PanelContainer/MarginContainer/VBoxContainer"]
+margin_top = 283.0
+margin_right = 560.0
+margin_bottom = 326.0
+
+[node name="SaveButton" type="Button" parent="PanelContainer/MarginContainer/VBoxContainer/CenterContainer"]
+margin_left = 223.0
+margin_right = 337.0
+margin_bottom = 43.0
+custom_fonts/font = ExtResource( 7 )
+custom_styles/hover = ExtResource( 1 )
+custom_styles/pressed = ExtResource( 2 )
+custom_styles/focus = ExtResource( 1 )
+custom_styles/disabled = ExtResource( 1 )
+custom_styles/normal = ExtResource( 1 )
+text = " save "
+
+[node name="OpenDialog" type="FileDialog" parent="."]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -580.0
+margin_top = -354.5
+margin_right = 580.0
+margin_bottom = 354.5
+rect_min_size = Vector2( 250, 87.5 )
+window_title = "Open a File"
+dialog_text = "choose img source"
+mode = 0
+access = 2
+filters = PoolStringArray( "*.png", "*.jpg" )
+show_hidden_files = true
+current_dir = "/GitHub/adrift-in-darkness"
+current_path = "/GitHub/adrift-in-darkness/"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="SaveDialog" type="FileDialog" parent="."]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -580.0
+margin_top = -354.5
+margin_right = 580.0
+margin_bottom = 354.5
+rect_min_size = Vector2( 250, 87.5 )
+resizable = true
+dialog_hide_on_ok = true
+access = 2
+filters = PoolStringArray( "*.png, *.jpg, *.jpeg;" )
+show_hidden_files = true
+current_dir = "/GitHub/adrift-in-darkness"
+current_path = "/GitHub/adrift-in-darkness/"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[connection signal="pressed" from="PanelContainer/MarginContainer/VBoxContainer/ImgSrc/SourceButton" to="PanelContainer" method="_on_SourceButton_pressed"]
+[connection signal="value_changed" from="PanelContainer/MarginContainer/VBoxContainer/ImgPos/MarginContainer/VBoxContainer/X/XSlider" to="PanelContainer" method="_on_XSlider_value_changed"]
+[connection signal="value_changed" from="PanelContainer/MarginContainer/VBoxContainer/ImgPos/MarginContainer/VBoxContainer/Y/YSlider" to="PanelContainer" method="_on_YSlider_value_changed"]
+[connection signal="text_entered" from="PanelContainer/MarginContainer/VBoxContainer/HBoxContainer/LineEdit" to="PanelContainer" method="_on_LineEdit_text_entered"]
+[connection signal="pressed" from="PanelContainer/MarginContainer/VBoxContainer/CenterContainer/SaveButton" to="PanelContainer" method="_on_SaveButton_pressed"]
+[connection signal="file_selected" from="OpenDialog" to="PanelContainer" method="_on_OpenDialog_file_selected"]
