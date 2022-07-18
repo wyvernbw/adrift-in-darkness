@@ -1,10 +1,20 @@
-[gd_resource type="Resource" load_steps=2 format=2]
+[gd_resource type="Resource" load_steps=5 format=2]
 
 [ext_resource path="res://classes/DialogueResource.gd" type="Script" id=1]
+[ext_resource path="res://items/silver_key.png" type="Texture" id=2]
+[ext_resource path="res://classes/ItemResource.gd" type="Script" id=3]
+
+[sub_resource type="Resource" id=1]
+script = ExtResource( 3 )
+name = "Silver key"
+texture = ExtResource( 2 )
+type = 1
+quantity = 1
 
 [resource]
 script = ExtResource( 1 )
 text = [ "You find a key in the pool of bloody water" ]
 answers = {
 }
+item_held = SubResource( 1 )
 read_box_text = ""

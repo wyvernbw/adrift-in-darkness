@@ -2,7 +2,7 @@ extends CanvasLayer
 tool
 
 onready var TypingTimer = $TypingTimer
-onready var label = get_node("Panel/Label")
+onready var label = get_node("Panel/MarginContainer/Label")
 onready var label_rect = label.get_rect()  # Cache the original pos
 # The max number of lines that the label can hold
 const MAX_LINES = 3
@@ -14,9 +14,13 @@ func _ready() -> void:
 	reposition_label(label.text)
 
 
+func set_text(new_text : String) -> void:
+	label.bbcode_text = new_text
+
+
 func _on_TypingTimer_timeout():
-	get_node("Panel/Label").visible_characters += 1
-	if get_node("Panel/Label").visible_characters == get_node("Panel/Label").text.length():
+	label.visible_characters += 1
+	if label.visible_characters == label.text.length():
 		typing_finished = true
 		TypingTimer.stop()
 

@@ -1,26 +1,57 @@
-[gd_scene load_steps=3 format=2]
+[gd_scene load_steps=4 format=2]
 
-[ext_resource path="res://fonts/LinLibertine_R.ttf" type="DynamicFontData" id=1]
+[ext_resource path="res://gui/dialogue_font.tres" type="DynamicFont" id=1]
+[ext_resource path="res://gui/read_box/read_box.gd" type="Script" id=2]
 
-[sub_resource type="DynamicFont" id=1]
-size = 12
-font_data = ExtResource( 1 )
+[sub_resource type="StyleBoxFlat" id=2]
+bg_color = Color( 0, 0, 0, 0.470588 )
+corner_radius_top_left = 20
+corner_radius_top_right = 20
+corner_radius_bottom_right = 20
+corner_radius_bottom_left = 20
 
 [node name="ReadBox" type="CanvasLayer"]
+script = ExtResource( 2 )
 
-[node name="Text" type="Label" parent="."]
-anchor_right = 1.0
-anchor_bottom = 1.0
-custom_fonts/font = SubResource( 1 )
-text = "Read me."
-align = 1
-valign = 1
+[node name="MarginContainer" type="MarginContainer" parent="."]
+margin_left = 7.0
+margin_top = 7.0
+margin_right = 1913.0
+margin_bottom = 1073.0
+custom_constants/margin_right = 512
+custom_constants/margin_top = 0
+custom_constants/margin_left = 512
+custom_constants/margin_bottom = 0
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="Background" type="Panel" parent="."]
-self_modulate = Color( 0, 0, 0, 0.796078 )
+[node name="PanelContainer" type="PanelContainer" parent="MarginContainer"]
+margin_left = 512.0
+margin_right = 1394.0
+margin_bottom = 1066.0
+custom_styles/panel = SubResource( 2 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="MarginContainer" type="MarginContainer" parent="MarginContainer/PanelContainer"]
+margin_right = 882.0
+margin_bottom = 1066.0
+custom_constants/margin_right = 100
+custom_constants/margin_top = 100
+custom_constants/margin_left = 100
+custom_constants/margin_bottom = 100
+
+[node name="Text" type="Label" parent="MarginContainer/PanelContainer/MarginContainer"]
+margin_left = 100.0
+margin_top = 100.0
+margin_right = 782.0
+margin_bottom = 966.0
+size_flags_vertical = 1
+custom_fonts/font = ExtResource( 1 )
+text = "Read me."
+autowrap = true
 __meta__ = {
 "_edit_use_anchors_": false
 }

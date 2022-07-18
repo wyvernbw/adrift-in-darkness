@@ -39,6 +39,10 @@ func _ready() -> void:
 		GlobalHandler.Player.LookRaycast.add_exception(self)
 	illumination.texture = object_sprite.texture
 	illumination.modulate = GlobalHandler.global_object_illumination
+	if not GlobalHandler.debug_objects:
+		if get_node_or_null("Debug"):
+			$Debug/PlayerColliding.hide()
+			$Debug/PlayerLooking.hide()
 
 
 func _input(event: InputEvent) -> void:

@@ -1,4 +1,4 @@
-[gd_scene load_steps=26 format=2]
+[gd_scene load_steps=27 format=2]
 
 [ext_resource path="res://tilesets/house/house1.tres" type="TileSet" id=1]
 [ext_resource path="res://characters/player/player.tscn" type="PackedScene" id=2]
@@ -51,7 +51,14 @@ read_box_text = ""
 
 [sub_resource type="Resource" id=5]
 script = ExtResource( 5 )
-text = [ "page 1 example" ]
+text = [ "It's locked." ]
+answers = {
+}
+read_box_text = ""
+
+[sub_resource type="Resource" id=6]
+script = ExtResource( 5 )
+text = [ "Won't open.", "The door has no keyhole. Something is pushing it shut from the inside." ]
 answers = {
 }
 read_box_text = ""
@@ -106,6 +113,7 @@ format = 1
 tile_data = PoolIntArray( -131071, 5, 0, -131070, 5, 0, -131069, 5, 0, -131068, 5, 0, -131067, 5, 0, -131066, 5, 0, -131063, 5, 0, -131062, 5, 0, -131061, 5, 0, -131060, 5, 0, -131059, 5, 0, -131058, 5, 0 )
 
 [node name="Shadow" parent="." instance=ExtResource( 9 )]
+visible = false
 modulate = Color( 0.458824, 0.458824, 0.458824, 0.376471 )
 z_index = 1
 tile_data = PoolIntArray( 10, 2, 0, 15, 2, 0, 65537, 0, 0, 65538, 0, 0, 65539, 0, 0, 65540, 0, 0, 65541, 0, 0, 65542, 0, 0, 65543, 0, 0, 65544, 0, 0, 65545, 0, 0, 65546, 0, 0, 65547, 0, 0, 65548, 0, 0, 65549, 0, 0, 65550, 1, 0, 131073, 0, 0, 196609, 0, 0, 262145, 0, 0, 262159, 2, 0, 327681, 0, 0, 393217, 0, 0, 458753, 0, 0, 524289, 0, 0, 589825, 1, 0 )
@@ -187,7 +195,6 @@ scene_name = "1F_west_hall"
 locked = true
 locked_dialogue = SubResource( 3 )
 key_name = "Silver Key"
-player_path = NodePath("../../Player")
 required_look_dir = Vector2( -1, 0 )
 
 [node name="Door3" parent="Doors" instance=ExtResource( 12 )]
@@ -196,35 +203,30 @@ position = Vector2( -24, -88 )
 scene_name = "2F_west_small_room"
 locked_dialogue = SubResource( 4 )
 key_name = "asdfgadfsg"
-player_path = NodePath("../../Player")
 required_look_dir = Vector2( -1, 0 )
 
 [node name="Door" parent="Doors" instance=ExtResource( 12 )]
 visible = false
 position = Vector2( 120.692, 135.864 )
 locked = true
-player_path = NodePath("../../Player")
 required_look_dir = Vector2( 0, 1 )
 
 [node name="Door2" parent="Doors" instance=ExtResource( 12 )]
 visible = false
 position = Vector2( 135.492, 135.864 )
 locked = true
-player_path = NodePath("../../Player")
 required_look_dir = Vector2( 0, 1 )
 
 [node name="Door5" parent="Doors" instance=ExtResource( 12 )]
 visible = false
 position = Vector2( 250.309, 24 )
 scene_name = "1F_kitchen"
-player_path = NodePath("../../Player")
 required_look_dir = Vector2( 1, 0 )
 
 [node name="Door6" parent="Doors" instance=ExtResource( 12 )]
 visible = false
 position = Vector2( 280, -88 )
 scene_name = "2F_east_main_hall"
-player_path = NodePath("../../Player")
 required_look_dir = Vector2( 1, 0 )
 
 [node name="Door7" parent="Doors" instance=ExtResource( 12 )]
@@ -233,9 +235,16 @@ position = Vector2( 248, 120 )
 scene_name = "1F_east_hall"
 locked = true
 locked_dialogue = SubResource( 5 )
-key_name = "Grey key"
-player_path = NodePath("../../Player")
+key_name = "Silver key"
 required_look_dir = Vector2( 1, 0 )
+
+[node name="Door8" parent="Doors" instance=ExtResource( 12 )]
+position = Vector2( 56, 0 )
+scene_name = "basement_corridor"
+locked = true
+locked_dialogue = SubResource( 6 )
+key_name = "Basement key"
+required_look_dir = Vector2( 0, -1 )
 
 [node name="banner" type="Sprite" parent="."]
 light_mask = 16

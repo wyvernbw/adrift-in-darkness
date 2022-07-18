@@ -22,11 +22,21 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="Label" type="RichTextLabel" parent="Panel"]
+[node name="MarginContainer" type="MarginContainer" parent="Panel"]
 margin_left = 2.0
-margin_top = 145.0
+margin_top = 2.0
 margin_right = 1662.0
-margin_bottom = 229.0
+margin_bottom = 373.0
+custom_constants/margin_right = 48
+custom_constants/margin_top = 48
+custom_constants/margin_left = 48
+custom_constants/margin_bottom = 48
+
+[node name="Label" type="RichTextLabel" parent="Panel/MarginContainer"]
+margin_left = 48.0
+margin_top = 157.0
+margin_right = 1612.0
+margin_bottom = 213.0
 rect_min_size = Vector2( 256, 0 )
 size_flags_horizontal = 5
 size_flags_vertical = 4

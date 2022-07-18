@@ -9,6 +9,7 @@ export var captions_duration: float = 1.5  # seconds
 export var global_object_illumination: Color
 export var bloodshot_pallete: Texture
 export var regular_pallete: Texture
+export var debug_objects: bool = false
 
 var left_arm: bool = true
 var do_static_effect: bool = true

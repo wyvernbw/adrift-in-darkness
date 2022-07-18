@@ -16,13 +16,10 @@
 
 [sub_resource type="Resource" id=1]
 script = ExtResource( 2 )
-text = [ "page 1 example" ]
+text = [ "A worn down table. There is a note on it. It looks like it was ripped from a journal. " ]
 answers = {
 }
-item_name = ""
-item_quantity = 0
-item_type = 0
-read_box_text = "lolol big ass note"
+read_box_text = "The cycle of suffering will continue. Just because of her, that damn woman. Her smile, it terrifies me. I've been hiding for a while, but I get the feeling I'm being watched. Sarah, my dear sister, I'm sorry, I couldn't save you."
 
 [node name="2F_west_small_room" type="Node2D"]
 
@@ -122,6 +119,4 @@ dialogue = ExtResource( 4 )
 visible = false
 position = Vector2( 136, 104 )
 scene_name = "1F_main_room"
-inventory_gui_path = NodePath("../CanvasLayer/InventoryGUI")
-player_path = NodePath("../../2F_west_small_room/Player")
 required_look_dir = Vector2( 1, 0 )

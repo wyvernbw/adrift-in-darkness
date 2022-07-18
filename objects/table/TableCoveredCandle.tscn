@@ -30,7 +30,7 @@ monitoring = false
 monitorable = false
 
 [node name="Light" parent="Candle" index="5"]
-energy = 0.9
+energy = 1.12
 
 [node name="Debug" parent="Candle" index="7"]
 visible = true

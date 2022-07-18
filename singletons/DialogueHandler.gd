@@ -88,7 +88,7 @@ func add_read_box(paragraph: String) -> void:
 	yield(get_tree(), "idle_frame")
 	if paragraph:
 		var read_box = READ_BOX_SCENE.instance()
-		read_box.get_node("Text").text = paragraph
+		read_box.set_text(paragraph)
 		add_child(read_box)
 		yield(self, "next_page")
 		remove_dialogue_box()
@@ -128,9 +128,8 @@ func add_dialogue_box(line: String) -> void:
 	Adds a dialogue box with "line" as text. 
 	"""
 	var dialogue_box = DIALOGUE_BOX_SCENE.instance()
-	var label = dialogue_box.get_node("Panel/Label")
-	label.bbcode_text = text_template % line
 	add_child(dialogue_box)
+	dialogue_box.set_text(text_template % line)
 
 
 
