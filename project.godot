@@ -22,7 +22,7 @@ _global_script_classes=[ {
 "base": "Node",
 "class": "Event",
 "language": "GDScript",
-"path": "res://singletons/Grim/Event.gd"
+"path": "res://grim/Event.gd"
 }, {
 "base": "Resource",
 "class": "GameSave",
@@ -32,7 +32,7 @@ _global_script_classes=[ {
 "base": "Node",
 "class": "Grim",
 "language": "GDScript",
-"path": "res://singletons/Grim/Grim.gd"
+"path": "res://grim/Grim.gd"
 }, {
 "base": "Object",
 "class": "Item",
