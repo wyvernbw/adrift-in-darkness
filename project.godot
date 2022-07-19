@@ -19,10 +19,20 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://classes/DialogueResource.gd"
 }, {
+"base": "Node",
+"class": "Event",
+"language": "GDScript",
+"path": "res://singletons/Grim/Event.gd"
+}, {
 "base": "Resource",
 "class": "GameSave",
 "language": "GDScript",
 "path": "res://classes/GameSave.gd"
+}, {
+"base": "Node",
+"class": "Grim",
+"language": "GDScript",
+"path": "res://singletons/Grim/Grim.gd"
 }, {
 "base": "Object",
 "class": "Item",
@@ -62,7 +72,9 @@ _global_script_classes=[ {
 _global_script_class_icons={
 "BranchingBox": "",
 "DialogueResource": "",
+"Event": "",
 "GameSave": "",
+"Grim": "",
 "Item": "",
 "ItemResource": "",
 "ItemSlot": "",
