@@ -24,7 +24,10 @@ func load_sounds(load_paths: Array) -> void:
 			print("Error opening directory: %s" % error)
 			continue
 		# start the file enumeration and skip navigationals like .. and .
-		dir.list_dir_begin(true)
+		error = dir.list_dir_begin(true)
+		if not error == OK:
+			print("Error listing directory: %s" % error)
+			continue
 		var file_name := dir.get_next()
 		while file_name:
 			if file_name.get_extension() == "wav":
