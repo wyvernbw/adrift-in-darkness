@@ -171,7 +171,6 @@ func play_anim(anim: String, dir: Vector2) -> void:
 
 
 func change_animation_speed(fps: float) -> void:
-	var sprite: AnimatedSprite = $AnimatedSprite
 	sprite.frames.set_animation_speed(sprite.animation, fps)
 
 
