@@ -99,6 +99,7 @@ SaveGameHandler="*res://singletons/SaveGameHandler.gd"
 HpHandler="*res://singletons/HpHandler.gd"
 GlobalHandler="*res://Globals.tscn"
 Gui="*res://gui/GUI.tscn"
+Sound="*res://sounds/sound.tscn"
 
 [display]
 
