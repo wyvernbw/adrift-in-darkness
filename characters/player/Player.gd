@@ -56,7 +56,6 @@ func _ready() -> void:
 	_error = connect("player_look_dir_changed", $Lantern, "_on_player_look_dir_changed")
 	_error = Gui.inventory.connect("inventory_closed", self, "_on_InventoryGUI_inventory_closed")
 	_error = Gui.inventory.connect("inventory_opened", self, "_on_InventoryGUI_inventory_opened")
-
 	add_to_group("persist")
 
 
@@ -66,9 +65,9 @@ func _physics_process(delta: float) -> void:
 
 	# move body along vector
 	velocity = move_and_slide(velocity, Vector2.ZERO)
-	
 
-func _process(delta: float) -> void: 
+
+func _process(delta: float) -> void:
 	change_occluder(look_dir)
 	change_animation_speed(speed / base_speed * 3)
 	if moving:
@@ -102,7 +101,7 @@ func apply_motion(delta: float) -> void:
 
 
 func apply_friction() -> void:
-    velocity = lerp(velocity, Vector2.ZERO, deaccel)
+	velocity = lerp(velocity, Vector2.ZERO, deaccel)
 
 
 func _update_look_dir() -> void:
@@ -114,7 +113,7 @@ func _update_look_dir() -> void:
 		look_dir = Vector2.DOWN
 	if Input.is_action_pressed("move_up"):
 		look_dir = Vector2.UP
-	if look_dir != last_look_dir: 
+	if look_dir != last_look_dir:
 		emit_signal("player_look_dir_changed", look_dir)
 	last_look_dir = look_dir
 
@@ -128,10 +127,7 @@ func _get_input() -> void:
 	var moving_up := Input.get_action_strength("move_up")
 	var moving_down := Input.get_action_strength("move_down")
 
-	move_dir = Vector2(
-        moving_right - moving_left,
-        moving_down - moving_up
-    )
+	move_dir = Vector2(moving_right - moving_left, moving_down - moving_up)
 
 	if move_dir.x == 0 and move_dir.y == 0:
 		moving = false
@@ -141,7 +137,7 @@ func _get_input() -> void:
 
 func _calculate_speed(delta: float) -> void:
 	if staggered:
-		speed = stagger_speed 
+		speed = stagger_speed
 	elif Input.is_action_pressed("sprint"):
 		speed = sprint_speed
 		if moving:
@@ -188,7 +184,7 @@ func change_occluder(dir: Vector2) -> void:
 		$LightOccluder2D.occluder = occluder_side
 		$LightOccluder2D.position.y = 0
 		$LightOccluder2D.position.x = 6 if dir.x == -1 else -2
-		
+
 
 func save() -> Dictionary:
 	var save_dict: Dictionary = {}
