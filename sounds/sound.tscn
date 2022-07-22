@@ -7,3 +7,5 @@ script = ExtResource( 1 )
 paths = [ "res://sounds" ]
 
 [node name="Global" type="AudioStreamPlayer" parent="."]
+
+[connection signal="finished_loading" from="." to="." method="_on_Sound_finished_loading"]
