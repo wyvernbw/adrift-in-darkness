@@ -1,12 +1,24 @@
-[gd_scene load_steps=3 format=2]
+[gd_scene load_steps=5 format=2]
 
 [ext_resource path="res://levels/Game.gd" type="Script" id=1]
 [ext_resource path="res://levels/1F_main_room.tscn" type="PackedScene" id=2]
+[ext_resource path="res://levels/events/creak.gd" type="Script" id=3]
+
+[sub_resource type="Curve" id=1]
+_data = [ Vector2( 0, 0 ), 0.0, 0.128406, 0, 0, Vector2( 1, 1 ), 3.2872, 0.0, 0, 0 ]
 
 [node name="Game" type="Node2D" groups=["persist", "save"]]
 script = ExtResource( 1 )
 __meta__ = {
 "_edit_horizontal_guides_": [  ]
 }
+event_curve = SubResource( 1 )
 
 [node name="1F_main_room" parent="." instance=ExtResource( 2 )]
+
+[node name="Events" type="Node" parent="."]
+
+[node name="Creak" type="Node" parent="Events"]
+script = ExtResource( 3 )
+id = "creak"
+intensity = 0.2

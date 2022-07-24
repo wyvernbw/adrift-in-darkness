@@ -1,35 +1,40 @@
 extends Node2D
 
-export var levels: Dictionary = {
-	"1F_main_room": preload("res://levels/1F_main_room.tscn").instance(),
-	"1F_west_hall": preload("res://levels/1F_west_hall.tscn").instance(),
-	"1F_west_main_hall": preload("res://levels/1F_west_main_hall.tscn").instance(),
-	"2F_west_small_room": preload("res://levels/2F_west_small_room.tscn").instance(),
-	"1F_west_office": preload("res://levels/1F_west_office.tscn").instance(),
-	"1F_kitchen": preload("res://levels/1F_kitchen.tscn").instance(),
-	"2F_east_main_hall": preload("res://levels/2F_east_main_hall.tscn").instance(),
-	"1F_east_hall": preload("res://levels/1F_east_hall.tscn").instance(),
-	"1F_blood_room": preload("res://levels/1F_blood_room.tscn").instance(),
-	"2F_bedroom": preload("res://levels/2F_bedroom.tscn").instance(),
-	"2F_bathroom": preload("res://levels/2F_bathroom.tscn").instance(),
-	"2F_library": preload("res://levels/2F_library.tscn").instance(),
-	"2F_paper_room": preload("res://levels/2F_paper_room.tscn").instance()
-}
+export var levels: Dictionary
 export var current_scene: String = "1F_main_room"
+export var load_paths: Array = ["res://levels"]
+export var event_curve: Curve
 
 var save_key = "game"
 
+onready var grim = Grim.new({
+	"curve": event_curve,
+	"step": 0.1,
+	"interval": 5,
+	"intensity_range": 0.2,
+	"manual": false,
+})
+
 
 func _ready():
+	grim.connect("grim_ready", self, "_on_grim_ready")
+	load_levels()
 	GlobalHandler.previous_scene = get_tree().get_current_scene().get_filename()
 	GlobalHandler.Game = self
+	add_child(grim)
+
+
+func _on_grim_ready():
+	add_events()
+	grim.grim_init()
 
 
 func switch_scene(scene_name: String) -> void:
 	if not scene_name in levels.keys():
 		return
 	for node in self.get_children():
-		if not node is Node2D:
+		node = node as Node2D
+		if not node:
 			continue
 		levels[node.get_name()] = node
 		remove_child(node)
@@ -38,8 +43,8 @@ func switch_scene(scene_name: String) -> void:
 		print("added level " + levels[scene_name].get_name())
 		GlobalHandler.Player = levels[scene_name].get_node("Player")
 		current_scene = scene_name
-
 		return
+
 	# if game has no level
 	add_child(levels[scene_name])
 	print("added level " + levels[scene_name].get_name())
@@ -53,6 +58,10 @@ func _on_Door_player_entered(scene_name) -> void:
 	switch_scene(scene_name)
 	print(scene_name)
 
+
+func add_events() -> void:
+	var event_scripts = get_node("Events")
+	grim.register(event_scripts.get_node("Creak"))
 
 func save() -> Dictionary:
 	var save_dict: Dictionary
@@ -77,3 +86,19 @@ func load(save: Dictionary) -> void:
 	#new_scene.name = current_scene
 	#add_child(new_scene)
 	switch_scene(save["current_scene"])
+
+
+func load_levels() -> void:
+	print("game: loading levels...")
+	var dir = Directory.new()
+	for path in load_paths:
+		dir.open(path)
+		dir.list_dir_begin(true)
+		var file = dir.get_next()
+		while file:
+			if file.get_extension() == "tscn":
+				var key = file.get_file().get_basename()
+				var level = load(path + "/" + file.get_file())
+				levels[key] = level.instance()
+			file = dir.get_next()
+		dir.list_dir_end()
