@@ -60,8 +60,10 @@ func _on_Door_player_entered(scene_name) -> void:
 
 
 func add_events() -> void:
-	var event_scripts = get_node("Events")
-	grim.register(event_scripts.get_node("Creak"))
+	var event_scripts: Node = get_node("Events")
+	var ambient_events: Array = event_scripts.get_node("Ambient").get_children()
+	for event in ambient_events:
+		grim.register(event)
 
 func save() -> Dictionary:
 	var save_dict: Dictionary

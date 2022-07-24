@@ -1,8 +1,13 @@
-[gd_scene load_steps=5 format=2]
+[gd_scene load_steps=10 format=2]
 
 [ext_resource path="res://levels/Game.gd" type="Script" id=1]
 [ext_resource path="res://levels/1F_main_room.tscn" type="PackedScene" id=2]
 [ext_resource path="res://levels/events/creak.gd" type="Script" id=3]
+[ext_resource path="res://levels/events/heavy_breathing.gd" type="Script" id=4]
+[ext_resource path="res://levels/events/footsteps.gd" type="Script" id=5]
+[ext_resource path="res://levels/witch_whisper.gd" type="Script" id=6]
+[ext_resource path="res://levels/events/chain_rattling.gd" type="Script" id=7]
+[ext_resource path="res://levels/events/lantern_flicker.gd" type="Script" id=8]
 
 [sub_resource type="Curve" id=1]
 _data = [ Vector2( 0, 0 ), 0.0, 0.128406, 0, 0, Vector2( 1, 1 ), 3.2872, 0.0, 0, 0 ]
@@ -18,7 +23,32 @@ event_curve = SubResource( 1 )
 
 [node name="Events" type="Node" parent="."]
 
-[node name="Creak" type="Node" parent="Events"]
+[node name="Ambient" type="Node" parent="Events"]
+
+[node name="Creak" type="Node" parent="Events/Ambient"]
 script = ExtResource( 3 )
 id = "creak"
 intensity = 0.2
+
+[node name="Footsteps" type="Node" parent="Events/Ambient"]
+script = ExtResource( 5 )
+id = "footsteps"
+intensity = 0.5
+
+[node name="ChainRattling" type="Node" parent="Events/Ambient"]
+script = ExtResource( 7 )
+id = "chain_rattling"
+intensity = 0.3
+
+[node name="HeavyBreathing" type="Node" parent="Events/Ambient"]
+script = ExtResource( 4 )
+id = "heavy_breathing"
+intensity = 0.3
+
+[node name="WitchWhisper" type="Node" parent="Events/Ambient"]
+script = ExtResource( 6 )
+id = "witch_whisper"
+intensity = 0.5
+
+[node name="LanternFlicker" type="Node" parent="Events/Ambient"]
+script = ExtResource( 8 )
