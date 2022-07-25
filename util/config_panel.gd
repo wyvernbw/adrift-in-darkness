@@ -27,13 +27,13 @@ func _on_LineEdit_text_entered(new_text: String) -> void:
 
 func _on_SaveButton_pressed():
 	save_file_dialog.popup()
-	yield(save_file_dialog, "file_selected")
+	var filename = yield(save_file_dialog, "file_selected")
 	hide()
 	save_file_dialog.hide()
 	yield(get_tree().create_timer(0.5), "timeout")
 	var image = get_viewport().get_texture().get_data()
 	image.flip_y()
-	image.save_png(save_file_dialog.current_path)
+	image.save_png(filename)
 	yield(get_tree().create_timer(0.5), "timeout")
 	show()
 
